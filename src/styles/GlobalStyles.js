@@ -1,18 +1,15 @@
 import { createGlobalStyle } from "styled-components";
+import { colors, fonts } from "../styles/stylesVariables";
+
 export const GlobalStyles = createGlobalStyle`
-*{
-    max-width:100%
-}
-html, body{
-    
-     margin:0;
-    font-size: 15px;
-    background-color: #7F260F;
-    color: white;
-    font-family: "Carbin";
-    @media (max-width: 700px){
-        font-size: 11px;
-    }
-}
+  html, body {
+    font-family: ${fonts.Cabin};
+    font-size: 10px;
+    background-color: ${colors.background.background1};
+    color: ${colors.white};
+
+    padding: 0;
+    margin: 0;
+  }
 `;
 export default GlobalStyles;
