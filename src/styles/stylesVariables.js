@@ -1,7 +1,11 @@
 export const colors = {
   background: {
-    background1: "#7F260F",
-    background2: "#000000",
+    primary: "#7F260F",
+    secondary: "#000000",
+  },
+  font: {
+    primary: "#FFF",
+    secondary: "#000",
   },
   accent: "#F19709",
   error: "#9E0000",

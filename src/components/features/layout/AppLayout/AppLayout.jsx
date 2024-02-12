@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Container } from "./Styles";
-import Header from "../../../Common/Header/Header";
-import Footer from "../../../Common/Footer/Footer";
+import { Header, Footer } from "../../../../components";
+
 export default function AppLayout() {
   return (
     <Container>

@@ -5,8 +5,6 @@ import {
   Route,
 } from "react-router-dom";
 
-import { AppLayout } from "./components/Features/layouts";
-
 import {
   Home,
   Collection,
@@ -18,6 +16,7 @@ import {
   Story,
   AboutUs,
 } from "./pages";
+import { AppLayout } from "./components";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -4,9 +4,9 @@ import { colors, fonts } from "../styles/stylesVariables";
 export const GlobalStyles = createGlobalStyle`
   html, body {
     font-family: ${fonts.Cabin};
-    font-size: 10px;
-    background-color: ${colors.background.background1};
-    color: ${colors.white};
+    font-size: 15px;
+    background-color: ${colors.background.primary};
+    color: ${colors.font.primary};
 
     padding: 0;
     margin: 0;
