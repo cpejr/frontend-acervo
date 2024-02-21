@@ -11,24 +11,31 @@ export const Container = styled.div`
   align-items: center;
   margin-top: 85px;
   margin-bottom: 100px;
-  gap: 2 rem;
+  gap: 2rem;
+  a {
+    border-bottom: 2px solid;
+    color: ${colors.font.line};
+  }
   h1 {
-    font-size: 4rem;
+    font-size: 60px;
     margin-bottom: 1rem;
     flex-direction: column;
     color: ${colors.font.other};
+    border-bottom: 2px;
   }
   p {
-    font-size: 2rem;
+    font-size: 40px;
     margin-bottom: 5rem;
     color: ${colors.font.primary};
+    padding-left: 15rem;
+    padding-right: 12rem;
   }
 `;
 export const FirstImage = styled.div`
   background-image: url(${FirstStoryImage});
   background-size: cover;
-  margin-top: 200px;
-  margin-bottom: 100px;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
   width: 1081.39px;
   height: 694px;
   text-align: center;
@@ -65,8 +72,8 @@ export const SecondImage = styled.div`
 export const ThirdImage = styled.div`
   background-image: url(${ThirdStoryImage});
   background-size: cover;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 1px;
+  margin-bottom: 7rem;
   width: 1098.09px;
   height: 744px;
   text-align: center;

@@ -2,7 +2,9 @@ import { Container, FirstImage, SecondImage, ThirdImage } from "./Styles";
 export default function Story() {
   return (
     <Container>
-      <h1>Sobre a Cidade de Bom Despacho</h1>
+      <a>
+        <h1>Sobre a Cidade de Bom Despacho</h1>
+      </a>
 
       <FirstImage></FirstImage>
       <p>
