@@ -3,7 +3,10 @@ export default function Story() {
   return (
     <Container>
       <a>
-        <h1>Sobre a Cidade de Bom Despacho</h1>
+        <h1>Sobre a Cidade de Bom</h1>
+      </a>
+      <a>
+        <h1>Despacho</h1>
       </a>
 
       <FirstImage></FirstImage>

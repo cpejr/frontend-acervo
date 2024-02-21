@@ -13,15 +13,14 @@ export const Container = styled.div`
   margin-bottom: 100px;
   gap: 2rem;
   a {
-    border-bottom: 2px solid;
+    border-bottom: 3px solid;
     color: ${colors.font.line};
   }
   h1 {
-    font-size: 60px;
-    margin-bottom: 1rem;
+    font-size: 65px;
+    margin-bottom: 0.5px;
     flex-direction: column;
     color: ${colors.font.other};
-    border-bottom: 2px;
   }
   p {
     font-size: 40px;
