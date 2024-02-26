@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { breakpoints } from "../../styles/stylesVariables";
 export const Container = styled.div`
   max-width: 100%;
+  margin: 0 auto;
 `;
 
 export const Overlay = styled.div`
@@ -25,7 +26,7 @@ export const Sponsers = styled.div`
   background-color: white;
   display: flex;
   justify-content: space-between;
-  margin-top: -3px;
+  margin-top: -5px;
   @media (max-width: ${breakpoints.desktop}) {
     display: none;
   }
@@ -40,12 +41,13 @@ export const Us = styled.div`
   flex-direction: row;
   align-items: center;
   margin-top: 10rem;
-  justify-content: center;
-  padding: 50px 0;
-  gap: 30px;
+  justify-content: space-evenly;
+  padding: 20px 0;
   @media (max-width: ${breakpoints.desktop}) {
     display: flex;
     flex-direction: column;
+    width: 100vw;
+    margin: 0 auto;
   }
 `;
 
@@ -54,30 +56,32 @@ export const WhatIs = styled.div`
   flex-direction: row;
   align-items: center;
   margin-top: 10rem;
-  justify-content: center;
-  padding: 50px 0;
-  gap: 30px;
+  justify-content: space-evenly;
+  padding: 20px 0;
   @media (max-width: ${breakpoints.desktop}) {
     display: flex;
     flex-direction: column;
+    width: 100vw;
+    margin: 0 auto;
   }
 `;
 
-export const OurEvents = styled.div`
+export const Events = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 10rem;
-  justify-content: center;
-  padding: 50px 0;
-  gap: 30px;
+  justify-content: space-evenly;
+  padding: 20px 0;
   @media (max-width: ${breakpoints.desktop}) {
     display: flex;
     flex-direction: column;
+    width: 100vw;
+    margin: 0 auto;
   }
 `;
 
-export const CuriosityButton = styled.button`
+export const Button = styled.button`
   width: 10rem;
   border-radius: 7px;
   background-color: #f19709;
@@ -88,7 +92,7 @@ export const CuriosityButton = styled.button`
   cursor: pointer;
 `;
 
-export const UsTitle = styled.h1`
+export const Title = styled.h1`
   color: #eedac5;
   border-bottom: 2px solid #eedac5;
   padding-bottom: 2px;
@@ -97,20 +101,20 @@ export const UsTitle = styled.h1`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
   justify-content: center;
   text-align: center;
   align-items: center;
   max-width: 40%;
 `;
 
-export const Img1 = styled.img`
+export const LargerImg = styled.img`
   max-width: 150%;
   @media (min-width: ${breakpoints.desktop}) {
     display: none;
   }
 `;
-export const Img2 = styled.img`
+export const SmallerImg = styled.img`
   max-width: 150%;
   @media (max-width: ${breakpoints.desktop}) {
     display: none;

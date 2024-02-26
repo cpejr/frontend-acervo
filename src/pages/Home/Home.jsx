@@ -8,87 +8,89 @@ import {
   Curiosity,
   Us,
   WhatIs,
-  OurEvents,
-  CuriosityButton,
-  UsTitle,
+  Events,
+  Button,
+  Title,
   Column,
-  Img1,
-  Img2,
+  LargerImg,
+  SmallerImg,
 } from "./Styles";
 
-import Gov from "/src/assets/Home/Governo.png";
-import Cultura from "/src/assets/Home/LeiCultura.png";
-import Pref from "/src/assets/Home/Prefeitura.png";
-import Min from "/src/assets/Home/MinisterioTurismo.png";
-import Fundo from "/src/assets/Home/fotoFundo.png";
-import Cidade from "/src/assets/Home/Cidade.png";
-import Mapa from "/src/assets/Home/Mapa.png";
-import Festa from "/src/assets/Home/Festa.png";
+import {
+  mapa,
+  secretaria,
+  casaTueTimba,
+  cidade,
+  festa,
+  prefeitura,
+  governo,
+  fotoFundo,
+} from "../../assets/index";
 
 export default function Home() {
   return (
     <Container>
       <Overlay>
-        <UnderImage src={Fundo}></UnderImage>
+        <UnderImage src={fotoFundo}></UnderImage>
         <Logo></Logo>
       </Overlay>
       <Sponsers>
-        <Sponsor src={Cultura}></Sponsor>
-        <Sponsor src={Pref}></Sponsor>
-        <Sponsor src={Min}></Sponsor>
-        <Sponsor src={Gov}></Sponsor>
+        <Sponsor src={prefeitura}></Sponsor>
+        <Sponsor src={secretaria}></Sponsor>
+        <Sponsor src={casaTueTimba}></Sponsor>
+        <Sponsor src={governo}></Sponsor>
       </Sponsers>
       <Curiosity>
         <Us>
           <Column>
-            <UsTitle>Quem somos</UsTitle>
+            <Title>Quem somos</Title>
             <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
               quae ab illo inventore veritatis et quasi architecto beatae vitae
               dicta sunt, explicabo.
             </p>
-            <Img1 src={Mapa}></Img1>
-            <CuriosityButton>BOTÃO</CuriosityButton>
+            <LargerImg src={mapa}></LargerImg>
+            <Button>BOTÃO</Button>
           </Column>
           <Column>
-            <Img2 src={Mapa}></Img2>
+            <SmallerImg src={mapa}></SmallerImg>
           </Column>
         </Us>
 
         <WhatIs>
           <Column>
-            <Img2 src={Cidade}></Img2>
+            <SmallerImg src={cidade}></SmallerImg>
           </Column>
           <Column>
-            <UsTitle>O que é o acervo?</UsTitle>
+            <Title>O que é o acervo?</Title>
             <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
               quae ab illo inventore veritatis et quasi architecto beatae vitae
               dicta sunt, explicabo.
             </p>
-            <Img1 src={Cidade}></Img1>
-            <CuriosityButton>BOTÃO</CuriosityButton>
+            <LargerImg src={cidade}></LargerImg>
+            <Button>BOTÃO</Button>
           </Column>
         </WhatIs>
 
-        <OurEvents>
+        <Events>
           <Column>
-            <UsTitle>Nosso eventos</UsTitle>
+            <Title>Nosso eventos</Title>
             <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
               quae ab illo inventore veritatis et quasi architecto beatae vitae
               dicta sunt, explicabo.
             </p>
-            <Img1 src={Festa}></Img1>
-            <CuriosityButton>BOTÃO</CuriosityButton>
+            <LargerImg src={festa}></LargerImg>
+            <Button>BOTÃO</Button>
           </Column>
           <Column>
-            <Img2 src={Festa}></Img2>
+            <SmallerImg src={festa}></SmallerImg>
           </Column>
-        </OurEvents>
+        </Events>
       </Curiosity>
     </Container>
   );
