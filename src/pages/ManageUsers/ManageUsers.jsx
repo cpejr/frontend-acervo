@@ -5,16 +5,17 @@ import { useState } from "react";
 import {
   Container,
   Select,
-  //ProfilePic,
+  ProfilePic,
   Table,
   TableColumn,
   ModalStyle,
   //Button,
+  Line,
+  Title,
 } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import ModalDeleteUser from "../../components/features/ModalDeleteUser/ModalDeleteUser";
+import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
 import { CloseOutlined } from "@ant-design/icons";
-// import { colors } from "../../styles/styleVariables";
 
 export default function ManageUsers() {
   // const [users, setUsers] = useState([]);
@@ -23,6 +24,7 @@ export default function ManageUsers() {
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
   const modalCloseButton = <CloseOutlined />;
+
   const columns = [
     { field: "imageURL", header: "Foto" },
     { field: "name", header: "Name" },
@@ -37,7 +39,61 @@ export default function ManageUsers() {
 
   let users = [
     {
-      imageurl: "imagem123",
+      imageURL: (
+        <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
+      ),
+      name: "jose",
+      email: "teste@123",
+      type_: "admin",
+      type: (
+        <Select
+          //onChange={(e) => handleTypeChange(user?._id, e.value)}
+          options={selectOptions}
+          placeholder={"admin"}
+          optionLabel="label"
+          className="w-full md:w-20rem"
+        />
+      ),
+      manage: (
+        <RiDeleteBin5Line
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            openModalDelete();
+            setUserID("123");
+          }}
+        />
+      ),
+    },
+    {
+      imageURL: (
+        <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
+      ),
+      name: "jose",
+      email: "teste@123",
+      type: (
+        <Select
+          value={["admin"]}
+          //onChange={(e) => handleTypeChange(user?._id, e.value)}
+          options={selectOptions}
+          placeholder={"admin"}
+          optionLabel="label"
+          className="w-full md:w-20rem"
+        />
+      ),
+      manage: (
+        <RiDeleteBin5Line
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            openModalDelete();
+            setUserID("123");
+          }}
+        />
+      ),
+    },
+    {
+      imageURL: (
+        <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
+      ),
       name: "jose",
       email: "teste@123",
       type: (
@@ -63,6 +119,8 @@ export default function ManageUsers() {
   ];
   return (
     <Container>
+      <Title>GERENCIAR USUÁRIOS</Title>
+      <Line />
       <Table value={users} paginator rows={10} removableSort>
         {columns.map((data) => (
           <TableColumn

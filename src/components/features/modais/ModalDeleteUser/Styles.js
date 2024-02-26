@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  background-color: #f5eff9;
   width: 100%;
   height: 100%;
 `;
@@ -15,7 +15,7 @@ export const Message = styled.h1`
   font-size: 2.1rem;
   text-align: center;
   margin: 1.4rem;
-  color: white;
+  color: black;
   @media (max-width: 375px) {
     font-size: 1.5rem;
     margin: 1rem;
@@ -39,7 +39,8 @@ export const DeleteButton = styled(Button)`
   background-color: transparent;
   border: 1px solid white;
   border-radius: 0.5rem;
-  color: white;
+  border-color: #f19709;
+  color: #f19709;
 
   margin-top: 1.5rem;
 
