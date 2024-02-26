@@ -48,7 +48,7 @@ export const Select = styled(Dropdown)`
 `;
 export const ModalStyle = styled(Modal)`
   .ant-modal-content {
-    background-color: ${colors.blue.background};
+    background-color: ${colors.background};
     padding: 1rem;
     align-items: center;
     justify-content: center;
