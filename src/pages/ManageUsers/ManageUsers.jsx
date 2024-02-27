@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   Container,
@@ -17,6 +17,7 @@ import {
 import { RiDeleteBin5Line } from "react-icons/ri";
 import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
 import { CloseOutlined } from "@ant-design/icons";
+import { useGetUsers } from "../../hooks/querys/user";
 
 export default function ManageUsers() {
   // const [users, setUsers] = useState([]);
@@ -25,7 +26,16 @@ export default function ManageUsers() {
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
   const modalCloseButton = <CloseOutlined />;
+  // const [user,setUser] = useState([])
 
+  const { data: users, isLoading } = useGetUsers({
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
+  console.log("user", users);
+  console.log("loading", isLoading);
   const columns = [
     { field: "imageURL", header: "Foto" },
     { field: "name", header: "Name" },
@@ -38,7 +48,7 @@ export default function ManageUsers() {
     { label: "Usuário", value: "User" },
   ];
 
-  let users = [
+  let users1 = [
     {
       imageURL: (
         <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
@@ -123,7 +133,7 @@ export default function ManageUsers() {
       <Title>GERENCIAR USUÁRIOS</Title>
       <Line />
       <SearchBar />
-      <Table value={users} paginator rows={10} removableSort>
+      <Table value={users1} paginator rows={10} removableSort>
         {columns.map((data) => (
           <TableColumn
             sortable
