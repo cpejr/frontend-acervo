@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Button as AntdButton } from "antd";
-import { breakpoints } from "../../styles/stylesVariables";
+import { breakpoints, colors } from "../../styles/stylesVariables";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { Modal } from "antd";
+import { AutoComplete } from "primereact/autocomplete";
 
 export const Container = styled.div`
   display: flex;
@@ -55,10 +56,12 @@ export const Table = styled(DataTable)`
   flex-direction: column;
   align-self: center;
   width: 100%;
+
   min-height: 70%;
   color: white;
   margin-top: 20px;
 `;
+
 export const TableColumn = styled(Column)`
   display: flex;
   align-self: center;
@@ -119,5 +122,25 @@ export const Button = styled(AntdButton)`
   }
   > svg {
     font-size: larger;
+  }
+`;
+export const SearchBar = styled(AutoComplete)`
+  margin-top: 30px;
+
+  width: 95%;
+  align-self: center;
+  .p-autocomplete-input {
+    width: 100%;
+    height: 7vh;
+    background-color: ${colors.background.primary};
+
+    border-radius: 25px;
+    border-color: #eedac5;
+    border: solid;
+    border-width: 0.5px;
+
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: white;
   }
 `;

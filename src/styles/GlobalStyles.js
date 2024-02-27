@@ -15,15 +15,18 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${colors.background.primary}; 
   color: white;
   border-bottom: 0.5px solid #ccc;
-}  
-  .p-datatable .p-sortable-column{
-  background-color: ${colors.background.primary};
-  color: white;
-}
-  .p-datatable .p-paginator-bottom{
-  background-color: ${colors.background.primary};
-  color:white;
-}
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  }  
+
+  .p-dropdown-item {
+    background-color: white;
+    color:black;
+    &:hover {
+      background-color: grey;
+    }
+  }
 
   }
 `;

@@ -12,6 +12,7 @@ import {
   //Button,
   Line,
   Title,
+  SearchBar,
 } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
@@ -121,6 +122,7 @@ export default function ManageUsers() {
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
       <Line />
+      <SearchBar />
       <Table value={users} paginator rows={10} removableSort>
         {columns.map((data) => (
           <TableColumn
