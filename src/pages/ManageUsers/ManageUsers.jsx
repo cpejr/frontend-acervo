@@ -18,6 +18,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
 import { CloseOutlined } from "@ant-design/icons";
 import { useGetUsers } from "../../hooks/querys/user";
+import { getUsers } from "../../services/endpoints";
 
 export default function ManageUsers() {
   // const [users, setUsers] = useState([]);
@@ -33,9 +34,9 @@ export default function ManageUsers() {
       console.log(err);
     },
   });
-
+  // console.log(getUsers());
   console.log("user", users);
-  console.log("loading", isLoading);
+
   const columns = [
     { field: "imageURL", header: "Foto" },
     { field: "name", header: "Name" },
@@ -70,6 +71,7 @@ export default function ManageUsers() {
           style={{ cursor: "pointer" }}
           onClick={() => {
             openModalDelete();
+
             setUserID("123");
           }}
         />
@@ -154,7 +156,7 @@ export default function ManageUsers() {
         centered
         destroyOnClose
       >
-        <ModalDeleteUser close={closeModalDelete} id={userID} />
+        <ModalDeleteUser close={closeModalDelete} />
       </ModalStyle>
     </Container>
   );

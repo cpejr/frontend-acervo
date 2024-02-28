@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { getUsers /*deleteUser, updateUser*/ } from "../../services/endpoints";
+import { getUsers, deleteUser, updateUser } from "../../services/endpoints";
 
 export function useGetUsers({
   onSuccess = () => console.log("foiii"),
@@ -17,7 +17,7 @@ export function useDeleteUsers({
   onError = (err) => console.log(err),
 } = {}) {
   return useMutation({
-    // mutationFn: deleteUser,
+    mutationFn: deleteUser(),
     onSuccess,
     onError,
   });
@@ -27,7 +27,7 @@ export function useUpdateUsers({
   onError = (err) => console.log(err),
 } = {}) {
   return useMutation({
-    // mutationFn: updateUser,
+    mutationFn: updateUser,
     onSuccess,
     onError,
   });
