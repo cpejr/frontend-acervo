@@ -29,7 +29,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Line = styled.line`
+export const Line = styled.div`
   height: 1px;
   width: 50%;
   background-color: #eedac5;

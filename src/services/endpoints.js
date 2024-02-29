@@ -12,8 +12,8 @@ export async function deleteUser(_id) {
   return data;
 }
 
-export const updateUser = async ({ _id, newUserData }) => {
-  const { data } = await api.put(`/users/${_id}`, newUserData);
+export async function updateUser({ _id, newUserData }) {
+  const { data } = await api.put(`/user/${_id}`, newUserData);
 
   return data;
-};
+}

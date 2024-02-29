@@ -10,7 +10,6 @@ import {
   Table,
   TableColumn,
   ModalStyle,
-  //Button,
   Line,
   Title,
   SearchBar,
@@ -26,7 +25,7 @@ import {
 
 export default function ManageUsers() {
   // const [users, setUsers] = useState([]);
-
+  const [formating, setFormating] = useState(true);
   const [modalDelete, setModalDelete] = useState(false);
   const [userID, setUserID] = useState("");
   const [users, setUsers] = useState([]);
@@ -53,15 +52,16 @@ export default function ManageUsers() {
     { label: "Adminstrador", value: "Admin" },
     { label: "Usuário", value: "User" },
   ];
+
   async function getAllUsers() {
-    const formattedUsers = user.map((user) => ({
+    const formattedUsers = await user.map((user) => ({
       imageURL: <ProfilePic src={user.imageURL} alt={user.name} />,
       name: user.name,
       email: user.email,
       type: (
         <Select
           value={[user.type]}
-          //onChange={(e) => handleTypeChange(user?._id, e.value)}
+          onChange={(e) => handleTypeChange(user?._id, e.value)}
           options={selectOptions}
           placeholder={user.type}
           optionLabel="label"
@@ -80,15 +80,16 @@ export default function ManageUsers() {
     }));
 
     setUsers(formattedUsers);
+    setFormating(false);
   }
   useEffect(() => {
     getAllUsers();
   }, []);
 
-  /*const handleTypeChange = (_id, type) => {
-     const newUserData = { type };
-     updateUser({ _id, newUserData });
-   };*/
+  const handleTypeChange = (_id, type) => {
+    const newUserData = { type };
+    updateUser({ _id, newUserData });
+  };
 
   const handleUserDelete = (_id) => {
     deleteUser(_id);
@@ -106,16 +107,14 @@ export default function ManageUsers() {
       toast.error("Erro ao excluir usuário.", err);
     },
   });
-  /*const { mutate: updateUser } = useUpdateUsers({
-     onSuccess: () => {
-       console.log("Usuário atualizado com sucesso!");
-       toast.success("Usuário atualizado com sucesso!");
-     },
-     onError: (err) => {
-       console.log(err);
-       toast.error("Erro ao atualizar usuário.");
-     },
-   });*/
+  const { mutate: updateUser } = useUpdateUsers({
+    onSuccess: () => {
+      toast.success("Usuário atualizado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao atualizar usuário.", err);
+    },
+  });
 
   return (
     <Container>
