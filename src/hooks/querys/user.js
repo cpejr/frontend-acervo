@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { getUsers, deleteUser, updateUser } from "../../services/endpoints";
 
 export function useGetUsers({
-  onSuccess = () => console.log("foiii"),
+  onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
