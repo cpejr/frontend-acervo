@@ -17,13 +17,11 @@ export const Container = styled.div`
     color: ${colors.font.line};
   }
   h1 {
-    font-size: 65px;
     margin-bottom: 0.5px;
     flex-direction: column;
     color: ${colors.font.other};
   }
   p {
-    font-size: 40px;
     margin-bottom: 5rem;
     color: ${colors.font.primary};
     padding-left: 15rem;
