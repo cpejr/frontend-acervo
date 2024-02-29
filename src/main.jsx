@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import AppProvider from "./AppProvider.jsx";
 import { GlobalStyles } from "./styles/GlobalStyles.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,5 +19,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <GlobalStyles />
       <AppProvider />
     </QueryClientProvider>
+    <ToastContainer
+      position="bottom-right"
+      autoClose={2000}
+      limit={1}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover={false}
+      theme="dark"
+    />
   </React.StrictMode>
 );

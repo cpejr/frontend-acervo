@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
-
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import {
   Container,
   Select,
@@ -22,24 +23,24 @@ import {
   useGetUsers,
   useUpdateUsers,
 } from "../../hooks/querys/user";
-import { getUsers } from "../../services/endpoints";
 
 export default function ManageUsers() {
   // const [users, setUsers] = useState([]);
+
   const [modalDelete, setModalDelete] = useState(false);
   const [userID, setUserID] = useState("");
+  const [users, setUsers] = useState([]);
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
   const modalCloseButton = <CloseOutlined />;
+  const queryClient = useQueryClient();
   // const [user,setUser] = useState([])
 
-  const { data: users, isLoading } = useGetUsers({
+  const { data: user, isLoading } = useGetUsers({
     onError: (err) => {
-      console.log(err);
+      toast.error("Erro ao pegar itens", err);
     },
   });
-  // console.log(getUsers());
-  console.log("user", users);
 
   const columns = [
     { field: "imageURL", header: "Foto" },
@@ -52,88 +53,37 @@ export default function ManageUsers() {
     { label: "Adminstrador", value: "Admin" },
     { label: "Usuário", value: "User" },
   ];
+  async function getAllUsers() {
+    const formattedUsers = user.map((user) => ({
+      imageURL: <ProfilePic src={user.imageURL} alt={user.name} />,
+      name: user.name,
+      email: user.email,
+      type: (
+        <Select
+          value={[user.type]}
+          //onChange={(e) => handleTypeChange(user?._id, e.value)}
+          options={selectOptions}
+          placeholder={user.type}
+          optionLabel="label"
+          className="w-full md:w-20rem"
+        />
+      ),
+      manage: (
+        <RiDeleteBin5Line
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            openModalDelete();
+            setUserID(user?._id);
+          }}
+        />
+      ),
+    }));
 
-  let users1 = [
-    {
-      imageURL: (
-        <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
-      ),
-      name: "jose",
-      email: "teste@123",
-      type_: "admin",
-      type: (
-        <Select
-          //onChange={(e) => handleTypeChange(user?._id, e.value)}
-          options={selectOptions}
-          placeholder={"admin"}
-          optionLabel="label"
-          className="w-full md:w-20rem"
-        />
-      ),
-      manage: (
-        <RiDeleteBin5Line
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            openModalDelete();
-
-            setUserID("123");
-          }}
-        />
-      ),
-    },
-    {
-      imageURL: (
-        <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
-      ),
-      name: "jose",
-      email: "teste@123",
-      type: (
-        <Select
-          value={["admin"]}
-          //onChange={(e) => handleTypeChange(user?._id, e.value)}
-          options={selectOptions}
-          placeholder={"admin"}
-          optionLabel="label"
-          className="w-full md:w-20rem"
-        />
-      ),
-      manage: (
-        <RiDeleteBin5Line
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            openModalDelete();
-            setUserID("123");
-          }}
-        />
-      ),
-    },
-    {
-      imageURL: (
-        <ProfilePic src={"https://picsum.photos/id/237/536/354"} alt={"jose"} />
-      ),
-      name: "jose",
-      email: "teste@123",
-      type: (
-        <Select
-          value={["admin"]}
-          //onChange={(e) => handleTypeChange(user?._id, e.value)}
-          options={selectOptions}
-          placeholder={"admin"}
-          optionLabel="label"
-          className="w-full md:w-20rem"
-        />
-      ),
-      manage: (
-        <RiDeleteBin5Line
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            openModalDelete();
-            setUserID("123");
-          }}
-        />
-      ),
-    },
-  ];
+    setUsers(formattedUsers);
+  }
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   /*const handleTypeChange = (_id, type) => {
      const newUserData = { type };
@@ -147,15 +97,15 @@ export default function ManageUsers() {
 
   const { mutate: deleteUser } = useDeleteUsers({
     onSuccess: () => {
-      console.log("Usuário excluído com sucesso!");
-      //toast.success("Usuário excluído com sucesso!");
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+      toast.success("Usuario deletado com sucesso!");
     },
     onError: (err) => {
-      console.log(err);
-      //toast.error("Erro ao excluir usuário.");
+      toast.error("Erro ao excluir usuário.", err);
     },
   });
-
   /*const { mutate: updateUser } = useUpdateUsers({
      onSuccess: () => {
        console.log("Usuário atualizado com sucesso!");
@@ -172,7 +122,8 @@ export default function ManageUsers() {
       <Title>GERENCIAR USUÁRIOS</Title>
       <Line />
       <SearchBar />
-      <Table value={users1} paginator rows={10} removableSort>
+
+      <Table value={users} paginator rows={10} removableSort>
         {columns.map((data) => (
           <TableColumn
             sortable
@@ -182,6 +133,7 @@ export default function ManageUsers() {
           />
         ))}
       </Table>
+
       <ModalStyle
         open={modalDelete}
         onCancel={closeModalDelete}

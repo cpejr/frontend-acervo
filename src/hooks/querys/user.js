@@ -17,7 +17,7 @@ export function useDeleteUsers({
   onError = (err) => console.log(err),
 } = {}) {
   return useMutation({
-    mutationFn: deleteUser(),
+    mutationFn: deleteUser,
     onSuccess,
     onError,
   });
