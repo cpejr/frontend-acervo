@@ -9,7 +9,7 @@ export default function Story() {
         <h1>Despacho</h1>
       </a>
 
-      <FirstImage></FirstImage>
+      <FirstImage src={FirstImage}></FirstImage>
       <p>
         Antes do auge do ciclo do ouro, ocorrido na região de Pitangui, várias
         bandeiras se adentraram pelo território do Alto São Francisco. Devido à
@@ -36,7 +36,7 @@ export default function Story() {
         dedicarem-se à criação de porcos, bois e cavalos. Desenvolveram
         simultaneamente pequenas lavouras para a subsistência.
       </p>
-      <SecondImage></SecondImage>
+      <SecondImage src={SecondImage}></SecondImage>
       <p>
         Na região, também deu-se a formação de abrigos de escravos fugidos, os
         quilombos. Na medida em que negros eram liquidados, as áreas
@@ -52,7 +52,7 @@ export default function Story() {
         aglutinando pessoas que percorriam léguas de distância para participar
         das celebrações.
       </p>
-      <ThirdImage></ThirdImage>
+      <ThirdImage src={ThirdImage}></ThirdImage>
       <p>
         Assim, a capela de capim, antes a única construção existente, viu-se, no
         decorrer dos anos, rodeada de outras construções, como casas, ranchos e
