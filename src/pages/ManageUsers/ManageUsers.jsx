@@ -24,23 +24,14 @@ import {
 } from "../../hooks/querys/user";
 
 export default function ManageUsers() {
-  // const [users, setUsers] = useState([]);
-  const [formating, setFormating] = useState(true);
   const [modalDelete, setModalDelete] = useState(false);
   const [userID, setUserID] = useState("");
   const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
   const modalCloseButton = <CloseOutlined />;
   const queryClient = useQueryClient();
-  // const [user,setUser] = useState([])
-
-  const { data: user, isLoading } = useGetUsers({
-    onError: (err) => {
-      toast.error("Erro ao pegar itens", err);
-    },
-  });
-
   const columns = [
     { field: "imageURL", header: "Foto" },
     { field: "name", header: "Name" },
@@ -52,8 +43,8 @@ export default function ManageUsers() {
     { label: "Adminstrador", value: "Admin" },
     { label: "Usuário", value: "User" },
   ];
-
-  async function getAllUsers() {
+  //formating the users
+  async function formatAllUsers() {
     const formattedUsers = await user.map((user) => ({
       imageURL: <ProfilePic src={user.imageURL} alt={user.name} />,
       name: user.name,
@@ -80,22 +71,17 @@ export default function ManageUsers() {
     }));
 
     setUsers(formattedUsers);
-    setFormating(false);
   }
-  useEffect(() => {
-    getAllUsers();
-  }, []);
 
   const handleTypeChange = (_id, type) => {
     const newUserData = { type };
     updateUser({ _id, newUserData });
   };
-
   const handleUserDelete = (_id) => {
     deleteUser(_id);
     closeModalDelete();
   };
-
+  //backend calls
   const { mutate: deleteUser } = useDeleteUsers({
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -107,8 +93,12 @@ export default function ManageUsers() {
       toast.error("Erro ao excluir usuário.", err);
     },
   });
+
   const { mutate: updateUser } = useUpdateUsers({
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
       toast.success("Usuário atualizado com sucesso!");
     },
     onError: (err) => {
@@ -116,23 +106,49 @@ export default function ManageUsers() {
     },
   });
 
+  const { data: user, isLoading } = useGetUsers({
+    onError: (err) => {
+      toast.error("Erro ao pegar itens", err);
+    },
+  });
+  //
+  useEffect(() => {
+    if (!isLoading && user) {
+      formatAllUsers();
+    }
+  }, [user, isLoading, searchQuery]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
       <Line />
-      <SearchBar />
 
-      <Table value={users} paginator rows={10} removableSort>
+      <SearchBar
+        type="text"
+        placeholder="Pesquisar usuario"
+        value={searchQuery}
+        onChange={handleSearchChange}
+      ></SearchBar>
+      <Table
+        value={users}
+        paginator
+        rows={10}
+        removableSort
+        scrollable
+        scrollHeight="1000px"
+      >
         {columns.map((data) => (
           <TableColumn
-            sortable
             key={data.field}
             field={data.field}
             header={data.header}
           />
         ))}
       </Table>
-
       <ModalStyle
         open={modalDelete}
         onCancel={closeModalDelete}

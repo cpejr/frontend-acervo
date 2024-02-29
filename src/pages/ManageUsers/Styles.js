@@ -67,7 +67,9 @@ export const TableColumn = styled(Column)`
   align-self: center;
   background-color: black;
   color: black;
+  min-width: 200px;
 `;
+
 export const Select = styled(Dropdown)`
   width: 80%;
   background-color: white;
@@ -126,19 +128,18 @@ export const Button = styled(AntdButton)`
 `;
 export const SearchBar = styled(AutoComplete)`
   margin-top: 30px;
-
   width: 95%;
   align-self: center;
   .p-autocomplete-input {
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 7vh;
     background-color: ${colors.background.primary};
 
     border-radius: 25px;
-    border-color: #eedac5;
-    border: solid;
-    border-width: 0.5px;
-
+    border: solid 1px #eedac5;
+    padding-left: 10px;
     font-size: 1.8rem;
     margin-bottom: 2rem;
     color: white;
