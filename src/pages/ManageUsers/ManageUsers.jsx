@@ -17,7 +17,11 @@ import {
 import { RiDeleteBin5Line } from "react-icons/ri";
 import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
 import { CloseOutlined } from "@ant-design/icons";
-import { useGetUsers } from "../../hooks/querys/user";
+import {
+  useDeleteUsers,
+  useGetUsers,
+  useUpdateUsers,
+} from "../../hooks/querys/user";
 import { getUsers } from "../../services/endpoints";
 
 export default function ManageUsers() {
@@ -130,6 +134,39 @@ export default function ManageUsers() {
       ),
     },
   ];
+
+  /*const handleTypeChange = (_id, type) => {
+     const newUserData = { type };
+     updateUser({ _id, newUserData });
+   };*/
+
+  const handleUserDelete = (_id) => {
+    deleteUser(_id);
+    closeModalDelete();
+  };
+
+  const { mutate: deleteUser } = useDeleteUsers({
+    onSuccess: () => {
+      console.log("Usuário excluído com sucesso!");
+      //toast.success("Usuário excluído com sucesso!");
+    },
+    onError: (err) => {
+      console.log(err);
+      //toast.error("Erro ao excluir usuário.");
+    },
+  });
+
+  /*const { mutate: updateUser } = useUpdateUsers({
+     onSuccess: () => {
+       console.log("Usuário atualizado com sucesso!");
+       toast.success("Usuário atualizado com sucesso!");
+     },
+     onError: (err) => {
+       console.log(err);
+       toast.error("Erro ao atualizar usuário.");
+     },
+   });*/
+
   return (
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
@@ -156,7 +193,11 @@ export default function ManageUsers() {
         centered
         destroyOnClose
       >
-        <ModalDeleteUser close={closeModalDelete} />
+        <ModalDeleteUser
+          close={closeModalDelete}
+          handleUserDelete={handleUserDelete}
+          id={userID}
+        />
       </ModalStyle>
     </Container>
   );
