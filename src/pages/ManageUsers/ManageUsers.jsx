@@ -45,7 +45,10 @@ export default function ManageUsers() {
   ];
   //formating the users
   async function formatAllUsers() {
-    const formattedUsers = await user.map((user) => ({
+    const filteredUsers = user.filter((user) =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    const formattedUsers = await filteredUsers.map((user) => ({
       imageURL: <ProfilePic src={user.imageURL} alt={user.name} />,
       name: user.name,
       email: user.email,
