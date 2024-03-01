@@ -9,7 +9,10 @@ export const colors = {
     other: "#EEDAC5",
     line: "#FFD599",
   },
-  accent: "#F19709",
+  accent: {
+    primary: "#F19709",
+    hover: "#d28408",
+  },
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
@@ -21,6 +24,7 @@ export const fonts = {
 
 export const breakpoints = {
   desktop: "1370px",
+  biggerScreen: "1920px",
   tablet: "1024px",
   smallTablet: "800px",
   mobile: "700px",
