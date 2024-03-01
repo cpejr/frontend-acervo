@@ -1,83 +1,48 @@
 import styled from "styled-components";
 import { breakpoints } from "../../styles/stylesVariables";
+import { background } from "../../assets";
+
 export const Container = styled.div`
-  max-width: 100%;
-  margin: 0 auto;
+  font-size: 1.2rem;
 `;
 
 export const Overlay = styled.div`
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 16%,
+      rgba(0, 0, 0, 0.53125) 100%
+    ),
+    url(${background});
+  height: 70vh;
+  padding-left: 10%;
+  background-color: #c5c9d5;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
+  }
+
+  img {
+    width: 75%;
+    height: auto;
   }
 `;
 
 export const UnderImage = styled.img`
   width: 100%;
   height: auto;
-  margin-top: -0.5rem;
 `;
 
-export const Sponsers = styled.div`
-  padding: 50px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  margin-top: -1rem;
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
-    justify-content: space-evenly;
-  }
-  @media (min-width: ${breakpoints.biggerScreen}) {
-    max-width: 100%;
-  }
-`;
-export const Display = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Sponsor = styled.img`
-  width: 10rem;
-  height: auto;
-`;
-
-export const Us = styled.div`
+export const Section = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 10rem;
   justify-content: space-evenly;
-  padding: 20px 0;
-  @media (max-width: ${breakpoints.mobile}) {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    margin: 0 auto;
-  }
-`;
-
-export const WhatIs = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 10rem;
-  justify-content: space-evenly;
-  padding: 20px 0;
-  @media (max-width: ${breakpoints.mobile}) {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    margin: 0 auto;
-  }
-`;
-
-export const Events = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 10rem;
-  justify-content: space-evenly;
-  padding: 20px 0;
+  padding: 2rem 0;
   @media (max-width: ${breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
@@ -111,17 +76,43 @@ export const Column = styled.div`
   text-align: center;
   align-items: center;
   max-width: 40%;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    max-width: 80%;
+  }
 `;
 
 export const LargerImg = styled.img`
-  width: 110%;
+  width: 100%;
   @media (min-width: ${breakpoints.mobile}) {
     display: none;
   }
 `;
 export const SmallerImg = styled.img`
-  max-width: 110%;
+  max-width: 35%;
+
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
+  }
+`;
+
+//Sponsors
+
+export const Sponsor = styled.img`
+  width: 10rem;
+  height: auto;
+`;
+
+export const StyledSponsors = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+    justify-content: space-evenly;
+  }
+  @media (min-width: ${breakpoints.biggerScreen}) {
+    max-width: 100%;
   }
 `;
