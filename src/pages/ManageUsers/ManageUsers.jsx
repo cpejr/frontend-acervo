@@ -7,14 +7,13 @@ import {
   ProfilePic,
   Table,
   TableColumn,
-  ModalStyle,
-  Line,
   Title,
   SearchBar,
 } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
+import ModalDeleteUser from "../../components/features/modals/ModalDeleteUser/ModalDeleteUser";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import {
   useDeleteUsers,
@@ -49,18 +48,18 @@ export default function ManageUsers() {
   //formating the users
   async function formatAllUsers() {
     const filteredUsers = user.filter((user) =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      user?.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     const formattedUsers = await filteredUsers.map((user) => ({
-      imageURL: <ProfilePic src={user.imageURL} alt={user.name} />,
-      name: user.name,
-      email: user.email,
+      imageURL: <ProfilePic src={user?.imageURL} alt={user?.name} />,
+      name: user?.name,
+      email: user?.email,
       type: (
         <Select
-          value={[user.type]}
+          value={[user?.type]}
           onChange={(e) => handleTypeChange(user?._id, e.value)}
           options={selectOptions}
-          placeholder={user.type}
+          placeholder={user?.type}
           optionLabel="label"
           className="w-full md:w-20rem"
         />
@@ -122,7 +121,7 @@ export default function ManageUsers() {
     if (!isLoading && user) {
       formatAllUsers();
     }
-    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isLoading, searchQuery]);
 
   const handleSearchChange = (e) => {
@@ -132,14 +131,14 @@ export default function ManageUsers() {
   return (
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
-      <Line />
 
       <SearchBar
         type="text"
         placeholder="Pesquisar usuario"
         value={searchQuery}
         onChange={handleSearchChange}
-      ></SearchBar>
+      />
+
       <Table
         value={users}
         paginator
@@ -148,31 +147,27 @@ export default function ManageUsers() {
         scrollable
         scrollHeight="1000px"
       >
-        {columns.map((data) => (
-          <TableColumn
-            key={data.field}
-            field={data.field}
-            header={data.header}
-          />
-        ))}
+        {isLoading ? (
+          <LoadingOutlined />
+        ) : (
+          columns.map((data) => (
+            <TableColumn
+              key={data?.field}
+              field={data?.field}
+              header={data?.header}
+            />
+          ))
+        )}
       </Table>
-      <ModalStyle
-        open={modalDelete}
-        onCancel={closeModalDelete}
-        width={500}
-        height={250}
-        padding={0}
-        footer={null}
-        closeIcon={modalCloseButton}
-        centered
-        destroyOnClose
-      >
-        <ModalDeleteUser
-          close={closeModalDelete}
-          handleUserDelete={handleUserDelete}
-          id={userID}
-        />
-      </ModalStyle>
+
+      <ModalDeleteUser
+        close={closeModalDelete}
+        handleUserDelete={handleUserDelete}
+        id={userID}
+        modal={modalDelete}
+        modalCloseIcon={modalCloseButton}
+        closeModal={closeModalDelete}
+      />
     </Container>
   );
 }

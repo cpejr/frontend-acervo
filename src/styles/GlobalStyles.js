@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
   background-color: ${colors.background.primary}; 
   color: white;
-  border-bottom: 0.5px solid #ccc;
+  border-bottom: 0.5px solid ${colors.font.other};
   padding-bottom: 15px;
   font-size: 18px;
   font-weight: bold;

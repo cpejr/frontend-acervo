@@ -4,7 +4,6 @@ import { breakpoints, colors } from "../../styles/stylesVariables";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
-import { Modal } from "antd";
 import { AutoComplete } from "primereact/autocomplete";
 
 export const Container = styled.div`
@@ -12,9 +11,11 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 export const Title = styled.div`
-  color: #eedac5;
+  color: ${colors.font.other};
   font-size: 30px;
   margin-left: 5%;
+  width: 60%;
+  border-bottom: 1px solid ${colors.font.other};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
   }
@@ -29,23 +30,6 @@ export const Title = styled.div`
   }
 `;
 
-export const Line = styled.div`
-  height: 1px;
-  width: 50%;
-  background-color: #eedac5;
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 70%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 80%;
-  }
-`;
 export const ProfilePic = styled.img`
   border-radius: 50%;
   width: 50px;
@@ -58,22 +42,22 @@ export const Table = styled(DataTable)`
   width: 100%;
 
   min-height: 70%;
-  color: white;
+  color: ${colors.font.primary};
   margin-top: 20px;
 `;
 
 export const TableColumn = styled(Column)`
   display: flex;
   align-self: center;
-  background-color: black;
-  color: black;
+  background-color: ${colors.font.secondary};
+  color: ${colors.font.secondary};
   min-width: 200px;
 `;
 
 export const Select = styled(Dropdown)`
   width: 80%;
-  background-color: white;
-  color: black;
+  background-color: ${colors.font.primary};
+  color: ${colors.font.secondary};
   border-radius: 3px;
   height: 4vh;
   .p-multiselect-label {
@@ -93,27 +77,15 @@ export const Select = styled(Dropdown)`
     width: 50%;
   }
 `;
-export const ModalStyle = styled(Modal)`
-  .ant-modal-content {
-    background-color: #f5eff9;
-    padding: 1rem;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    padding: 6;
-    margin: 0;
-    border-radius: none;
-  }
-`;
 
 export const Button = styled(AntdButton)`
   display: flex;
   gap: 3px;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: ${colors.font.primary};
   font-weight: bold;
-  border-color: white;
+  border-color: ${colors.font.primary};
   width: 15%;
   align-self: center;
   @media (max-width: ${breakpoints.tablet}) {
@@ -138,10 +110,10 @@ export const SearchBar = styled(AutoComplete)`
     background-color: ${colors.background.primary};
 
     border-radius: 25px;
-    border: solid 1px #eedac5;
+    border: solid 1px ${colors.font.other};
     padding-left: 10px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: white;
+    color: ${colors.font.primary};
   }
 `;
