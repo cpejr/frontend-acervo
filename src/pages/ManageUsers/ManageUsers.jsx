@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -15,8 +13,9 @@ import {
   SearchBar,
 } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import ModalDeleteUser from "../../components/features/modais/ModalDeleteUser/ModalDeleteUser";
-import { CloseOutlined } from "@ant-design/icons";
+
 import {
   useDeleteUsers,
   useGetUsers,
@@ -24,14 +23,17 @@ import {
 } from "../../hooks/querys/user";
 
 export default function ManageUsers() {
-  const [modalDelete, setModalDelete] = useState(false);
   const [userID, setUserID] = useState("");
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [modalDelete, setModalDelete] = useState(false);
+
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
-  const modalCloseButton = <CloseOutlined />;
+
+  const modalCloseButton = <AiOutlineCloseCircle />;
   const queryClient = useQueryClient();
+
   const columns = [
     { field: "imageURL", header: "Foto" },
     { field: "name", header: "Name" },
@@ -39,6 +41,7 @@ export default function ManageUsers() {
     { field: "type", header: "Type" },
     { field: "manage", header: "Manage" },
   ];
+
   const selectOptions = [
     { label: "Adminstrador", value: "Admin" },
     { label: "Usuário", value: "User" },
@@ -76,14 +79,14 @@ export default function ManageUsers() {
     setUsers(formattedUsers);
   }
 
-  const handleTypeChange = (_id, type) => {
+  function handleTypeChange(_id, type) {
     const newUserData = { type };
     updateUser({ _id, newUserData });
-  };
-  const handleUserDelete = (_id) => {
+  }
+  function handleUserDelete(_id) {
     deleteUser(_id);
     closeModalDelete();
-  };
+  }
   //backend calls
   const { mutate: deleteUser } = useDeleteUsers({
     onSuccess: () => {
@@ -119,6 +122,7 @@ export default function ManageUsers() {
     if (!isLoading && user) {
       formatAllUsers();
     }
+    return () => {};
   }, [user, isLoading, searchQuery]);
 
   const handleSearchChange = (e) => {
