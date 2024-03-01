@@ -19,6 +19,7 @@ export const fonts = {
 
 export const breakpoints = {
   desktop: "1370px",
+  biggerScreen: "1920px",
   tablet: "1024px",
   smallTablet: "800px",
   mobile: "700px",

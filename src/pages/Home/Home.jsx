@@ -1,11 +1,8 @@
 import {
-  UnderImage,
   Container,
-  Logo,
   Overlay,
   Sponsers,
   Sponsor,
-  Curiosity,
   Us,
   WhatIs,
   Events,
@@ -14,6 +11,8 @@ import {
   Column,
   LargerImg,
   SmallerImg,
+  Display,
+  UnderImage,
 } from "./Styles";
 
 import {
@@ -30,17 +29,24 @@ import {
 export default function Home() {
   return (
     <Container>
-      <Overlay>
-        <UnderImage src={fotoFundo}></UnderImage>
-        <Logo></Logo>
-      </Overlay>
-      <Sponsers>
-        <Sponsor src={prefeitura}></Sponsor>
-        <Sponsor src={secretaria}></Sponsor>
-        <Sponsor src={casaTueTimba}></Sponsor>
-        <Sponsor src={governo}></Sponsor>
-      </Sponsers>
-      <Curiosity>
+      <Display>
+        <Overlay>
+          <UnderImage src={fotoFundo} alt="Banner sobre a cidade"></UnderImage>
+        </Overlay>
+        <Sponsers>
+          <Sponsor src={prefeitura} alt="Logo da prefeitura"></Sponsor>
+          <Sponsor
+            src={secretaria}
+            alt="Logo da secretaria de cultura "
+          ></Sponsor>
+          <Sponsor
+            src={casaTueTimba}
+            alt="Logo da instituição Casa Tue Timba"
+          ></Sponsor>
+          <Sponsor src={governo} alt="Logo do Governo Federal"></Sponsor>
+        </Sponsers>
+      </Display>
+      <div>
         <Us>
           <Column>
             <Title>Quem somos</Title>
@@ -50,17 +56,26 @@ export default function Home() {
               quae ab illo inventore veritatis et quasi architecto beatae vitae
               dicta sunt, explicabo.
             </p>
-            <LargerImg src={mapa}></LargerImg>
+            <LargerImg
+              src={mapa}
+              alt="Painel com diversas impressões digitais"
+            ></LargerImg>
             <Button>BOTÃO</Button>
           </Column>
           <Column>
-            <SmallerImg src={mapa}></SmallerImg>
+            <SmallerImg
+              src={mapa}
+              alt="Painel com diversas impressões digitais"
+            ></SmallerImg>
           </Column>
         </Us>
 
         <WhatIs>
           <Column>
-            <SmallerImg src={cidade}></SmallerImg>
+            <SmallerImg
+              src={cidade}
+              alt="Foto representando a cidade de Bom Despacho"
+            ></SmallerImg>
           </Column>
           <Column>
             <Title>O que é o acervo?</Title>
@@ -70,7 +85,10 @@ export default function Home() {
               quae ab illo inventore veritatis et quasi architecto beatae vitae
               dicta sunt, explicabo.
             </p>
-            <LargerImg src={cidade}></LargerImg>
+            <LargerImg
+              src={cidade}
+              alt="Foto representando a cidade de Bom Despacho"
+            ></LargerImg>
             <Button>BOTÃO</Button>
           </Column>
         </WhatIs>
@@ -84,14 +102,20 @@ export default function Home() {
               quae ab illo inventore veritatis et quasi architecto beatae vitae
               dicta sunt, explicabo.
             </p>
-            <LargerImg src={festa}></LargerImg>
+            <LargerImg
+              src={festa}
+              alt="Foto representativa de uma das festas da cidade"
+            ></LargerImg>
             <Button>BOTÃO</Button>
           </Column>
           <Column>
-            <SmallerImg src={festa}></SmallerImg>
+            <SmallerImg
+              src={festa}
+              alt="Foto representativa de uma das festas da cidade"
+            ></SmallerImg>
           </Column>
         </Events>
-      </Curiosity>
+      </div>
     </Container>
   );
 }

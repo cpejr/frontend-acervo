@@ -6,19 +6,15 @@ export const Container = styled.div`
 `;
 
 export const Overlay = styled.div`
-  @media (max-width: ${breakpoints.desktop}) {
+  @media (max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `;
 
 export const UnderImage = styled.img`
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  margin-top: -0.5px;
-`;
-
-export const Logo = styled.div`
-  background-image: url("src/assets/Home/LogoCidade.png");
+  margin-top: -0.5rem;
 `;
 
 export const Sponsers = styled.div`
@@ -26,15 +22,24 @@ export const Sponsers = styled.div`
   background-color: white;
   display: flex;
   justify-content: space-between;
-  margin-top: -5px;
-  @media (max-width: ${breakpoints.desktop}) {
+  margin-top: -1rem;
+  @media (max-width: ${breakpoints.mobile}) {
     display: none;
+    justify-content: space-evenly;
+  }
+  @media (min-width: ${breakpoints.biggerScreen}) {
+    max-width: 100%;
   }
 `;
+export const Display = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-export const Sponsor = styled.img``;
-
-export const Curiosity = styled.div``;
+export const Sponsor = styled.img`
+  width: 10rem;
+  height: auto;
+`;
 
 export const Us = styled.div`
   display: flex;
@@ -43,7 +48,7 @@ export const Us = styled.div`
   margin-top: 10rem;
   justify-content: space-evenly;
   padding: 20px 0;
-  @media (max-width: ${breakpoints.desktop}) {
+  @media (max-width: ${breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     width: 100vw;
@@ -58,7 +63,7 @@ export const WhatIs = styled.div`
   margin-top: 10rem;
   justify-content: space-evenly;
   padding: 20px 0;
-  @media (max-width: ${breakpoints.desktop}) {
+  @media (max-width: ${breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     width: 100vw;
@@ -73,7 +78,7 @@ export const Events = styled.div`
   margin-top: 10rem;
   justify-content: space-evenly;
   padding: 20px 0;
-  @media (max-width: ${breakpoints.desktop}) {
+  @media (max-width: ${breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     width: 100vw;
@@ -109,14 +114,14 @@ export const Column = styled.div`
 `;
 
 export const LargerImg = styled.img`
-  max-width: 150%;
-  @media (min-width: ${breakpoints.desktop}) {
+  width: 110%;
+  @media (min-width: ${breakpoints.mobile}) {
     display: none;
   }
 `;
 export const SmallerImg = styled.img`
-  max-width: 150%;
-  @media (max-width: ${breakpoints.desktop}) {
+  max-width: 110%;
+  @media (max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `;
