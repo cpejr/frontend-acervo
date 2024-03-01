@@ -8,7 +8,7 @@ function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: colors.accent,
+          colorPrimary: colors.accent.primary,
           colorBgContainer: colors.background.primary,
           colorText: colors.font.primary,
           fontFamily: fonts.Cabin,

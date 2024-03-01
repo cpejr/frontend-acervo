@@ -6,7 +6,6 @@ import {
   Us,
   WhatIs,
   Events,
-  Button,
   Title,
   Column,
   LargerImg,
@@ -14,6 +13,8 @@ import {
   Display,
   UnderImage,
 } from "./Styles";
+
+import { Button } from "../../components";
 
 import {
   mapa,
@@ -35,14 +36,8 @@ export default function Home() {
         </Overlay>
         <Sponsers>
           <Sponsor src={prefeitura} alt="Logo da prefeitura"></Sponsor>
-          <Sponsor
-            src={secretaria}
-            alt="Logo da secretaria de cultura "
-          ></Sponsor>
-          <Sponsor
-            src={casaTueTimba}
-            alt="Logo da instituição Casa Tue Timba"
-          ></Sponsor>
+          <Sponsor src={secretaria} alt="Logo da secretaria de cultura "></Sponsor>
+          <Sponsor src={casaTueTimba} alt="Logo da instituição Casa Tue Timba"></Sponsor>
           <Sponsor src={governo} alt="Logo do Governo Federal"></Sponsor>
         </Sponsers>
       </Display>
@@ -51,44 +46,30 @@ export default function Home() {
           <Column>
             <Title>Quem somos</Title>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo.
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+              laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi
+              architecto beatae vitae dicta sunt, explicabo.
             </p>
-            <LargerImg
-              src={mapa}
-              alt="Painel com diversas impressões digitais"
-            ></LargerImg>
+            <LargerImg src={mapa} alt="Painel com diversas impressões digitais"></LargerImg>
             <Button>BOTÃO</Button>
           </Column>
           <Column>
-            <SmallerImg
-              src={mapa}
-              alt="Painel com diversas impressões digitais"
-            ></SmallerImg>
+            <SmallerImg src={mapa} alt="Painel com diversas impressões digitais"></SmallerImg>
           </Column>
         </Us>
 
         <WhatIs>
           <Column>
-            <SmallerImg
-              src={cidade}
-              alt="Foto representando a cidade de Bom Despacho"
-            ></SmallerImg>
+            <SmallerImg src={cidade} alt="Foto representando a cidade de Bom Despacho"></SmallerImg>
           </Column>
           <Column>
             <Title>O que é o acervo?</Title>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo.
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+              laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi
+              architecto beatae vitae dicta sunt, explicabo.
             </p>
-            <LargerImg
-              src={cidade}
-              alt="Foto representando a cidade de Bom Despacho"
-            ></LargerImg>
+            <LargerImg src={cidade} alt="Foto representando a cidade de Bom Despacho"></LargerImg>
             <Button>BOTÃO</Button>
           </Column>
         </WhatIs>
@@ -97,10 +78,9 @@ export default function Home() {
           <Column>
             <Title>Nosso eventos</Title>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt, explicabo.
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+              laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi
+              architecto beatae vitae dicta sunt, explicabo.
             </p>
             <LargerImg
               src={festa}

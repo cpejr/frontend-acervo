@@ -7,7 +7,10 @@ export const colors = {
     primary: "#FFF",
     secondary: "#000",
   },
-  accent: "#F19709",
+  accent: {
+    primary: "#F19709",
+    hover: "#d28408",
+  },
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
