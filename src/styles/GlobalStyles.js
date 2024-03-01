@@ -19,6 +19,9 @@ export const GlobalStyles = createGlobalStyle`
   font-size: 18px;
   font-weight: bold;
   }  
+  .p-datatable .p-paginator-bottom{
+    color: ${colors.font.other};
+    } 
 
   .p-dropdown-item {
     background-color: white;

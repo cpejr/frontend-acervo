@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import {
-  Container,
-  Select,
-  ProfilePic,
-  Table,
-  TableColumn,
-  Title,
-  SearchBar,
-} from "./Styles";
+import { Container, Select, ProfilePic, Title, SearchBar } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import ModalDeleteUser from "../../components/features/modals/ModalDeleteUser/ModalDeleteUser";
-import { LoadingOutlined } from "@ant-design/icons";
+import Table from "../../components/features/Table/Table";
 
 import {
   useDeleteUsers,
@@ -138,28 +130,7 @@ export default function ManageUsers() {
         value={searchQuery}
         onChange={handleSearchChange}
       />
-
-      <Table
-        value={users}
-        paginator
-        rows={10}
-        removableSort
-        scrollable
-        scrollHeight="1000px"
-      >
-        {isLoading ? (
-          <LoadingOutlined />
-        ) : (
-          columns.map((data) => (
-            <TableColumn
-              key={data?.field}
-              field={data?.field}
-              header={data?.header}
-            />
-          ))
-        )}
-      </Table>
-
+      <Table columns={columns} data={users} />
       <ModalDeleteUser
         close={closeModalDelete}
         handleUserDelete={handleUserDelete}

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Button as AntdButton } from "antd";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+// import { DataTable } from "primereact/datatable";
+// import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { AutoComplete } from "primereact/autocomplete";
 
@@ -35,24 +35,24 @@ export const ProfilePic = styled.img`
   width: 50px;
   height: 50px;
 `;
-export const Table = styled(DataTable)`
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  width: 100%;
+// export const Table = styled(DataTable)`
+//   display: flex;
+//   flex-direction: column;
+//   align-self: center;
+//   width: 90%;
 
-  min-height: 70%;
-  color: ${colors.font.primary};
-  margin-top: 20px;
-`;
+//   min-height: 70%;
+//   color: ${colors.font.primary};
+//   margin-top: 20px;
+// `;
 
-export const TableColumn = styled(Column)`
-  display: flex;
-  align-self: center;
-  background-color: ${colors.font.secondary};
-  color: ${colors.font.secondary};
-  min-width: 200px;
-`;
+// export const TableColumn = styled(Column)`
+//   display: flex;
+//   align-self: center;
+//   background-color: ${colors.font.secondary};
+//   color: ${colors.font.secondary};
+//   min-width: 200px;
+// `;
 
 export const Select = styled(Dropdown)`
   width: 80%;
