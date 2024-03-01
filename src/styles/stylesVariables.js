@@ -6,6 +6,8 @@ export const colors = {
   font: {
     primary: "#FFF",
     secondary: "#000",
+    other: "#EEDAC5",
+    line: "#FFD599",
   },
   accent: "#F19709",
   error: "#9E0000",
