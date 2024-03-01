@@ -1,87 +1,27 @@
 import styled from "styled-components";
-import { colors, breakpoints } from "../../styles/stylesVariables";
-import FirstStoryImage from "../../assets/FirstStoryImage.svg";
-import SecondStoryImage from "../../assets/SecondStoryImage.svg";
-import ThirdStoryImage from "../../assets/ThirdStoryImage.svg";
+import { colors } from "../../styles/stylesVariables";
+
 export const Container = styled.div`
   display: flex;
-  width: 100%;
+  width: 70%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 85px;
-  margin-bottom: 100px;
-  gap: 2rem;
-  a {
-    border-bottom: 3px solid;
-    color: ${colors.font.line};
-  }
-  h1 {
-    margin-bottom: 0.5px;
-    flex-direction: column;
-    color: ${colors.font.other};
-  }
-  p {
-    margin-bottom: 5rem;
-    color: ${colors.font.primary};
-    padding-left: 15rem;
-    padding-right: 12rem;
-  }
+  color: ${colors.font.primary};
+  gap: 1rem;
+  margin: 0 auto;
 `;
-export const FirstImage = styled.div`
-  background-image: url(${FirstStoryImage});
-  background-size: cover;
-  margin-top: 10rem;
-  margin-bottom: 2rem;
-  width: 1081.39px;
-  height: 694px;
-  text-align: center;
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 70%;
-  }
-  @media (max-width: 520px) {
-    width: 300px;
-    height: 300px;
-  }
+
+export const Image = styled.img`
+  max-width: 100%;
 `;
-export const SecondImage = styled.div`
-  background-image: url(${SecondStoryImage});
-  background-size: cover;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  width: 1098.09px;
-  height: 744px;
-  text-align: center;
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 70%;
-  }
-  @media (max-width: 520px) {
-    width: 300px;
-    height: 300px;
-  }
+
+export const Paragraph = styled.p`
+  margin: 0;
 `;
-export const ThirdImage = styled.div`
-  background-image: url(${ThirdStoryImage});
-  background-size: cover;
-  margin-top: 1px;
-  margin-bottom: 7rem;
-  width: 1098.09px;
-  height: 744px;
-  text-align: center;
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 70%;
-  }
-  @media (max-width: 520px) {
-    width: 300px;
-    height: 300px;
-  }
+
+export const Title = styled.h1`
+  color: ${colors.font.other};
+  margin: 0;
+  border-bottom: 2px solid ${colors.font.primary};
 `;
