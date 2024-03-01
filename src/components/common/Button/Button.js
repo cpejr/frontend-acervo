@@ -40,11 +40,6 @@ const Button = styled.button`
     background-color: ${(props) => props.hoverBackgroundColor ?? colors.accent.hover};
     border-color: ${(props) => props.hoverBorderColor};
     color: ${(props) => props.hoverColor ?? "white"};
-    @media (max-width: 990px) {
-      color: ${(props) => props.hoverColor990};
-      border-color: ${(props) => props.hoverBorderColor990};
-      background-color: ${(props) => props.hoverBackgroundColor990};
-    }
   }
 `;
 

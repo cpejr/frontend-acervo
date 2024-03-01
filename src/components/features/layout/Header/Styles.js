@@ -1,16 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  height: 5rem;
+  width: 100%;
+
   display: flex;
   background-color: black;
-  padding: 30px;
-  max-width: 100%;
+  align-items: center;
   justify-content: space-evenly;
-`;
-export const Button = styled.button`
-  background-color: black;
-  color: #f19709;
-  border: none;
-  padding: 15px;
-  font-size: larger;
 `;

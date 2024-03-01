@@ -1,13 +1,16 @@
-import { Container, Button } from "./Styles";
+import { Link } from "../../../../components";
+
+import { Container } from "./Styles";
+
 export default function Header() {
   return (
     <Container>
-      <Button>E-commerce</Button>
-      <Button>Acervo</Button>
-      <Button>Eventos Culturais</Button>
-      <Button>Área escolar</Button>
-      <Button>Sobre o projeto</Button>
-      <Button>PERFIL</Button>
+      <Link to={"/story"}>E-commerce</Link>
+      <Link>Acervo</Link>
+      <Link>Eventos Culturais</Link>
+      <Link>Área escolar</Link>
+      <Link>Sobre o projeto</Link>
+      <Link>PERFIL</Link>
     </Container>
   );
 }
