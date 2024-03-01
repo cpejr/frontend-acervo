@@ -39,6 +39,12 @@ export const SubTitle = styled.h2`
   @media (max-width: 700px) {
     font-size: 25px;
   }
+
+  @media (max-width: 475px) {
+    width: 350px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 `;
 
 export const LineTitle = styled.div`
@@ -70,8 +76,8 @@ export const TextContainer = styled.div`
   text-align: justify;
 
   @media (max-width: 500px) {
-    margin-left: 120px;
-    margin-right: 120px;
+    margin-left: 80px;
+    margin-right: 80px;
   }
 
   @media (max-width: 1000px) {
@@ -79,17 +85,91 @@ export const TextContainer = styled.div`
   }
 
   @media (max-width: 430px) {
-    margin-left: 90px;
-    margin-right: 90px;
+    margin-left: 70px;
+    margin-right: 70px;
   }
 
   @media (max-width: 360px) {
     margin-left: 60px;
     margin-right: 60px;
   }
+
+  @media (max-width: 900px) {
+    margin-bottom: 0px;
+  }
 `;
 
-export const ImageArea1 = styled.div`
+export const TextContainerVilaMilitar = styled.div`
+  margin: 30px 150px 60px 150px;
+  color: white;
+  font-size: 24px;
+  text-align: justify;
+
+  @media (max-width: 500px) {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 430px) {
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+
+  @media (max-width: 380px) {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  @media (max-width: 900px) {
+    margin-bottom: 0px;
+    margin-left: 90px;
+  }
+
+  @media (max-width: 1150px) {
+    margin-right: 70px;
+  }
+`;
+
+export const TextContainerMatriz = styled.div`
+  margin: 30px 150px 60px 150px;
+  color: white;
+  font-size: 24px;
+  text-align: justify;
+
+  @media (max-width: 500px) {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 430px) {
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+
+  @media (max-width: 360px) {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  @media (max-width: 900px) {
+    margin-bottom: 0px;
+    margin-right: 90px;
+  }
+
+  @media (max-width: 1150px) {
+    margin-left: 70px;
+  }
+`;
+
+export const ImageAreaHerberton = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 150px;
@@ -105,7 +185,7 @@ export const ImageArea1 = styled.div`
   }
 `;
 
-export const ImageArea2 = styled.div`
+export const ImageAreaBomDespacho = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 150px;
@@ -120,20 +200,110 @@ export const ImageArea2 = styled.div`
   }
 `;
 
-export const Image = styled.img`
+export const ImageAreaVilaMilitar = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
+
+  @media (max-width: 900px) {
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+
+  @media (max-width: 1000px) {
+    margin-top: 50px;
+  }
+
+  @media (max-width: 1150px) {
+    margin-top: 50px;
+  }
+`;
+
+export const ImageAreaMatriz = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 150px;
+
+  @media (max-width: 900px) {
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 150px;
+  }
+
+  @media (max-width: 1000px) {
+    margin-top: 50px;
+  }
+
+  @media (max-width: 1150px) {
+    margin-top: 50px;
+  }
+`;
+
+export const ImageHerberton = styled.img`
   width: 230px;
   height: 270px;
 `;
 
-export const ImageBox = styled.div`
+export const ImageBomDespacho = styled.img`
+  width: 230px;
+  height: 270px;
+`;
+
+export const ImageMatriz = styled.img`
+  width: 380px;
+  height: 270px;
+
+  @media (max-width: 500px) {
+    width: 230px;
+  }
+`;
+
+export const ImageVilaMilitar = styled.img`
+  width: 380px;
+  height: 270px;
+
+  @media (max-width: 500px) {
+    width: 230px;
+  }
+`;
+
+export const ImageBoxHerberton = styled.div`
   background-color: white;
   width: 250px;
   height: 290px;
   display: flex;
   justify-content: center;
+  padding-top: 5px;
 `;
 
-export const Area1 = styled.div`
+export const ImageBoxMatriz = styled.div`
+  background-color: white;
+  width: 400px;
+  height: 290px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+
+  @media (max-width: 500px) {
+    width: 250px;
+  }
+`;
+
+export const ImageBoxVilaMilitar = styled.div`
+  background-color: white;
+  width: 400px;
+  height: 290px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+
+  @media (max-width: 500px) {
+    width: 250px;
+  }
+`;
+
+export const HerbertonArea = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -144,7 +314,7 @@ export const Area1 = styled.div`
   }
 `;
 
-export const Area2 = styled.div`
+export const BomDespachoArea = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
@@ -154,7 +324,61 @@ export const Area2 = styled.div`
   }
 `;
 
-export const Text3 = styled.div`
+export const ApresentationArea1 = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
+
+export const ApresentationArea2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+
+  @media (max-width: 900px) {
+    flex-direction: column-reverse;
+  }
+`;
+
+export const BomDespachoText1 = styled.div`
   margin-bottom: 20px;
 `;
-export const Text4 = styled.div``;
+export const BomDespachoText2 = styled.div``;
+
+export const ApresentationAreaColorfulUp = styled.div`
+  text-align: center;
+  width: 100%;
+  height: auto;
+  padding: 30px 0;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const AboutUsAreaColorfulDown = styled.div`
+  text-align: center;
+  width: 100%;
+  height: auto;
+  padding: 30px 0;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TextAreaColorfulArea = styled.div`
+  width: 60%;
+  height: auto;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+`;
