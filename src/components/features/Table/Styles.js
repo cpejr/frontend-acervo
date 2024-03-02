@@ -11,6 +11,13 @@ export const TableShape = styled(DataTable)`
   min-height: 70%;
   color: ${colors.font.primary};
   margin-top: 20px;
+  .p-paginator-bottom .p-paginator-pages .p-paginator-page,
+  .p-paginator-bottom .p-paginator-prev .p-paginator-icon,
+  .p-paginator-bottom .p-paginator-next .p-paginator-icon,
+  .p-paginator-bottom .p-paginator-first .p-paginator-icon,
+  .p-paginator-bottom .p-paginator-last .p-paginator-icon {
+    color: ${colors.font.primary};
+  }
 `;
 
 export const TableColumn = styled(Column)`

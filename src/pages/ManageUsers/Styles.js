@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import { Button as AntdButton } from "antd";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-// import { DataTable } from "primereact/datatable";
-// import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
 import { AutoComplete } from "primereact/autocomplete";
 
@@ -35,34 +32,21 @@ export const ProfilePic = styled.img`
   width: 50px;
   height: 50px;
 `;
-// export const Table = styled(DataTable)`
-//   display: flex;
-//   flex-direction: column;
-//   align-self: center;
-//   width: 90%;
-
-//   min-height: 70%;
-//   color: ${colors.font.primary};
-//   margin-top: 20px;
-// `;
-
-// export const TableColumn = styled(Column)`
-//   display: flex;
-//   align-self: center;
-//   background-color: ${colors.font.secondary};
-//   color: ${colors.font.secondary};
-//   min-width: 200px;
-// `;
 
 export const Select = styled(Dropdown)`
-  width: 80%;
+  width: 70%;
   background-color: ${colors.font.primary};
   color: ${colors.font.secondary};
-  border-radius: 3px;
+  border-radius: 4px;
+  border: 2px solid ${colors.background.primary};
   height: 4vh;
+  text-align: center;
   .p-multiselect-label {
     width: 215px;
     overflow-x: scroll;
+  }
+  &:hover {
+    border: 2px solid ${colors.font.other};
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 50%;
@@ -78,26 +62,6 @@ export const Select = styled(Dropdown)`
   }
 `;
 
-export const Button = styled(AntdButton)`
-  display: flex;
-  gap: 3px;
-  justify-content: center;
-  align-items: center;
-  color: ${colors.font.primary};
-  font-weight: bold;
-  border-color: ${colors.font.primary};
-  width: 15%;
-  align-self: center;
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: smaller;
-  }
-  @media (max-width: 380px) {
-    font-size: 0.6rem;
-  }
-  > svg {
-    font-size: larger;
-  }
-`;
 export const SearchBar = styled(AutoComplete)`
   margin-top: 30px;
   width: 95%;
@@ -112,8 +76,17 @@ export const SearchBar = styled(AutoComplete)`
     border-radius: 25px;
     border: solid 1px ${colors.font.other};
     padding-left: 10px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     color: ${colors.font.primary};
+    &:focus {
+      outline: none;
+    }
   }
+`;
+
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
 `;

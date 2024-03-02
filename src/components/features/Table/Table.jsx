@@ -21,3 +21,7 @@ export default function Table({ columns, data }) {
     </TableShape>
   );
 }
+Table.propTypes = {
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+};

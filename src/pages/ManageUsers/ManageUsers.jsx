@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Select, ProfilePic, Title, SearchBar } from "./Styles";
+import {
+  Container,
+  Select,
+  ProfilePic,
+  Title,
+  SearchBar,
+  LoadingStyles,
+} from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import ModalDeleteUser from "../../components/features/modals/ModalDeleteUser/ModalDeleteUser";
-import Table from "../../components/features/Table/Table";
+import { ModalDeleteUser, Table } from "../../components";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import {
   useDeleteUsers,
@@ -69,7 +76,6 @@ export default function ManageUsers() {
 
     setUsers(formattedUsers);
   }
-
   function handleTypeChange(_id, type) {
     const newUserData = { type };
     updateUser({ _id, newUserData });
@@ -123,14 +129,19 @@ export default function ManageUsers() {
   return (
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
-
       <SearchBar
         type="text"
         placeholder="Pesquisar usuario"
         value={searchQuery}
         onChange={handleSearchChange}
       />
-      <Table columns={columns} data={users} />
+      {isLoading ? (
+        <LoadingStyles>
+          <LoadingOutlined />
+        </LoadingStyles>
+      ) : (
+        <Table columns={columns} data={users} />
+      )}
       <ModalDeleteUser
         close={closeModalDelete}
         handleUserDelete={handleUserDelete}
