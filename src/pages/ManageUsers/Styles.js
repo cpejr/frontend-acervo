@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
-import { AutoComplete } from "primereact/autocomplete";
 
 export const Container = styled.div`
   display: flex;
@@ -59,29 +58,6 @@ export const Select = styled(Dropdown)`
   }
   @media (max-width: ${breakpoints.smallDevice}) {
     width: 50%;
-  }
-`;
-
-export const SearchBar = styled(AutoComplete)`
-  margin-top: 30px;
-  width: 95%;
-  align-self: center;
-  .p-autocomplete-input {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 7vh;
-    background-color: ${colors.background.primary};
-
-    border-radius: 25px;
-    border: solid 1px ${colors.font.other};
-    padding-left: 10px;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: ${colors.font.primary};
-    &:focus {
-      outline: none;
-    }
   }
 `;
 

@@ -8,3 +8,4 @@ export { default as Footer } from "./features/layout/Footer/Footer.jsx";
 export { default as AppLayout } from "./features/layout/AppLayout/AppLayout.jsx";
 export { default as ModalDeleteUser } from "./features/modals/ModalDeleteUser/ModalDeleteUser.jsx";
 export { default as Table } from "./features/Table/Table.jsx";
+export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";

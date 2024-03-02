@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Container, Message, ModalStyle } from "./Styles";
 import Button from "../../../common/Button/Button";
+import { colors } from "../../../../styles/stylesVariables";
 
 export default function ModalDeleteUser({
   close,
@@ -31,16 +32,16 @@ export default function ModalDeleteUser({
           }}
           type="button"
           backgroundColor="transparent"
-          color="#f19709;"
-          border="1px solid #f19709"
+          color={colors.modals.modalButton}
+          border="1px solid "
           borderRadius="0.5rem"
           marginTop="1.5rem"
           fontSize="1.8rem"
           fontWeight="500"
           lineHeight="2.2rem"
-          hoverBackgroundColor="#f19709"
-          hoverColor="#ffffff"
-          borderColor="#f19709"
+          hoverBackgroundColor={colors.modals.modalButton}
+          hoverColor={colors.font.primary}
+          borderColor={colors.modals.modalButton}
         >
           Excluir
         </Button>

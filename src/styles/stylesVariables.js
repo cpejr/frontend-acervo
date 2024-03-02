@@ -15,6 +15,7 @@ export const colors = {
   },
   modals: {
     background: "#f5eff9",
+    modalButton: "#f19709",
   },
   error: "#9E0000",
   warning: "#F19709",

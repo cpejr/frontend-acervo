@@ -1,17 +1,10 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import {
-  Container,
-  Select,
-  ProfilePic,
-  Title,
-  SearchBar,
-  LoadingStyles,
-} from "./Styles";
+import { Container, Select, ProfilePic, Title, LoadingStyles } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { ModalDeleteUser, Table } from "../../components";
+import { ModalDeleteUser, Table, SearchBar } from "../../components";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import {
@@ -130,11 +123,10 @@ export default function ManageUsers() {
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
       <SearchBar
-        type="text"
-        placeholder="Pesquisar usuario"
+        placeholder={"pesquisar usuario"}
         value={searchQuery}
-        onChange={handleSearchChange}
-      />
+        search={handleSearchChange}
+      ></SearchBar>
       {isLoading ? (
         <LoadingStyles>
           <LoadingOutlined />
