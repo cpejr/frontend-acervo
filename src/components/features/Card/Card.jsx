@@ -9,9 +9,8 @@ import {
   Group,
   ButtonDiv,
 } from "./Styles";
-import imageCard from "../../../assets/imageCard.svg";
+import { imageCard } from "../../../assets/index";
 export default function Card() {
-
   return (
     <StyledCard>
       <Image>

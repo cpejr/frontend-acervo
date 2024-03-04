@@ -1,6 +1,4 @@
 import Card from "../../components/features/Card/Card";
-import React, { useState } from "react";
-import { Select } from "antd";
 import {
   Container,
   DivLine,
@@ -13,10 +11,10 @@ import {
   Characteristics,
   Prices,
   VerticalLine,
-  OrderBox,
+  DivSelect,
   Title,
   StyledCheckbox,
-  SelectModal,
+  UniSelect,
 } from "./Styles";
 
 const CustomCheckbox = ({ label }) => {
@@ -28,7 +26,11 @@ const CustomCheckbox = ({ label }) => {
   );
 };
 
-export default function Events() {
+export default function Events({ filter }) {
+  const filters = [
+    { label: "Melhor avaliados", value: "melhorAvaliados" },
+    { label: "Favoritos", value: "favoritos" },
+  ];
   return (
     <Container>
       <IconWrapper>
@@ -48,14 +50,17 @@ export default function Events() {
           <CustomCheckbox label="Preços" />
         </Prices>
         <VerticalLine></VerticalLine>
-        <OrderBox>
-          <label>Ordenar Por</label>
-          <SelectModal>
-            <option></option>
-            <option>Melhor avaliados</option>
-            <option>Favoritos</option>
-          </SelectModal>
-        </OrderBox>
+        <DivSelect>
+          <UniSelect
+            value={filter}
+            onChange={(e) => setFilter(e.value)}
+            options={filters}
+            optionLabel="label"
+            showClear
+            placeholder="Ordenar Por"
+            className="w-full md:w-14rem"
+          ></UniSelect>
+        </DivSelect>
       </Filter>
       <TrendingTools>
         <DivLine>

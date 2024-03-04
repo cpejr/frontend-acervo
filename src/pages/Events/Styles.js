@@ -1,4 +1,6 @@
 import { SearchOutlined } from "@ant-design/icons";
+import { Dropdown } from "primereact/dropdown";
+import { Checkbox } from "primereact/checkbox";
 export const Container = styled.div`
   display: flex;
   width: 100%;
@@ -127,21 +129,12 @@ export const VerticalLine = styled.div`
   border-left: 2px solid white;
   height: 10rem;
 `;
-export const OrderBox = styled.div`
-  display: flex;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  align-items: center;
-  justify-content: space-between;
-  height: auto;
-  width: 10%;
-`;
 export const Title = styled.div`
   display: flex;
   color: #f19709;
   padding-bottom: 1rem;
 `;
-export const StyledCheckbox = styled.input`
+export const StyledCheckbox = styled.div`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -154,12 +147,35 @@ export const StyledCheckbox = styled.input`
     background-color: #ccc;
   }
 `;
-export const SelectModal = styled.select`
+export const DivSelect = styled.div`
   display: flex;
-  background-color: white;
-  color: black;
-  width: 3vw;
-  border: 1px solid white;
-  height: 1.5rem;
-  overflow-y: auto;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 5px;
+  width: 10%;
+  @media (max-width: 600px) {
+    width: 40%;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 20%;
+  }
+`;
+export const UniSelect = styled(Dropdown)`
+  gap: 1rem;
+  .p-dropdown-label {
+    color: white;
+    width: 100%;
+  }
+  .p-inputtext {
+    color: white;
+  }
+  @media (max-width: 600px) {
+    width: 30%;
+  }
+  @media (max-width: 500px) {
+    width: 20%;
+  }
 `;
