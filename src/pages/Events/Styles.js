@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
@@ -71,7 +72,6 @@ export const SVGDiv = styled.div`
     width: 13%;
   }
 `;
-import styled from "styled-components";
 export const TrendingTools = styled.div`
   display: flex;
   width: 95%;
@@ -117,6 +117,7 @@ export const Characteristics = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
+    color: #eedac5;
   }
 `;
 export const Prices = styled.div`
@@ -127,6 +128,7 @@ export const Prices = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
+    color: #eedac5;
   }
 `;
 export const VerticalLine = styled.div`
@@ -141,7 +143,7 @@ export const Title = styled.div`
 export const StyledCheckbox = styled(Checkbox)`
   width: 20px;
   height: 20px;
-  border: 2px solid #ccc;
+  border: 2px solid #eedac5;
   border-radius: 5px;
   justify-content: center;
 `;
