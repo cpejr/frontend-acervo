@@ -11,6 +11,13 @@ import {
 } from "./Styles";
 import { imageCard } from "../../../assets/index";
 export default function Card() {
+  const tagData = [
+    { _id: 1, title: "Tag 1", description: "Descrição do Card 1" },
+    { _id: 2, title: "Tag 2", description: "Descrição do Card 2" },
+    { _id: 3, title: "Tag 3", description: "Descrição do Card 3" },
+    { _id: 4, title: "Tag 4", description: "Descrição do Card 4" },
+    { _id: 5, title: "Tag 5", description: "Descrição do Card 5" },
+  ];
   return (
     <StyledCard>
       <Image>
@@ -28,10 +35,9 @@ export default function Card() {
       </Line>
 
       <Tags>
-        <Tag>arroz</Tag>
-        <Tag>feijão</Tag>
-        <Tag>batata</Tag>
-        <Tag>batata</Tag>
+        {tagData.map((tag, index) => (
+          <Tag key={index}>{tag.title}</Tag>
+        ))}
       </Tags>
 
       <ButtonDiv>

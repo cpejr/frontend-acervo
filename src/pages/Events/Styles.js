@@ -115,6 +115,8 @@ export const Characteristics = styled.div`
   > label {
     align-items: center;
     display: flex;
+    gap: 0.5rem;
+    padding-top: 0.3rem;
   }
 `;
 export const Prices = styled.div`
@@ -123,6 +125,8 @@ export const Prices = styled.div`
   > label {
     align-items: center;
     display: flex;
+    gap: 0.5rem;
+    padding-top: 0.3rem;
   }
 `;
 export const VerticalLine = styled.div`
@@ -134,18 +138,12 @@ export const Title = styled.div`
   color: #f19709;
   padding-bottom: 1rem;
 `;
-export const StyledCheckbox = styled.div`
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+export const StyledCheckbox = styled(Checkbox)`
   width: 20px;
   height: 20px;
   border: 2px solid #ccc;
   border-radius: 5px;
-  cursor: pointer;
-  &:checked {
-    background-color: #ccc;
-  }
+  justify-content: center;
 `;
 export const DivSelect = styled.div`
   display: flex;

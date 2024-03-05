@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Card from "../../components/features/Card/Card";
 import {
   Container,
@@ -17,20 +18,46 @@ import {
   UniSelect,
 } from "./Styles";
 
-const CustomCheckbox = ({ label }) => {
-  return (
-    <label>
-      <StyledCheckbox type="checkbox" />
-      {label}
-    </label>
-  );
-};
-
 export default function Events({ filter }) {
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },
   ];
+
+  const characteristicCheckboxes = [
+    { label: "Característica 1" },
+    { label: "Característica 2" },
+  ];
+
+  const priceCheckboxes = [{ label: "Preço 1" }, { label: "Preço 2" }];
+
+  const [characteristicCheckedStates, setCharacteristicCheckedStates] =
+    useState(Array(characteristicCheckboxes.length).fill(false));
+
+  const [priceCheckedStates, setPriceCheckedStates] = useState(
+    Array(priceCheckboxes.length).fill(false)
+  );
+
+  const handleCharacteristicCheckboxChange = (index) => {
+    const newCheckedStates = [...characteristicCheckedStates];
+    newCheckedStates[index] = !newCheckedStates[index];
+    setCharacteristicCheckedStates(newCheckedStates);
+  };
+
+  const handlePriceCheckboxChange = (index) => {
+    const newCheckedStates = [...priceCheckedStates];
+    newCheckedStates[index] = !newCheckedStates[index];
+    setPriceCheckedStates(newCheckedStates);
+  };
+
+  const cardData = [
+    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
+    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+    { _id: 3, title: "Card 3", description: "Descrição do Card 3" },
+    { _id: 4, title: "Card 4", description: "Descrição do Card 4" },
+    { _id: 5, title: "Card 5", description: "Descrição do Card 5" },
+  ];
+
   return (
     <Container>
       <IconWrapper>
@@ -41,13 +68,27 @@ export default function Events({ filter }) {
       <Filter>
         <Characteristics>
           <Title>Características:</Title>
-          <CustomCheckbox label="Características" />
-          <CustomCheckbox label="Características" />
+          {characteristicCheckboxes.map((checkbox, index) => (
+            <label key={index}>
+              <StyledCheckbox
+                checked={characteristicCheckedStates[index]}
+                onChange={() => handleCharacteristicCheckboxChange(index)}
+              />
+              {checkbox.label}
+            </label>
+          ))}
         </Characteristics>
         <Prices>
           <Title>Preços:</Title>
-          <CustomCheckbox label="Preços" />
-          <CustomCheckbox label="Preços" />
+          {priceCheckboxes.map((checkbox, index) => (
+            <label key={index}>
+              <StyledCheckbox
+                checked={priceCheckedStates[index]}
+                onChange={() => handlePriceCheckboxChange(index)}
+              />
+              {checkbox.label}
+            </label>
+          ))}
         </Prices>
         <VerticalLine></VerticalLine>
         <DivSelect>
@@ -65,9 +106,9 @@ export default function Events({ filter }) {
       <TrendingTools>
         <DivLine>
           <Line>
-            <Card />
-            <Card />
-            <Card />
+            {cardData.map((card, index) => (
+              <Card key={index} data={card} />
+            ))}
           </Line>
         </DivLine>
       </TrendingTools>
