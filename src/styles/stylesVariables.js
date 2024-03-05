@@ -13,6 +13,10 @@ export const colors = {
     primary: "#F19709",
     hover: "#d28408",
   },
+  modals: {
+    background: "#f5eff9",
+    modalButton: "#f19709",
+  },
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
