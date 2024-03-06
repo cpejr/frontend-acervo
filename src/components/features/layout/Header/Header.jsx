@@ -18,7 +18,7 @@ export default function Header() {
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
   const logGoogleUser = async () => {
-    if (auth.accessToken() === null) {
+    if (auth === null || auth.accessToken === null) {
       const googleResponse = await signInWithGooglePopup();
       const response = login({
         name: googleResponse?.user?.displayName,
@@ -30,6 +30,10 @@ export default function Header() {
       clearAuth();
     }
   };
+  async function Teste() {
+    const googleResponse = await signInWithGooglePopup();
+    console.log(googleResponse);
+  }
 
   return (
     <Container>
@@ -38,7 +42,7 @@ export default function Header() {
       <Link>Eventos Culturais</Link>
       <Link>Área escolar</Link>
       <Link>Sobre o projeto</Link>
-      <Link onClick={() => logGoogleUser()}>PERFIL</Link>
+      <Link onClick={Teste}>PERFIL</Link>
     </Container>
   );
 }

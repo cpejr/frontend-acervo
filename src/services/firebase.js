@@ -1,27 +1,29 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  signInWithRedirect,
+  GoogleAuthProvider,
+  getRedirectResult,
+} from "firebase/auth";
+import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebaseConfig";
-
-const provider = new firebase.auth.GoogleAuthProvider();
+const provider = new GoogleAuthProvider();
 
 // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-const app = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth(app);
-
-// Whenever a user interacts with the provider, we force them to select an account
+// whenever a user interacts with the provider, we force them to select an account
 provider.setCustomParameters({
   prompt: "select_account ",
 });
 
-// Apply the default browser language preference
-
+//apply the default browser language preference
 auth.useDeviceLanguage();
 
-export const signInWithGooglePopup = () =>
-  firebase.signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 //for mobile it is better to use redirect
 export const signInWithGoogleRedirect = () =>
-  firebase.signInWithRedirect(auth, provider);
-export const getGoogleRedirectResult = () => firebase.getRedirectResult(auth);
+  signInWithRedirect(auth, provider);
+export const getGoogleRedirectResult = () => getRedirectResult(auth);
