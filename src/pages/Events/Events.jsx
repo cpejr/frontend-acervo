@@ -5,18 +5,15 @@ import {
   DivLine,
   Line,
   TrendingTools,
-  IconWrapper,
-  SVGDiv,
-  RotateSearch,
   Filter,
   Characteristics,
   Prices,
-  VerticalLine,
   DivSelect,
   Title,
   StyledCheckbox,
   UniSelect,
 } from "./Styles";
+import { SearchBar } from "../../components";
 
 export default function Events() {
   const [filter, setFilter] = useState([]);
@@ -61,11 +58,7 @@ export default function Events() {
 
   return (
     <Container>
-      <IconWrapper>
-        <SVGDiv>
-          <RotateSearch />
-        </SVGDiv>
-      </IconWrapper>
+      <SearchBar placeholder={"Pesquisar Evento"}></SearchBar>
       <Filter>
         <Characteristics>
           <Title>Características:</Title>
@@ -91,7 +84,6 @@ export default function Events() {
             </label>
           ))}
         </Prices>
-        <VerticalLine></VerticalLine>
         <DivSelect>
           <UniSelect
             value={filter}
