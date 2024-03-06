@@ -10,7 +10,7 @@ export const Input = styled(AutoComplete)`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 7vh;
+    height: 3rem;
     background-color: ${colors.background.primary};
 
     border-radius: 25px;
