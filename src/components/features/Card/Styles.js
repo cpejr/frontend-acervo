@@ -1,5 +1,6 @@
 import { Card, Button } from "antd";
 import styled from "styled-components";
+import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const StyledCard = styled(Card)`
   display: flex;
@@ -13,16 +14,16 @@ export const StyledCard = styled(Card)`
   margin-bottom: 4rem;
   &:hover {
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 24rem;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 25rem;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 26.66rem;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 22rem;
   }
   > div {
@@ -46,13 +47,13 @@ export const Image = styled.div`
     width: 100%;
     height: 10rem;
     border-radius: 1rem;
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       height: 10rem;
     }
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       height: 10rem;
     }
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       height: 12rem;
     }
   }
@@ -63,35 +64,35 @@ export const Line = styled.div`
   width: 100%;
   height: auto;
   font-size: 30px;
-  color: #000000;
+  color: ${colors.font.secondary};
   cursor: pointer;
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 20px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 18px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 20px;
   }
 
   > p {
     font-size: 22px;
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 17.6px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 13.2px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 11.88px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 17.6px;
     }
   }
@@ -104,17 +105,17 @@ export const LineSVG = styled.div`
   > svg {
     cursor: pointer;
     font-size: 30px;
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 24px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 20px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 18px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 20px;
     }
   }
@@ -123,17 +124,17 @@ export const Group = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 17.5px;
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 15.75px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 11.81px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 10.63px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 15.75px;
   }
 `;
@@ -145,11 +146,11 @@ export const ButtonDiv = styled.div`
 export const OrangeButton = styled(Button)`
   width: 7.5rem;
   height: 2.5rem;
-  background-color: #f19709;
+  background-color: ${colors.accent};
   border: none;
   margin-top: 1rem;
   border-radius: 10px;
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 12rem;
     height: 2.25rem;
   }
@@ -179,24 +180,24 @@ export const Tag = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     height: 32px;
     font-size: 12px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     height: 24px;
     font-size: 9px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     height: 21.6px;
     font-size: 12px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     height: 32px;
     font-size: 12px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 9px;
   }
   &:hover {

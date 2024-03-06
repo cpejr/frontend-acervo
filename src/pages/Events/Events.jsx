@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Card from "../../components/features/Card/Card";
 import {
   Container,
@@ -18,7 +18,8 @@ import {
   UniSelect,
 } from "./Styles";
 
-export default function Events({ filter }) {
+export default function Events() {
+  const [filter, setFilter] = useState([]);
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },

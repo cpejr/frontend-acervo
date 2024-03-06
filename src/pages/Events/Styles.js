@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
+import { breakpoints, colors } from "../../styles/stylesVariables";
 export const Container = styled.div`
   display: flex;
   width: 100%;
@@ -12,7 +13,7 @@ export const Container = styled.div`
   margin-bottom: 100px;
   gap: 2rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     h1 {
       font-size: 3rem;
     }
@@ -20,7 +21,7 @@ export const Container = styled.div`
       font-size: 1.2rem;
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     h1 {
       font-size: 2.7rem;
     }
@@ -42,10 +43,10 @@ export const IconWrapper = styled.div`
   gap: 0.5rem;
   border: 2px solid white;
   border-radius: 20px;
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 60%;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 70%;
   }
 `;
@@ -56,19 +57,19 @@ export const SVGDiv = styled.div`
   > span {
     > svg {
       font-size: 1.7rem;
-      @media (max-width: 600px) {
+      @media (max-width: ${breakpoints.miniTablet}) {
         font-size: 1.5rem;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: ${breakpoints.miniTablet}) {
         font-size: 1.3rem;
       }
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 10%;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 13%;
   }
 `;
@@ -128,7 +129,7 @@ export const Prices = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
-    color: #eedac5;
+    color: ${colors.darkwhite};
   }
 `;
 export const VerticalLine = styled.div`
@@ -137,13 +138,13 @@ export const VerticalLine = styled.div`
 `;
 export const Title = styled.div`
   display: flex;
-  color: #f19709;
+  color: ${colors.accent};
   padding-bottom: 1rem;
 `;
 export const StyledCheckbox = styled(Checkbox)`
   width: 20px;
   height: 20px;
-  border: 2px solid #eedac5;
+  border: 2px solid ${colors.darkwhite};
   border-radius: 5px;
   justify-content: center;
 `;
@@ -155,10 +156,10 @@ export const DivSelect = styled.div`
   border: 2px solid white;
   border-radius: 5px;
   width: 10%;
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 40%;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     flex-direction: column;
     width: 20%;
   }
@@ -172,10 +173,10 @@ export const UniSelect = styled(Dropdown)`
   .p-inputtext {
     color: white;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${breakpoints.miniTablet}) {
     width: 30%;
   }
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 20%;
   }
 `;
