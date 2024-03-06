@@ -15,6 +15,7 @@ import {
   ManageUsers,
   Story,
   AboutUs,
+  Memorial,
 } from "./pages";
 import { AppLayout } from "./components";
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
         <Route path="managevents" element={<ManageEvents />} />
         <Route path="manageusers" element={<ManageUsers />} />
         <Route path="support" element={<Support />} />
+        <Route path="memorial" element={<Memorial />} />
       </Route>
     </Route>
   )
