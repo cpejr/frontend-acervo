@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints } from "../../styles/stylesVariables";
 
 export const Content = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ export const Title = styled.h1`
   padding-top: 50px;
   color: white;
 
-  @media (max-width: 700px) {
+  @media (max-width: ${breakpoints.mobile}) {
     font-size: 35px;
   }
 
@@ -36,7 +37,7 @@ export const SubTitle = styled.h2`
   margin-bottom: 10px;
   color: white;
 
-  @media (max-width: 700px) {
+  @media (max-width: ${breakpoints.mobile}) {
     font-size: 25px;
   }
 
@@ -56,11 +57,11 @@ export const LineTitle = styled.div`
   border-radius: 0px 5px 5px 0px;
   background-color: #ffd599;
 
-  @media (max-width: 700px) {
-    width: 500px;
+  @media (max-width: ${breakpoints.mobile}) {
+    width: ${breakpoints.smallMobile};
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 400px;
   }
 
@@ -75,7 +76,7 @@ export const TextContainer = styled.div`
   font-size: 24px;
   text-align: justify;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 80px;
     margin-right: 80px;
   }
@@ -105,7 +106,7 @@ export const TextContainerVilaMilitar = styled.div`
   font-size: 24px;
   text-align: justify;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 80px;
     margin-right: 80px;
   }
@@ -140,7 +141,7 @@ export const TextContainerMatriz = styled.div`
   font-size: 24px;
   text-align: justify;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 80px;
     margin-right: 80px;
   }
@@ -254,7 +255,7 @@ export const ImageMatriz = styled.img`
   width: 380px;
   height: 270px;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 230px;
   }
 `;
@@ -263,7 +264,7 @@ export const ImageVilaMilitar = styled.img`
   width: 380px;
   height: 270px;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 230px;
   }
 `;
@@ -285,7 +286,7 @@ export const ImageBoxMatriz = styled.div`
   justify-content: center;
   padding-top: 5px;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 250px;
   }
 `;
@@ -298,7 +299,7 @@ export const ImageBoxVilaMilitar = styled.div`
   justify-content: center;
   padding-top: 5px;
 
-  @media (max-width: 500px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 250px;
   }
 `;
