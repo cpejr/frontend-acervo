@@ -2,12 +2,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { firebaseConfig } from "./firebaseConfig";
 
-const provider = new firebase.GoogleAuthProvider();
+const provider = new firebase.auth.GoogleAuthProvider();
 
 // Initialize Firebase
 
 const app = firebase.initializeApp(firebaseConfig);
-const auth = firebase.getAuth(app);
+const auth = firebase.auth(app);
 
 // Whenever a user interacts with the provider, we force them to select an account
 provider.setCustomParameters({
