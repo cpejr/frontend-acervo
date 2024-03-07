@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, fonts } from "../../../styles/stylesVariables";
+import { colors, fonts, breakpoints } from "../../../styles/stylesVariables";
 import { Link as RouterLink } from "react-router-dom";
 
 const Link = styled(RouterLink)`
@@ -36,6 +36,10 @@ const Link = styled(RouterLink)`
     background-color: ${(props) => props.hoverBackgroundColor};
     border-color: ${(props) => props.hoverBorderColor};
     color: ${(props) => props.hoverColor ?? colors.accent.hover};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
   }
 `;
 

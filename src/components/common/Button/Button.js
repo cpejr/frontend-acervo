@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors, fonts } from "../../../styles/stylesVariables";
-
 const Button = styled.button`
   /*Posição */
   display: flex;
@@ -23,7 +22,8 @@ const Button = styled.button`
   width: ${(props) => props.width};
   /*cor e estilo do botão*/
   color: ${(props) => props.color ?? colors.font.primary};
-  background-color: ${(props) => props.backgroundColor ?? colors.accent.primary};
+  background-color: ${(props) =>
+    props.backgroundColor ?? colors.accent.primary};
   border-width: ${(props) => props.borderWidth ?? "0.15rem"};
   border-color: ${(props) => props.borderColor ?? "transparent"};
   border-style: solid;
@@ -37,7 +37,8 @@ const Button = styled.button`
   text-align: center;
   font-weight: ${(props) => props.fontWeight};
   &:hover {
-    background-color: ${(props) => props.hoverBackgroundColor ?? colors.accent.hover};
+    background-color: ${(props) =>
+      props.hoverBackgroundColor ?? colors.accent.hover};
     border-color: ${(props) => props.hoverBorderColor};
     color: ${(props) => props.hoverColor ?? "white"};
   }

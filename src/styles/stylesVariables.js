@@ -16,6 +16,12 @@ export const colors = {
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
+
+  menu: {
+    background: "#1C1C1C",
+    font: "#EB6800",
+    
+  },
 };
 
 export const fonts = {
