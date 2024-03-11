@@ -8,23 +8,20 @@ import {
   UniSelect,
   StyledCheckbox,
   VerticalLine,
-  StyledCard,
-  OrangeButton,
-  CardLine,
-  Image,
-  LineSVG,
-  Group,
-  ButtonDiv,
+  TrendingTools,
+  DivLine,
+  Line,
 } from "../Memorial/Styles";
 import { SearchBar } from "../../components";
+import LargeCard from "../../components/features/LargeCard/LargeCard";
 
-// const cardData = [
-//   { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-//   { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-//   { _id: 3, title: "Card 3", description: "Descrição do Card 3" },
-//   { _id: 4, title: "Card 4", description: "Descrição do Card 4" },
-//   { _id: 5, title: "Card 5", description: "Descrição do Card 5" },
-// ];
+const cardData = [
+  { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
+  { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+  { _id: 3, title: "Card 3", description: "Descrição do Card 3" },
+  { _id: 4, title: "Card 4", description: "Descrição do Card 4" },
+  { _id: 5, title: "Card 5", description: "Descrição do Card 5" },
+];
 
 export default function Memorial() {
   const filters = [
@@ -62,30 +59,15 @@ export default function Memorial() {
           />
         </DivSelect>
       </Filter>
-
-      <StyledCard>
-        <Image>
-          <img
-            src={
-              "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1"
-            }
-          />
-        </Image>
-        <Group>
-          <LineSVG></LineSVG>
-          <CardLine>EVENTO</CardLine>
-        </Group>
-        <CardLine>
-          <p>
-            Descrição Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Integer sit amet est mauris.
-          </p>
-        </CardLine>
-
-        <ButtonDiv>
-          <OrangeButton>Botão</OrangeButton>
-        </ButtonDiv>
-      </StyledCard>
+      <TrendingTools>
+        <DivLine>
+          <Line>
+            {cardData.map((card, index) => (
+              <LargeCard key={index} data={card} />
+            ))}
+          </Line>
+        </DivLine>
+      </TrendingTools>
     </Container>
   );
 }
