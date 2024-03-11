@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Container, Message, ModalStyle } from "./Styles";
 import Button from "../../../common/Button/Button";
+
 import { colors } from "../../../../styles/stylesVariables";
 
 export default function ModalDeleteItem({

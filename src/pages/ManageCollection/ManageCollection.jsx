@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Title } from "./Styles";
+import { Container, Title, LoadingStyles } from "./Styles";
 import {
   Table,
   ModalDeleteItem,
@@ -10,6 +10,7 @@ import {
 } from "../../components";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle, AiFillTool } from "react-icons/ai";
+import { LoadingOutlined } from "@ant-design/icons";
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
@@ -32,43 +33,33 @@ export default function ManageCollection() {
   let inputs = [
     {
       type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
+      key: "title",
+      placeholder: "titulo",
+      required: true,
     },
     {
       type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
+      key: "shortDescription",
+      placeholder: "Descrição curta",
+      required: true,
     },
     {
       type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
+      key: "longDescription",
+      placeholder: "Descrição longa",
+      required: true,
     },
     {
       type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
+      key: "link",
+      placeholder: "link",
+      required: true,
     },
     {
       type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
-    },
-    {
-      type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
-    },
-    {
-      type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
-    },
-    {
-      type: "input",
-      key: "name",
-      placeholder: "Digite o nome",
+      key: "archives",
+      placeholder: "Adicionar Arquivo",
+      required: true,
     },
   ];
   let data = [
@@ -95,7 +86,7 @@ export default function ManageCollection() {
       ),
     },
   ];
-
+  const isLoading = false;
   function handleArchiveDelete(_id) {
     //funçaodeletar(_id);
     closeModalDelete();
@@ -104,12 +95,20 @@ export default function ManageCollection() {
     //funçaodeletar(_id);
     closeModalUpdate();
   }
-
+  function handlesubmit(data) {
+    console.log("ola", data);
+  }
   return (
     <Container>
       <Title>Gerenciar Arquivos </Title>
-      <FormSubmit inputs={inputs} />
-      <Table columns={columns} data={data}></Table>
+      <FormSubmit inputs={inputs} onSubmit={handlesubmit} />
+      {isLoading ? (
+        <LoadingStyles>
+          <LoadingOutlined />
+        </LoadingStyles>
+      ) : (
+        <Table columns={columns} data={data} />
+      )}
       <ModalDeleteItem
         close={closeModalDelete}
         handleItemDelete={handleArchiveDelete}

@@ -23,3 +23,8 @@ export const Title = styled.div`
     font-size: 22px;
   }
 `;
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+`;

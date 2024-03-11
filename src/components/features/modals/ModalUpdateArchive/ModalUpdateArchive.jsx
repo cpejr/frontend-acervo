@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { Container, Message, ModalStyle } from "./Styles";
-import Button from "../../../common/Button/Button";
-import { colors } from "../../../../styles/stylesVariables";
+import { ModalStyle } from "./Styles";
+import FormSubmit from "../../FormSubmit/FormSubmit";
 
 export default function ModalUpdateArchive({
   close,
@@ -11,6 +10,28 @@ export default function ModalUpdateArchive({
   closeModal,
   modalCloseIcon,
 }) {
+  let inputs = [
+    {
+      type: "input",
+      key: "text",
+      placeholder: "Mudar Texto",
+    },
+    {
+      type: "input",
+      key: "Arquivo",
+      placeholder: "Adicionar Arquivo",
+    },
+    {
+      type: "input",
+      key: "Link",
+      placeholder: "Mudar Link",
+    },
+  ];
+  function handleSubmit(data) {
+    console.log(data);
+    console.log("ola");
+    close();
+  }
   return (
     <ModalStyle
       open={modal}
@@ -23,29 +44,7 @@ export default function ModalUpdateArchive({
       centered
       destroyOnClose
     >
-      <Container>
-        <Message>Deseja atualizar o item?</Message>
-        <Button
-          onClick={() => {
-            handleArchiveUpdate(id);
-            close();
-          }}
-          type="button"
-          backgroundColor="transparent"
-          color={colors.modals.modalButton}
-          border="1px solid "
-          borderRadius="0.5rem"
-          marginTop="1.5rem"
-          fontSize="1.8rem"
-          fontWeight="500"
-          lineHeight="2.2rem"
-          hoverBackgroundColor={colors.modals.modalButton}
-          hoverColor={colors.font.primary}
-          borderColor={colors.modals.modalButton}
-        >
-          Excluir
-        </Button>
-      </Container>
+      <FormSubmit inputs={inputs} onSubmit={handleSubmit}></FormSubmit>
     </ModalStyle>
   );
 }

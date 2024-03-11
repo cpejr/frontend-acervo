@@ -1,36 +1,61 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import { Container, Form } from "./Styles";
+import Button from "../../common/Button/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, StyledInput, Select } from "./Styles";
 
-export default function FormSubmit({ inputs, onSubmit }) {
+export default function FormSubmit({ inputs, onSubmit, schema }) {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm(/*{ resolver: zodResolver(schema) }*/);
+  const [selectedOptions, setSelectedOptions] = useState({});
 
-  const submitHandler = (data) => {
-    onSubmit(data); // Chama a função de callback com os dados do formulário
+  const handleSelectChange = (key, value) => {
+    setSelectedOptions({ ...selectedOptions, [key]: value });
   };
-
+  console.log(errors, "erros");
+  function submitHandler(data) {
+    console.log(data);
+    onSubmit(data);
+    reset();
+  }
   return (
-    <Container>
-      <Form onSubmit={handleSubmit(submitHandler)}>
-        {inputs.map((input) => (
-          <input
+    <Form onSubmit={handleSubmit(submitHandler)}>
+      {inputs.map((input) =>
+        input?.options ? (
+          <Select
+            key={input?.key}
+            {...register(input?.key, { required: input?.required })}
+            error={errors[input?.key] ? true : false}
+            options={input?.options}
+            placeholder={input.placeholder}
+            value={selectedOptions[input?.key] || ""}
+            onChange={(e) => handleSelectChange(input?.key, e.target.value)}
+          ></Select>
+        ) : (
+          <StyledInput
             key={input?.key}
             type={input?.type}
             placeholder={input?.placeholder}
-            {...register(input?.key)}
+            error={errors[input?.key] ? true : false}
+            {...register(input?.key, { required: input?.required })}
           />
-        ))}
-        <button type="submit">Enviar</button>
-      </Form>
-    </Container>
+        )
+      )}
+
+      <Button type="submit" width="200px" height="50px">
+        Enviar
+      </Button>
+    </Form>
   );
 }
 
 FormSubmit.propTypes = {
   inputs: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  schema: PropTypes.func.isRequired,
 };
