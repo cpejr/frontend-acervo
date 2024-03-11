@@ -8,6 +8,13 @@ import {
   UniSelect,
   StyledCheckbox,
   VerticalLine,
+  StyledCard,
+  OrangeButton,
+  CardLine,
+  Image,
+  LineSVG,
+  Group,
+  ButtonDiv,
 } from "../Memorial/Styles";
 import { SearchBar } from "../../components";
 
@@ -35,6 +42,7 @@ export default function Memorial() {
     <Container>
       <Title>ACERVO</Title>
       <SearchBar></SearchBar>
+
       <Filter>
         <Characteristics>
           <FilterTitle>Características:</FilterTitle>
@@ -54,6 +62,30 @@ export default function Memorial() {
           />
         </DivSelect>
       </Filter>
+
+      <StyledCard>
+        <Image>
+          <img
+            src={
+              "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1"
+            }
+          />
+        </Image>
+        <Group>
+          <LineSVG></LineSVG>
+          <CardLine>EVENTO</CardLine>
+        </Group>
+        <CardLine>
+          <p>
+            Descrição Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer sit amet est mauris.
+          </p>
+        </CardLine>
+
+        <ButtonDiv>
+          <OrangeButton>Botão</OrangeButton>
+        </ButtonDiv>
+      </StyledCard>
     </Container>
   );
 }
