@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Container, Select, ProfilePic, Title, LoadingStyles } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { ModalDeleteUser, Table, SearchBar } from "../../components";
+import { ModalDeleteItem, Table, SearchBar } from "../../components";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import {
@@ -134,9 +134,9 @@ export default function ManageUsers() {
       ) : (
         <Table columns={columns} data={users} />
       )}
-      <ModalDeleteUser
+      <ModalDeleteItem
         close={closeModalDelete}
-        handleUserDelete={handleUserDelete}
+        handleItemDelete={handleUserDelete}
         id={userID}
         modal={modalDelete}
         modalCloseIcon={modalCloseButton}
