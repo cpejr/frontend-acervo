@@ -14,28 +14,22 @@ export default function Header() {
     onError: (err) => console.log(err),
   });
 
-  const { auth, setAuth } = useAuthStore();
+  const { auth } = useAuthStore();
+  console.log("✌️auth --->", auth);
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
   const logGoogleUser = async () => {
     if (auth === null || auth.accessToken === null) {
       const googleResponse = await signInWithGooglePopup();
-      console.log("Resposta do google:", googleResponse);
       login({
         name: googleResponse?.user?.displayName,
         email: googleResponse?.user?.email,
         imageURL: googleResponse?.user?.photoURL,
-        type: "user",
       });
-      setAuth(googleResponse?.user?.accessToken);
     } else {
       clearAuth();
     }
   };
-  async function Teste() {
-    const googleResponse = await signInWithGooglePopup();
-    console.log(googleResponse);
-  }
 
   return (
     <Container>
@@ -43,7 +37,7 @@ export default function Header() {
       <Link>Acervo</Link>
       <Link>Eventos Culturais</Link>
       <Link>Área escolar</Link>
-      <Link>Sobre o projeto</Link>
+      <Link onClick={() => clearAuth()}>Sobre o projeto</Link>
       <Link onClick={logGoogleUser}>PERFIL</Link>
     </Container>
   );

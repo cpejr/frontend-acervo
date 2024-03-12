@@ -12,7 +12,7 @@ export default function SearchBar({ placeholder, search, value }) {
   );
 }
 SearchBar.propTypes = {
-  placeholder: PropTypes.array.isRequired,
-  search: PropTypes.array.isRequired,
-  value: PropTypes.array.isRequired,
+  placeholder: PropTypes.array,
+  search: PropTypes.array,
+  value: PropTypes.array,
 };

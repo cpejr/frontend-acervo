@@ -19,9 +19,12 @@ export async function updateUser({ _id, newUserData }) {
   return data;
 }
 export const login = async (credentials) => {
-    const { setAuth } = useAuthStore.getState();
-    const { data } = await api.post('/user', credentials);
+  console.log("✌️credentials --->", credentials);
+  const { setAuth, setUser } = useAuthStore.getState();
 
-    setAuth(data.accessToken);
-    return data;
-}
+  const { data } = await api.post("/user", credentials);
+
+  setAuth(data.token);
+  setUser(data.user);
+  return data;
+};
