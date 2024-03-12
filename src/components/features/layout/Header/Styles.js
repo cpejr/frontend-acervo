@@ -9,3 +9,9 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-evenly;
 `;
+
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  //margin: 20px auto;
+`;

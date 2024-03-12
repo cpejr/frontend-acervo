@@ -19,7 +19,6 @@ export async function updateUser({ _id, newUserData }) {
   return data;
 }
 export const login = async (credentials) => {
-  console.log("✌️credentials --->", credentials);
   const { setAuth, setUser } = useAuthStore.getState();
 
   const { data } = await api.post("/user", credentials);

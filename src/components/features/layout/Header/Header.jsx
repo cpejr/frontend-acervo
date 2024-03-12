@@ -2,34 +2,48 @@ import useAuthStore from "../../../../Stores/auth";
 import { Link } from "../../../../components";
 import { useLogin } from "../../../../hooks/querys/user";
 import { signInWithGooglePopup } from "../../../../services/firebase";
-
-import { Container } from "./Styles";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Container, LoadingStyles } from "./Styles";
+import { toast, ToastContainer } from "react-toastify";
+import { useState } from "react";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Header() {
-  // BackEnd Calls
-  const { mutate: login, isLoading } = useLogin({
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { mutate: login } = useLogin({
     onSuccess: () => {
-      console.log("Sucesso!");
+      toast.success("Sucesso!");
+      setTimeout(() => {
+        3000
+      });
+      setIsLoading(false);
     },
-    onError: (err) => console.log(err),
+    onError: (err) => toast.error(err),
   });
 
   const { auth } = useAuthStore();
-  console.log("✌️auth --->", auth);
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
   const logGoogleUser = async () => {
-    if (auth === null || auth.accessToken === null) {
-      const googleResponse = await signInWithGooglePopup();
-      login({
-        name: googleResponse?.user?.displayName,
-        email: googleResponse?.user?.email,
-        imageURL: googleResponse?.user?.photoURL,
-      });
-    } else {
-      clearAuth();
+    setIsLoading(true);
+    try {
+      if (auth === null || auth.accessToken === null) {
+        const googleResponse = await signInWithGooglePopup();
+        login({
+          name: googleResponse?.user?.displayName,
+          email: googleResponse?.user?.email,
+          imageURL: googleResponse?.user?.photoURL,
+        });
+      } else {
+        clearAuth();
+      }
+    } catch (error) {
+      toast.error("Erro ao entrar com o Google");
+    } finally {
+      setIsLoading(false); 
     }
-  };
+  };  
 
   return (
     <Container>
@@ -38,7 +52,14 @@ export default function Header() {
       <Link>Eventos Culturais</Link>
       <Link>Área escolar</Link>
       <Link onClick={() => clearAuth()}>Sobre o projeto</Link>
-      <Link onClick={logGoogleUser}>PERFIL</Link>
+      {isLoading ? (
+        <LoadingStyles>
+          <LoadingOutlined />
+        </LoadingStyles>
+      ) : (
+        <Link onClick={logGoogleUser}>PERFIL</Link>
+      )}
+      <ToastContainer />
     </Container>
   );
 }
