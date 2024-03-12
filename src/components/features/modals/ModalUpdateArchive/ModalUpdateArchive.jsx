@@ -13,25 +13,25 @@ export default function ModalUpdateArchive({
   let inputs = [
     {
       type: "input",
-      key: "text",
+      key: "title",
       placeholder: "Mudar Texto",
     },
     {
       type: "input",
-      key: "Arquivo",
+      key: "archive",
       placeholder: "Adicionar Arquivo",
     },
     {
       type: "input",
-      key: "Link",
+      key: "link",
       placeholder: "Mudar Link",
     },
   ];
   function handleSubmit(data) {
-    console.log(data);
-    console.log("ola");
+    handleArchiveUpdate(id, data);
     close();
   }
+
   return (
     <ModalStyle
       open={modal}

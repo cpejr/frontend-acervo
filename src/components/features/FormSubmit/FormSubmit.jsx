@@ -11,13 +11,14 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     register,
     formState: { errors },
     reset,
-  } = useForm(/*{ resolver: zodResolver(schema) }*/);
+  } = useForm({
+    /* resolver: zodResolver(schema)*/
+  });
   const [selectedOptions, setSelectedOptions] = useState({});
 
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
-  console.log(errors, "erros");
   function submitHandler(data) {
     console.log(data);
     onSubmit(data);

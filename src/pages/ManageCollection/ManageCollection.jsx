@@ -8,12 +8,20 @@ import {
   FormSubmit,
   ModalUpdateArchive,
 } from "../../components";
+import {
+  useGetMemorial,
+  usePostMemorial,
+  useDeleteMemorial,
+  useUpdateMemorial,
+} from "../../hooks/querys/memorial";
+import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle, AiFillTool } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
+  const [collections, setCollections] = useState([]);
 
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
@@ -24,10 +32,11 @@ export default function ManageCollection() {
   const [archiveID, setArchiveID] = useState("");
 
   const modalCloseButton = <AiOutlineCloseCircle />;
+  const queryClient = useQueryClient();
   const columns = [
-    { field: "name", header: "Name" },
+    { field: "Title", header: "Title" },
     { field: "Description", header: "Description" },
-    { field: "manage", header: "Manage" },
+    { field: "Manage", header: "Manage" },
   ];
 
   let inputs = [
@@ -57,57 +66,119 @@ export default function ManageCollection() {
     },
     {
       type: "input",
-      key: "archives",
+      key: "archive",
       placeholder: "Adicionar Arquivo",
       required: true,
     },
   ];
-  let data = [
-    {
-      name: "jose",
-      Description: "ola",
-      manage: (
+  async function formatAllCollection() {
+    const formattedCollection = await collection.map((collection) => ({
+      Title: collection?.title,
+      Description: collection?.shortDescription,
+      Manage: (
         <div>
           <AiFillTool
             style={{ cursor: "pointer" }}
             onClick={() => {
               openModalUpdate();
-              setArchiveID("123");
+              setArchiveID(collection?._id);
             }}
           />
           <RiDeleteBin5Line
             style={{ cursor: "pointer" }}
             onClick={() => {
               openModalDelete();
-              setArchiveID("123");
+              setArchiveID(collection?._id);
             }}
           />
         </div>
       ),
-    },
-  ];
-  const isLoading = false;
+    }));
+
+    setCollections(formattedCollection);
+  }
+
   function handleArchiveDelete(_id) {
-    //funçaodeletar(_id);
+    deleteMemorial(_id);
     closeModalDelete();
   }
-  function handleArchiveUpdate(_id) {
-    //funçaodeletar(_id);
+
+  function handleArchiveUpdate(_id, data) {
+    const newArchiveData = { data };
+    console.log(_id);
+    console.log(newArchiveData);
+    updateMemorial(_id, newArchiveData);
     closeModalUpdate();
   }
+
   function handlesubmit(data) {
-    console.log("ola", data);
+    console.log(data);
+    postMemorial(data);
   }
+
+  //backend calls
+  const { data: collection, isLoading } = useGetMemorial({
+    onError: (err) => {
+      toast.error("Erro ao pegar itens", err);
+    },
+  });
+
+  const { mutate: postMemorial } = usePostMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Post cadastrado!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao cadastras post.", err);
+    },
+  });
+
+  const { mutate: deleteMemorial } = useDeleteMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Post deletado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao excluir post.", err);
+    },
+  });
+  const { mutate: updateMemorial } = useUpdateMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("post atualizado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao atualizar o post .", err);
+    },
+  });
+
+  useEffect(() => {
+    if (!isLoading && collection) {
+      formatAllCollection();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collection, isLoading]);
+
   return (
     <Container>
       <Title>Gerenciar Arquivos </Title>
-      <FormSubmit inputs={inputs} onSubmit={handlesubmit} />
+      <FormSubmit
+        inputs={inputs}
+        onSubmit={handlesubmit}
+        schema={newCollectionValidationSchema}
+      />
       {isLoading ? (
         <LoadingStyles>
           <LoadingOutlined />
         </LoadingStyles>
       ) : (
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={collections} />
       )}
       <ModalDeleteItem
         close={closeModalDelete}
@@ -117,6 +188,7 @@ export default function ManageCollection() {
         modalCloseIcon={modalCloseButton}
         closeModal={closeModalDelete}
       />
+
       <ModalUpdateArchive
         close={closeModalUpdate}
         handleArchiveUpdate={handleArchiveUpdate}

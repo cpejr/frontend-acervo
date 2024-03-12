@@ -69,14 +69,15 @@ export default function ManageUsers() {
 
     setUsers(formattedUsers);
   }
-  function handleTypeChange(_id, type) {
-    const newUserData = { type };
+  function handleTypeChange(_id, data) {
+    const newUserData = { data };
     updateUser({ _id, newUserData });
   }
   function handleUserDelete(_id) {
     deleteUser(_id);
     closeModalDelete();
   }
+
   //backend calls
   const { mutate: deleteUser } = useDeleteUsers({
     onSuccess: () => {
