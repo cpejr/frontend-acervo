@@ -14,18 +14,20 @@ export default function Header() {
     onError: (err) => console.log(err),
   });
 
-  const { auth, setAuth } = useAuthStore.getState();
+  const { auth, setAuth } = useAuthStore();
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
   const logGoogleUser = async () => {
     if (auth === null || auth.accessToken === null) {
       const googleResponse = await signInWithGooglePopup();
-      const response = login({
+      console.log("Resposta do google:", googleResponse);
+      login({
         name: googleResponse?.user?.displayName,
         email: googleResponse?.user?.email,
         imageURL: googleResponse?.user?.photoURL,
+        type: "user",
       });
-      setAuth(response.token);
+      setAuth(googleResponse?.user?.accessToken);
     } else {
       clearAuth();
     }
@@ -42,7 +44,7 @@ export default function Header() {
       <Link>Eventos Culturais</Link>
       <Link>Área escolar</Link>
       <Link>Sobre o projeto</Link>
-      <Link onClick={Teste}>PERFIL</Link>
+      <Link onClick={logGoogleUser}>PERFIL</Link>
     </Container>
   );
 }

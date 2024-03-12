@@ -20,7 +20,7 @@ export async function updateUser({ _id, newUserData }) {
 }
 export const login = async (credentials) => {
     const { setAuth } = useAuthStore.getState();
-    const { data } = await api.post('/login', credentials);
+    const { data } = await api.post('/user', credentials);
 
     setAuth(data.accessToken);
     return data;
