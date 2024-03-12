@@ -18,12 +18,12 @@ export const Title = styled.h1`
     font-size: 35px;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     font-size: 30px;
     margin-left: 115px;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-right: 100px;
   }
 
@@ -41,7 +41,7 @@ export const SubTitle = styled.h2`
     font-size: 25px;
   }
 
-  @media (max-width: 475px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 350px;
     margin-bottom: 10px;
     text-align: center;
@@ -62,7 +62,7 @@ export const LineTitle = styled.div`
   }
 
   @media (max-width: ${breakpoints.smallMobile}) {
-    width: 400px;
+    width: ${breakpoints.smallMobile};
   }
 
   @media (max-width: 420px) {
@@ -81,11 +81,11 @@ export const TextContainer = styled.div`
     margin-right: 80px;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakpoints.tablet}) {
     font-size: 20px;
   }
 
-  @media (max-width: 430px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 70px;
     margin-right: 70px;
   }
@@ -95,7 +95,7 @@ export const TextContainer = styled.div`
     margin-right: 60px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-bottom: 0px;
   }
 `;
@@ -111,26 +111,26 @@ export const TextContainerVilaMilitar = styled.div`
     margin-right: 80px;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakpoints.tablet}) {
     font-size: 20px;
   }
 
-  @media (max-width: 430px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 70px;
     margin-right: 70px;
   }
 
-  @media (max-width: 380px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 60px;
     margin-right: 60px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-bottom: 0px;
     margin-left: 90px;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-right: 70px;
   }
 `;
@@ -146,11 +146,11 @@ export const TextContainerMatriz = styled.div`
     margin-right: 80px;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakpoints.tablet}) {
     font-size: 20px;
   }
 
-  @media (max-width: 430px) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     margin-left: 70px;
     margin-right: 70px;
   }
@@ -160,12 +160,12 @@ export const TextContainerMatriz = styled.div`
     margin-right: 60px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-bottom: 0px;
     margin-right: 90px;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-left: 70px;
   }
 `;
@@ -175,13 +175,13 @@ export const ImageAreaHerberton = styled.div`
   flex-direction: column;
   margin-left: 150px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     align-items: center;
     margin-bottom: 20px;
     margin-right: 150px;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
   }
 `;
@@ -191,12 +191,12 @@ export const ImageAreaBomDespacho = styled.div`
   flex-direction: column;
   margin-right: 150px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-left: 150px;
     align-items: center;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
   }
 `;
@@ -206,17 +206,17 @@ export const ImageAreaVilaMilitar = styled.div`
   flex-direction: column;
   margin-right: 150px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     align-items: center;
     margin-bottom: 20px;
     margin-right: 0px;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
   }
 `;
@@ -226,17 +226,17 @@ export const ImageAreaMatriz = styled.div`
   flex-direction: column;
   margin-left: 150px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     align-items: center;
     margin-bottom: 20px;
     margin-right: 150px;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
   }
 `;
@@ -252,7 +252,7 @@ export const ImageBomDespacho = styled.img`
 `;
 
 export const ImageMatriz = styled.img`
-  width: 380px;
+  width: ${breakpoints.smallMobile};
   height: 270px;
 
   @media (max-width: ${breakpoints.smallMobile}) {
@@ -261,7 +261,7 @@ export const ImageMatriz = styled.img`
 `;
 
 export const ImageVilaMilitar = styled.img`
-  width: 380px;
+  width: ${breakpoints.smallMobile};
   height: 270px;
 
   @media (max-width: ${breakpoints.smallMobile}) {
@@ -280,7 +280,7 @@ export const ImageBoxHerberton = styled.div`
 
 export const ImageBoxMatriz = styled.div`
   background-color: white;
-  width: 400px;
+  width: ${breakpoints.smallMobile};
   height: 290px;
   display: flex;
   justify-content: center;
@@ -293,7 +293,7 @@ export const ImageBoxMatriz = styled.div`
 
 export const ImageBoxVilaMilitar = styled.div`
   background-color: white;
-  width: 400px;
+  width: ${breakpoints.smallMobile};
   height: 290px;
   display: flex;
   justify-content: center;
@@ -310,7 +310,7 @@ export const HerbertonArea = styled.div`
   margin-bottom: 20px;
   margin-top: 20px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
   }
 `;
@@ -320,7 +320,7 @@ export const BomDespachoArea = styled.div`
   flex-direction: row;
   margin-bottom: 20px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column-reverse;
   }
 `;
@@ -331,7 +331,7 @@ export const ApresentationArea1 = styled.div`
   margin-bottom: 20px;
   margin-top: 20px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
   }
 `;
@@ -341,7 +341,7 @@ export const ApresentationArea2 = styled.div`
   flex-direction: row;
   margin-bottom: 60px;
 
-  @media (max-width: 900px) {
+  @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column-reverse;
   }
 `;
