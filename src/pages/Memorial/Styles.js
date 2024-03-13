@@ -40,7 +40,7 @@ export const DivLine = styled.div`
 
 export const Line = styled.div`
   display: flex;
-  width: 90%;
+  width: 100%;
   height: auto;
   flex-direction: row;
   justify-content: space-around;

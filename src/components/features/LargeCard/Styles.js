@@ -5,7 +5,7 @@ import { breakpoints, colors } from "../../../styles/stylesVariables";
 export const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 50%;
   max-width: 50%;
   margin-top: 3rem;
   height: auto;
@@ -147,8 +147,8 @@ export const ButtonDiv = styled.div`
   justify-content: flex-end;
 `;
 export const OrangeButton = styled(Button)`
-  width: 7.5rem;
-  height: 2.5rem;
+  width: 10rem;
+  height: 3rem;
   background-color: ${colors.accent};
   border: none;
   margin-top: 1rem;
