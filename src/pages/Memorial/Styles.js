@@ -6,7 +6,6 @@ import { Checkbox } from "primereact/checkbox";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const Title = styled.div`
@@ -26,20 +25,6 @@ export const Title = styled.div`
   }
   @media (max-width: ${breakpoints.smallDevice}) {
     font-size: 22px;
-  }
-`;
-
-export const TrendingTools = styled.div`
-  display: flex;
-  width: 95%;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  height: auto;
-  > h1 {
-    font-size: 50px;
   }
 `;
 
@@ -66,7 +51,7 @@ export const Line = styled.div`
 export const Filter = styled.div`
   display: flex;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-evenly;
 `;
 
@@ -126,6 +111,14 @@ export const UniSelect = styled(Dropdown)`
   }
   .p-inputtext {
     color: white;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 100%;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 30%;

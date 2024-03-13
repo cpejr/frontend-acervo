@@ -8,7 +8,6 @@ import {
   UniSelect,
   StyledCheckbox,
   VerticalLine,
-  TrendingTools,
   DivLine,
   Line,
 } from "../Memorial/Styles";
@@ -18,9 +17,6 @@ import LargeCard from "../../components/features/LargeCard/LargeCard";
 const cardData = [
   { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
   { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-  { _id: 3, title: "Card 3", description: "Descrição do Card 3" },
-  { _id: 4, title: "Card 4", description: "Descrição do Card 4" },
-  { _id: 5, title: "Card 5", description: "Descrição do Card 5" },
 ];
 
 export default function Memorial() {
@@ -59,15 +55,13 @@ export default function Memorial() {
           />
         </DivSelect>
       </Filter>
-      <TrendingTools>
-        <DivLine>
-          <Line>
-            {cardData.map((card, index) => (
-              <LargeCard key={index} data={card} />
-            ))}
+      <DivLine>
+        {cardData.map((card, index) => (
+          <Line key={index}>
+            <LargeCard data={card} />
           </Line>
-        </DivLine>
-      </TrendingTools>
+        ))}
+      </DivLine>
     </Container>
   );
 }

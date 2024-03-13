@@ -144,6 +144,7 @@ export const ButtonDiv = styled.div`
   display: flex;
   width: 100%;
   align-content: center;
+  justify-content: flex-end;
 `;
 export const OrangeButton = styled(Button)`
   width: 7.5rem;
