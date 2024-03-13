@@ -14,12 +14,12 @@ export default function ModalUpdateMemorial({
     {
       type: "input",
       key: "title",
-      placeholder: "Mudar Texto",
+      placeholder: "Mudar Titulo",
     },
     {
       type: "input",
-      key: "archive",
-      placeholder: "Adicionar Arquivo",
+      key: "shortDescription",
+      placeholder: "Mudar Descrição",
     },
     {
       type: "input",

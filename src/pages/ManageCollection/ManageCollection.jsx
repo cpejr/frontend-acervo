@@ -104,10 +104,8 @@ export default function ManageCollection() {
   }
 
   function handleMemorialUpdate(_id, data) {
-    const newMemorialData = { data };
     console.log(_id);
-    console.log(newMemorialData);
-    updateMemorial(_id, newMemorialData);
+    updateMemorial({ _id, data });
     closeModalUpdate();
   }
 

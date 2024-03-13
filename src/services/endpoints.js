@@ -31,8 +31,8 @@ export async function deleteMemorial(_id) {
   return data;
 }
 
-export async function updateMemorial(_id, newMemorialData) {
-  const { data } = await api.put(`/memorial/${_id}`, newMemorialData);
+export async function updateMemorial(obj) {
+  const { data } = await api.put(`/memorial/${obj._id}`, obj.data);
 
   return data;
 }
