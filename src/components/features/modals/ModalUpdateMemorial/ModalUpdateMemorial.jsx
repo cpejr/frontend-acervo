@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { ModalStyle } from "./Styles";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 
-export default function ModalUpdateArchive({
+export default function ModalUpdateMemorial({
   close,
-  handleArchiveUpdate,
+  handleMemorialUpdate,
   id,
   modal,
   closeModal,
@@ -28,7 +28,7 @@ export default function ModalUpdateArchive({
     },
   ];
   function handleSubmit(data) {
-    handleArchiveUpdate(id, data);
+    handleMemorialUpdate(id, data);
     close();
   }
 
@@ -49,9 +49,9 @@ export default function ModalUpdateArchive({
   );
 }
 
-ModalUpdateArchive.propTypes = {
+ModalUpdateMemorial.propTypes = {
   close: PropTypes.func.isRequired,
-  handleArchiveUpdate: PropTypes.func.isRequired,
+  handleMemorialUpdate: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   modal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,

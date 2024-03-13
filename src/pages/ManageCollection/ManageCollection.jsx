@@ -6,7 +6,7 @@ import {
   Table,
   ModalDeleteItem,
   FormSubmit,
-  ModalUpdateArchive,
+  ModalUpdateMemorial,
 } from "../../components";
 import {
   useGetMemorial,
@@ -29,7 +29,7 @@ export default function ManageCollection() {
   const openModalUpdate = () => setModalUpdate(true);
   const closeModalUpdate = () => setModalUpdate(false);
 
-  const [archiveID, setArchiveID] = useState("");
+  const [MemorialID, setMemorialID] = useState("");
 
   const modalCloseButton = <AiOutlineCloseCircle />;
   const queryClient = useQueryClient();
@@ -81,14 +81,14 @@ export default function ManageCollection() {
             style={{ cursor: "pointer" }}
             onClick={() => {
               openModalUpdate();
-              setArchiveID(collection?._id);
+              setMemorialID(collection?._id);
             }}
           />
           <RiDeleteBin5Line
             style={{ cursor: "pointer" }}
             onClick={() => {
               openModalDelete();
-              setArchiveID(collection?._id);
+              setMemorialID(collection?._id);
             }}
           />
         </div>
@@ -98,16 +98,16 @@ export default function ManageCollection() {
     setCollections(formattedCollection);
   }
 
-  function handleArchiveDelete(_id) {
+  function handleMemorialDelete(_id) {
     deleteMemorial(_id);
     closeModalDelete();
   }
 
-  function handleArchiveUpdate(_id, data) {
-    const newArchiveData = { data };
+  function handleMemorialUpdate(_id, data) {
+    const newMemorialData = { data };
     console.log(_id);
-    console.log(newArchiveData);
-    updateMemorial(_id, newArchiveData);
+    console.log(newMemorialData);
+    updateMemorial(_id, newMemorialData);
     closeModalUpdate();
   }
 
@@ -182,17 +182,17 @@ export default function ManageCollection() {
       )}
       <ModalDeleteItem
         close={closeModalDelete}
-        handleItemDelete={handleArchiveDelete}
-        id={archiveID}
+        handleItemDelete={handleMemorialDelete}
+        id={MemorialID}
         modal={modalDelete}
         modalCloseIcon={modalCloseButton}
         closeModal={closeModalDelete}
       />
 
-      <ModalUpdateArchive
+      <ModalUpdateMemorial
         close={closeModalUpdate}
-        handleArchiveUpdate={handleArchiveUpdate}
-        id={archiveID}
+        handleMemorialUpdate={handleMemorialUpdate}
+        id={MemorialID}
         modal={modalUpdate}
         modalCloseIcon={modalCloseButton}
         closeModal={closeModalUpdate}

@@ -10,4 +10,4 @@ export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/Mo
 export { default as Table } from "./features/Table/Table.jsx";
 export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";
 export { default as FormSubmit } from "./features/FormSubmit/FormSubmit.jsx";
-export { default as ModalUpdateArchive } from "./features/modals/ModalUpdateArchive/ModalUpdateArchive.jsx";
+export { default as ModalUpdateMemorial } from "./features/modals/ModalUpdateMemorial/ModalUpdateMemorial.jsx";
