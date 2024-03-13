@@ -17,12 +17,20 @@ export default function Footer() {
       </Info>
       <SocialMedias>
         <Column>
-          <img src={Whatsapp} width="25%"></img>{" "}
-          <img src={Instagram} width="25%"></img>
+          <a href="http://wa.me/+31992740294">
+            <img src={Whatsapp} alt="Logo Whatsapp" width="80%"></img>
+          </a>
+          <a href="https://www.instagram.com/prefeiturabd/">
+            <img src={Instagram} alt="Logo Instagram" width="80%"></img>
+          </a>
         </Column>
         <Column>
-          <img src={Facebook} width="25%"></img>
-          <img src={Twitter} width="25%"></img>
+          <a href="https://www.facebook.com/prefeiturabd/?locale=pt_BR">
+            <img src={Facebook} alt="Logo Facebook" width="80%"></img>
+          </a>
+          <a href="/">
+            <img src={Twitter} alt="Logo twitter" width="110%"></img>
+          </a>
         </Column>
       </SocialMedias>
     </Container>

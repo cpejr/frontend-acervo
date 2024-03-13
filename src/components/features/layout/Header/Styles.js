@@ -14,15 +14,15 @@ export const Container = styled.div`
 export const City = styled.img`
   width: 50px;
   display: flex;
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
-  }
+  margin-left: 4rem;
 `;
 
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 20px;
+  padding-right: 0;
   border-left: 2px solid white;
   @media (max-width: ${breakpoints.mobile}) {
     border-left: none;
@@ -51,21 +51,5 @@ export const Button = styled.button`
   align-items: center;
   @media (max-width: ${breakpoints.mobile}) {
     width: 110%;
-  }
-`;
-
-export const HamburgerMenu = styled(Menu)`
-  width: 0rem;
-  border-bottom: none;
-  background-color: black;
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 6rem;
-  }
-  .ant-menu-title-content {
-    color: orange;
-  }
-
-  .antd-menu {
-    background-color: #1c1c1c;
   }
 `;
