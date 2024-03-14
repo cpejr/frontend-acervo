@@ -44,31 +44,26 @@ export default function ManageCollection() {
       type: "input",
       key: "title",
       placeholder: "titulo",
-      required: true,
     },
     {
       type: "input",
       key: "shortDescription",
       placeholder: "Descrição curta",
-      required: true,
     },
     {
       type: "input",
       key: "longDescription",
       placeholder: "Descrição longa",
-      required: true,
     },
     {
       type: "input",
       key: "link",
       placeholder: "link",
-      required: true,
     },
     {
       type: "input",
       key: "archive",
       placeholder: "Adicionar Arquivo",
-      required: true,
     },
   ];
   async function formatAllCollection() {

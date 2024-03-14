@@ -70,3 +70,8 @@ export const Select = styled(Dropdown)`
     width: 50%;
   }
 `;
+export const ErrorMessage = styled.p`
+  font-size: 1.3rem;
+  color: red;
+  font-weight: 400;
+`;

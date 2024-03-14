@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, StyledInput, Select } from "./Styles";
+import { Form, StyledInput, Select, ErrorMessage } from "./Styles";
 
 export default function FormSubmit({ inputs, onSubmit, schema }) {
   const {
@@ -24,6 +24,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     onSubmit(data);
     reset();
   }
+  const errorMessage = errors?.[name]?.message;
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) =>
@@ -47,7 +48,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
           />
         )
       )}
-
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <Button type="submit" width="200px" height="50px">
         Enviar
       </Button>
