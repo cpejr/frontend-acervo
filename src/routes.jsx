@@ -28,7 +28,7 @@ const router = createBrowserRouter(
         <Route path="collection" element={<Collection />} />
         <Route path="events" element={<Events />} />
         <Route path="managecollection" element={<ManageCollection />} />
-        <Route path="managevents" element={<ManageEvents />} />
+        <Route path="manageevents" element={<ManageEvents />} />
         <Route path="manageusers" element={<ManageUsers />} />
         <Route path="support" element={<Support />} />
       </Route>
