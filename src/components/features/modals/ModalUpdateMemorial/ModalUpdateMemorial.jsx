@@ -7,6 +7,7 @@ export default function ModalUpdateMemorial({
   close,
   handleMemorialUpdate,
   id,
+  values,
   modal,
   closeModal,
   modalCloseIcon,
@@ -16,16 +17,19 @@ export default function ModalUpdateMemorial({
       type: "input",
       key: "title",
       placeholder: "Mudar Titulo",
+      value: values.title,
     },
     {
       type: "input",
       key: "archive",
       placeholder: "Mudar Arquivo",
+      value: values.archive,
     },
     {
       type: "input",
       key: "link",
       placeholder: "Mudar Link",
+      value: values.link,
     },
   ];
   function handleSubmit(data) {
@@ -61,4 +65,5 @@ ModalUpdateMemorial.propTypes = {
   modal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   modalCloseIcon: PropTypes.object.isRequired,
+  values: PropTypes.object.isRequired,
 };

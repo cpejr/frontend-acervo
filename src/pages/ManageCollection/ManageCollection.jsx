@@ -30,7 +30,7 @@ export default function ManageCollection() {
   const closeModalUpdate = () => setModalUpdate(false);
 
   const [MemorialID, setMemorialID] = useState("");
-
+  const [memorialValue, setMemorialValue] = useState({});
   const modalCloseButton = <AiOutlineCloseCircle />;
   const queryClient = useQueryClient();
   const columns = [
@@ -38,7 +38,6 @@ export default function ManageCollection() {
     { field: "Description", header: "Description" },
     { field: "Manage", header: "Manage" },
   ];
-
   let inputs = [
     {
       type: "input",
@@ -77,6 +76,11 @@ export default function ManageCollection() {
             onClick={() => {
               openModalUpdate();
               setMemorialID(collection?._id);
+              setMemorialValue({
+                title: collection.title,
+                archive: collection.archive,
+                link: collection.link,
+              });
             }}
           />
           <RiDeleteBin5Line
@@ -98,14 +102,12 @@ export default function ManageCollection() {
     closeModalDelete();
   }
 
-  function handleMemorialUpdate(_id, data) {
-    console.log(_id);
-    updateMemorial({ _id, data });
+  function handleMemorialUpdate(id, data) {
+    updateMemorial({ _id: id, newData: data });
     closeModalUpdate();
   }
 
   function handlesubmit(data) {
-    console.log(data);
     postMemorial(data);
   }
 
@@ -186,6 +188,7 @@ export default function ManageCollection() {
         close={closeModalUpdate}
         handleMemorialUpdate={handleMemorialUpdate}
         id={MemorialID}
+        values={memorialValue}
         modal={modalUpdate}
         modalCloseIcon={modalCloseButton}
         closeModal={closeModalUpdate}

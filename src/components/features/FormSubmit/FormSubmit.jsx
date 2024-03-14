@@ -15,12 +15,11 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     resolver: zodResolver(schema),
   });
   const [selectedOptions, setSelectedOptions] = useState({});
-
+  console.log(inputs);
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
   function submitHandler(data) {
-    console.log(data);
     onSubmit(data);
     reset();
   }
@@ -44,6 +43,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
             type={input?.type}
             placeholder={input?.placeholder}
             error={errors[input?.key] ? true : false}
+            value={input?.value}
             {...register(input?.key, { required: input?.required })}
           />
         )
