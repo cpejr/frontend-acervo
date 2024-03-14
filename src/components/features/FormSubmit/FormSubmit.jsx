@@ -12,7 +12,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     formState: { errors },
     reset,
   } = useForm({
-    /* resolver: zodResolver(schema)*/
+    resolver: zodResolver(schema),
   });
   const [selectedOptions, setSelectedOptions] = useState({});
 
@@ -58,5 +58,5 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
 FormSubmit.propTypes = {
   inputs: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  schema: PropTypes.func.isRequired,
+  schema: PropTypes.object.isRequired,
 };

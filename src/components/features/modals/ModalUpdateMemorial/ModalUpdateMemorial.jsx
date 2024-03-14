@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { ModalStyle } from "./Styles";
 import FormSubmit from "../../FormSubmit/FormSubmit";
+import { updateCollectionValidationSchema } from "./utils";
 
 export default function ModalUpdateMemorial({
   close,
@@ -18,8 +19,8 @@ export default function ModalUpdateMemorial({
     },
     {
       type: "input",
-      key: "shortDescription",
-      placeholder: "Mudar Descrição",
+      key: "archive",
+      placeholder: "Mudar Arquivo",
     },
     {
       type: "input",
@@ -44,7 +45,11 @@ export default function ModalUpdateMemorial({
       centered
       destroyOnClose
     >
-      <FormSubmit inputs={inputs} onSubmit={handleSubmit}></FormSubmit>
+      <FormSubmit
+        inputs={inputs}
+        onSubmit={handleSubmit}
+        schema={updateCollectionValidationSchema}
+      ></FormSubmit>
     </ModalStyle>
   );
 }
