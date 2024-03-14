@@ -5,4 +5,4 @@ export { default as Link } from "./common/Link/Link.js";
 export { default as Header } from "./features/layout/Header/Header.jsx";
 export { default as Footer } from "./features/layout/Footer/Footer.jsx";
 export { default as AppLayout } from "./features/layout/AppLayout/AppLayout.jsx";
-export { default as HamburgerMenu } from "./features/layout/HamburguerMenu/HambuguerMenu.jsx";
+export { default as HamburgerMenu } from "./features/layout/Header/HamburguerMenu/HambuguerMenu.jsx";
