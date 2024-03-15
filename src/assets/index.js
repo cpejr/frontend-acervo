@@ -1,4 +1,3 @@
-export { default as imageCard } from "../assets/imageCard.svg";
 export { default as secretaria } from "./Home/secretaria.svg";
 export { default as mapa } from "./Home/Mapa.svg";
 export { default as governo } from "./Home/Governo.svg";

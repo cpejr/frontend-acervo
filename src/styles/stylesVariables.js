@@ -13,10 +13,6 @@ export const colors = {
     primary: "#F19709",
     hover: "#d28408",
   },
-  modals: {
-    background: "#f5eff9",
-    modalButton: "#f19709",
-  },
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
@@ -26,7 +22,6 @@ export const colors = {
     font: "#EB6800",
     
   },
-  darkwhite: "#EEDAC5",
 };
 
 export const fonts = {
@@ -38,7 +33,6 @@ export const breakpoints = {
   biggerScreen: "1920px",
   tablet: "1024px",
   smallTablet: "800px",
-  miniTablet: "600px",
   mobile: "700px",
   newsletter: "550px",
   smallMobile: "500px",
