@@ -8,11 +8,8 @@ import {
   Instagram,
 } from "../../../../assets/index";
 import { HamburgerMenu } from "../../../index";
-import React from "react";
 
 export default function Header() {
-  const usuario = false;
-
   return (
     <Container>
       <City src={LogoCidade}></City>
@@ -21,11 +18,11 @@ export default function Header() {
       <Link to={"/AboutUs"}>Quem Somos</Link>
       <Link to={"/events"}>Eventos</Link>
       <Link to={"/Support"}> Apoiar e Contribuir</Link>
-      {usuario ? (
+      {getUser()?.type === "Admin" ? (
         <React.Fragment>
-          <Link to={"/manageusers"}>Gerenciar Usuários</Link>
-          <Link to={"/managecollection"}>Gerenciar Memorial</Link>
-          <Link to={"/manageevents"}>Gerenciar Eventos</Link>
+          <Link>Gerenciar Usuários</Link>
+          <Link>Gerenciar Memorial</Link>
+          <Link>Gerenciar Eventos</Link>
         </React.Fragment>
       ) : null}
       <Column>
