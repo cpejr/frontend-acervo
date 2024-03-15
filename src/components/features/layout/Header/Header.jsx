@@ -8,21 +8,24 @@ import {
   Instagram,
 } from "../../../../assets/index";
 import { HamburgerMenu } from "../../../index";
+import React from "react";
 
 export default function Header() {
+  const usuario = true;
+
   return (
     <Container>
       <City src={LogoCidade}></City>
-      <Link to={"/story"}>Nossa História</Link>
+      <Link to={"/story"}>História</Link>
       <Link>Acervo</Link>
-      <Link to={"/AboutUs"}>Quem Somos</Link>
+      <Link to={"/AboutUs"}>Sobre</Link>
       <Link to={"/events"}>Eventos</Link>
-      <Link to={"/Support"}> Apoiar e Contribuir</Link>
-      {getUser()?.type === "Admin" ? (
+      <Link to={"/Support"}> Apoiar</Link>
+      {usuario ? (
         <React.Fragment>
-          <Link>Gerenciar Usuários</Link>
-          <Link>Gerenciar Memorial</Link>
-          <Link>Gerenciar Eventos</Link>
+          <Link to={"/manageusers"}>Usuários</Link>
+          <Link to={"/managecollection"}>Memorial</Link>
+          <Link to={"/manageevents"}>Eventos</Link>
         </React.Fragment>
       ) : null}
       <Column>

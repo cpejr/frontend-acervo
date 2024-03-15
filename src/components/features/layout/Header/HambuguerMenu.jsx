@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
-import { Hamburguer } from "./Styles";
+import { Hamburguer } from "../Header/Styles";
 
 export default function HamburguerMenu() {
   const navigate = useNavigate();
