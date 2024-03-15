@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, StyledInput, Select, ErrorMessage } from "./Styles";
+import { Form, StyledInput, Select, ErrorMessage} from "./Styles";
 
 export default function FormSubmit({ inputs, onSubmit, schema }) {
   const {

@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Title, LoadingStyles } from "./Styles";
+import { Container, Title, LoadingStyles, AddArchive } from "./Styles";
 import {
   Table,
   ModalDeleteItem,
   FormSubmit,
   ModalUpdateMemorial,
 } from "../../components";
+import { CiCirclePlus } from "react-icons/ci";
 import {
   useGetMemorial,
   usePostMemorial,
@@ -164,11 +165,18 @@ export default function ManageCollection() {
   return (
     <Container>
       <Title>Adicionar Novo Arquivo </Title>
-      <FormSubmit
-        inputs={inputs}
-        onSubmit={handlesubmit}
-        schema={newCollectionValidationSchema}
-      />
+
+        <FormSubmit
+          inputs={inputs}
+          onSubmit={handlesubmit}
+          schema={newCollectionValidationSchema}
+        />
+        <AddArchive>
+          <CiCirclePlus style={{ width: "2.5rem", height: "3.5rem" }} />
+          Adicionar arquivo:
+        </AddArchive>
+  
+      <></>
       <Title>Gerenciar Arquivos </Title>
       {isLoading ? (
         <LoadingStyles>

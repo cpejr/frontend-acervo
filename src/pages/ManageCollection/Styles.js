@@ -30,3 +30,9 @@ export const LoadingStyles = styled.div`
   font-size: 24px;
   margin: 20px auto;
 `;
+
+export const AddArchive = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
