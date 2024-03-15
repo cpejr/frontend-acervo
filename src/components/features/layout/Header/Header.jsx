@@ -25,7 +25,7 @@ export default function Header() {
         <React.Fragment>
           <Link to={"/manageusers"}>Usuários</Link>
           <Link to={"/managecollection"}>Memorial</Link>
-          <Link to={"/manageevents"}>Eventos</Link>
+          <Link to={"/events"}>Eventos</Link>
         </React.Fragment>
       ) : null}
       <Column>
