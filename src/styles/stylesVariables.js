@@ -20,7 +20,6 @@ export const colors = {
   menu: {
     background: "#1C1C1C",
     font: "#EB6800",
-    
   },
 };
 

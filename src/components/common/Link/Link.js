@@ -38,7 +38,7 @@ const Link = styled(RouterLink)`
     color: ${(props) => props.hoverColor ?? colors.accent.hover};
   }
 
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.smallTablet}) {
     display: none;
   }
 `;
