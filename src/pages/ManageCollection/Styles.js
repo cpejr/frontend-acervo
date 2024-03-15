@@ -6,21 +6,23 @@ export const Container = styled.div`
 `;
 export const Title = styled.div`
   color: ${colors.font.other};
-  font-size: 30px;
+  font-size: 50px;
   margin-left: 5%;
-  width: 60%;
+  width: 43%;
   border-bottom: 1px solid ${colors.font.other};
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 27px;
+    font-size: 30px;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 25px;
+    font-size: 27px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
+    font-size: 25px;
+    width: 54%;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 22px;
+    font-size: 25px;
+    width: 60%;
   }
 `;
 export const LoadingStyles = styled.div`

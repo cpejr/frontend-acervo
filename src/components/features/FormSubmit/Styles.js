@@ -27,14 +27,20 @@ export const StyledInput = styled.input`
   height: 2rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-
   color: ${colors.font.secondary};
   font-size: 20px;
   background-color: inherit;
+  padding-right: 25px;
+  background: url(${(props) => props?.icon}) no-repeat;
+  background-size: 40px;
+  background-position: 95%;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
   ::placeholder {
-    font-weight: 400;
+    color: ${colors.font.secondary};
+  }
+  @media (max-width: 700px) {
+    margin-bottom: 20px;
   }
 `;
 export const Select = styled(Dropdown)`

@@ -15,7 +15,6 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     resolver: zodResolver(schema),
   });
   const [selectedOptions, setSelectedOptions] = useState({});
-  console.log(inputs);
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
@@ -23,7 +22,6 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     onSubmit(data);
     reset();
   }
-  const errorMessage = errors?.[name]?.message;
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) =>
@@ -38,17 +36,22 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
             onChange={(e) => handleSelectChange(input?.key, e.target.value)}
           ></Select>
         ) : (
-          <StyledInput
-            key={input?.key}
-            type={input?.type}
-            placeholder={input?.placeholder}
-            error={errors[input?.key] ? true : false}
-            value={input?.value}
-            {...register(input?.key, { required: input?.required })}
-          />
+          <>
+            <StyledInput
+              key={input?.key}
+              type={input?.type}
+              placeholder={input?.placeholder}
+              icon={input?.icon}
+              error={errors[input?.key] ? true : false}
+              defaultValue={input?.value}
+              {...register(input?.key, { required: input?.required })}
+            />
+            {errors[input?.key]?.message && (
+              <ErrorMessage>{errors[input?.key]?.message}</ErrorMessage>
+            )}
+          </>
         )
       )}
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <Button type="submit" width="200px" height="50px">
         Enviar
       </Button>

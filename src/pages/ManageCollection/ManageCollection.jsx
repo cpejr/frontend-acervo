@@ -42,27 +42,28 @@ export default function ManageCollection() {
     {
       type: "input",
       key: "title",
-      placeholder: "titulo",
+      placeholder: "Titulo:",
+      icon: "https://static.thenounproject.com/png/101791-200.png",
     },
     {
       type: "input",
       key: "shortDescription",
-      placeholder: "Descrição curta",
+      placeholder: "Descrição curta:",
     },
     {
       type: "input",
       key: "longDescription",
-      placeholder: "Descrição longa",
+      placeholder: "Descrição longa:",
     },
     {
       type: "input",
       key: "link",
-      placeholder: "link",
+      placeholder: "link:",
     },
     {
       type: "input",
       key: "archive",
-      placeholder: "Adicionar Arquivo",
+      placeholder: "Adicionar Arquivo:",
     },
   ];
   async function formatAllCollection() {
@@ -162,12 +163,13 @@ export default function ManageCollection() {
 
   return (
     <Container>
-      <Title>Gerenciar Arquivos </Title>
+      <Title>Adicionar Novo Arquivo </Title>
       <FormSubmit
         inputs={inputs}
         onSubmit={handlesubmit}
         schema={newCollectionValidationSchema}
       />
+      <Title>Gerenciar Arquivos </Title>
       {isLoading ? (
         <LoadingStyles>
           <LoadingOutlined />

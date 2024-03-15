@@ -15,7 +15,8 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${colors.background.primary}; 
   color: white;
   border-bottom: 0.5px solid ${colors.font.other};
-  padding-bottom: 15px;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
   font-size: 18px;
   font-weight: bold;
   }  
