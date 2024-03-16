@@ -23,6 +23,7 @@ export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [collections, setCollections] = useState([]);
+  const [archiveCount, setArchiveCount] = useState(1);
 
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
@@ -32,14 +33,7 @@ export default function ManageCollection() {
 
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
-  const modalCloseButton = <AiOutlineCloseCircle />;
-  const queryClient = useQueryClient();
-  const columns = [
-    { field: "Title", header: "Title" },
-    { field: "Description", header: "Description" },
-    { field: "Manage", header: "Manage" },
-  ];
-  let inputs = [
+  const [inputs, setInputs] = useState([
     {
       type: "input",
       key: "title",
@@ -66,7 +60,25 @@ export default function ManageCollection() {
       key: "archive",
       placeholder: "Adicionar Arquivo:",
     },
+  ]);
+  const modalCloseButton = <AiOutlineCloseCircle />;
+  const queryClient = useQueryClient();
+  const columns = [
+    { field: "Title", header: "Title" },
+    { field: "Description", header: "Description" },
+    { field: "Manage", header: "Manage" },
   ];
+
+  function addInput() {
+    const newInput = {
+      type: "input",
+      key: `archive${archiveCount}`,
+      placeholder: "Adicionar arquivo :",
+    };
+
+    setInputs([...inputs, newInput]);
+    setArchiveCount(archiveCount + 1);
+  }
   async function formatAllCollection() {
     const formattedCollection = await collection.map((collection) => ({
       Title: collection?.title,
@@ -80,7 +92,7 @@ export default function ManageCollection() {
               setMemorialID(collection?._id);
               setMemorialValue({
                 title: collection.title,
-                archive: collection.archive,
+                archives: collection.archives,
                 link: collection.link,
               });
             }}
@@ -166,16 +178,19 @@ export default function ManageCollection() {
     <Container>
       <Title>Adicionar Novo Arquivo </Title>
 
-        <FormSubmit
-          inputs={inputs}
-          onSubmit={handlesubmit}
-          schema={newCollectionValidationSchema}
+      <FormSubmit
+        inputs={inputs}
+        onSubmit={handlesubmit}
+        schema={newCollectionValidationSchema}
+      />
+      <AddArchive>
+        <CiCirclePlus
+          style={{ width: "2.5rem", height: "3.5rem", cursor: "pointer" }}
+          onClick={addInput}
         />
-        <AddArchive>
-          <CiCirclePlus style={{ width: "2.5rem", height: "3.5rem" }} />
-          Adicionar arquivo:
-        </AddArchive>
-  
+        Adicionar arquivo:
+      </AddArchive>
+
       <></>
       <Title>Gerenciar Arquivos </Title>
       {isLoading ? (

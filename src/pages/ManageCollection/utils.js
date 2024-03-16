@@ -15,7 +15,18 @@ export const newCollectionValidationSchema = z.object({
     .string({ required_error: "A descrição longa é obrigatória" })
     .min(20, { message: "A descrição longa deve ter pelo menos 20 caracteres" })
     .max(750, { message: "A descrição longa não pode exceder 750 caracteres" }),
-  archive: z
-    .string({ required_error: "O arquivo é obrigatório" })
-    .min(2, { message: "O arquivo deve ter pelo menos 2 caracteres" }),
+  archives: z
+    .object()
+
+    .refine(
+      (data) => {
+        // Retorna verdadeiro se todos os campos que começam com "archive" são strings
+        return Object.keys(data).every(
+          (key) => key.startsWith("archive") && typeof data[key] === "string"
+        );
+      },
+      {
+        message: "Todos os campos de arquivo devem ser strings",
+      }
+    ),
 });

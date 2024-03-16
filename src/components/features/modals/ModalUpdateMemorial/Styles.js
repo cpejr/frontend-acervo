@@ -33,5 +33,7 @@ export const ModalStyle = styled(Modal)`
     padding: 6;
     margin: 0;
     border-radius: none;
+    max-height: 60vh;
+    overflow-y: auto;
   }
 `;

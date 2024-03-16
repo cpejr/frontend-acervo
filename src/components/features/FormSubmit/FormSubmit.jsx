@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, StyledInput, Select, ErrorMessage} from "./Styles";
+import { Form, StyledInput, Select, ErrorMessage } from "./Styles";
 
 export default function FormSubmit({ inputs, onSubmit, schema }) {
   const {
@@ -12,7 +12,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: zodResolver(schema),
+    /*resolver: zodResolver(schema),*/
   });
   const [selectedOptions, setSelectedOptions] = useState({});
   const handleSelectChange = (key, value) => {
@@ -22,6 +22,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     onSubmit(data);
     reset();
   }
+
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) =>
@@ -43,6 +44,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
               placeholder={input?.placeholder}
               icon={input?.icon}
               error={errors[input?.key] ? true : false}
+              multiple={input?.multiple}
               defaultValue={input?.value}
               {...register(input?.key, { required: input?.required })}
             />

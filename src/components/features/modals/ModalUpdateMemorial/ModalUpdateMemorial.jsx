@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { ModalStyle } from "./Styles";
+import { useState, useEffect } from "react";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { updateCollectionValidationSchema } from "./utils";
 
@@ -12,7 +13,8 @@ export default function ModalUpdateMemorial({
   closeModal,
   modalCloseIcon,
 }) {
-  let inputs = [
+  const [archiveCount, setArchiveCount] = useState(1);
+  const [inputs, setInputs] = useState([
     {
       type: "input",
       key: "title",
@@ -21,17 +23,18 @@ export default function ModalUpdateMemorial({
     },
     {
       type: "input",
-      key: "archive",
-      placeholder: "Mudar Arquivo",
-      value: values.archive,
-    },
-    {
-      type: "input",
       key: "link",
       placeholder: "Mudar Link",
       value: values.link,
     },
-  ];
+    ...(values.archives || []).map((archive, index) => ({
+      type: "input",
+      key: `archiveantigo${index + 1}`,
+      placeholder: `Mudar Arquivo ${index + 1}`,
+      value: archive,
+    })),
+  ]);
+
   function handleSubmit(data) {
     handleMemorialUpdate(id, data);
     close();
