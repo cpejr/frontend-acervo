@@ -10,7 +10,7 @@ import {
   ButtonDiv,
 } from "./Styles";
 import { imageCard } from "../../../assets/index";
-export default function Card() {
+export default function Card({ data }) {
   const tagData = [
     { _id: 1, title: "Tag 1", description: "Descrição do Card 1" },
     { _id: 2, title: "Tag 2", description: "Descrição do Card 2" },
@@ -25,13 +25,10 @@ export default function Card() {
       </Image>
       <Group>
         <LineSVG></LineSVG>
-        <Line>EVENTO</Line>
+        <Line>{data.name}</Line>
       </Group>
       <Line>
-        <p>
-          Descrição Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Integer sit amet est mauris.
-        </p>
+        <p>{data.shortDescription}</p>
       </Line>
 
       <Tags>

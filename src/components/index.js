@@ -1,6 +1,7 @@
 //Common
 export { default as Button } from "./common/Button/Button.js";
 export { default as Link } from "./common/Link/Link.js";
+export { default as FormInput } from "./common/FormInput/FormInput.jsx";
 
 //Features
 export { default as Header } from "./features/layout/Header/Header.jsx";

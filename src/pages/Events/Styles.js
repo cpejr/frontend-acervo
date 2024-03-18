@@ -180,3 +180,5 @@ export const UniSelect = styled(Dropdown)`
     width: 20%;
   }
 `;
+
+export const EventNotFound = styled.div``;
