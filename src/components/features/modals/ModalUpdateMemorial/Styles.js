@@ -37,3 +37,10 @@ export const ModalStyle = styled(Modal)`
     overflow-y: auto;
   }
 `;
+
+export const AddArchive = styled.div`
+  display: flex;
+  color: ${colors.font.secondary};
+  align-items: center;
+  gap: 1rem;
+`;

@@ -8,7 +8,7 @@ import {
   FormSubmit,
   ModalUpdateMemorial,
 } from "../../components";
-import { CiCirclePlus } from "react-icons/ci";
+
 import {
   useGetMemorial,
   usePostMemorial,
@@ -19,6 +19,7 @@ import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle, AiFillTool } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
+import { CiCirclePlus } from "react-icons/ci";
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
@@ -92,7 +93,7 @@ export default function ManageCollection() {
               setMemorialID(collection?._id);
               setMemorialValue({
                 title: collection.title,
-                archives: collection.archives,
+                archives: collection.archive,
                 link: collection.link,
               });
             }}
@@ -185,7 +186,11 @@ export default function ManageCollection() {
       />
       <AddArchive>
         <CiCirclePlus
-          style={{ width: "2.5rem", height: "3.5rem", cursor: "pointer" }}
+          style={{
+            width: "2.5rem",
+            height: "3.5rem",
+            cursor: "pointer",
+          }}
           onClick={addInput}
         />
         Adicionar arquivo:

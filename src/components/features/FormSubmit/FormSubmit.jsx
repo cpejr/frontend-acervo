@@ -12,7 +12,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
     formState: { errors },
     reset,
   } = useForm({
-    /*resolver: zodResolver(schema),*/
+    resolver: zodResolver(schema),
   });
   const [selectedOptions, setSelectedOptions] = useState({});
   const handleSelectChange = (key, value) => {
@@ -20,6 +20,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
   };
   function submitHandler(data) {
     onSubmit(data);
+    console.log(data);
     reset();
   }
 
@@ -44,7 +45,6 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
               placeholder={input?.placeholder}
               icon={input?.icon}
               error={errors[input?.key] ? true : false}
-              multiple={input?.multiple}
               defaultValue={input?.value}
               {...register(input?.key, { required: input?.required })}
             />
