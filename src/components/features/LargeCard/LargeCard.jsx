@@ -15,7 +15,9 @@ const images = [
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
 ];
 
-export default function LargeCard() {
+export default function LargeCard({ data }) {
+  const { title, description } = data;
+
   return (
     <StyledCard>
       <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
@@ -27,13 +29,10 @@ export default function LargeCard() {
       </Carousel>
       <Group>
         <LineSVG></LineSVG>
-        <CardLine>NOME</CardLine>
+        <CardLine>{title}</CardLine>
       </Group>
       <CardLine>
-        <p>
-          Descrição Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Integer sit amet est mauris.
-        </p>
+        <p>{description}</p>
       </CardLine>
 
       <ButtonDiv>

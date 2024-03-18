@@ -21,8 +21,6 @@ const cardData = [
 ];
 
 export default function Memorial() {
-  const [searchQuery, setSearchQuery] = useState("");
-
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },
@@ -34,17 +32,19 @@ export default function Memorial() {
     { label: "Característica 3" },
   ];
 
-  const filteredCardData = cardData.filter((card) =>
-    card.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
 
   return (
     <Container>
       <Title>ACERVO</Title>
       <SearchBar
         placeholder="Pesquisar"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        value={searchValue}
+        search={handleSearchChange}
       />
       <Filter>
         <Characteristics>
@@ -66,11 +66,15 @@ export default function Memorial() {
         </DivSelect>
       </Filter>
       <DivLine>
-        {filteredCardData.map((card, index) => (
-          <Line key={index}>
-            <LargeCard data={card} />
-          </Line>
-        ))}
+        {cardData
+          .filter((card) =>
+            card.title.toLowerCase().includes(searchValue.toLowerCase())
+          )
+          .map((card, index) => (
+            <Line key={index}>
+              <LargeCard data={card} />
+            </Line>
+          ))}
       </DivLine>
     </Container>
   );
