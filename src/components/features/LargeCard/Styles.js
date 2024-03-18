@@ -6,7 +6,7 @@ export const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   width: 50%;
-  max-width: 50%;
+  max-width: 60%;
   margin-top: 3rem;
   height: auto;
   align-items: center;
@@ -17,26 +17,18 @@ export const StyledCard = styled(Card)`
   &:hover {
   }
   @media (max-width: ${breakpoints.miniTablet}) {
-    width: 24rem;
+    width: 80%;
+    max-width: 80%;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 25rem;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 70%;
+    max-width: 70%;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 26.66rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 22rem;
-  }
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  div.ant-card-body {
-    height: 100%;
-    justify-content: space-between;
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 80%;
+    max-width: 80%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -52,14 +44,9 @@ export const Image = styled.div`
     @media (max-width: ${breakpoints.miniTablet}) {
       height: 12rem;
     }
-    @media (max-width: ${breakpoints.miniTablet}) {
-      height: 12rem;
-    }
-    @media (max-width: ${breakpoints.miniTablet}) {
-      height: 14rem;
-    }
   }
 `;
+
 export const CardLine = styled.div`
   display: flex;
   flex-direction: row;
@@ -71,34 +58,8 @@ export const CardLine = styled.div`
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 20px;
-  }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 18px;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 20px;
-  }
-
-  > p {
-    font-size: 22px;
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 17.6px;
-    }
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 13.2px;
-    }
-
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 11.88px;
-    }
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 17.6px;
-    }
-  }
 `;
+
 export const LineSVG = styled.div`
   display: flex;
   flex-direction: row;
@@ -110,18 +71,9 @@ export const LineSVG = styled.div`
     @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 24px;
     }
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 20px;
-    }
-
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 18px;
-    }
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 20px;
-    }
   }
 `;
+
 export const Group = styled.div`
   display: flex;
   flex-direction: row;
@@ -129,23 +81,15 @@ export const Group = styled.div`
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 15.75px;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 11.81px;
-  }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 10.63px;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 15.75px;
-  }
 `;
+
 export const ButtonDiv = styled.div`
   display: flex;
   width: 100%;
   align-content: center;
   justify-content: flex-end;
 `;
+
 export const OrangeButton = styled(Button)`
   width: 10rem;
   height: 3rem;

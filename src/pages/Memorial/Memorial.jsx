@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Container,
   Title,
@@ -20,6 +21,8 @@ const cardData = [
 ];
 
 export default function Memorial() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },
@@ -31,11 +34,18 @@ export default function Memorial() {
     { label: "Característica 3" },
   ];
 
+  const filteredCardData = cardData.filter((card) =>
+    card.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <Container>
       <Title>ACERVO</Title>
-      <SearchBar></SearchBar>
-
+      <SearchBar
+        placeholder="Pesquisar"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
       <Filter>
         <Characteristics>
           <FilterTitle>Características:</FilterTitle>
@@ -56,7 +66,7 @@ export default function Memorial() {
         </DivSelect>
       </Filter>
       <DivLine>
-        {cardData.map((card, index) => (
+        {filteredCardData.map((card, index) => (
           <Line key={index}>
             <LargeCard data={card} />
           </Line>

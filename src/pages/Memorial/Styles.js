@@ -9,22 +9,26 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  color: ${colors.font.other};
+  color: #eedac5;
   font-size: 30px;
   margin-left: 5%;
-  width: 60%;
-  border-bottom: 1px solid ${colors.font.other};
+  width: 120px;
+  border-bottom: 2px solid #eedac5;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
+    width: 110px;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 25px;
+    width: 100px;
   }
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 24px;
+    width: 95px;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
     font-size: 22px;
+    width: 90px;
   }
 `;
 
