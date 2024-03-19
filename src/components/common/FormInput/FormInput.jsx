@@ -9,13 +9,16 @@ export default function FormInput({
   defaultValue,
   type,
   icon: Icon,
+  color,
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
   return (
     <Container>
       <IconContainer>
-        {Icon && <Icon style={{ width: "2.5rem", height: "3.5rem" }} />}
+        {Icon && (
+          <Icon style={{ width: "2.5rem", height: "3.5rem", color: color }} />
+        )}
         <StyledInput
           id={inputKey}
           inputKey={inputKey}
@@ -24,6 +27,7 @@ export default function FormInput({
           placeholder={placeholder}
           defaultValue={defaultValue}
           error={errorMessage}
+          color={color}
           {...props}
         />
       </IconContainer>
@@ -37,4 +41,7 @@ FormInput.propTypes = {
   register: PropTypes.func.isRequired,
   error: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
+  type: PropTypes.string,
+  color: PropTypes.string,
+  icon: PropTypes.elementType,
 };

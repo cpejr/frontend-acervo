@@ -35,4 +35,5 @@ export const AddArchive = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-left: 13%;
 `;

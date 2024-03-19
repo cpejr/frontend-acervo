@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, breakpoints } from "../../../styles/stylesVariables";
+import { colors } from "../../../styles/stylesVariables";
 
 export const Container = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const StyledInput = styled.input`
   background-size: 40px;
   background-position: 95%;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
+    props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
   ::placeholder {
     color: ${colors.font.secondary};
   }
@@ -42,7 +42,6 @@ export const IconContainer = styled.div`
     position: absolute;
     right: 15%;
     display: flex;
-
     @media (max-width: 700px) {
       margin-bottom: 20px;
     }

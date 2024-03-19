@@ -3,10 +3,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form,  Select, ErrorMessage } from "./Styles";
-import  FormInput  from "../../common/FormInput/FormInput";
+import { Form, Select, ErrorMessage } from "./Styles";
+import FormInput from "../../common/FormInput/FormInput";
 
-export default function FormSubmit({ inputs, onSubmit, schema }) {
+export default function FormSubmit({ inputs, onSubmit, schema, color }) {
   const {
     handleSubmit,
     register,
@@ -48,6 +48,7 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
               error={errors[input?.key] ? true : false}
               defaultValue={input?.value}
               register={register}
+              color={color}
             />
             {errors[input?.key]?.message && (
               <ErrorMessage>{errors[input?.key]?.message}</ErrorMessage>
@@ -66,4 +67,5 @@ FormSubmit.propTypes = {
   inputs: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
+  color: PropTypes.string,
 };

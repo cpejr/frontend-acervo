@@ -80,6 +80,7 @@ export default function ModalUpdateMemorial({
         inputs={inputs}
         onSubmit={handleSubmit}
         schema={updateCollectionValidationSchema}
+        color={"black"}
       ></FormSubmit>
       <AddArchive>
         <CiCirclePlus

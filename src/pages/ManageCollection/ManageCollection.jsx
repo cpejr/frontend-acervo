@@ -188,6 +188,7 @@ export default function ManageCollection() {
         inputs={inputs}
         onSubmit={handlesubmit}
         schema={newCollectionValidationSchema}
+        color={"white"}
       />
       <AddArchive>
         <CiCirclePlus
