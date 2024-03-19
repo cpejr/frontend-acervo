@@ -3,6 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { breakpoints, colors } from "../../styles/stylesVariables";
+import { imageEventNotFound } from "../../assets/index";
 export const Container = styled.div`
   display: flex;
   width: 100%;
@@ -181,4 +182,21 @@ export const UniSelect = styled(Dropdown)`
   }
 `;
 
-export const EventNotFound = styled.div``;
+export const EventNotFound = styled.div`
+  background-image: url(${imageEventNotFound});
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  font-size: 2rem;
+  text-align: center;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    width: 60%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 70%;
+  }
+  @media (max-width: 520px) {
+    width: 300px;
+    height: 300px;
+  }
+`;

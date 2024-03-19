@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useEventsByCategoryId } from "../../hooks/querys/events";
-import { useGetCategoryTypeByName } from "../../hooks/querys/categoryType";
 import useDebounce from "../../services/useDebouce";
-import { toast } from "react-toastify";
 import Card from "../../components/features/Card/Card";
 import FilterArea from "../../components/features/FilterArea/FilterArea";
 import {
@@ -11,12 +9,6 @@ import {
   Line,
   TrendingTools,
   Filter,
-  Characteristics,
-  Prices,
-  DivSelect,
-  Title,
-  StyledCheckbox,
-  UniSelect,
   EventNotFound,
 } from "./Styles";
 import { SearchBar } from "../../components";
@@ -27,9 +19,10 @@ export default function Events() {
   const [filter, setFilter] = useState([]);
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
-  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
 
   const { data: events } = useEventsByCategoryId({
+    id: categoryIDsArrays,
     name: debouncedName,
     type: filter,
     onError: (err) => {
@@ -37,30 +30,6 @@ export default function Events() {
     },
   });
 
-  const filterEvents = () => {
-    if (events && types.length > 0) {
-      const filtered = events.filter((event) =>
-        filterEventByCategory(event, types, prices)
-      );
-      setFilteredEvents(filtered);
-    } else {
-      setFilteredEvents(events);
-    }
-  };
-
-  const filterEventByCategory = (events, types, prices) => {
-    return (
-      events.find((event) => {
-        const findTypes = types.every((categoria) =>
-          event.id_categoryType.includes(categoria)
-        );
-        const findPrices = prices.every((categoria) =>
-          event.id_categoryType.includes(categoria)
-        );
-        return findTypes && findPrices;
-      }) !== undefined
-    );
-  };
   return (
     <Container>
       <SearchBar
@@ -71,10 +40,10 @@ export default function Events() {
       <Filter>
         <FilterArea
           types={types}
+          setArray={setCategoryIDsArrays}
           setTypes={setTypes}
           prices={prices}
           setPrices={setPrices}
-          onFilterClick={filterEvents}
           filter={filter}
           setFilter={setFilter}
         ></FilterArea>

@@ -32,9 +32,9 @@ export const createEvents = async () => {
   return data;
 };
 
-export const getEventsByCategoryId = async (name) => {
-  const { data } = await api.get("/event/search-by-name", {
-    params: { name },
+export const getEventsByCategoryId = async (id, name, type) => {
+  const { data } = await api.get("/event/search-by-category", {
+    params: { id, name, type },
   });
 
   return data;

@@ -20,6 +20,8 @@ export default function FilterArea({
   filter,
   setFilter,
   onFilterClick,
+  filterReset,
+  setArray,
 }) {
   // Set variables
   const { data: categoryType } = useGetCategoryType({
@@ -42,6 +44,15 @@ export default function FilterArea({
       label: item?.name,
     }));
     return newArray;
+  };
+  const handleFilterChange = () => {
+    const newArray = [...prices, ...types];
+    setArray(newArray);
+  };
+  const handleResetFilter = () => {
+    setTypes([]);
+    setPrices([]);
+    setFilter([]);
   };
 
   return (
@@ -77,8 +88,8 @@ export default function FilterArea({
         ></UniSelect>
       </DivSelect>
       <ButtonsDiv>
-        <Buttons onClick={onFilterClick}>Filtrar</Buttons>
-        <Buttons>Limpar Filtros</Buttons>
+        <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+        <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
       </ButtonsDiv>
     </ContainerFilter>
   );
@@ -86,8 +97,12 @@ export default function FilterArea({
 
 FilterArea.propTypes = {
   onFilterClick: PropTypes.func.isRequired,
+  setArray: PropTypes.func.isRequired,
   types: PropTypes.array.isRequired,
   setTypes: PropTypes.func.isRequired,
   prices: PropTypes.array.isRequired,
   setPrices: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  filter: PropTypes.array.isRequired,
+  filterReset: PropTypes.func.isRequired,
 };

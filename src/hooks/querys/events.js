@@ -27,13 +27,15 @@ export function useCreateEvents({
 }
 
 export function useEventsByCategoryId({
+  id,
   name,
+  type,
   onSuccess = () => {},
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["events", name],
-    queryFn: () => getEventsByCategoryId(name),
+    queryKey: ["events", id, name, type],
+    queryFn: () => getEventsByCategoryId(id, name, type),
     onSuccess,
     onError,
   });
