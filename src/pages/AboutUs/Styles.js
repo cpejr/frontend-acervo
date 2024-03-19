@@ -1,385 +1,66 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles/stylesVariables";
-
-export const Content = styled.div`
-  width: 100%;
-  background-color: #7f260f;
+import { breakpoints, colors } from "../../styles/stylesVariables";
+export const Container = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+  align-items: center;
 `;
 
 export const Title = styled.h1`
   font-size: 50px;
-  margin-left: 150px;
-  padding-top: 50px;
-  color: white;
+  color: ${colors.font.primary};
+  text-decoration: underline ${colors.underline};
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 1.3rem;
+  text-decoration-thickness: 3px;
+  align-self: flex-start;
+`;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 35px;
+export const Line = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 30rem;
+  gap: 3rem;
+`;
+export const TextColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  > img {
+    width: 100%;
+    height: 100%;
   }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    font-size: 30px;
-    margin-left: 115px;
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-right: 100px;
-  }
-
-  @media (max-width: 375px) {
-    margin-right: 0px;
+  > p {
+    font-size: 40px;
+    color: ${colors.font.primary};
+    text-align: justify;
+    @media (max-width: ${breakpoints.desktop};) {
+    }
   }
 `;
 
-export const SubTitle = styled.h2`
-  font-size: 30px;
-  margin-bottom: 10px;
-  color: white;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 25px;
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 350px;
-    margin-bottom: 10px;
+export const Banner = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  > p {
+    font-size: 40px;
+    color: ${colors.font.primary};
+    width: 80%;
     text-align: center;
   }
 `;
-
-export const LineTitle = styled.div`
-  width: 600px;
-  height: 3px;
-  margin-left: 0;
-  margin-top: 10px;
-  margin-bottom: 50px;
-  border-radius: 0px 5px 5px 0px;
-  background-color: #ffd599;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: ${breakpoints.smallMobile};
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: ${breakpoints.smallMobile};
-  }
-
-  @media (max-width: 420px) {
-    width: 330px;
-  }
-`;
-
-export const TextContainer = styled.div`
-  margin: 30px 150px 60px 150px;
-  color: white;
-  font-size: 24px;
-  text-align: justify;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 80px;
-    margin-right: 80px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 20px;
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 70px;
-    margin-right: 70px;
-  }
-
-  @media (max-width: 360px) {
-    margin-left: 60px;
-    margin-right: 60px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-bottom: 0px;
-  }
-`;
-
-export const TextContainerVilaMilitar = styled.div`
-  margin: 30px 150px 60px 150px;
-  color: white;
-  font-size: 24px;
-  text-align: justify;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 80px;
-    margin-right: 80px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 20px;
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 70px;
-    margin-right: 70px;
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 60px;
-    margin-right: 60px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-bottom: 0px;
-    margin-left: 90px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-right: 70px;
-  }
-`;
-
-export const TextContainerMatriz = styled.div`
-  margin: 30px 150px 60px 150px;
-  color: white;
-  font-size: 24px;
-  text-align: justify;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 80px;
-    margin-right: 80px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 20px;
-  }
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    margin-left: 70px;
-    margin-right: 70px;
-  }
-
-  @media (max-width: 360px) {
-    margin-left: 60px;
-    margin-right: 60px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-bottom: 0px;
-    margin-right: 90px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-left: 70px;
-  }
-`;
-
-export const ImageAreaHerberton = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 150px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    align-items: center;
-    margin-bottom: 20px;
-    margin-right: 150px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 50px;
-  }
-`;
-
-export const ImageAreaBomDespacho = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 150px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-left: 150px;
-    align-items: center;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 50px;
-  }
-`;
-
-export const ImageAreaVilaMilitar = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 150px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    align-items: center;
-    margin-bottom: 20px;
-    margin-right: 0px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 50px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 50px;
-  }
-`;
-
-export const ImageAreaMatriz = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 150px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    align-items: center;
-    margin-bottom: 20px;
-    margin-right: 150px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 50px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-top: 50px;
-  }
-`;
-
-export const ImageHerberton = styled.img`
-  width: 230px;
-  height: 270px;
-`;
-
-export const ImageBomDespacho = styled.img`
-  width: 230px;
-  height: 270px;
-`;
-
-export const ImageMatriz = styled.img`
-  width: ${breakpoints.smallMobile};
-  height: 270px;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 230px;
-  }
-`;
-
-export const ImageVilaMilitar = styled.img`
-  width: ${breakpoints.smallMobile};
-  height: 270px;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 230px;
-  }
-`;
-
-export const ImageBoxHerberton = styled.div`
-  background-color: white;
-  width: 250px;
-  height: 290px;
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-`;
-
-export const ImageBoxMatriz = styled.div`
-  background-color: white;
-  width: ${breakpoints.smallMobile};
-  height: 290px;
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 250px;
-  }
-`;
-
-export const ImageBoxVilaMilitar = styled.div`
-  background-color: white;
-  width: ${breakpoints.smallMobile};
-  height: 290px;
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 250px;
-  }
-`;
-
-export const HerbertonArea = styled.div`
+export const TextLine = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
-  margin-top: 20px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column;
+  width: 90%;
+  > p {
+    font-size: 40px;
+    color: ${colors.font.primary};
   }
-`;
-
-export const BomDespachoArea = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column-reverse;
-  }
-`;
-
-export const ApresentationArea1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-  margin-top: 20px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column;
-  }
-`;
-
-export const ApresentationArea2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 60px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column-reverse;
-  }
-`;
-
-export const BomDespachoText1 = styled.div`
-  margin-bottom: 20px;
-`;
-export const BomDespachoText2 = styled.div``;
-
-export const ApresentationAreaColorfulUp = styled.div`
-  text-align: center;
-  width: 100%;
-  height: auto;
-  padding: 30px 0;
-  color: white;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const AboutUsAreaColorfulDown = styled.div`
-  text-align: center;
-  width: 100%;
-  height: auto;
-  padding: 30px 0;
-  color: white;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const TextAreaColorfulArea = styled.div`
-  width: 60%;
-  height: auto;
-  text-align: center;
-  font-size: 30px;
-  color: white;
-  display: flex;
-  justify-content: center;
 `;

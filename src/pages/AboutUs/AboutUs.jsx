@@ -6,98 +6,60 @@ import {
   ColerfulAreaUp,
   ColerfulAreaDown,
 } from "../../assets";
-import {
-  Content,
-  Title,
-  LineTitle,
-  TextContainer,
-  TextContainerVilaMilitar,
-  TextContainerMatriz,
-  TextAreaColorfulArea,
-  SubTitle,
-  ImageAreaHerberton,
-  ImageAreaBomDespacho,
-  ImageHerberton,
-  ImageBomDespacho,
-  ImageMatriz,
-  ImageVilaMilitar,
-  ImageBoxHerberton,
-  ImageBoxMatriz,
-  ImageBoxVilaMilitar,
-  HerbertonArea,
-  BomDespachoArea,
-  ApresentationArea1,
-  ApresentationArea2,
-  BomDespachoText1,
-  BomDespachoText2,
-  ImageAreaVilaMilitar,
-  ImageAreaMatriz,
-  ApresentationAreaColorfulUp,
-  AboutUsAreaColorfulDown,
-} from "./Styles";
+import { Title, Container, Line, TextColumn, Banner, TextLine } from "./Styles";
 
 export default function AboutUs() {
   return (
-    <Content>
-      <Title>APRESENTAÇÃO</Title>
-      <LineTitle />
-      <ApresentationArea1>
-        <TextContainerVilaMilitar>
+    <Container>
+      <Title> &ensp; &ensp; APRESENTAÇÃO</Title>
+      <Line>
+        <TextColumn>
           <p>
             O site Nossa História – Escrita, Imagem e som é um depositário do
             acervo de vídeos, fotografias, áudios e escritos que compõem a
             memória do povo de Bom Despacho, sejam eles documentos públicos ou
             privados.
           </p>
-        </TextContainerVilaMilitar>
-        <ImageAreaVilaMilitar>
-          <ImageBoxVilaMilitar>
-            <ImageVilaMilitar src={VilaMilitarImage} alt="VilaMilitarImage" />
-          </ImageBoxVilaMilitar>
-        </ImageAreaVilaMilitar>
-      </ApresentationArea1>
-      <ApresentationArea2>
-        <ImageAreaMatriz>
-          <ImageBoxMatriz>
-            <ImageMatriz src={MatrizImage} alt="ApresentationImage1" />
-          </ImageBoxMatriz>
-        </ImageAreaMatriz>
-        <TextContainerMatriz>
+        </TextColumn>
+        <TextColumn>
+          <img src={VilaMilitarImage} alt="VilaMilitarImage" />
+        </TextColumn>
+      </Line>
+      <Line>
+        <TextColumn>
+          <img src={MatrizImage} alt="Matriz Image" />
+        </TextColumn>
+        <TextColumn>
           <p>
             Aqui, o acervo estará preservado e também poderá ser facilmente
             acessado por você e por todas as pessoas, de onde estiverem. Você
             pode buscar por nome, datas, eventos ou livremente navegar pelo
             site.
           </p>
-        </TextContainerMatriz>
-      </ApresentationArea2>
-      <ApresentationAreaColorfulUp
-        style={{ backgroundImage: `url(${ColerfulAreaUp})` }}
-      >
-        <TextAreaColorfulArea>
+        </TextColumn>
+      </Line>
+      <Banner style={{ backgroundImage: `url(${ColerfulAreaUp})` }}>
+        <p>
           O importante é que você, que de alguma forma é parte de Bom Despacho,
           se encontre e se identifique como personagem da nossa história!
-        </TextAreaColorfulArea>
-      </ApresentationAreaColorfulUp>
-      <Title>QUEM SOMOS</Title>
-      <LineTitle />
-      <TextContainer>
-        <p>
-          O Site Nossa História – Escrita, Imagem e Som faz parte de uma rede de
-          mídias gerenciada pela CASA TUÉ-TIMBUÁ, uma ONG sem fins lucrativos,
-          atuando em Bom Despacho no desenvolvimento de projetos nas áreas da
-          educação, cultura, ensino e meio ambiente, sob a coordenação de
-          Herberton Sabino – Pinta.
         </p>
-      </TextContainer>
-      <HerbertonArea>
-        <ImageAreaHerberton>
-          <SubTitle>Herberton Pinta</SubTitle>
-          <ImageBoxHerberton>
-            <ImageHerberton src={HerbertonImage} alt="HerbertonImage" />
-          </ImageBoxHerberton>
-        </ImageAreaHerberton>
-        <TextContainer>
+      </Banner>
+      <Title> &ensp; &ensp; QUEM SOMOS? </Title>
+      <TextLine>
+        <p>
+          O Site Nossa História – Escrita, Imagem e Som é a parte de uma rede de
+          mídias criada e gerenciada pela CASA TUÉ-TIMBUÁ. A CASA TUÉ-TIMBUÁ é
+          uma Organização Não Governamental (ONG), portanto sem fins lucrativos,
+          criada para atuar na cidade de Bom Despacho no desenvolvimento de
+          projetos nas áreas da educação, cultura, ensino e meio-ambiente, a
+          qual tem como Coordenador Herberton Sabino – Pinta.
+        </p>
+      </TextLine>
+      <Line>
+        <TextColumn style={{ width: "30%" }}>
+          <img src={HerbertonImage} alt="Heberto Pinta Photo" />
+        </TextColumn>
+        <TextColumn style={{ width: "70%" }}>
           <p>
             Como muitos nascidos em Bom Despacho, sou mais conhecido por um
             apelido, que é Pinta. Sou filho de José Raimundo Sabino, o “Major”
@@ -108,36 +70,38 @@ export default function AboutUs() {
             Educação e Gestão Social, atuo como consultor na área de educação,
             ensino e gestão e coordeno a ONG Casa Tué-Timbuá.
           </p>
-        </TextContainer>
-      </HerbertonArea>
-      <BomDespachoArea>
-        <TextContainer>
-          <BomDespachoText1>
-            O site é parte de uma Rede, que inclui o X, Instagram e Facebook,
-            criada para o compartilhamento da memória e história de Bom Despacho
-            e para a divulgação dos eventos culturais de nossa cidade.
-          </BomDespachoText1>
-          <BomDespachoText2>
+        </TextColumn>
+      </Line>
+      <Line style={{ marginBottom: "2rem", height: "40rem" }}>
+        <TextColumn>
+          <p>
+            O site é parte de uma Rede, que inclui Whatsapp, Instagram e
+            Facebook, criada para o compartilhamento da memória e história de
+            Bom Despacho e para a divulgação dos eventos culturais de nossa
+            cidade. <br />
             Porém, esse site só existe por ser concebido como uma plataforma
             interativa e colaborativa, somente existe a partir da contribuição
             da comunidade de Bom Despacho.
-          </BomDespachoText2>
-        </TextContainer>
-        <ImageAreaBomDespacho>
-          <ImageBomDespacho src={BomDespachoImage} alt="BomDespachoImage" />
-        </ImageAreaBomDespacho>
-      </BomDespachoArea>
-      <AboutUsAreaColorfulDown
-        style={{ backgroundImage: `url(${ColerfulAreaDown})` }}
+          </p>
+        </TextColumn>
+        <TextColumn>
+          <img src={BomDespachoImage} alt="Bom Despacho Image" />
+        </TextColumn>
+      </Line>
+      <Banner
+        style={{
+          backgroundImage: `url(${ColerfulAreaDown})`,
+          marginBottom: "2rem",
+        }}
       >
-        <TextAreaColorfulArea>
+        <p>
           Por ser assim, todos, de todas as classes sociais, credos, cores e
           amores que de alguma forma se sintam pertencentes à Bom Despacho e que
-          contribuam com a fotogtafia, vídeos, escritas ou que apoiem,
+          contribuam com fotografias, vídeos, escritas ou que apoiem,
           compartilhem ou divulguem nossa memória histórica são parte desse
           projeto, portanto, parte do quem somos.
-        </TextAreaColorfulArea>
-      </AboutUsAreaColorfulDown>
-    </Content>
+        </p>
+      </Banner>
+    </Container>
   );
 }
