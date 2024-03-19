@@ -2,6 +2,7 @@ export const colors = {
   background: {
     primary: "#7F260F",
     secondary: "#000000",
+    hover: "#53190a",
   },
   font: {
     primary: "#FFF",
