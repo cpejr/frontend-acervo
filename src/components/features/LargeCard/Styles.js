@@ -51,10 +51,11 @@ export const CardTitle = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  align-items: center;
+  justify-content: space-between;
   height: auto;
   font-size: 30px;
   color: ${colors.font.secondary};
-  cursor: pointer;
   margin-top: 1rem;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
@@ -68,7 +69,6 @@ export const CardLine = styled.div`
   height: auto;
   font-size: 20px;
   color: ${colors.font.secondary};
-  cursor: pointer;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
   }
@@ -80,7 +80,6 @@ export const LineSVG = styled.div`
   justify-content: end;
   align-items: center;
   > svg {
-    cursor: pointer;
     font-size: 30px;
     @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 24px;
@@ -95,4 +94,11 @@ export const Group = styled.div`
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 15.75px;
   }
+`;
+
+export const FavoriteIcon = styled.div`
+  color: ${colors.font.secondary};
+  margin-left: 5px;
+  font-size: 2rem;
+  cursor: pointer;
 `;

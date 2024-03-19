@@ -1,4 +1,12 @@
-import { StyledCard, Group, LineSVG, CardLine, CardTitle } from "./Styles";
+import { CiBookmark } from "react-icons/ci";
+import {
+  StyledCard,
+  Group,
+  LineSVG,
+  CardLine,
+  CardTitle,
+  FavoriteIcon,
+} from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -22,7 +30,12 @@ export default function LargeCard({ data }) {
       </Carousel>
       <Group>
         <LineSVG></LineSVG>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          {title}
+          <FavoriteIcon>
+            <CiBookmark />
+          </FavoriteIcon>
+        </CardTitle>
       </Group>
       <CardLine>
         <p>{description}</p>
