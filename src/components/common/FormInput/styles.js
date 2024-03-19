@@ -34,10 +34,17 @@ export const StyledInput = styled.input`
 export const IconContainer = styled.div`
   position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 
   svg {
     position: absolute;
-    left: 10px;
+    right: 15%;
+    display: flex;
+
+    @media (max-width: 700px) {
+      margin-bottom: 20px;
+    }
   }
 `;

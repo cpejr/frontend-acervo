@@ -22,27 +22,7 @@ export const Form = styled.form`
     max-width: 144rem;
   }
 `;
-export const StyledInput = styled.input`
-  width: 70%;
-  height: 2rem;
-  padding: 0.8rem 1.6rem;
-  border-radius: 0.4rem;
-  color: ${colors.font.secondary};
-  font-size: 20px;
-  background-color: inherit;
-  padding-right: 25px;
-  background: url(${(props) => props?.icon}) no-repeat;
-  background-size: 40px;
-  background-position: 95%;
-  border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
-  ::placeholder {
-    color: ${colors.font.secondary};
-  }
-  @media (max-width: 700px) {
-    margin-bottom: 20px;
-  }
-`;
+
 export const Select = styled(Dropdown)`
   width: 70%;
   background-color: ${colors.font.primary};
