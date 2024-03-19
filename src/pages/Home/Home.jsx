@@ -1,4 +1,12 @@
-import { Container, Overlay, Section, Title, Column, LargerImg, SmallerImg } from "./Styles";
+import {
+  Container,
+  Overlay,
+  Section,
+  Title,
+  Column,
+  LargerImg,
+  SmallerImg,
+} from "./Styles";
 
 import { Button } from "../../components";
 
@@ -16,9 +24,10 @@ export default function Home() {
         <Column>
           <Title>Quem somos</Title>
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi
-            architecto beatae vitae dicta sunt, explicabo.
+            O Site Nossa História – Escrita, Imagem e Som é a parte de uma rede
+            de mídias criada e gerenciada pela CASA TUÉ-TIMBUÁ, uma Organização
+            Não Governamental criada para atuar na cidade de Bom Despacho no
+            desenvolvimento de projetos em diversas áreas.
           </p>
           <LargerImg src={mapa} alt="Painel com diversas impressões digitais" />
           <Button>BOTÃO</Button>
@@ -27,15 +36,22 @@ export default function Home() {
       </Section>
 
       <Section>
-        <SmallerImg src={cidade} alt="Foto representando a cidade de Bom Despacho" />
+        <SmallerImg
+          src={cidade}
+          alt="Foto representando a cidade de Bom Despacho"
+        />
         <Column>
           <Title>O que é o acervo?</Title>
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi
-            architecto beatae vitae dicta sunt, explicabo.
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
+            quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt, explicabo.
           </p>
-          <LargerImg src={cidade} alt="Foto representando a cidade de Bom Despacho" />
+          <LargerImg
+            src={cidade}
+            alt="Foto representando a cidade de Bom Despacho"
+          />
           <Button>BOTÃO</Button>
         </Column>
       </Section>
@@ -44,14 +60,21 @@ export default function Home() {
         <Column>
           <Title>Nosso eventos</Title>
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi
-            architecto beatae vitae dicta sunt, explicabo.
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
+            quae ab illo inventore veritatis et quasi architecto beatae vitae
+            dicta sunt, explicabo.
           </p>
-          <LargerImg src={festa} alt="Foto representativa de uma das festas da cidade" />
+          <LargerImg
+            src={festa}
+            alt="Foto representativa de uma das festas da cidade"
+          />
           <Button>BOTÃO</Button>
         </Column>
-        <SmallerImg src={festa} alt="Foto representativa de uma das festas da cidade" />
+        <SmallerImg
+          src={festa}
+          alt="Foto representativa de uma das festas da cidade"
+        />
       </Section>
     </Container>
   );

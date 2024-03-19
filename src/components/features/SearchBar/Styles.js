@@ -14,7 +14,7 @@ export const Input = styled(AutoComplete)`
     background-color: ${colors.background.primary};
 
     border-radius: 25px;
-    border: solid 1px ${colors.font.other};
+    border: solid 1px ${colors.font.title};
     padding-left: 10px;
     font-size: 1.2rem;
     margin-bottom: 2rem;

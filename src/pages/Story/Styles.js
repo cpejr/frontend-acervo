@@ -21,7 +21,7 @@ export const Paragraph = styled.p`
 `;
 
 export const Title = styled.h1`
-  color: ${colors.font.other};
+  color: ${colors.font.title};
   margin: 0;
   border-bottom: 2px solid ${colors.font.primary};
 `;

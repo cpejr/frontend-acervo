@@ -8,11 +8,11 @@ export const Container = styled.div`
   padding: 3rem 0;
 `;
 export const Title = styled.div`
-  color: ${colors.font.other};
+  color: ${colors.font.title};
   font-size: 30px;
   margin-left: 5%;
   width: fit-content;
-  border-bottom: 1px solid ${colors.font.other};
+  border-bottom: 2px solid ${colors.font.title};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
   }
@@ -46,7 +46,7 @@ export const Select = styled(Dropdown)`
     overflow-x: scroll;
   }
   &:hover {
-    border: 2px solid ${colors.font.other};
+    border: 2px solid ${colors.font.title};
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 50%;

@@ -5,7 +5,7 @@ export const PrimereactStyles = createGlobalStyle`
 .p-datatable .p-datatable-tbody > tr > td {
   background-color: ${colors.background.primary}; 
   color: white;
-  border-bottom: 0.5px solid ${colors.font.other};
+  border-bottom: 0.5px solid ${colors.font.title};
   padding: 1rem 0;
   font-size: 1rem;
   }  
@@ -20,7 +20,7 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-datatable .p-datatable-thead > tr > th {
-    border-bottom: 0.5px solid ${colors.font.other};
+    border-bottom: 0.5px solid ${colors.font.title};
     background-color: ${colors.background.primary};
     color: ${colors.font.primary}
   }
