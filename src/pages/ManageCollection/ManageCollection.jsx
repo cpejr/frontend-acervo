@@ -20,6 +20,9 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle, AiFillTool } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
 import { CiCirclePlus } from "react-icons/ci";
+import { FaLink } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
+
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
@@ -39,27 +42,31 @@ export default function ManageCollection() {
       type: "input",
       key: "title",
       placeholder: "Titulo:",
-      icon: "https://static.thenounproject.com/png/101791-200.png",
+      icon: { FaLink },
     },
     {
       type: "input",
       key: "shortDescription",
       placeholder: "Descrição curta:",
+      icon: { FaLink },
     },
     {
       type: "input",
       key: "longDescription",
       placeholder: "Descrição longa:",
+      icon: { FaLink },
     },
     {
       type: "input",
       key: "link",
       placeholder: "link:",
+      icon: { FaLink },
     },
     {
       type: "input",
       key: "archive",
       placeholder: "Adicionar Arquivo:",
+      icon: { FaLink },
     },
   ]);
   const modalCloseButton = <AiOutlineCloseCircle />;
@@ -75,6 +82,7 @@ export default function ManageCollection() {
       type: "input",
       key: `archive${archiveCount}`,
       placeholder: "Adicionar arquivo :",
+      icon: { FaLink },
     };
 
     setInputs([...inputs, newInput]);

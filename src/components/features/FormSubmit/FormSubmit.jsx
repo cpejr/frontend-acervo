@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, StyledInput, Select, ErrorMessage } from "./Styles";
+import  FormInput  from "../../common/FormInput/FormInput";
 
 export default function FormSubmit({ inputs, onSubmit, schema }) {
   const {
@@ -39,14 +40,14 @@ export default function FormSubmit({ inputs, onSubmit, schema }) {
           ></Select>
         ) : (
           <>
-            <StyledInput
-              key={input?.key}
+            <FormInput
+              inputKey={input?.key}
               type={input?.type}
               placeholder={input?.placeholder}
               icon={input?.icon}
               error={errors[input?.key] ? true : false}
               defaultValue={input?.value}
-              {...register(input?.key, { required: input?.required })}
+              register={register}
             />
             {errors[input?.key]?.message && (
               <ErrorMessage>{errors[input?.key]?.message}</ErrorMessage>

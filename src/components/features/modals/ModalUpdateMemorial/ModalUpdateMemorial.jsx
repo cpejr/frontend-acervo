@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { updateCollectionValidationSchema } from "./utils";
 import { CiCirclePlus } from "react-icons/ci";
+import { FaLink } from "react-icons/fa6";
 
 export default function ModalUpdateMemorial({
   close,
@@ -24,12 +25,14 @@ export default function ModalUpdateMemorial({
         key: "title",
         placeholder: "Mudar Titulo",
         value: values.title,
+        icon: { FaLink },
       },
       {
         type: "input",
         key: "link",
         placeholder: "Mudar Link",
         value: values.link,
+        icon: { FaLink },
       },
     ];
     if (values.archives !== undefined) {
@@ -38,6 +41,7 @@ export default function ModalUpdateMemorial({
         key: `archiveantigo${index + 1}`,
         placeholder: `Mudar Arquivo ${index + 1}`,
         value: archive,
+        icon: { FaLink },
       }));
       temporaryInputs.push(...updatedArchives);
       setInputs(temporaryInputs);
@@ -53,6 +57,7 @@ export default function ModalUpdateMemorial({
       type: "input",
       key: `archive${archiveCount}`,
       placeholder: "Adicionar arquivo :",
+      icon: { FaLink },
     };
 
     setInputs([...inputs, newInput]);
