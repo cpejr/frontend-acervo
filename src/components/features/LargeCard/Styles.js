@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const StyledCard = styled(Card)`
@@ -47,12 +47,26 @@ export const Image = styled.div`
   }
 `;
 
-export const CardLine = styled.div`
+export const CardTitle = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   height: auto;
   font-size: 30px;
+  color: ${colors.font.secondary};
+  cursor: pointer;
+  margin-top: 1rem;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 24px;
+  }
+`;
+
+export const CardLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  font-size: 20px;
   color: ${colors.font.secondary};
   cursor: pointer;
   @media (max-width: ${breakpoints.miniTablet}) {
@@ -80,29 +94,5 @@ export const Group = styled.div`
   font-size: 17.5px;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 15.75px;
-  }
-`;
-
-export const ButtonDiv = styled.div`
-  display: flex;
-  width: 100%;
-  align-content: center;
-  justify-content: flex-end;
-`;
-
-export const OrangeButton = styled(Button)`
-  width: 10rem;
-  height: 3rem;
-  background-color: ${colors.accent};
-  border: none;
-  margin-top: 1rem;
-  border-radius: 10px;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 12rem;
-    height: 2.25rem;
-  }
-
-  &:hover {
-    background-color: blue;
   }
 `;

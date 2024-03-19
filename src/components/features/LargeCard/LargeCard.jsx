@@ -1,11 +1,4 @@
-import {
-  StyledCard,
-  Group,
-  LineSVG,
-  CardLine,
-  ButtonDiv,
-  OrangeButton,
-} from "./Styles";
+import { StyledCard, Group, LineSVG, CardLine, CardTitle } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -29,15 +22,11 @@ export default function LargeCard({ data }) {
       </Carousel>
       <Group>
         <LineSVG></LineSVG>
-        <CardLine>{title}</CardLine>
+        <CardTitle>{title}</CardTitle>
       </Group>
       <CardLine>
         <p>{description}</p>
       </CardLine>
-
-      <ButtonDiv>
-        <OrangeButton>Botão</OrangeButton>
-      </ButtonDiv>
     </StyledCard>
   );
 }
