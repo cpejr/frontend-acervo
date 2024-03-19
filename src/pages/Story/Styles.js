@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { colors } from "../../styles/stylesVariables";
 
 export const Container = styled.div`
+  padding: 3rem 0;
   display: flex;
   width: 70%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: ${colors.font.primary};
-  gap: 1rem;
+  gap: 2rem;
   margin: 0 auto;
 `;
 
