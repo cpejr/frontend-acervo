@@ -1,6 +1,7 @@
-import { Link } from "../../../../components";
-
+import { Link, LoginSocialArea } from "../../../../components";
 import { Container } from "./Styles";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Header() {
   return (
@@ -11,6 +12,7 @@ export default function Header() {
       <Link>Área escolar</Link>
       <Link>Sobre o projeto</Link>
       <Link>PERFIL</Link>
+      <LoginSocialArea />
     </Container>
   );
 }
