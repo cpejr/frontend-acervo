@@ -6,7 +6,9 @@ import { PrimereactStyles } from "./styles/PrimereactStyles.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { PrimeReactProvider } from "primereact/api";
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
