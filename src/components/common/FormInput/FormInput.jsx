@@ -26,7 +26,7 @@ export default function FormInput({
         {Icon && <Icon />}
         <StyledInput
           id={name}
-          //   {...register(name)}
+          {...register(name)}
           placeholder={placeholder}
           defaultValue={defaultValue}
           {...props}

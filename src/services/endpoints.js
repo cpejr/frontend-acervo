@@ -27,8 +27,9 @@ export const deleteEvents = async (_id) => {
   return data;
 };
 
-export const createEvents = async () => {
-  const { data } = await api.post(`/event`);
+export const createEvents = async (newEvent) => {
+  console.log(newEvent);
+  const { data } = await api.post(`/event`, newEvent);
   return data;
 };
 
