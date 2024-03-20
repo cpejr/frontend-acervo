@@ -1,5 +1,4 @@
-import { Link } from "../../../../components";
-import { Container, City, Column, SocialMedias, Button } from "./Styles";
+import { Container, City } from "./Styles";
 import {
   Login,
   LogoCidade,
@@ -10,6 +9,8 @@ import {
 import { HamburgerMenu } from "../../../index";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link, LoginSocialArea } from "../../../../components";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Header() {
   const usuario = true;
@@ -30,7 +31,7 @@ export default function Header() {
           <Link to={"/gerenciar-eventos"}>Eventos</Link>
         </React.Fragment>
       ) : null}
-      <Column>
+      {/* <Column>
         <Button>
           Entrar<img src={Login} width="20px"></img>
         </Button>
@@ -45,8 +46,9 @@ export default function Header() {
             <img src={Whatsapp} alt="Logo Whatsapp" width="75%"></img>
           </a>
         </SocialMedias>
-      </Column>
+      </Column> */}
       <HamburgerMenu />
+      <LoginSocialArea />
     </Container>
   );
 }
