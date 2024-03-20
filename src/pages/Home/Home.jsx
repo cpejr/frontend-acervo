@@ -30,7 +30,7 @@ export default function Home() {
             desenvolvimento de projetos em diversas áreas.
           </p>
           <LargerImg src={mapa} alt="Painel com diversas impressões digitais" />
-          <Button>BOTÃO</Button>
+          <Button>Saiba Mais</Button>
         </Column>
         <SmallerImg src={mapa} alt="Painel com diversas impressões digitais" />
       </Section>
@@ -43,16 +43,16 @@ export default function Home() {
         <Column>
           <Title>O que é o acervo?</Title>
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo.
+            O Site Nossa História – Escrita, Imagem e Som é a parte de uma rede
+            de mídias criada e gerenciada pela CASA TUÉ-TIMBUÁ, uma Organização
+            Não Governamental criada para atuar na cidade de Bom Despacho no
+            desenvolvimento de projetos em diversas áreas.
           </p>
           <LargerImg
             src={cidade}
             alt="Foto representando a cidade de Bom Despacho"
           />
-          <Button>BOTÃO</Button>
+          <Button>Saiba Mais</Button>
         </Column>
       </Section>
 
@@ -60,16 +60,15 @@ export default function Home() {
         <Column>
           <Title>Nosso eventos</Title>
           <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam eaque ipsa,
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt, explicabo.
+            Fique por dentro de todos os eventos em Bom Despacho! Há tanto para
+            descobrir e participar! Venha fazer parte da nossa história e
+            contribuir com acomunidade!
           </p>
           <LargerImg
             src={festa}
             alt="Foto representativa de uma das festas da cidade"
           />
-          <Button>BOTÃO</Button>
+          <Button>Saiba Mais</Button>
         </Column>
         <SmallerImg
           src={festa}

@@ -8,6 +8,11 @@ export const Container = styled.div`
   background-color: black;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0 3rem;
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    padding: 0 1rem;
+  }
 `;
 
 export const City = styled.img`
@@ -36,28 +41,13 @@ export const SocialMedias = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  background-color: black;
-  color: orange;
-  padding: 7px;
-  border: 1px solid orange;
-  border-radius: 5px;
-  //  width: 60%;
-  justify-content: space-evenly;
-  margin-left: 20%;
-  display: flex;
-  align-items: center;
-  padding-left: 0;
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 100%;
-    margin-left: 0;
-  }
-`;
-
 export const Hamburguer = styled(Menu)`
   width: 0rem;
   border-bottom: none;
   background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 6rem;
   }
@@ -73,8 +63,10 @@ export const LoadingStyles = styled.div`
 
 export const LoginSocial = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.5rem;
   @media (max-width: ${breakpoints.tablet}) {
     min-width: 0;
   }
