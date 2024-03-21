@@ -3,7 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-
+import { imageEventNotFound } from "../../assets/index";
 export const Container = styled.div`
   display: flex;
   width: 100%;
@@ -74,7 +74,7 @@ export const SVGDiv = styled.div`
     width: 13%;
   }
 `;
-export const TrendingTools = styled.div`
+export const TrendingEvents = styled.div`
   display: flex;
   width: 95%;
   flex-direction: column;
@@ -119,7 +119,7 @@ export const Characteristics = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
-    color: ${colors.font.title};
+    color: #eedac5;
   }
 `;
 export const Prices = styled.div`
@@ -130,7 +130,7 @@ export const Prices = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
-    color: ${colors.font.title};
+    color: ${colors.darkwhite};
   }
 `;
 export const VerticalLine = styled.div`
@@ -145,7 +145,7 @@ export const Title = styled.div`
 export const StyledCheckbox = styled(Checkbox)`
   width: 20px;
   height: 20px;
-  border: 2px solid ${colors.font.title};
+  border: 2px solid ${colors.darkwhite};
   border-radius: 5px;
   justify-content: center;
 `;
@@ -179,5 +179,24 @@ export const UniSelect = styled(Dropdown)`
   }
   @media (max-width: ${breakpoints.smallMobile}) {
     width: 20%;
+  }
+`;
+
+export const EventNotFound = styled.div`
+  background-image: url(${imageEventNotFound});
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  font-size: 2rem;
+  text-align: center;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    width: 60%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 70%;
+  }
+  @media (max-width: 520px) {
+    width: 300px;
+    height: 300px;
   }
 `;

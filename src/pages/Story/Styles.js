@@ -2,14 +2,13 @@ import styled from "styled-components";
 import { colors } from "../../styles/stylesVariables";
 
 export const Container = styled.div`
-  padding: 3rem 0;
   display: flex;
   width: 70%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: ${colors.font.primary};
-  gap: 2rem;
+  gap: 1rem;
   margin: 0 auto;
 `;
 
@@ -22,7 +21,7 @@ export const Paragraph = styled.p`
 `;
 
 export const Title = styled.h1`
-  color: ${colors.font.title};
+  color: ${colors.font.other};
   margin: 0;
   border-bottom: 2px solid ${colors.font.primary};
 `;
