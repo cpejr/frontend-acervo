@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const StyledInput = styled.input`
   width: 70%;
-  height: 2rem;
+  height: 3rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
   color: ${colors.font.secondary};
@@ -29,6 +29,7 @@ export const StyledInput = styled.input`
   }
   @media (max-width: 700px) {
     margin-bottom: 20px;
+    font-size: 16px;
   }
 `;
 export const IconContainer = styled.div`

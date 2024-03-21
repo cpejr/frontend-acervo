@@ -21,7 +21,6 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
   };
   function submitHandler(data) {
     onSubmit(data);
-    console.log(data);
     reset();
   }
 
