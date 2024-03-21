@@ -10,7 +10,20 @@ import { useLogin } from "../../../../hooks/querys/user";
 import useAuthStore from "../../../../Stores/auth";
 import { colors } from "../../../../styles/stylesVariables";
 import { ModalLogOff } from "../../..";
-import { LoadingStyles, LoginButton, LoginSocial, ModalStyle } from "./Styles";
+import {
+  LoadingStyles,
+  LoginButton,
+  LoginSocial,
+  ModalStyle,
+  SocialMedias,
+} from "./Styles";
+import {
+  Login,
+  LogoCidade,
+  Whatsapp,
+  Facebook,
+  Instagram,
+} from "../../../../assets/index";
 
 export default function LoginSocialArea() {
   // Variables
@@ -77,6 +90,17 @@ export default function LoginSocialArea() {
           {profilePicture}
         </LoginButton>
       )}
+      <SocialMedias>
+        <a href="https://www.instagram.com/prefeiturabd/">
+          <img src={Instagram} alt="Logo Instagram" width="75%"></img>
+        </a>
+        <a href="https://www.facebook.com/prefeiturabd/?locale=pt_BR">
+          <img src={Facebook} alt="Logo Facebook" width="75%"></img>
+        </a>{" "}
+        <a href="http://wa.me/+31992740294">
+          <img src={Whatsapp} alt="Logo Whatsapp" width="75%"></img>
+        </a>
+      </SocialMedias>
       <ModalStyle
         open={modalLogOff}
         onCancel={closeModalLogOff}

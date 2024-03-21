@@ -1,15 +1,59 @@
 import styled from "styled-components";
+import { Menu, Modal } from "antd";
 import { breakpoints, colors, fonts } from "../../../../styles/stylesVariables";
-import { Modal } from "antd";
 
 export const Container = styled.div`
-  height: 5rem;
-  width: 100%;
-
+  height: 7rem;
   display: flex;
   background-color: black;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0 3rem;
+
+  @media (max-width: ${breakpoints.smallTablet}) {
+    padding: 0 1rem;
+  }
+`;
+
+export const City = styled.img`
+  width: 50px;
+  display: flex;
+`;
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 15px;
+  padding-right: 0;
+  border-left: 2px solid white;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    border-left: 0;
+  }
+`;
+
+export const SocialMedias = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    display: none;
+  }
+`;
+
+export const Hamburguer = styled(Menu)`
+  width: 0rem;
+  border-bottom: none;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 6rem;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 4rem;
+  }
 `;
 
 export const LoadingStyles = styled.div`
@@ -19,16 +63,12 @@ export const LoadingStyles = styled.div`
 
 export const LoginSocial = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  width: 20%;
-  min-width: 15rem;
+  justify-content: center;
+  gap: 0.5rem;
   @media (max-width: ${breakpoints.tablet}) {
-    width: 17rem;
     min-width: 0;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 10rem;
   }
 `;
 
@@ -36,7 +76,7 @@ export const LoginButton = styled.button`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 12rem;
+  padding: 0 1rem;
   height: 45px;
   border: 1px solid;
   border-radius: 10px;
