@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="historia" element={<Story />} />
         <Route path="sobre" element={<AboutUs />} />
-        <Route path="memorial" element={<Collection />} />
+        <Route path="memorial" element={<Memorial />} />
         <Route path="eventos" element={<Events />} />
         <Route path="gerenciar-memorial" element={<ManageCollection />} />
         <Route path="gerenciar-eventos" element={<ManageEvents />} />
