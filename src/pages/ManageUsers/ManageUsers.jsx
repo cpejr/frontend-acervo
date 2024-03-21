@@ -27,10 +27,10 @@ export default function ManageUsers() {
 
   const columns = [
     { field: "imageURL", header: "Foto" },
-    { field: "name", header: "Name" },
+    { field: "name", header: "Nome" },
     { field: "email", header: "Email" },
-    { field: "type", header: "Type" },
-    { field: "manage", header: "Manage" },
+    { field: "type", header: "Tipo" },
+    { field: "manage", header: "" },
   ];
 
   const selectOptions = [
@@ -124,10 +124,11 @@ export default function ManageUsers() {
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
       <SearchBar
-        placeholder={"pesquisar usuario"}
+        placeholder={"Pesquisar usuario"}
         value={searchQuery}
         search={handleSearchChange}
-      ></SearchBar>
+        width="90%"
+      />
       {isLoading ? (
         <LoadingStyles>
           <LoadingOutlined />
