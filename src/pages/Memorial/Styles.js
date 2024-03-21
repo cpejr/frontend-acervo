@@ -6,6 +6,7 @@ import { Checkbox } from "primereact/checkbox";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 3rem 0;
 `;
 
 export const Title = styled.div`
