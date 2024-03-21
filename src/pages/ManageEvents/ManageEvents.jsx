@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useEventsByCategoryId } from "../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
 import useDebounce from "../../services/useDebouce";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { useCreateEvents } from "../../hooks/querys/events";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  useCreateEvents,
+  useDeleteEvents,
+  useEventsByCategoryId,
+} from "../../hooks/querys/events";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
@@ -13,6 +18,8 @@ import {
   FormImageInput,
   FormTextArea,
   SubmitButton,
+  ModalDeleteEvent,
+  ModalEditEvent,
 } from "../../components";
 import {
   Container,
@@ -23,21 +30,37 @@ import {
   TableColumn,
   Selects,
   MultipleSelect,
+  EventButtons,
 } from "./Styles";
-import { zodResolver } from "@hookform/resolvers/zod";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
   const [idCategoriesPrices, setIdCategoriesPrices] = useState([]);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const { data: events } = useEventsByCategoryId({
     name: debouncedName,
+
     onError: (err) => {
       console.log(err);
     },
   });
+  const formattedEvents = events?.map((events) => ({
+    name: events.name,
+    shortDescription: events.shortDescription,
+    manage: (
+      <EventButtons>
+        <FaTrash onClick={() => handleOpenDeleteModal(events?._id)} />
+        <FaEdit onClick={() => handleOpenEditModal(events)} />
+      </EventButtons>
+    ),
+  }));
+
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       console.log(err);
@@ -61,13 +84,49 @@ export default function ManageEvents() {
     },
   });
 
-  const onSubmit = (data) => {
+  const { mutate: deleteEvent } = useDeleteEvents({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+      });
+      toast.success("Sucesso");
+    },
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+  // Modal Functions
+
+  const handleOpenDeleteModal = (eventId) => {
+    setSelectedEventId(eventId);
+    setDeleteModalOpen(true);
+  };
+
+  const handleOpenEditModal = (event) => {
+    setSelectedEventId(event?._id);
+    setSelectedEvent(event);
+    setEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = async () => {
+    setSelectedEvent(null);
+    setSelectedEventId(null);
+    setEditModalOpen(false);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setSelectedEventId(null);
+    setDeleteModalOpen(false);
+  };
+
+  const onSubmit = (data, e) => {
     const combinedData = {
       ...data,
       id_categoryPrice: idCategoriesPrices,
       id_categoryType: idCategoriesTypes,
     };
     createEvent(combinedData);
+    e.target.reset();
   };
   const {
     handleSubmit,
@@ -98,8 +157,8 @@ export default function ManageEvents() {
             errors={errors}
             register={register}
           />
-          <FormImageInput
-            name="imageURL"
+          <FormInput
+            name="eventUpload"
             placeholder="URL da imagem:"
             errors={errors}
             register={register}
@@ -149,55 +208,29 @@ export default function ManageEvents() {
             />
           </Selects>
         </Section>
-        <SubmitButton>Enviar</SubmitButton>
+        <SubmitButton>ENVIAR</SubmitButton>
       </Form>
       <Title>GERENCIAR EVENTOS</Title>
-      {/* {isDeleteModalOpen && (
-          <StyledModal
-            open={isDeleteModalOpen}
-            onCancel={handleCloseDeleteModal}
-            width={500}
-            height={250}
-            padding={0}
-            footer={null}
-            closeIcon={true}
-            centered
-            destroyOnClose
-          >
-            <ModalDelete
-              _id={selectedToolId}
-              close={handleCloseDeleteModal}
-              deleteFunction={managerService.useDeleteAITools}
-            />
-          </StyledModal>
-        )}
-        {isEditModalOpen && (
-          <StyledModal
-            open={isEditModalOpen}
-            onCancel={handleCloseEditModal}
-            width={500}
-            height={250}
-            padding={0}
-            footer={null}
-            closeIcon={true}
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: "100px",
-              marginBottom: "80%",
-            }}
-            centered
-            destroyOnClose
-          >
-            <ModalEdit
-              _id={selectedToolId}
-              tool={selectedTool}
-              close={handleCloseEditModal}
-              transformArrayItems={transformArrayItems}
-            />
-          </StyledModal>
-        )} */}
-      <Table value={events}>
+      {isDeleteModalOpen && (
+        <ModalDeleteEvent
+          id={selectedEventId}
+          closeModal={handleCloseDeleteModal}
+          handleEventDelete={deleteEvent}
+          modal={true}
+          destroyOnClose
+        />
+      )}
+      {isEditModalOpen && (
+        <ModalEditEvent
+          _id={selectedEventId}
+          modal={true}
+          event={selectedEvent}
+          close={handleCloseEditModal}
+          transformArrayItems={transformArrayItems}
+          destroyOnClose
+        />
+      )}
+      <Table value={formattedEvents}>
         {columns.map((data) => (
           <TableColumn
             sortable

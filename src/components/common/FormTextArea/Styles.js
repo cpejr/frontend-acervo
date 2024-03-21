@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${colors.white};
+  color: ${colors.background.primary};
   font-size: 2.4rem;
 
   @media (max-width: 700px) {
@@ -30,10 +30,10 @@ export const StyledTextArea = styled.textarea`
   font-size: 1rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-  color: ${colors.white};
+  color: white;
   background-color: ${colors.background.primary};
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.white} solid`};
+    props?.error ? "0.1rem red solid" : `0.1rem white solid`};
   ::placeholder {
     font-weight: 400;
   }

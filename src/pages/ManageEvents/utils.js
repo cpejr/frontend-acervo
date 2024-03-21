@@ -6,7 +6,7 @@ export const newEventValidationSchema = z.object({
     .string({ required_error: "O nome é obrigatório" })
     .min(2, { message: "O nome deve ter pelo menos 2 caracteres" })
     .max(60, { message: "O nome não pode exceder 60 caracteres" }),
-  imageURL: z
+  eventUpload: z
     .string({ required_error: "A URL da imagem é obrigatória" })
     .min(1, { message: "O URL deve ter pelo menos 1 caractere" }),
   shortDescription: z

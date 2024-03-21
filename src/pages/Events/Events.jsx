@@ -7,7 +7,7 @@ import {
   Container,
   DivLine,
   Line,
-  TrendingTools,
+  TrendingEvents,
   Filter,
   EventNotFound,
 } from "./Styles";
@@ -48,7 +48,7 @@ export default function Events() {
           setFilter={setFilter}
         ></FilterArea>
       </Filter>
-      <TrendingTools>
+      <TrendingEvents>
         <DivLine>
           {events?.length === 0 && (
             <EventNotFound>Nenhum evento encontrado</EventNotFound>
@@ -59,7 +59,7 @@ export default function Events() {
             ))}
           </Line>
         </DivLine>
-      </TrendingTools>
+      </TrendingEvents>
     </Container>
   );
 }

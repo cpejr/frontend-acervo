@@ -8,8 +8,6 @@ import {
   UniSelect,
   ButtonsDiv,
   Buttons,
-  ShowTags,
-  Tags,
 } from "./Styles";
 
 export default function FilterArea({
@@ -19,8 +17,6 @@ export default function FilterArea({
   setPrices,
   filter,
   setFilter,
-  onFilterClick,
-  filterReset,
   setArray,
 }) {
   // Set variables

@@ -4,6 +4,8 @@ import {
   getEvents,
   createEvents,
   getEventsByCategoryId,
+  deleteEvents,
+  updateEvents,
 } from "../../services/endpoints";
 
 export function useGetEvents({
@@ -26,6 +28,19 @@ export function useCreateEvents({
   return useMutation({ mutationFn: createEvents, onSuccess, onError });
 }
 
+export function useDeleteEvents({
+  onSuccess = () => {},
+  onError = (err) => console.log(err),
+} = {}) {
+  return useMutation({ mutationFn: deleteEvents, onSuccess, onError });
+}
+
+export function useUpdateEvents({
+  onSuccess = () => {},
+  onError = (err) => console.log(err),
+} = {}) {
+  return useMutation({ mutationFn: updateEvents, onSuccess, onError });
+}
 export function useEventsByCategoryId({
   id,
   name,

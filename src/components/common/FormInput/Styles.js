@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${colors.white};
+  color: ${colors.background.primary};
 
   @media (max-width: 700px) {
     font-size: 2rem;
@@ -22,14 +22,14 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  height: 3rem;
-  padding: 0.8rem 1.6rem;
+  height: 1rem;
+  padding: 1rem 2.2rem;
   border-radius: 0.4rem;
-  color: ${colors.white};
+  color: white;
   width: 100%;
   background-color: ${colors.background.primary};
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.white} solid`};
+    props?.error ? "0.1rem red solid" : `0.1rem white solid`};
   ::placeholder {
     font-weight: 400;
   }

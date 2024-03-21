@@ -4,7 +4,6 @@ import { colors } from "../../../../styles/stylesVariables";
 import { Container, Message, ModalStyle } from "./Styles";
 
 export default function ModalDeleteEvent({
-  close,
   handleEventDelete,
   id,
   modal,
@@ -28,11 +27,11 @@ export default function ModalDeleteEvent({
         <Button
           onClick={() => {
             handleEventDelete(id);
-            close();
+            closeModal();
           }}
           type="button"
           backgroundcolor="transparent"
-          color={colors.modals.modalButton}
+          color={colors.font.primary}
           border="1px solid"
           borderRadius="0.5rem"
           marginTop="1.5rem"
@@ -40,10 +39,10 @@ export default function ModalDeleteEvent({
           fontWeight="500"
           lineHeight="2.2rem"
           hoverBackgroundColor={colors.modals.modalButton}
-          hoverColor={colors.font.primary}
+          hoverColor={colors.font.secondary}
           borderColor={colors.modals.modalButton}
         >
-            Excluir
+          Excluir
         </Button>
       </Container>
     </ModalStyle>
@@ -51,10 +50,9 @@ export default function ModalDeleteEvent({
 }
 
 ModalDeleteEvent.propTypes = {
-    close: PropTypes.func.isRequired,
-    handleEventDelete: PropTypes.func.isRequired,
-    id: PropTypes.string.isRequired,
-    modal: PropTypes.bool.isRequired,
-    closeModal: PropTypes.func.isRequired,
-    modalCloseIcon: PropTypes.object.isRequired,
+  handleEventDelete: PropTypes.func.isRequired,
+  id1: PropTypes.string.isRequired,
+  modal: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  modalCloseIcon: PropTypes.object.isRequired,
 };

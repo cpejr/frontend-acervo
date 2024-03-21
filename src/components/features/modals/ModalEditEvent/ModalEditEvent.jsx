@@ -1,25 +1,76 @@
 import PropTypes from "prop-types";
 import Button from "../../../common/Button/Button";
 import { colors } from "../../../../styles/stylesVariables";
-import { Container, Message, ModalStyle, Form } from "./Styles";
-import { toast } from "react-toastify";
-import { useForm } from "antd/es/form/Form";
+import { Container, Message, ModalStyle, Form, MultipleSelect } from "./Styles";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
 import FormInput from "../../../common/FormInput/FormInput";
+import { useState, useEffect } from "react";
+import { useUpdateEvents } from "../../../../hooks/querys/events";
+import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
+import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
 
-export default function ModalEditEvent({ event, close, id, editFunction }) {
-  const onSubmit = async (data) => {
-    try {
-      await editFunction(id, { data });
-      toast.success("Evento atualizado com sucesso!");
-      toast.clearWaitingQueue();
-      close();
-    } catch (error) {
-      toast.error("Erro em atualizar o evento. Tente novamente!");
-      toast.clearWaitingQueue();
-      console.error("Erro ao editar evento", error);
+export default function ModalEditEvent({
+  event,
+  close,
+  _id,
+  modal,
+  transformArrayItems,
+}) {
+  const [idsCategoryType, setIdsCategoryType] = useState([]);
+  const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
+  const queryClient = useQueryClient();
+  const { data: categoryType } = useGetCategoryType({
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+  const { data: categoryPrice } = useGetCategoryPrice({
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+  const { mutate: updatEvent } = useUpdateEvents({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+      });
+      toast.success("Sucesso");
+    },
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+  const setCategories = () => {
+    setIdsCategoryType(event?.id_categoryType?.map((ids) => ids._id) || []);
+    setIdsCategoryPrice(event?.id_categoryPrice?.map((ids) => ids._id) || []);
+  };
+  useEffect(() => {
+    if (modal) {
+      setCategories();
     }
+  }, [modal]);
+
+  const [formData, setFormData] = useState({
+    name: event.name,
+    eventUpload: event.eventUpload,
+    shortDescription: event.shortDescription,
+    longDescription: event.longDescription,
+    link: event.link,
+  });
+
+  // On Submit
+  const onSubmit = () => {
+    const body = {
+      ...formData,
+      id_categoryType: idsCategoryType,
+      id_categoryPrice: idsCategoryPrice,
+    };
+
+    updatEvent({ _id: _id, body: body });
+    close();
   };
 
   const {
@@ -32,9 +83,15 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
 
   return (
     <Container>
-      <ModalStyle>
+      <ModalStyle
+        open={modal}
+        onCancel={close}
+        centered
+        destroyOnClose
+        footer={null}
+      >
         <Message>Editar Informações</Message>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             name="name"
             label="Nome do evento:"
@@ -42,6 +99,7 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
             register={register}
             placeholder="Nome do evento:"
             errors={errors}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
           <FormInput
             name="eventUpload"
@@ -50,6 +108,10 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
             register={register}
             placeholder="URL da imagem:"
             errors={errors}
+            onChange={(e) =>
+              setFormData({ ...formData, eventUpload: e.target.value })
+            }
+
             //icon={}
           />
           <FormInput
@@ -59,14 +121,20 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
             register={register}
             placeholder="Descrição curta:"
             errors={errors}
+            onChange={(e) =>
+              setFormData({ ...formData, shortDescription: e.target.value })
+            }
           />
           <FormInput
             name="longDescription"
             label="Descrição longa:"
-            defaultValue={event.eventUpload}
+            defaultValue={event.longDescription}
             register={register}
             placeholder="Descrição longa:"
             errors={errors}
+            onChange={(e) =>
+              setFormData({ ...formData, longDescription: e.target.value })
+            }
           />
           <FormInput
             name="link"
@@ -75,15 +143,36 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
             register={register}
             placeholder="Link do evento:"
             errors={errors}
+            onChange={(e) => setFormData({ ...formData, link: e.target.value })}
+          />
+          <MultipleSelect
+            value={idsCategoryPrice}
+            name="id_categoryPrice"
+            onChange={(e) => {
+              setIdsCategoryPrice(e.value);
+            }}
+            options={transformArrayItems(categoryPrice)}
+            optionLabel="label"
+            placeholder="Escolha as características"
+            className="w-full md:w-20rem"
+            filter
+          />
+          <MultipleSelect
+            value={idsCategoryType}
+            name="id_categoryType"
+            onChange={(e) => {
+              setIdsCategoryType(e.value);
+            }}
+            options={transformArrayItems(categoryType)}
+            optionLabel="label"
+            placeholder="Escolha as características"
+            className="w-full md:w-20rem"
+            filter
           />
           <Button
-            onClick={() => {
-                handleSubmit(onSubmit);
-                close();
-            }}
-            type="button"
+            type="submit"
             backgroundcolor="transparent"
-            color={colors.modals.modalButton}
+            color={colors.font.primary}
             border="1px solid"
             borderRadius="0.5rem"
             marginTop="1.5rem"
@@ -91,11 +180,11 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
             fontWeight="500"
             lineHeight="2.2rem"
             hoverBackgroundColor={colors.modals.modalButton}
-            hoverColor={colors.font.primary}
+            hoverColor={colors.font.secondary}
             borderColor={colors.modals.modalButton}
-            >
-                Excluir
-            </Button>
+          >
+            Editar
+          </Button>
         </Form>
       </ModalStyle>
     </Container>
@@ -103,8 +192,9 @@ export default function ModalEditEvent({ event, close, id, editFunction }) {
 }
 
 ModalEditEvent.propTypes = {
-    id: PropTypes.string.isRequired,
-    event: PropTypes.object.isRequired,
-    close: PropTypes.func.isRequired,
-    editFunction: PropTypes.func.isRequired,
+  _id: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired,
+  transformArrayItems: PropTypes.func.isRequired,
 };

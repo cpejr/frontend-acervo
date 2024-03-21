@@ -15,7 +15,7 @@ export default function Card({ data }) {
   return (
     <StyledCard>
       <Image>
-        <img src={data.imageURL} />
+        <img src={data.eventUpload} />
       </Image>
       <Group>
         <LineSVG></LineSVG>
@@ -38,7 +38,7 @@ export default function Card({ data }) {
             window.open(data?.link, "_blank");
           }}
         >
-          Botão
+          Link
         </OrangeButton>
       </ButtonDiv>
     </StyledCard>

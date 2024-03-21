@@ -74,7 +74,7 @@ export const SVGDiv = styled.div`
     width: 13%;
   }
 `;
-export const TrendingTools = styled.div`
+export const TrendingEvents = styled.div`
   display: flex;
   width: 95%;
   flex-direction: column;

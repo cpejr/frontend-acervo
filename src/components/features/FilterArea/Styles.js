@@ -17,85 +17,9 @@ export const ContainerFilter = styled.div`
   }
 `;
 
-export const Checkboxes = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 35rem;
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 25rem;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 22rem;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 90%;
-  }
-`;
-
-export const CheckboxItem = styled.div`
-  width: 25%;
-  box-sizing: border-box;
-  padding: 5px;
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 33%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 33%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 50%;
-  }
-`;
-
-export const BlueCheckboxes = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  //gap: 1rem;
-  label {
-    //color: #000;
-  }
-`;
-
-export const SearchBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  @media (max-width: ${breakpoints.mobile}) {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-`;
-
-export const InputStyled = styled(Input)`
-  width: 15rem;
-  height: 35px;
-  padding: 0.8rem;
-`;
-
-export const SelectStyled = styled(Select)`
-  width: 15rem;
-  height: 35px;
-  color: #000;
-
-  .ant-select-arrow {
-    color: ${colors.white};
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-  }
-`;
-
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.black};
-
+  z-index: 1;
   .p-multiselect-label {
     color: ${colors.white};
 
@@ -164,18 +88,4 @@ export const UniSelect = styled(Dropdown)`
     width: 50%;
   }
 `;
-export const ShowTags = styled.div`
-  display: flex;
-  gap: 0.2rem;
-  margin-top: 1rem;
-  padding: 0.2rem 1rem;
-  color: ${colors.white};
-  cursor: pointer;
-  flex-wrap: wrap;
-`;
-export const Tags = styled.span`
-  border-radius: 20px;
-  border: 1px solid ${colors.white};
-  padding: 0.5rem;
-  background-color: ${colors.black};
-`;
+

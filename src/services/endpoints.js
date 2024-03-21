@@ -28,10 +28,15 @@ export const deleteEvents = async (_id) => {
 };
 
 export const createEvents = async (newEvent) => {
-  console.log(newEvent);
   const { data } = await api.post(`/event`, newEvent);
   return data;
 };
+
+export async function updateEvents({ _id, body }) {
+  const { data } = await api.put(`/event/${_id}`, body);
+
+  return data;
+}
 
 export const getEventsByCategoryId = async (id, name, type) => {
   const { data } = await api.get("/event/search-by-category", {
