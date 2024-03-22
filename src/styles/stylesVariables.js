@@ -21,6 +21,7 @@ export const colors = {
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
+  underline: "#FFD599",
 };
 
 export const fonts = {
