@@ -3,6 +3,7 @@ import { breakpoints, colors } from "../../styles/stylesVariables";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 3rem 0;
 `;
 export const Title = styled.div`
   color: ${colors.font.other};

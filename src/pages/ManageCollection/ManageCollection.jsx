@@ -17,11 +17,14 @@ import {
 } from "../../hooks/querys/memorial";
 import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { AiOutlineCloseCircle, AiFillTool } from "react-icons/ai";
-import { LoadingOutlined } from "@ant-design/icons";
-import { CiCirclePlus } from "react-icons/ci";
-import { FaLink } from "react-icons/fa6";
-import { HiOutlineUpload } from "react-icons/hi";
+import {
+  AiOutlineCloseCircle,
+  AiFillTool,
+  AiOutlineLink,
+  AiOutlineLoading3Quarters,
+  AiOutlinePlusCircle,
+  AiOutlineUpload,
+} from "react-icons/ai";
 
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
@@ -57,13 +60,13 @@ export default function ManageCollection() {
       type: "input",
       key: "link",
       placeholder: "link:",
-      icon: FaLink,
+      icon: AiOutlineLink,
     },
     {
       type: "input",
       key: "archive",
       placeholder: "Adicionar Arquivo:",
-      icon: HiOutlineUpload,
+      icon: AiOutlineUpload,
     },
   ]);
   const modalCloseButton = <AiOutlineCloseCircle />;
@@ -79,7 +82,7 @@ export default function ManageCollection() {
       type: "input",
       key: `archive${archiveCount}`,
       placeholder: "Adicionar arquivo :",
-      icon: HiOutlineUpload,
+      icon: AiOutlineUpload,
     };
 
     setInputs([...inputs, newInput]);
@@ -191,7 +194,7 @@ export default function ManageCollection() {
         color={"white"}
       />
       <AddArchive>
-        <CiCirclePlus
+        <AiOutlinePlusCircle
           style={{
             width: "2.5rem",
             height: "3.5rem",
@@ -206,7 +209,7 @@ export default function ManageCollection() {
       <Title>Gerenciar Arquivos </Title>
       {isLoading ? (
         <LoadingStyles>
-          <LoadingOutlined />
+          <AiOutlineLoading3Quarters />
         </LoadingStyles>
       ) : (
         <Table columns={columns} data={collections} />

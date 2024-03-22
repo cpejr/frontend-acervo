@@ -15,7 +15,7 @@ export const StyledInput = styled.input`
   height: 3rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-  color: ${colors.font.secondary};
+  color: ${colors.font.primary};
   font-size: 20px;
   background-color: inherit;
   padding-right: 25px;
@@ -24,8 +24,8 @@ export const StyledInput = styled.input`
   background-position: 95%;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
-  ::placeholder {
-    color: ${colors.font.secondary};
+  &::placeholder {
+    color: ${colors.font.primary};
   }
   @media (max-width: 700px) {
     margin-bottom: 20px;
@@ -41,7 +41,7 @@ export const IconContainer = styled.div`
 
   svg {
     position: absolute;
-    right: 15%;
+    right: 17%;
     display: flex;
     @media (max-width: 700px) {
       margin-bottom: 20px;

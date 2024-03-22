@@ -21,7 +21,7 @@ export default function Header() {
       {usuario ? (
         <React.Fragment>
           <Link to={"/gerenciar-usuarios"}>Usuários</Link>
-          <Link to={"/gerenciar-memorial"}>Memorial</Link>
+          <Link to={"/gerenciar-memorial"}>Arquivos</Link>
           <Link to={"/gerenciar-eventos"}>Eventos</Link>
         </React.Fragment>
       ) : null}

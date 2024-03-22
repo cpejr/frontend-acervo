@@ -17,7 +17,7 @@ export default function FormInput({
     <Container>
       <IconContainer>
         {Icon && (
-          <Icon style={{ width: "2.5rem", height: "3.5rem", color: color }} />
+          <Icon style={{ width: "2rem", height: "3.5rem", color: color }} />
         )}
         <StyledInput
           id={inputKey}
