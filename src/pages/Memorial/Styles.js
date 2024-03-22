@@ -96,7 +96,6 @@ export const DivSelect = styled.div`
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  border: 2px solid white;
   border-radius: 5px;
   width: 10%;
   @media (max-width: ${breakpoints.miniTablet}) {

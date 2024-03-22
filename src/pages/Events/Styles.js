@@ -142,19 +142,12 @@ export const Title = styled.div`
   color: ${colors.accent};
   padding-bottom: 1rem;
 `;
-export const StyledCheckbox = styled(Checkbox)`
-  width: 20px;
-  height: 20px;
-  border: 2px solid ${colors.font.title};
-  border-radius: 5px;
-  justify-content: center;
-`;
+
 export const DivSelect = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  border: 2px solid white;
   border-radius: 5px;
   width: 10%;
   @media (max-width: ${breakpoints.miniTablet}) {

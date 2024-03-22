@@ -14,6 +14,7 @@ import {
 } from "../Memorial/Styles";
 import { SearchBar } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
+import { Checkbox } from "primereact/checkbox";
 
 const cardData = [
   { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
@@ -51,7 +52,7 @@ export default function Memorial() {
           <FilterTitle>Características:</FilterTitle>
           {characteristicCheckboxes.map((checkbox, index) => (
             <label key={index}>
-              <StyledCheckbox />
+              <Checkbox />
               {checkbox.label}
             </label>
           ))}

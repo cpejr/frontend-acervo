@@ -10,11 +10,10 @@ import {
   Prices,
   DivSelect,
   Title,
-  StyledCheckbox,
   UniSelect,
 } from "./Styles";
 import { SearchBar } from "../../components";
-
+import { Checkbox } from "primereact/checkbox";
 export default function Events() {
   const [filter, setFilter] = useState([]);
   const filters = [
@@ -64,7 +63,7 @@ export default function Events() {
           <Title>Características:</Title>
           {characteristicCheckboxes.map((checkbox, index) => (
             <label key={index}>
-              <StyledCheckbox
+              <Checkbox
                 checked={characteristicCheckedStates[index]}
                 onChange={() => handleCharacteristicCheckboxChange(index)}
               />
@@ -76,7 +75,7 @@ export default function Events() {
           <Title>Preços:</Title>
           {priceCheckboxes.map((checkbox, index) => (
             <label key={index}>
-              <StyledCheckbox
+              <Checkbox
                 checked={priceCheckedStates[index]}
                 onChange={() => handlePriceCheckboxChange(index)}
               />
