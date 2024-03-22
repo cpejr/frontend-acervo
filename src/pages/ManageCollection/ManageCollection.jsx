@@ -185,7 +185,7 @@ export default function ManageCollection() {
 
   return (
     <Container>
-      <Title>Adicionar Novo Arquivo </Title>
+      <Title>ADICIONAR NOVO ARQUIVO </Title>
 
       <FormSubmit
         inputs={inputs}
@@ -205,7 +205,6 @@ export default function ManageCollection() {
         Adicionar arquivo:
       </AddArchive>
 
-      <></>
       <Title>Gerenciar Arquivos </Title>
       {isLoading ? (
         <LoadingStyles>

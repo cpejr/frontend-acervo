@@ -10,7 +10,8 @@ export const Form = styled.form`
   width: 100%;
   gap: 2rem;
   height: 100%;
-
+  box-shadow: none;
+  
   @media (max-width: 700px) {
     align-items: center;
     flex-direction: column;
@@ -58,7 +59,6 @@ export const Select = styled(Dropdown)`
 `;
 export const ErrorMessage = styled.p`
   font-size: 1.3rem;
-  color: red;
+  color: pink;
   font-weight: 400;
 `;
-

@@ -29,6 +29,7 @@ export const GlobalStyles = createGlobalStyle`
       background-color: ${colors.font.other};
     }
   }
+  }
 `;
 
 export default GlobalStyles;

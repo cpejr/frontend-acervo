@@ -6,24 +6,22 @@ export const Container = styled.div`
   padding: 3rem 0;
 `;
 export const Title = styled.div`
-  color: ${colors.font.other};
-  font-size: 50px;
+  color: ${colors.font.title};
+  font-size: 30px;
   margin-left: 5%;
-  width: 43%;
-  border-bottom: 1px solid ${colors.font.other};
+  width: fit-content;
+  border-bottom: 2px solid ${colors.font.title};
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 30px;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 27px;
   }
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 25px;
-    width: 54%;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 25px;
-    width: 60%;
+    font-size: 22px;
   }
 `;
 export const LoadingStyles = styled.div`

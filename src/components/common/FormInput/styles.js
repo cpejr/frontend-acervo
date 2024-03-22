@@ -22,6 +22,7 @@ export const StyledInput = styled.input`
   background: url(${(props) => props?.icon}) no-repeat;
   background-size: 40px;
   background-position: 95%;
+  outline: none;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
   &::placeholder {
@@ -30,6 +31,20 @@ export const StyledInput = styled.input`
   @media (max-width: 700px) {
     margin-bottom: 20px;
     font-size: 16px;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid green;
+    -webkit-text-fill-color: green;
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 `;
 export const IconContainer = styled.div`
