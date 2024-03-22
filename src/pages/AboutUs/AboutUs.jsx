@@ -1,3 +1,4 @@
+import { useMediaQuery } from "react-responsive";
 import {
   BomDespachoImage,
   HerbertonImage,
@@ -6,12 +7,29 @@ import {
   ColerfulAreaUp,
   ColerfulAreaDown,
 } from "../../assets";
-import { Title, Container, Line, TextColumn, Banner, TextLine } from "./Styles";
+import {
+  Title,
+  Container,
+  Line,
+  TextColumn,
+  Banner,
+  TextLine,
+  ImageLine,
+  PintaColumn,
+  TextPintaColumn,
+} from "./Styles";
+import { breakpoints } from "../../styles/stylesVariables";
 
 export default function AboutUs() {
+  const isMobileScreen = useMediaQuery({ maxWidth: breakpoints.smallTablet });
+
   return (
     <Container>
-      <Title> &ensp; &ensp; APRESENTAÇÃO</Title>
+      {isMobileScreen ? (
+        <Title>APRESENTAÇÃO</Title>
+      ) : (
+        <Title> &ensp; &ensp; APRESENTAÇÃO</Title>
+      )}
       <Line>
         <TextColumn>
           <p>
@@ -25,7 +43,7 @@ export default function AboutUs() {
           <img src={VilaMilitarImage} alt="VilaMilitarImage" />
         </TextColumn>
       </Line>
-      <Line>
+      <ImageLine>
         <TextColumn>
           <img src={MatrizImage} alt="Matriz Image" />
         </TextColumn>
@@ -37,14 +55,18 @@ export default function AboutUs() {
             site.
           </p>
         </TextColumn>
-      </Line>
+      </ImageLine>
       <Banner style={{ backgroundImage: `url(${ColerfulAreaUp})` }}>
         <p>
           O importante é que você, que de alguma forma é parte de Bom Despacho,
           se encontre e se identifique como personagem da nossa história!
         </p>
       </Banner>
-      <Title> &ensp; &ensp; QUEM SOMOS? </Title>
+      {isMobileScreen ? (
+        <Title> QUEM SOMOS? </Title>
+      ) : (
+        <Title> &ensp; &ensp; QUEM SOMOS? </Title>
+      )}
       <TextLine>
         <p>
           O Site Nossa História – Escrita, Imagem e Som é a parte de uma rede de
@@ -56,10 +78,10 @@ export default function AboutUs() {
         </p>
       </TextLine>
       <Line>
-        <TextColumn style={{ width: "30%" }}>
+        <PintaColumn>
           <img src={HerbertonImage} alt="Heberto Pinta Photo" />
-        </TextColumn>
-        <TextColumn style={{ width: "70%" }}>
+        </PintaColumn>
+        <TextPintaColumn>
           <p>
             Como muitos nascidos em Bom Despacho, sou mais conhecido por um
             apelido, que é Pinta. Sou filho de José Raimundo Sabino, o “Major”
@@ -70,9 +92,9 @@ export default function AboutUs() {
             Educação e Gestão Social, atuo como consultor na área de educação,
             ensino e gestão e coordeno a ONG Casa Tué-Timbuá.
           </p>
-        </TextColumn>
+        </TextPintaColumn>
       </Line>
-      <Line style={{ marginBottom: "2rem", height: "40rem" }}>
+      <ImageLine style={{ marginBottom: "2rem", height: "40rem" }}>
         <TextColumn>
           <p>
             O site é parte de uma Rede, que inclui Whatsapp, Instagram e
@@ -85,9 +107,13 @@ export default function AboutUs() {
           </p>
         </TextColumn>
         <TextColumn>
-          <img src={BomDespachoImage} alt="Bom Despacho Image" />
+          <img
+            style={{ border: "none" }}
+            src={BomDespachoImage}
+            alt="Bom Despacho Image"
+          />
         </TextColumn>
-      </Line>
+      </ImageLine>
       <Banner
         style={{
           backgroundImage: `url(${ColerfulAreaDown})`,
