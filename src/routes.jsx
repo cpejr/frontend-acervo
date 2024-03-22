@@ -15,6 +15,7 @@ import {
   ManageUsers,
   Story,
   AboutUs,
+  Memorial,
 } from "./pages";
 import { AppLayout } from "./components";
 
@@ -23,14 +24,14 @@ const router = createBrowserRouter(
     <Route>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="story" element={<Story />} />
-        <Route path="aboutus" element={<AboutUs />} />
-        <Route path="collection" element={<Collection />} />
-        <Route path="events" element={<Events />} />
-        <Route path="managecollection" element={<ManageCollection />} />
-        <Route path="managevents" element={<ManageEvents />} />
-        <Route path="manageusers" element={<ManageUsers />} />
-        <Route path="support" element={<Support />} />
+        <Route path="historia" element={<Story />} />
+        <Route path="sobre" element={<AboutUs />} />
+        <Route path="memorial" element={<Memorial />} />
+        <Route path="eventos" element={<Events />} />
+        <Route path="gerenciar-memorial" element={<ManageCollection />} />
+        <Route path="gerenciar-eventos" element={<ManageEvents />} />
+        <Route path="gerenciar-usuarios" element={<ManageUsers />} />
+        <Route path="suporte" element={<Support />} />
       </Route>
     </Route>
   )
