@@ -27,7 +27,6 @@ export const ModalStyle = styled(Modal)`
   .ant-modal-content {
     background-color: ${colors.modals.background};
     padding: 1rem;
-    align-items: center;
     justify-content: center;
     color: ${colors.font.primary};
     padding: 6;
@@ -35,6 +34,9 @@ export const ModalStyle = styled(Modal)`
     border-radius: none;
     max-height: 60vh;
     overflow-y: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-20%);
   }
 `;
 
