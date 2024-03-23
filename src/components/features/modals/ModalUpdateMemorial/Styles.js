@@ -45,4 +45,8 @@ export const AddArchive = styled.div`
   color: ${colors.font.secondary};
   align-items: center;
   gap: 1rem;
+  gap: 1rem;
+  margin-left: 14.7%;
+  z-index: 1;
+  margin-top: -110px;
 `;

@@ -11,7 +11,7 @@ export const Form = styled.form`
   gap: 2rem;
   height: 100%;
   box-shadow: none;
-  
+  z-index: 0;
   @media (max-width: 700px) {
     align-items: center;
     flex-direction: column;

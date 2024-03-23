@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Title, LoadingStyles, AddArchive } from "./Styles";
+import {
+  Container,
+  Title,
+  LoadingStyles,
+  AddArchive,
+  SubTitle,
+} from "./Styles";
 import {
   Table,
   ModalDeleteItem,
@@ -196,8 +202,8 @@ export default function ManageCollection() {
       <AddArchive>
         <AiOutlinePlusCircle
           style={{
-            width: "2.5rem",
-            height: "3.5rem",
+            width: "2rem",
+            height: "3rem",
             cursor: "pointer",
           }}
           onClick={addInput}
@@ -205,7 +211,7 @@ export default function ManageCollection() {
         Adicionar arquivo:
       </AddArchive>
 
-      <Title>Gerenciar Arquivos </Title>
+      <SubTitle>Gerenciar Arquivos </SubTitle>
       {isLoading ? (
         <LoadingStyles>
           <AiOutlineLoading3Quarters />

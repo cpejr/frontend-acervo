@@ -55,7 +55,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
           </>
         )
       )}
-      <Button type="submit" width="200px" height="50px">
+      <Button type="submit" width="200px" height="50px" marginTop="50px">
         Enviar
       </Button>
     </Form>
