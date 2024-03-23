@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../../styles/stylesVariables";
 
 export const Container = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ export const StyledInput = styled.input`
   height: 3rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-  color: ${colors.font.primary};
+  color: ${(props) => props?.color};
   font-size: 20px;
   background-color: inherit;
   padding-right: 25px;
@@ -26,7 +25,7 @@ export const StyledInput = styled.input`
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
   &::placeholder {
-    color: ${colors.font.primary};
+    color: ${(props) => props?.color};
   }
   @media (max-width: 700px) {
     margin-bottom: 20px;

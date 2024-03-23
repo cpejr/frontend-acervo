@@ -23,6 +23,7 @@ export default function FormInput({
           id={inputKey}
           inputKey={inputKey}
           type={type}
+          autocomplete="off"
           {...register(inputKey)}
           placeholder={placeholder}
           defaultValue={defaultValue}
