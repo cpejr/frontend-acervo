@@ -5,5 +5,6 @@ export { default as Events } from "./Events/Events";
 export { default as ManageCollection } from "./ManageCollection/ManageCollection";
 export { default as ManageEvents } from "./ManageEvents/ManageEvents";
 export { default as ManageUsers } from "./ManageUsers/ManageUsers";
+export { default as Memorial } from "./Memorial/Memorial";
 export { default as Story } from "./Story/Story";
 export { default as AboutUs } from "./AboutUs/AboutUs";

@@ -2,12 +2,12 @@ import { createGlobalStyle } from "styled-components";
 import { colors } from "../styles/stylesVariables";
 
 export const PrimereactStyles = createGlobalStyle`
-.p-datatable .p-datatable-tbody > tr > td {
-  background-color: ${colors.background.primary}; 
-  color: white;
-  border-bottom: 0.5px solid ${colors.font.title};
-  padding: 1rem 0;
-  font-size: 1rem;
+  .p-datatable .p-datatable-tbody > tr > td {
+    background-color: ${colors.background.primary}; 
+    color: white;
+    border-bottom: 0.5px solid ${colors.font.title};
+    padding: 1rem 0;
+    font-size: 1rem;
   }  
 
   .p-dropdown-item {
@@ -29,7 +29,7 @@ export const PrimereactStyles = createGlobalStyle`
     background-color: ${colors.background.primary};
   }
 
- button.p-paginator-element {
+  button.p-paginator-element {
     background-color: ${colors.background.primary};
 
     &:hover {
@@ -39,8 +39,8 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-dropdown-items-wrapper, .p-dropdown-panel {
-background-color: ${colors.background.primary};
-border-radius: 10px;
+    background-color: ${colors.background.primary};
+    border-radius: 10px;
   }
 
   .p-dropdown-items-wrapper {
@@ -61,5 +61,16 @@ border-radius: 10px;
     color: ${colors.font.primary};
   }
 
+  .p-checkbox-box {
+    background-color: ${colors.background.primary};
+    width: 20px;
+    height: 20px;
+    border: 2px solid ${colors.font.title};
+    border-radius: 5px;
+    justify-content: center;
+    &:hover &:active{
+      border: 2px solid ${colors.accent.primary};    
+    }
+  }
 
 `;
