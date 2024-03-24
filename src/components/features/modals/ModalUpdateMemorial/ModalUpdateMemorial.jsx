@@ -37,7 +37,7 @@ export default function ModalUpdateMemorial({
     ];
     if (values.archives !== undefined) {
       const updatedArchives = values.archives.map((archive, index) => ({
-        type: "input",
+        type: "archive",
         key: `archiveantigo${index + 1}`,
         placeholder: `Mudar Arquivo ${index + 1}`,
         value: archive,
@@ -54,7 +54,7 @@ export default function ModalUpdateMemorial({
   }
   function addInput() {
     const newInput = {
-      type: "input",
+      type: "archive",
       key: `archive${archiveCount}`,
       placeholder: "Adicionar arquivo :",
       icon: HiOutlineUpload,

@@ -6,5 +6,10 @@ export const Upload = styled(AntdUpload)`
   .ant-upload.ant-upload-select {
     width: 100%;
   }
-  margin-top: -20px;
+  .ant-upload-list-item-container {
+    width: 70%;
+    align-self: center;
+    margin-left: 15%;
+    z-index: 1;
+  }
 `;

@@ -69,7 +69,7 @@ export default function ManageCollection() {
       icon: AiOutlineLink,
     },
     {
-      type: "input",
+      type: "archive",
       key: "archive",
       placeholder: "Adicionar Arquivo:",
       icon: AiOutlineUpload,
@@ -85,7 +85,7 @@ export default function ManageCollection() {
 
   function addInput() {
     const newInput = {
-      type: "input",
+      type: "archive",
       key: `archive${archiveCount}`,
       placeholder: "Adicionar arquivo :",
       icon: AiOutlineUpload,

@@ -20,13 +20,5 @@ export const newCollectionValidationSchema = z
       .max(750, {
         message: "A descrição longa não pode exceder 750 caracteres",
       }),
-    archive: z
-      .string({ required_error: "Pelo menos um arquivo desse ser colocado" })
-      .min(2, {
-        message: "o arquivo deve ter no minimo 2 carateres",
-      })
-      .max(750, {
-        message: "A descrição longa não pode exceder 750 caracteres",
-      }),
   })
   .nonstrict();
