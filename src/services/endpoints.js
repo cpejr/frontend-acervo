@@ -12,13 +12,19 @@ export async function deleteUser(_id) {
 
   return data;
 }
+export const login = async (credentials) => {
+  const { setAuth, setUser } = useAuthStore.getState();
+  const { data } = await api.post("/user", credentials);
+  setAuth(data.token);
+  setUser(data.user);
+  return data;
+};
 
 export async function updateUser({ _id, newUserData }) {
   const { data } = await api.put(`/user/${_id}`, newUserData);
 
   return data;
 }
-  const { setAuth, setUser } = useAuthStore.getState();
 export const getEvents = async (filters = {}) => {
   const { data } = await api.get(`/event`, { params: filters });
   return data;
@@ -62,13 +68,5 @@ export const getCategoryTypeByName = async (name) => {
 //CategoryType endpoints
 export const getCategoryPrice = async (filters = {}) => {
   const { data } = await api.get("/categoryPrice", { params: filters });
-  return data;
-};
-export const login = async (credentials) => {
-  const { setAuth, setUser } = useAuthStore.getState();
-  const { data } = await api.post("/user", credentials);
-
-  setAuth(data.token);
-  setUser(data.user);
   return data;
 };
