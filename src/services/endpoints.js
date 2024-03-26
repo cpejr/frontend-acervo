@@ -1,3 +1,4 @@
+import useAuthStore from "../Stores/auth";
 import api from "./api";
 //user
 
@@ -17,11 +18,11 @@ export async function updateUser({ _id, newUserData }) {
 
   return data;
 }
+  const { setAuth, setUser } = useAuthStore.getState();
 export const getEvents = async (filters = {}) => {
   const { data } = await api.get(`/event`, { params: filters });
   return data;
 };
-
 export const deleteEvents = async (_id) => {
   const { data } = await api.delete(`/event/${_id}`);
   return data;
@@ -61,5 +62,13 @@ export const getCategoryTypeByName = async (name) => {
 //CategoryType endpoints
 export const getCategoryPrice = async (filters = {}) => {
   const { data } = await api.get("/categoryPrice", { params: filters });
+  return data;
+};
+export const login = async (credentials) => {
+  const { setAuth, setUser } = useAuthStore.getState();
+  const { data } = await api.post("/user", credentials);
+
+  setAuth(data.token);
+  setUser(data.user);
   return data;
 };

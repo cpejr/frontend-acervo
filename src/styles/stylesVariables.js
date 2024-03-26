@@ -2,11 +2,12 @@ export const colors = {
   background: {
     primary: "#7F260F",
     secondary: "#000000",
+    hover: "#53190a",
   },
   font: {
     primary: "#FFF",
     secondary: "#000",
-    other: "#EEDAC5",
+    title: "#EEDAC5",
     line: "#FFD599",
   },
   accent: {
@@ -20,7 +21,7 @@ export const colors = {
   error: "#9E0000",
   warning: "#F19709",
   placeholder: "#DFDFDF",
-  darkwhite: "#EEDAC5",
+  underline: "#FFD599",
 };
 
 export const fonts = {

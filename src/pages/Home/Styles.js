@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles/stylesVariables";
+import { breakpoints, colors } from "../../styles/stylesVariables";
 import { background } from "../../assets";
 
 export const Container = styled.div`
@@ -63,9 +63,9 @@ export const Button = styled.button`
 `;
 
 export const Title = styled.h1`
-  color: #eedac5;
-  border-bottom: 2px solid #eedac5;
-  padding-bottom: 2px;
+  color: ${colors.font.title};
+  border-bottom: 2px solid ${colors.font.title};
+  margin: 0;
 `;
 
 export const Column = styled.div`

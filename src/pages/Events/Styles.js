@@ -119,7 +119,7 @@ export const Characteristics = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
-    color: #eedac5;
+    color: ${colors.font.title};
   }
 `;
 export const Prices = styled.div`
@@ -130,7 +130,7 @@ export const Prices = styled.div`
     display: flex;
     gap: 0.5rem;
     padding-top: 0.3rem;
-    color: ${colors.darkwhite};
+    color: ${colors.font.title};
   }
 `;
 export const VerticalLine = styled.div`
@@ -142,19 +142,12 @@ export const Title = styled.div`
   color: ${colors.accent};
   padding-bottom: 1rem;
 `;
-export const StyledCheckbox = styled(Checkbox)`
-  width: 20px;
-  height: 20px;
-  border: 2px solid ${colors.darkwhite};
-  border-radius: 5px;
-  justify-content: center;
-`;
+
 export const DivSelect = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  border: 2px solid white;
   border-radius: 5px;
   width: 10%;
   @media (max-width: ${breakpoints.miniTablet}) {

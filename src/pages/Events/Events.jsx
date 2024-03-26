@@ -12,7 +12,7 @@ import {
   EventNotFound,
 } from "./Styles";
 import { SearchBar } from "../../components";
-
+import { Checkbox } from "primereact/checkbox";
 export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
