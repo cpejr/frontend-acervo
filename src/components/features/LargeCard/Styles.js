@@ -3,7 +3,7 @@ import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const StyledCard = styled(Card)`
-  display: flex;
+  display: block;
   flex-direction: column;
   width: 50%;
   max-width: 60%;
@@ -49,6 +49,7 @@ export const Image = styled.div`
 
 export const CardTitle = styled.div`
   display: flex;
+  word-break:break-all;
   flex-direction: row;
   width: 100%;
   align-items: center;

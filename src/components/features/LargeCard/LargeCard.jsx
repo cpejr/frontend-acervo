@@ -17,7 +17,8 @@ const images = [
 ];
 
 export default function LargeCard({ data }) {
-  const { title, description } = data;
+  const title = data.title;
+  const shortDescription = data.shortDescription;
 
   return (
     <StyledCard>
@@ -38,7 +39,7 @@ export default function LargeCard({ data }) {
         </CardTitle>
       </Group>
       <CardLine>
-        <p>{description}</p>
+        <p>{shortDescription}</p>
       </CardLine>
     </StyledCard>
   );
