@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGetCategoryPrice } from "../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
-import useDebounce from "../../services/useDebouce";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 import {
   useCreateEvents,
   useDeleteEvents,
-  useEventsByCategoryId,
+  useGetEvents,
 } from "../../hooks/querys/events";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
 import {
   FormInput,
-  FormImageInput,
   FormTextArea,
   SubmitButton,
   ModalDeleteEvent,
@@ -34,8 +33,6 @@ import {
 } from "./Styles";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
-  const [names, setNames] = useState("");
-  const debouncedName = useDebounce(names);
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
   const [idCategoriesPrices, setIdCategoriesPrices] = useState([]);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -43,11 +40,9 @@ export default function ManageEvents() {
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const { data: events } = useEventsByCategoryId({
-    name: debouncedName,
-
+  const { data: events } = useGetEvents({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
   const formattedEvents = events?.map((events) => ({
@@ -63,12 +58,12 @@ export default function ManageEvents() {
 
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
   const { data: categoryPrice } = useGetCategoryPrice({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
 
@@ -77,10 +72,9 @@ export default function ManageEvents() {
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
-      toast.success("Sucesso");
     },
     onError: (err) => {
-      toast.error(err);
+      return err;
     },
   });
 
@@ -89,10 +83,9 @@ export default function ManageEvents() {
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
-      toast.success("Sucesso");
     },
     onError: (err) => {
-      toast.error(err);
+      return err;
     },
   });
   // Modal Functions

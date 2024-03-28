@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
 import { Dropdown } from "primereact/dropdown";
-import { Checkbox } from "primereact/checkbox";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { imageEventNotFound } from "../../assets/index";
 export const Container = styled.div`
@@ -161,11 +160,11 @@ export const DivSelect = styled.div`
 export const UniSelect = styled(Dropdown)`
   gap: 1rem;
   .p-dropdown-label {
-    color: white;
+    color: ${colors.font.primary};
     width: 100%;
   }
   .p-inputtext {
-    color: white;
+    color: ${colors.font.primary};
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 30%;

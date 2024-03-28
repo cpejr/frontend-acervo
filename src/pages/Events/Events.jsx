@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { useEventsByCategoryId } from "../../hooks/querys/events";
+import { useState } from "react";
+import { useGetEventsByCategoryId } from "../../hooks/querys/events";
 import useDebounce from "../../services/useDebouce";
 import Card from "../../components/features/Card/Card";
 import FilterArea from "../../components/features/FilterArea/FilterArea";
+import { toast } from "react-toastify";
+
 import {
   Container,
   DivLine,
@@ -12,7 +14,6 @@ import {
   EventNotFound,
 } from "./Styles";
 import { SearchBar } from "../../components";
-import { Checkbox } from "primereact/checkbox";
 export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
@@ -21,12 +22,12 @@ export default function Events() {
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
 
-  const { data: events } = useEventsByCategoryId({
+  const { data: events } = useGetEventsByCategoryId({
     id: categoryIDsArrays,
     name: debouncedName,
     type: filter,
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
 

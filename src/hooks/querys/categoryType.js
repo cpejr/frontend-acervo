@@ -1,4 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import {
   getCategoryType,
@@ -6,27 +7,26 @@ import {
 } from "../../services/endpoints";
 
 export function useGetCategoryType({
-    filters,
-    onSuccess = ()=>{},
-    onError = (err) = console.log(err),
-}={}) {
-    return useQuery({
-        queryKey:["categoryType", filters],
-        queryFn: ()=> getCategoryType(filters),
-        onSuccess,
-        onError
-    });
+  filters,
+  onSuccess = () => {},
+  onError = (err) => toast.error(err),
+} = {}) {
+  return useQuery({
+    queryKey: ["categoryType", filters],
+    queryFn: () => getCategoryType(filters),
+    onSuccess,
+    onError,
+  });
 }
 export function useGetCategoryTypeByName({
-    name,
-    onSuccess = () => {},
-    onError = (err) => console.log(err),
-  } = {}) {
-    return useQuery({
-      queryKey: ["categoryType", name],
-      queryFn: () => getCategoryTypeByName(name),
-      onSuccess,
-      onError,
-    });
-  }
-
+  name,
+  onSuccess = () => {},
+  onError = (err) => toast.error(err),
+} = {}) {
+  return useQuery({
+    queryKey: ["categoryType", name],
+    queryFn: () => getCategoryTypeByName(name),
+    onSuccess,
+    onError,
+  });
+}

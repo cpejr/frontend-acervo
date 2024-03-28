@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Modal } from "antd";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
 import { DataTable } from "primereact/datatable";
@@ -81,8 +80,6 @@ export const EventButtons = styled.div`
   gap: 8px;
 `;
 export const MultipleSelect = styled(MultiSelect)`
-  background-color: ${colors.black};
-
   .p-multiselect-label {
     width: 215px;
   }

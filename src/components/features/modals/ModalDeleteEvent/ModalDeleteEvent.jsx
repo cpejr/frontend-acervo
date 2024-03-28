@@ -51,7 +51,7 @@ export default function ModalDeleteEvent({
 
 ModalDeleteEvent.propTypes = {
   handleEventDelete: PropTypes.func.isRequired,
-  id1: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   modal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   modalCloseIcon: PropTypes.object.isRequired,

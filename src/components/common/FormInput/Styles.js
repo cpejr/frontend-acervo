@@ -25,7 +25,7 @@ export const StyledInput = styled.input`
   height: 1rem;
   padding: 1rem 2.2rem;
   border-radius: 0.4rem;
-  color: white;
+  color: ${colors.font.primary};
   width: 100%;
   background-color: ${colors.background.primary};
   border: ${(props) =>
@@ -59,6 +59,6 @@ export const IconContainer = styled.div`
 
 export const ErrorMessage = styled.p`
   font-size: 1.3rem;
-  color: red;
+  color: ${colors.error};
   font-weight: 400;
 `;

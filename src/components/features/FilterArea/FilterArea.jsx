@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useGetCategoryType } from "../../../hooks/querys/categoryType";
 import { useGetCategoryPrice } from "../../../hooks/querys/categoryPrice";
+import { toast } from "react-toastify";
 import {
   ContainerFilter,
   MultipleSelect,
@@ -22,12 +23,12 @@ export default function FilterArea({
   // Set variables
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
   const { data: categoryPrice } = useGetCategoryPrice({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
   const filters = [

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { Button, Input, Select } from "antd";
+import { Button } from "antd";
 import { MultiSelect } from "primereact/multiselect";
 import { Dropdown } from "primereact/dropdown";
 
@@ -18,11 +18,8 @@ export const ContainerFilter = styled.div`
 `;
 
 export const MultipleSelect = styled(MultiSelect)`
-  background-color: ${colors.black};
   z-index: 1;
   .p-multiselect-label {
-    color: ${colors.white};
-
     width: 215px;
   }
   @media (max-width: ${breakpoints.tablet}) {
@@ -88,4 +85,3 @@ export const UniSelect = styled(Dropdown)`
     width: 50%;
   }
 `;
-

@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import {
   getEvents,
@@ -11,7 +12,7 @@ import {
 export function useGetEvents({
   filters,
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => toast.error(err),
 } = {}) {
   return useQuery({
     queryKey: ["events", filters],
@@ -23,33 +24,33 @@ export function useGetEvents({
 
 export function useCreateEvents({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => toast.error(err),
 } = {}) {
   return useMutation({ mutationFn: createEvents, onSuccess, onError });
 }
 
 export function useDeleteEvents({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => toast.error(err),
 } = {}) {
   return useMutation({ mutationFn: deleteEvents, onSuccess, onError });
 }
 
 export function useUpdateEvents({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => toast.error(err),
 } = {}) {
   return useMutation({ mutationFn: updateEvents, onSuccess, onError });
 }
-export function useEventsByCategoryId({
+export function useGetEventsByCategoryId({
   id,
   name,
   type,
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => toast.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["events", id, name, type],
+    queryKey: ["events"],
     queryFn: () => getEventsByCategoryId(id, name, type),
     onSuccess,
     onError,

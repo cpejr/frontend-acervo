@@ -5,6 +5,7 @@ import { Container, Message, ModalStyle, Form, MultipleSelect } from "./Styles";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
 import FormInput from "../../../common/FormInput/FormInput";
 import { useState, useEffect } from "react";
@@ -24,12 +25,12 @@ export default function ModalEditEvent({
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
   const { data: categoryPrice } = useGetCategoryPrice({
     onError: (err) => {
-      console.log(err);
+      toast.error(err);
     },
   });
   const { mutate: updatEvent } = useUpdateEvents({
@@ -37,10 +38,9 @@ export default function ModalEditEvent({
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
-      toast.success("Sucesso");
     },
     onError: (err) => {
-      toast.error(err);
+      return err;
     },
   });
   const setCategories = () => {
@@ -53,18 +53,10 @@ export default function ModalEditEvent({
     }
   }, [modal]);
 
-  const [formData, setFormData] = useState({
-    name: event.name,
-    eventUpload: event.eventUpload,
-    shortDescription: event.shortDescription,
-    longDescription: event.longDescription,
-    link: event.link,
-  });
-
   // On Submit
-  const onSubmit = () => {
+  const onSubmit = (data) => {
     const body = {
-      ...formData,
+      ...data,
       id_categoryType: idsCategoryType,
       id_categoryPrice: idsCategoryPrice,
     };
@@ -99,7 +91,6 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Nome do evento:"
             errors={errors}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
           <FormInput
             name="eventUpload"
@@ -108,11 +99,6 @@ export default function ModalEditEvent({
             register={register}
             placeholder="URL da imagem:"
             errors={errors}
-            onChange={(e) =>
-              setFormData({ ...formData, eventUpload: e.target.value })
-            }
-
-            //icon={}
           />
           <FormInput
             name="shortDescription"
@@ -121,9 +107,6 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Descrição curta:"
             errors={errors}
-            onChange={(e) =>
-              setFormData({ ...formData, shortDescription: e.target.value })
-            }
           />
           <FormInput
             name="longDescription"
@@ -132,9 +115,6 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Descrição longa:"
             errors={errors}
-            onChange={(e) =>
-              setFormData({ ...formData, longDescription: e.target.value })
-            }
           />
           <FormInput
             name="link"
@@ -143,14 +123,10 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Link do evento:"
             errors={errors}
-            onChange={(e) => setFormData({ ...formData, link: e.target.value })}
           />
           <MultipleSelect
             value={idsCategoryPrice}
             name="id_categoryPrice"
-            onChange={(e) => {
-              setIdsCategoryPrice(e.value);
-            }}
             options={transformArrayItems(categoryPrice)}
             optionLabel="label"
             placeholder="Escolha as características"
@@ -160,9 +136,6 @@ export default function ModalEditEvent({
           <MultipleSelect
             value={idsCategoryType}
             name="id_categoryType"
-            onChange={(e) => {
-              setIdsCategoryType(e.value);
-            }}
             options={transformArrayItems(categoryType)}
             optionLabel="label"
             placeholder="Escolha as características"
