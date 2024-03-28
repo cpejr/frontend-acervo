@@ -8,6 +8,7 @@ export { default as cidade } from "./Home/Cidade.svg";
 export { default as prefeitura } from "./Home/Prefeitura.svg";
 export { default as background } from "./Home/background.png";
 export { default as apresentacao } from "./Home/Apresentacao.svg";
+export { default as imageEventNotFound } from "./Home/EventNotFound.png";
 
 export { default as Logo } from "./Footer/LogoBranca.svg";
 export { default as LogoCidade } from "./Header/CityLogo.svg";

@@ -10,38 +10,36 @@ import {
   ButtonDiv,
 } from "./Styles";
 import { imageCard } from "../../../assets/index";
-export default function Card() {
-  const tagData = [
-    { _id: 1, title: "Tag 1", description: "Descrição do Card 1" },
-    { _id: 2, title: "Tag 2", description: "Descrição do Card 2" },
-    { _id: 3, title: "Tag 3", description: "Descrição do Card 3" },
-    { _id: 4, title: "Tag 4", description: "Descrição do Card 4" },
-    { _id: 5, title: "Tag 5", description: "Descrição do Card 5" },
-  ];
+export default function Card({ data }) {
+  let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   return (
     <StyledCard>
       <Image>
-        <img src={imageCard} />
+        <img src={data.eventUpload} />
       </Image>
       <Group>
         <LineSVG></LineSVG>
-        <Line>EVENTO</Line>
+        <Line>{data.name}</Line>
       </Group>
       <Line>
-        <p>
-          Descrição Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Integer sit amet est mauris.
-        </p>
+        <p>{data.shortDescription}</p>
       </Line>
 
       <Tags>
-        {tagData.map((tag, index) => (
-          <Tag key={index}>{tag.title}</Tag>
+        {categories?.map((category, index) => (
+          <Tag key={index}>{category?.name}</Tag>
         ))}
       </Tags>
 
       <ButtonDiv>
-        <OrangeButton>Botão</OrangeButton>
+        <OrangeButton
+          onClick={(event) => {
+            event.stopPropagation();
+            window.open(data?.link, "_blank");
+          }}
+        >
+          Link
+        </OrangeButton>
       </ButtonDiv>
     </StyledCard>
   );

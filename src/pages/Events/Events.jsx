@@ -1,109 +1,66 @@
 import { useState } from "react";
+import { useGetEventsByCategoryId } from "../../hooks/querys/events";
+import useDebounce from "../../services/useDebouce";
 import Card from "../../components/features/Card/Card";
+import FilterArea from "../../components/features/FilterArea/FilterArea";
+import { toast } from "react-toastify";
+
 import {
   Container,
   DivLine,
   Line,
-  TrendingTools,
+  TrendingEvents,
   Filter,
-  Characteristics,
-  Prices,
-  DivSelect,
-  Title,
-  UniSelect,
+  EventNotFound,
 } from "./Styles";
 import { SearchBar } from "../../components";
-import { Checkbox } from "primereact/checkbox";
 export default function Events() {
+  const [names, setNames] = useState("");
+  const debouncedName = useDebounce(names);
   const [filter, setFilter] = useState([]);
-  const filters = [
-    { label: "Melhor avaliados", value: "melhorAvaliados" },
-    { label: "Favoritos", value: "favoritos" },
-  ];
+  const [types, setTypes] = useState([]);
+  const [prices, setPrices] = useState([]);
+  const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
 
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-  ];
-
-  const priceCheckboxes = [{ label: "Preço 1" }, { label: "Preço 2" }];
-
-  const [characteristicCheckedStates, setCharacteristicCheckedStates] =
-    useState(Array(characteristicCheckboxes.length).fill(false));
-
-  const [priceCheckedStates, setPriceCheckedStates] = useState(
-    Array(priceCheckboxes.length).fill(false)
-  );
-
-  const handleCharacteristicCheckboxChange = (index) => {
-    const newCheckedStates = [...characteristicCheckedStates];
-    newCheckedStates[index] = !newCheckedStates[index];
-    setCharacteristicCheckedStates(newCheckedStates);
-  };
-
-  const handlePriceCheckboxChange = (index) => {
-    const newCheckedStates = [...priceCheckedStates];
-    newCheckedStates[index] = !newCheckedStates[index];
-    setPriceCheckedStates(newCheckedStates);
-  };
-
-  const cardData = [
-    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-    { _id: 3, title: "Card 3", description: "Descrição do Card 3" },
-    { _id: 4, title: "Card 4", description: "Descrição do Card 4" },
-    { _id: 5, title: "Card 5", description: "Descrição do Card 5" },
-  ];
+  const { data: events } = useGetEventsByCategoryId({
+    id: categoryIDsArrays,
+    name: debouncedName,
+    type: filter,
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
 
   return (
     <Container>
-      <SearchBar placeholder={"Pesquisar Evento"}></SearchBar>
+      <SearchBar
+        value={names}
+        search={(e) => setNames(e.target.value)}
+        placeholder={"Pesquisar Evento"}
+      ></SearchBar>
       <Filter>
-        <Characteristics>
-          <Title>Características:</Title>
-          {characteristicCheckboxes.map((checkbox, index) => (
-            <label key={index}>
-              <Checkbox
-                checked={characteristicCheckedStates[index]}
-                onChange={() => handleCharacteristicCheckboxChange(index)}
-              />
-              {checkbox.label}
-            </label>
-          ))}
-        </Characteristics>
-        <Prices>
-          <Title>Preços:</Title>
-          {priceCheckboxes.map((checkbox, index) => (
-            <label key={index}>
-              <Checkbox
-                checked={priceCheckedStates[index]}
-                onChange={() => handlePriceCheckboxChange(index)}
-              />
-              {checkbox.label}
-            </label>
-          ))}
-        </Prices>
-        <DivSelect>
-          <UniSelect
-            value={filter}
-            onChange={(e) => setFilter(e.value)}
-            options={filters}
-            optionLabel="label"
-            showClear
-            placeholder="Ordenar Por"
-            className="w-full md:w-14rem"
-          ></UniSelect>
-        </DivSelect>
+        <FilterArea
+          types={types}
+          setArray={setCategoryIDsArrays}
+          setTypes={setTypes}
+          prices={prices}
+          setPrices={setPrices}
+          filter={filter}
+          setFilter={setFilter}
+        ></FilterArea>
       </Filter>
-      <TrendingTools>
+      <TrendingEvents>
         <DivLine>
+          {events?.length === 0 && (
+            <EventNotFound>Nenhum evento encontrado</EventNotFound>
+          )}
           <Line>
-            {cardData.map((card, index) => (
+            {events?.map((card, index) => (
               <Card key={index} data={card} />
             ))}
           </Line>
         </DivLine>
-      </TrendingTools>
+      </TrendingEvents>
     </Container>
   );
 }
