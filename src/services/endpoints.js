@@ -27,3 +27,10 @@ export const login = async (credentials) => {
   setUser(data.user);
   return data;
 };
+
+// memorial
+
+export async function getCards(selection) {
+  const { data } = await api.post("/memorial/memorialCards",selection);
+  return data;
+}
