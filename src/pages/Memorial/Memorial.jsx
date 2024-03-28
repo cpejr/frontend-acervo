@@ -130,7 +130,9 @@ export default function Memorial() {
         </DivSelect>
       </Filter>
       <DivLine>
-        {memorialCards?.map((card) => (
+        {memorialCards?.filter((card) =>
+            card.title.toLowerCase().includes(searchValue.toLowerCase())
+          ).map((card) => (
           <Line key={card.title}>
             <LargeCard aria-label="Cartão de memorial" data={card} />
           </Line>
