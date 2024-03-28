@@ -98,6 +98,7 @@ export default function Memorial() {
     <Container>
       <Title>ACERVO</Title>
       <SearchBar
+        aria-label="Barra de pesquisa"
         placeholder="Pesquisar"
         value={searchValue}
         search={handleSearchChange}
@@ -108,6 +109,7 @@ export default function Memorial() {
           {characteristicCheckboxes.map((checkbox) => (
             <label key={checkbox.value}>
               <Checkbox
+                aria-label="Botão seletor de caracteristicas"
                 checked={checkbox.checked}
                 name={checkbox.value}
                 onChange={handleChangeCheckbox}
@@ -119,6 +121,7 @@ export default function Memorial() {
         <VerticalLine />
         <DivSelect>
           <UniSelect
+            aria-label="Botão de ordenação"
             options={filters}
             optionLabel="label"
             placeholder="Ordenar Por"
@@ -129,7 +132,7 @@ export default function Memorial() {
       <DivLine>
         {memorialCards?.map((card) => (
           <Line key={card.title}>
-            <LargeCard data={card} />
+            <LargeCard aria-label="Cartão de memorial" data={card} />
           </Line>
         ))}
       </DivLine>

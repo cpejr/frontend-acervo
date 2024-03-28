@@ -3,7 +3,7 @@ import { getCards } from "../../services/endpoints";
 
 export function useGetCards({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
     queryKey: ["memorialCards"],
