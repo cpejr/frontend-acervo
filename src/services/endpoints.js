@@ -27,3 +27,28 @@ export const login = async (credentials) => {
   setUser(data.user);
   return data;
 };
+
+//memorial
+
+export async function getMemorial() {
+  const { data } = await api.get("/memorial");
+
+  return data;
+}
+
+export async function deleteMemorial(_id) {
+  const { data } = await api.delete(`/memorial/${_id}`);
+  return data;
+}
+
+export async function updateMemorial({ _id, newData }) {
+  const { data } = await api.put(`/memorial/${_id}`, newData);
+
+  return data;
+}
+
+export async function postMemorial(newMemorial) {
+  const { data } = await api.post(`/memorial`, newMemorial);
+
+  return data;
+}
