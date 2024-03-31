@@ -19,6 +19,7 @@ export default function FilterArea({
   filter,
   setFilter,
   setArray,
+  setNames,
 }) {
   // Set variables
   const { data: categoryType } = useGetCategoryType({
@@ -50,6 +51,8 @@ export default function FilterArea({
     setTypes([]);
     setPrices([]);
     setFilter([]);
+    setArray([]);
+    setNames([]);
   };
 
   return (
@@ -93,7 +96,7 @@ export default function FilterArea({
 }
 
 FilterArea.propTypes = {
-  onFilterClick: PropTypes.func.isRequired,
+  onFilterClick: PropTypes.func,
   setArray: PropTypes.func.isRequired,
   types: PropTypes.array.isRequired,
   setTypes: PropTypes.func.isRequired,
@@ -101,5 +104,6 @@ FilterArea.propTypes = {
   setPrices: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
   filter: PropTypes.array.isRequired,
-  filterReset: PropTypes.func.isRequired,
+  setNames: PropTypes.func.isRequired,
+  filterReset: PropTypes.func,
 };

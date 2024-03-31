@@ -9,7 +9,7 @@ import {
   Group,
   ButtonDiv,
 } from "./Styles";
-import { imageCard } from "../../../assets/index";
+import PropTypes from "prop-types";
 export default function Card({ data }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   return (
@@ -44,3 +44,7 @@ export default function Card({ data }) {
     </StyledCard>
   );
 }
+
+Card.propTypes = {
+  data: PropTypes.object.isRequired,
+};

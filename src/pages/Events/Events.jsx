@@ -30,13 +30,12 @@ export default function Events() {
       toast.error(err);
     },
   });
-
   return (
     <Container>
       <SearchBar
         value={names}
         search={(e) => setNames(e.target.value)}
-        placeholder={"Pesquisar Evento"}
+        placeholder="Pesquisar Evento"
       ></SearchBar>
       <Filter>
         <FilterArea
@@ -47,6 +46,7 @@ export default function Events() {
           setPrices={setPrices}
           filter={filter}
           setFilter={setFilter}
+          setNames={setNames}
         ></FilterArea>
       </Filter>
       <TrendingEvents>
