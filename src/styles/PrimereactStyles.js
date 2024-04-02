@@ -9,6 +9,15 @@ export const PrimereactStyles = createGlobalStyle`
     padding: 1rem 0;
     font-size: 1rem;
   }  
+  .ant-menu-light.ant-menu-submenu-popup>.ant-menu{
+    background-color: ${colors.background.menu};
+  }
+  .ant-menu-light>.ant-menu .ant-menu-item-selected{
+    background-color: ${colors.background.menu};
+  }
+  .ant-menu-light>.ant-menu .ant-menu-item-selected{
+    color:${colors.font.primary};
+  }
 
   .p-dropdown-item {
     background-color: ${colors.background.primary};

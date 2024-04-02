@@ -18,6 +18,7 @@ export const Container = styled.div`
 export const City = styled.img`
   width: 50px;
   display: flex;
+  cursor: pointer;
 `;
 
 export const Column = styled.div`
