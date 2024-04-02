@@ -13,7 +13,7 @@ export default function UploadInput({
   color,
 }) {
   const [archive, setArchive] = useState();
-
+  const [name, setName] = useState("testes  ");
   function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
@@ -23,6 +23,7 @@ export default function UploadInput({
 
   function handleChange(info) {
     const { originFileObj } = info?.fileList[0] || {};
+    setName(info?.fileList[0].name);
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
         setArchive(url);
@@ -31,7 +32,7 @@ export default function UploadInput({
       setArchive(undefined);
     }
   }
-
+  console.log(name);
   return (
     <Upload
       name={inputKey}
@@ -40,15 +41,25 @@ export default function UploadInput({
       maxCount={1}
     >
       <FormInput
+        hidden
         inputKey={inputKey}
         placeholder={placeholder}
         error={error}
         register={register}
-        icon={Icon}
         color={color}
         defaultValue={defaultValue}
         onChange={handleChange}
         value={archive}
+        readOnly="readonly"
+      />
+      <FormInput
+        inputKey={inputKey}
+        placeholder={placeholder}
+        error={error}
+        icon={Icon}
+        color={color}
+        onChange={handleChange}
+        value={name}
         readOnly="readonly"
       />
     </Upload>

@@ -13,6 +13,7 @@ export default function FormInput({
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
+
   return (
     <Container>
       <IconContainer>
@@ -24,7 +25,7 @@ export default function FormInput({
           inputKey={inputKey}
           type={type}
           autocomplete="off"
-          {...register(inputKey)}
+          {...(register && { ...register(inputKey) })}
           placeholder={placeholder}
           defaultValue={defaultValue}
           error={errorMessage}
