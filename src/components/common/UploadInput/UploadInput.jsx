@@ -8,31 +8,32 @@ export default function UploadInput({
   placeholder,
   error,
   register,
-  defaultValue,
   icon: Icon,
   color,
 }) {
   const [archive, setArchive] = useState();
-  const [name, setName] = useState("testes  ");
+  const [name, setName] = useState(undefined);
+
   function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
-    console.log(reader);
   }
 
   function handleChange(info) {
     const { originFileObj } = info?.fileList[0] || {};
-    setName(info?.fileList[0].name);
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
         setArchive(url);
+        console.log(url);
+        setName(info?.fileList[0].name);
       });
     } else {
       setArchive(undefined);
+      setName(undefined);
     }
   }
-  console.log(name);
+
   return (
     <Upload
       name={inputKey}
@@ -43,22 +44,16 @@ export default function UploadInput({
       <FormInput
         hidden
         inputKey={inputKey}
-        placeholder={placeholder}
         error={error}
         register={register}
         color={color}
-        defaultValue={defaultValue}
-        onChange={handleChange}
-        value={archive}
-        readOnly="readonly"
+        value={JSON.stringify({ archive, name })}
       />
       <FormInput
-        inputKey={inputKey}
         placeholder={placeholder}
         error={error}
         icon={Icon}
         color={color}
-        onChange={handleChange}
         value={name}
         readOnly="readonly"
       />

@@ -137,7 +137,8 @@ export default function ManageCollection() {
   }
 
   function handlesubmit(data) {
-    postMemorial(data);
+    //postMemorial(data);
+    console.log(data);
   }
 
   //backend calls
