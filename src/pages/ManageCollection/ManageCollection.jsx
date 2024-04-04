@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import {
-  Container,
-  Title,
-  LoadingStyles,
-  AddArchive,
-  SubTitle,
-} from "./Styles";
+import { Container, Title, LoadingStyles, SubTitle } from "./Styles";
 import {
   Table,
   ModalDeleteItem,
@@ -28,7 +22,6 @@ import {
   AiFillTool,
   AiOutlineLink,
   AiOutlineLoading3Quarters,
-  AiOutlinePlusCircle,
   AiOutlineUpload,
 } from "react-icons/ai";
 
@@ -36,7 +29,6 @@ export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [collections, setCollections] = useState([]);
-  const [archiveCount, setArchiveCount] = useState(1);
 
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
@@ -46,7 +38,7 @@ export default function ManageCollection() {
 
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
-  const [inputs, setInputs] = useState([
+  const [inputs] = useState([
     {
       type: "input",
       key: "title",
@@ -83,17 +75,6 @@ export default function ManageCollection() {
     { field: "Manage", header: "Manage" },
   ];
 
-  function addInput() {
-    const newInput = {
-      type: "archive",
-      key: `archive${archiveCount}`,
-      placeholder: "Adicionar arquivo :",
-      icon: AiOutlineUpload,
-    };
-
-    setInputs([...inputs, newInput]);
-    setArchiveCount(archiveCount + 1);
-  }
   async function formatAllCollection() {
     const formattedCollection = await collection.map((collection) => ({
       Title: collection?.title,
@@ -137,7 +118,7 @@ export default function ManageCollection() {
   }
 
   function handlesubmit(data) {
-    //postMemorial(data);
+    // postMemorial(data);
     console.log(data);
   }
 
@@ -200,17 +181,6 @@ export default function ManageCollection() {
         schema={newCollectionValidationSchema}
         color={"white"}
       />
-      <AddArchive>
-        <AiOutlinePlusCircle
-          style={{
-            width: "2rem",
-            height: "3rem",
-            cursor: "pointer",
-          }}
-          onClick={addInput}
-        />
-        Adicionar arquivo:
-      </AddArchive>
 
       <SubTitle>Gerenciar Arquivos </SubTitle>
       {isLoading ? (

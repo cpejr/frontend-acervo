@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import { Upload as AntdUpload } from "antd";
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
 export const Upload = styled(AntdUpload)`
   width: 100%;
   .ant-upload.ant-upload-select {
     width: 100%;
   }
   .ant-upload-list-item-container {
-    /* width: 70%;
-    align-self: center;
-    margin-left: 15%;
-    z-index: 1; */
     display: none;
   }
 `;
@@ -36,4 +38,10 @@ export const StyledGhost = styled.input`
     margin-bottom: 20px;
     font-size: 16px;
   }
+`;
+
+export const AddArchive = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;

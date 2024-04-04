@@ -40,7 +40,7 @@ export default function FormInput({
 FormInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  register: PropTypes.func.isRequired,
+  register: PropTypes.func,
   error: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
   type: PropTypes.string,

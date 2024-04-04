@@ -20,8 +20,12 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
+
+  const [archivesArray, setArchivesArray] = useState([]);
+
   function submitHandler(data) {
-    onSubmit(data);
+    if (archivesArray[0]) onSubmit({ ...data, archives: archivesArray });
+    else onSubmit(data);
     reset();
   }
 
@@ -67,6 +71,8 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
               error={errors[input.key] ? true : false}
               register={register}
               defaultValue={input?.value}
+              setArchivesArray={setArchivesArray}
+              archivesArray={archivesArray}
               icon={input.icon}
               color={color}
             />
