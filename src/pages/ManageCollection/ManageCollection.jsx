@@ -42,28 +42,28 @@ export default function ManageCollection() {
     {
       type: "input",
       key: "title",
-      placeholder: "Titulo:",
+      placeholder: "Titulo",
     },
     {
       type: "input",
       key: "shortDescription",
-      placeholder: "Descrição curta:",
+      placeholder: "Descrição curta",
     },
     {
       type: "input",
       key: "longDescription",
-      placeholder: "Descrição longa:",
+      placeholder: "Descrição longa",
     },
     {
       type: "input",
       key: "link",
-      placeholder: "link:",
+      placeholder: "Link",
       icon: AiOutlineLink,
     },
     {
       type: "archive",
       key: "archive",
-      placeholder: "Adicionar Arquivo:",
+      placeholder: "Adicionar Arquivo",
       icon: AiOutlineUpload,
     },
   ]);
@@ -118,7 +118,7 @@ export default function ManageCollection() {
   }
 
   function handlesubmit(data) {
-    // postMemorial(data);
+    postMemorial(data);
     console.log(data);
   }
 
@@ -182,7 +182,7 @@ export default function ManageCollection() {
         color={"white"}
       />
 
-      <SubTitle>Gerenciar Arquivos </SubTitle>
+      <SubTitle>GERENCIAR ARQUIVOS </SubTitle>
       {isLoading ? (
         <LoadingStyles>
           <AiOutlineLoading3Quarters />

@@ -46,7 +46,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
           );
         } else if (input.type === "input") {
           return (
-            <>
+            <div key={input.key}>
               <FormInput
                 inputKey={input.key}
                 type={input.type}
@@ -60,7 +60,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
               {errors[input.key]?.message && (
                 <ErrorMessage>{errors[input.key]?.message}</ErrorMessage>
               )}
-            </>
+            </div>
           );
         } else if (input.type === "archive") {
           return (
@@ -80,7 +80,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
         }
         return null;
       })}
-      <Button type="submit" width="200px" height="50px" marginTop="50px">
+      <Button type="submit" width="200px" height="50px">
         Enviar
       </Button>
     </Form>

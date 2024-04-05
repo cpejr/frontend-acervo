@@ -32,8 +32,7 @@ export default function ModalDeleteItem({
             close();
           }}
           type="button"
-          backgroundColor="transparent"
-          color={colors.modals.modalButton}
+          color={colors.font.primary}
           border="1px solid "
           borderRadius="0.5rem"
           marginTop="1.5rem"

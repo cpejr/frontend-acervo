@@ -59,6 +59,7 @@ export const Select = styled(Dropdown)`
 `;
 export const ErrorMessage = styled.p`
   font-size: 1.3rem;
+  margin: 0px;
   color: pink;
   font-weight: 400;
 `;
