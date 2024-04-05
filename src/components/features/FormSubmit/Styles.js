@@ -62,4 +62,9 @@ export const ErrorMessage = styled.p`
   margin: 0px;
   color: pink;
   font-weight: 400;
+  text-align: center;
+  margin-top: 10px;
+`;
+export const InputKeep = styled.div`
+  width: 100%;
 `;

@@ -31,7 +31,6 @@ export const SubTitle = styled.div`
   font-size: 30px;
   margin-left: 5%;
   width: fit-content;
-  margin-top: 120px;
   border-bottom: 2px solid ${colors.font.title};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;

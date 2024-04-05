@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, Select, ErrorMessage } from "./Styles";
+import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 
@@ -46,7 +46,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
           );
         } else if (input.type === "input") {
           return (
-            <div key={input.key}>
+            <InputKeep key={input.key}>
               <FormInput
                 inputKey={input.key}
                 type={input.type}
@@ -60,7 +60,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
               {errors[input.key]?.message && (
                 <ErrorMessage>{errors[input.key]?.message}</ErrorMessage>
               )}
-            </div>
+            </InputKeep>
           );
         } else if (input.type === "archive") {
           return (
