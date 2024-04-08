@@ -114,7 +114,7 @@ export const Table = styled(DataTable)`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  margin-bottom: 15rem;
+  margin-bottom: 10rem;
   align-self: center;
   width: 90%;
   min-height: 70%;
