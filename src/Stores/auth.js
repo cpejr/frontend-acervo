@@ -4,11 +4,14 @@ import { persist } from "zustand/middleware";
 
 const useAuthStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       auth: null,
       setAuth: (accessToken) => {
         const { user } = jwtDecode(accessToken);
         set({ auth: { accessToken, user } });
+      },
+      getToken: () => {
+        return get().auth.accessToken;
       },
       setUser: (user) =>
         set((state) => ({
