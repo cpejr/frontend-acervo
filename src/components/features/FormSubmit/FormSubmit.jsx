@@ -70,7 +70,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
               placeholder={input.placeholder}
               error={errors[input.key] ? true : false}
               register={register}
-              defaultValue={input?.value}
+              values={input?.values}
               setArchivesArray={setArchivesArray}
               archivesArray={archivesArray}
               icon={input.icon}

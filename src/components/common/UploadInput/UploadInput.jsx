@@ -12,13 +12,14 @@ export default function UploadInput({
   color,
   setArchivesArray,
   archivesArray,
+  values,
 }) {
   function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
   }
-
+  console.log(values);
   function handleChange(info) {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
@@ -97,4 +98,5 @@ UploadInput.propTypes = {
   index: PropTypes.number,
   setArchivesArray: PropTypes.func,
   archivesArray: PropTypes.array,
+  values: PropTypes.array,
 };
