@@ -41,6 +41,7 @@ export const ButtonsDiv = styled.div`
 export const DivSelect = styled.div`
   display: flex;
   justify-content: center;
+  color: #808080;
   flex-direction: row;
   align-items: center;
   gap: 1rem;

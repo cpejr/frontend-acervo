@@ -182,23 +182,23 @@ export const Tag = styled.div`
   justify-content: center;
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 32px;
-    font-size: 12px;
+    font-size: 14px;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 24px;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 21.6px;
-    font-size: 12px;
+    font-size: 14px;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 32px;
-    font-size: 12px;
+    font-size: 14px;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 9px;
+    font-size: 12px;
   }
   &:hover {
     border: 1px solid blue;

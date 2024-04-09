@@ -98,6 +98,7 @@ export const MultipleSelect = styled(MultiSelect)`
 `;
 export const Selects = styled.div`
   display: flex;
+  color: #808080;
   flex-direction: row;
   width: 100%;
   gap: 3rem;
