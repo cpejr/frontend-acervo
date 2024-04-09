@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware";
 const useAuthStore = create(
   persist(
     (set, get) => ({
+      token: null,
       auth: null,
       setAuth: (accessToken) => {
         const { user } = jwtDecode(accessToken);

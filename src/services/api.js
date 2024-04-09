@@ -8,8 +8,8 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (req) => {
-    const token = useAuthStore.getState();
-    console.log(token);
+    const { getToken } = useAuthStore.getState();
+    const token = getToken();
 
     if (!req.headers.Authorization && token) {
       req.headers.Authorization = `Bearer ${token}`;
