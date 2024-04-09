@@ -34,8 +34,8 @@ export default function ManageUsers() {
   ];
 
   const selectOptions = [
-    { label: "Adminstrador", value: "Admin" },
-    { label: "Usuário", value: "User" },
+    { label: "Adminstrador", value: true },
+    { label: "Usuário", value: false },
   ];
   //formating the users
   async function formatAllUsers() {
