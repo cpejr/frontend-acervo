@@ -8,6 +8,7 @@ import {
   FavoriteIcon,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
+import PropTypes from "prop-types";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const images = [
@@ -17,8 +18,9 @@ const images = [
 ];
 
 export default function LargeCard({ data }) {
-  const { title, description } = data;
-
+  const { title, shortDescription, archive } = data;
+  console.log("aqui", archive);
+  archive;
   return (
     <StyledCard>
       <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
@@ -38,8 +40,11 @@ export default function LargeCard({ data }) {
         </CardTitle>
       </Group>
       <CardLine>
-        <p>{description}</p>
+        <p>{shortDescription}</p>
       </CardLine>
     </StyledCard>
   );
 }
+LargeCard.propTypes = {
+  data: PropTypes.object.isRequired,
+};
