@@ -28,7 +28,6 @@ export const StyledInput = styled.input`
     color: ${(props) => props?.color};
   }
   @media (max-width: 700px) {
-    margin-bottom: 20px;
     font-size: 16px;
   }
   input:-webkit-autofill,
@@ -57,8 +56,5 @@ export const IconContainer = styled.div`
     position: absolute;
     right: 17%;
     display: flex;
-    @media (max-width: 700px) {
-      margin-bottom: 20px;
-    }
   }
 `;
