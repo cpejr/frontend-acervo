@@ -54,6 +54,7 @@ export async function postMemorial(newMemorial) {
 }
 //Archives
 export async function getArchives(archives) {
+  console.log(archives);
   const { data } = await api.get(`/archive/?archive=${archives}`);
 
   return data;

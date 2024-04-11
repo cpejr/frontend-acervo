@@ -7,24 +7,29 @@ import {
   CardTitle,
   FavoriteIcon,
 } from "./Styles";
-import { Carousel } from "react-responsive-carousel";
-import PropTypes from "prop-types";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const images = [
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
-];
+import { Carousel } from "react-responsive-carousel";
+import { useGetArchives } from "../../../hooks/querys/archive";
+import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function LargeCard({ data }) {
   const { title, shortDescription, archive } = data;
-  console.log("aqui", archive);
-  archive;
+
+  const archiveIds = archive.map((id) => id.toString()).join(", ");
+
+  const { data: archives, isLoading } = useGetArchives(archiveIds, {
+    onError: (err) => {
+      toast.error("Erro ao pegar itens", err);
+    },
+  });
+
+  console.log(title, archives);
   return (
     <StyledCard>
       <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
-        {images.map((image, index) => (
+        {archives?.map((image, index) => (
           <div key={index}>
             <img alt={`carousel-img-${index}`} src={image} />
           </div>

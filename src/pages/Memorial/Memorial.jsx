@@ -40,7 +40,6 @@ export default function Memorial() {
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
-
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -70,7 +69,7 @@ export default function Memorial() {
       </Filter>
       <DivLine>
         {collection
-          .filter((card) =>
+          ?.filter((card) =>
             card?.title.toLowerCase().includes(searchValue.toLowerCase())
           )
           .map((card, index) => (
