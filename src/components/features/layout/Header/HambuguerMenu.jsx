@@ -21,11 +21,11 @@ export default function HamburguerMenu() {
       "hamburger",
       <MenuOutlined style={{ color: "orange", fontSize: "25px" }} />,
       [
-        getItem(" Nossa História", "/story"),
-        getItem("Acervo", ""),
-        getItem("Quem somos", ""),
-        getItem("Eventos", ""),
-        getItem("Apoiar e contribuir", ""),
+        getItem(" Nossa História", "/historia"),
+        getItem("Acervo", "/memorial"),
+        getItem("Quem somos", "/sobre"),
+        getItem("Eventos", "/eventos"),
+        getItem("Apoiar e contribuir", "/suporte"),
       ]
     ),
   ];
