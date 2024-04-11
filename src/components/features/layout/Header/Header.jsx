@@ -5,9 +5,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link, LoginSocialArea } from "../../../../components";
 import "react-toastify/dist/ReactToastify.css";
+import useAuthStore from "../../../../Stores/auth";
 
 export default function Header() {
-  const usuario = true;
+  const user = useAuthStore((state) => state?.auth?.user?.type);
   const navigate = useNavigate();
 
   return (
@@ -18,7 +19,7 @@ export default function Header() {
       <Link to="/sobre">Sobre</Link>
       <Link to="/eventos">Eventos</Link>
       <Link to="/suporte"> Apoiar</Link>
-      {usuario ? (
+      {user ? (
         <React.Fragment>
           <Link to={"/gerenciar-usuarios"}>Usuários</Link>
           <Link to={"/gerenciar-memorial"}>Memorial</Link>
