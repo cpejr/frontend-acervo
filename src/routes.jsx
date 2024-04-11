@@ -5,6 +5,7 @@ import {
   Route,
   useLocation,
   Navigate,
+  Outlet,
 } from "react-router-dom";
 
 import {
@@ -26,7 +27,7 @@ function PrivateAdminRoutes() {
   const auth = useAuthStore((state) => state?.auth?.user?.type);
   const { pathname: from } = useLocation();
 
-  return !auth ? <Navigate to="/" state={{ from }} /> : null;
+  return !auth ? <Navigate to="/" state={{ from }} /> : <Outlet></Outlet>;
 }
 
 const router = createBrowserRouter(
