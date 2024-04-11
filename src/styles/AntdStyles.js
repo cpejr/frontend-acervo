@@ -12,4 +12,5 @@ export const HamburguerMenuStyles = createGlobalStyle`
   .ant-menu-light>.ant-menu .ant-menu-item-selected{
     color:${colors.font.primary};
   }
+  
 `;

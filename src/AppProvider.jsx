@@ -14,6 +14,12 @@ function App() {
           fontFamily: fonts.Cabin,
           fontSize: "15px",
         },
+        components: {
+          Select: {
+            colorBgElevated: colors.background.primary,
+            optionSelectedBg: colors.background.primary,
+          },
+        },
       }}
     >
       <GlobalStyles />

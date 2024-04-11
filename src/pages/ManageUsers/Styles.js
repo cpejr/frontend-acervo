@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
+import { Select } from "antd";
 
 export const Container = styled.div`
   display: flex;
@@ -33,21 +33,25 @@ export const ProfilePic = styled.img`
   height: 50px;
 `;
 
-export const Select = styled(Dropdown)`
+export const TypeSelect = styled(Select)`
   width: 70%;
-  background-color: ${colors.font.primary};
-  color: ${colors.font.secondary};
-  border-radius: 4px;
-  border: 2px solid ${colors.background.primary};
-  height: 4vh;
-  text-align: center;
-  .p-multiselect-label {
-    width: 215px;
-    overflow-x: scroll;
+
+  .ant-select-selector {
+    background-color: ${colors.font.primary};
+    color: ${colors.font.primary};
+    border-radius: 4px;
+    border: 2px solid ${colors.background.primary};
+    height: 4vh;
+    text-align: center;
+  }
+  .ant-select-dropdown {
+    background-color: ${colors.background.secondary};
+    color: ${colors.font.primary};
   }
   &:hover {
     border: 2px solid ${colors.font.title};
   }
+
   @media (max-width: ${breakpoints.tablet}) {
     width: 50%;
   }

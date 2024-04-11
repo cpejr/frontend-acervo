@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Select, ProfilePic, Title, LoadingStyles } from "./Styles";
+import {
+  Container,
+  TypeSelect,
+  ProfilePic,
+  Title,
+  LoadingStyles,
+} from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { ModalDeleteUser, Table, SearchBar } from "../../components";
@@ -47,13 +53,15 @@ export default function ManageUsers() {
       name: user?.name,
       email: user?.email,
       type: (
-        <Select
-          value={[user?.type]}
-          onChange={(e) => handleTypeChange(user?._id, e.value)}
+        <TypeSelect
+          defaultValue={
+            user?.type
+              ? { label: "Adminstrador", value: true }
+              : { label: "Usuário", value: false }
+          }
+          onChange={(value) => handleTypeChange(user?._id, value)}
           options={selectOptions}
-          placeholder={user?.type}
-          optionLabel="label"
-          className="w-full md:w-20rem"
+          //dropdownStyle={{ backgroundColor: "black" }}
         />
       ),
       manage: (
