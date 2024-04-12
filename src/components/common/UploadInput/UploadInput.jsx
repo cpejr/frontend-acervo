@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { AddArchive, Upload } from "./styles";
 import FormInput from "../FormInput/FormInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 export default function UploadInput({
@@ -31,31 +31,15 @@ export default function UploadInput({
     }
   }
 
-  //Additional input logic
-  // const [inputs, setInputs] = useState(
-  //   values
-  //     ? values.map((value) => {
-  //         return {
-  //           inputKey: `archive${values.findIndex(value)}`,
-  //           placeholder: value.name,
-  //           icon: Icon,
-  //           color,
-  //           error,
-  //           index: archiveCount,
-  //         };
-  //       })
-  //     : [{ inputKey, placeholder, error, icon: Icon, color, index: 0 }]
-  // );
-  // const [archiveCount, setArchiveCount] = useState(values ? values.length : 1);
-
   //Set initial archive count
   const initialArchiveCount = values ? values.length : 1;
   const [archiveCount, setArchiveCount] = useState(initialArchiveCount);
 
   // Set initial inputs state
-  const initialInputs = () => {
+  const [inputs, setInputs] = useState([]);
+  useEffect(() => {
     if (values && values.length > 0) {
-      return values.map((value, index) => ({
+      const newInputs = values.map((value, index) => ({
         inputKey: `archive${index}`,
         placeholder: value.name,
         icon: Icon,
@@ -63,12 +47,16 @@ export default function UploadInput({
         error,
         index,
       }));
+      setInputs(newInputs);
+      setArchivesArray(values);
     } else {
-      return [{ inputKey, placeholder, error, icon: Icon, color, index: 0 }];
+      setInputs([
+        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
+      ]);
     }
-  };
-  const [inputs, setInputs] = useState(initialInputs);
-  console.log(inputs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
+
   function addInput() {
     const newInput = {
       inputKey: `archive${archiveCount}`,
