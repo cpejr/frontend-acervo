@@ -28,7 +28,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
     else onSubmit(data);
     reset();
   }
-  console.log(archivesArray);
+  console.log("archives", archivesArray);
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
