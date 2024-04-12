@@ -80,7 +80,7 @@ export default function UploadInput({
     setInputs([...inputs, newInput]);
     setArchiveCount(archiveCount + 1);
   }
-  console.log("inputs", inputs);
+  //console.log("inputs", inputs);
   function removeInput(inputKey) {
     setInputs(inputs.filter((input) => input.inputKey !== inputKey));
     setArchivesArray(
