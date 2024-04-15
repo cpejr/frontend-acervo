@@ -43,13 +43,15 @@ export const TypeSelect = styled(Select)`
     border: 2px solid ${colors.background.primary};
     height: 4vh;
     text-align: center;
+    justify-content: center;
+  }
+  .ant-select-arrow {
+    display: none;
   }
   .ant-select-dropdown {
     background-color: ${colors.background.secondary};
     color: ${colors.font.primary};
-  }
-  &:hover {
-    border: 2px solid ${colors.font.title};
+    align-items: center;
   }
 
   @media (max-width: ${breakpoints.tablet}) {

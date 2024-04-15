@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
 import { Hamburguer } from "../Header/Styles";
+import useAuthStore from "../../../../Stores/auth";
 
 export default function HamburguerMenu() {
+  const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
   const navigate = useNavigate();
   function getItem(label, key, icon, children, type, style) {
     return {
@@ -26,6 +28,13 @@ export default function HamburguerMenu() {
         getItem("Quem somos", "/sobre"),
         getItem("Eventos", "/eventos"),
         getItem("Apoiar e contribuir", "/suporte"),
+        ...(isAdmin
+          ? [
+              getItem("Usuários", "/gerenciar-usuarios"),
+              getItem("Arquivos", "/gerenciar-memorial"),
+              getItem("Gerenciar Eventos", "/gerenciar-eventos"),
+            ]
+          : []),
       ]
     ),
   ];

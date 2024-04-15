@@ -40,7 +40,7 @@ export default function ManageUsers() {
   ];
 
   const selectOptions = [
-    { label: "Adminstrador", value: true },
+    { label: "Administrador", value: true },
     { label: "Usuário", value: false },
   ];
   //formating the users
@@ -56,12 +56,11 @@ export default function ManageUsers() {
         <TypeSelect
           defaultValue={
             user?.type
-              ? { label: "Adminstrador", value: true }
+              ? { label: "Administrador", value: true }
               : { label: "Usuário", value: false }
           }
           onChange={(value) => handleTypeChange(user?._id, value)}
           options={selectOptions}
-          //dropdownStyle={{ backgroundColor: "black" }}
         />
       ),
       manage: (
