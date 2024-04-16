@@ -18,6 +18,7 @@ function App() {
           Select: {
             colorBgElevated: colors.background.primary,
             optionSelectedBg: colors.background.primary,
+            boxShadowSecondary: "rgba(0, 0, 0, 0.35) 0px 5px 15px;",
           },
         },
       }}

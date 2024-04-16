@@ -38,12 +38,15 @@ export const TypeSelect = styled(Select)`
 
   .ant-select-selector {
     background-color: ${colors.font.primary};
-    color: ${colors.font.primary};
+    color: ${colors.font.primary} !important;
     border-radius: 4px;
     border: 2px solid ${colors.background.primary};
     height: 4vh;
     text-align: center;
     justify-content: center;
+  }
+  .ant-select-selection-item {
+    color: ${colors.font.primary} !important;
   }
   .ant-select-arrow {
     display: none;
