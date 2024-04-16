@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import create from "zustand";
+import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 const useAuthStore = create(
@@ -21,7 +21,6 @@ const useAuthStore = create(
     }),
     {
       name: "AuthData",
-      getStorage: () => localStorage,
     }
   )
 );
