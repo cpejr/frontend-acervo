@@ -69,6 +69,7 @@ export default function ManageEvents() {
 
   const { mutate: createEvent } = useCreateEvents({
     onSuccess: () => {
+      toast.success("Evento criado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -80,6 +81,7 @@ export default function ManageEvents() {
 
   const { mutate: deleteEvent } = useDeleteEvents({
     onSuccess: () => {
+      toast.success("Evento deletado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });

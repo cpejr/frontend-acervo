@@ -11,11 +11,13 @@ export const PrimereactStyles = createGlobalStyle`
   }  
 
   .p-dropdown-item {
-    background-color: ${colors.background.primary};
-    color:${colors.font.primary};
+    background-color: #fff;
+    color:${colors.font.secondary};
     text-align: center;
     &:hover {
-      background-color: ${colors.background.hover};
+      background-color: ${colors.background.primary};
+      color:${colors.font.primary};
+
     }
   }
 
@@ -39,7 +41,7 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-dropdown-items-wrapper, .p-dropdown-panel {
-    background-color: ${colors.background.primary};
+    background-color: #fff;
     border-radius: 10px;
   }
 

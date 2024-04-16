@@ -35,6 +35,7 @@ export default function ModalEditEvent({
   });
   const { mutate: updatEvent } = useUpdateEvents({
     onSuccess: () => {
+      toast.success("Evento editado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -126,7 +127,7 @@ export default function ModalEditEvent({
           />
           <MultipleSelect
             value={idsCategoryPrice}
-            name="id_categoryPrice"
+            onChange={(e) => setIdsCategoryPrice(e.value)}
             options={transformArrayItems(categoryPrice)}
             optionLabel="label"
             placeholder="Escolha as características"
@@ -135,7 +136,7 @@ export default function ModalEditEvent({
           />
           <MultipleSelect
             value={idsCategoryType}
-            name="id_categoryType"
+            onChange={(e) => setIdsCategoryType(e.value)}
             options={transformArrayItems(categoryType)}
             optionLabel="label"
             placeholder="Escolha as características"

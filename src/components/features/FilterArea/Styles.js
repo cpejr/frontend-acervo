@@ -18,7 +18,10 @@ export const ContainerFilter = styled.div`
 `;
 
 export const MultipleSelect = styled(MultiSelect)`
-  z-index: 1;
+  background-color: ${colors.background.primary};
+  .p-placeholder {
+    color: ${colors.font.primary};
+  }
   .p-multiselect-label {
     width: 215px;
   }
@@ -68,14 +71,15 @@ export const Buttons = styled(Button)`
 `;
 
 export const UniSelect = styled(Dropdown)`
-  background-color: ${colors.black};
-
+  .dropdown {
+    background-color: #fff;
+  }
   .p-dropdown-label {
-    color: ${colors.white};
+    color: ${colors.font.primary};
     width: 200px;
   }
   .p-inputtext {
-    color: ${colors.white};
+    color: ${colors.font.primary};
   }
 
   @media (max-width: ${breakpoints.tablet}) {

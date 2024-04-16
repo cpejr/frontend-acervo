@@ -80,6 +80,11 @@ export const EventButtons = styled.div`
   gap: 8px;
 `;
 export const MultipleSelect = styled(MultiSelect)`
+  background-color: ${colors.background.primary};
+  .p-placeholder {
+    color: ${colors.font.primary};
+  }
+
   .p-multiselect-label {
     width: 215px;
   }
