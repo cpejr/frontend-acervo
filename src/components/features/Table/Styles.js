@@ -26,4 +26,5 @@ export const TableColumn = styled(Column)`
   background-color: ${colors.font.secondary};
   color: ${colors.font.secondary};
   min-width: 200px;
+
 `;
