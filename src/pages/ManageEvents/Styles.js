@@ -103,10 +103,11 @@ export const MultipleSelect = styled(MultiSelect)`
 `;
 export const Selects = styled.div`
   display: flex;
+  color: #808080;
   flex-direction: row;
   width: 100%;
   gap: 3rem;
-  justify-content: space-around;
+  justify-content: center;
 
   @media (max-width: 850px) {
     flex-direction: column;
@@ -119,6 +120,7 @@ export const Table = styled(DataTable)`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  margin-bottom: 10rem;
   align-self: center;
   width: 90%;
   min-height: 70%;

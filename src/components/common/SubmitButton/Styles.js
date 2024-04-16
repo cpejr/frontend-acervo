@@ -9,10 +9,11 @@ export const SubmitSpace = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 150rem;
+  width: 15rem;
   height: 3rem;
   background-color: ${colors.accent.primary};
   border: solid 1px white;
+  margin: 1rem;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
