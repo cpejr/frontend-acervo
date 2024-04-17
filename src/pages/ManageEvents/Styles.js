@@ -21,25 +21,23 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.p`
-  display: flex;
-  align-items: center;
-  font-size: 4rem;
-  color: ${colors.white};
-  font-weight: 600;
-  margin: 0;
-  margin-left: 5rem;
-  text-align: center;
-
-  @media (max-width: 700px) {
-    font-weight: 600;
-    font-size: 2.5rem;
-    line-height: 3.9rem;
-    height: 3.9rem;
+export const Title = styled.div`
+  color: ${colors.font.title};
+  font-size: 30px;
+  margin-left: 5%;
+  width: fit-content;
+  border-bottom: 2px solid ${colors.font.title};
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 27px;
   }
-
-  @media (max-width: 370px) {
-    font-size: 2.5rem;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 25px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 22px;
   }
 `;
 
