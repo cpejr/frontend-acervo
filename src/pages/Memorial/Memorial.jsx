@@ -7,6 +7,7 @@ import {
   DivSelect,
   FilterTitle,
   UniSelect,
+  StyledCheckbox,
   VerticalLine,
   DivLine,
   Line,
@@ -14,8 +15,11 @@ import {
 import { SearchBar } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { Checkbox } from "primereact/checkbox";
-import { useGetMemorial } from "../../hooks/querys/memorial";
-import { toast } from "react-toastify";
+
+const cardData = [
+  { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
+  { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+];
 
 export default function Memorial() {
   const filters = [
@@ -31,15 +35,10 @@ export default function Memorial() {
 
   const [searchValue, setSearchValue] = useState("");
 
-  const { data: collection, isLoading } = useGetMemorial({
-    onError: (err) => {
-      toast.error("Erro ao pegar itens", err);
-    },
-  });
-
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
+
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -68,9 +67,9 @@ export default function Memorial() {
         </DivSelect>
       </Filter>
       <DivLine>
-        {collection
-          ?.filter((card) =>
-            card?.title.toLowerCase().includes(searchValue.toLowerCase())
+        {cardData
+          .filter((card) =>
+            card.title.toLowerCase().includes(searchValue.toLowerCase())
           )
           .map((card, index) => (
             <Line key={index}>
