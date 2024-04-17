@@ -110,11 +110,11 @@ export const DivSelect = styled.div`
 export const UniSelect = styled(Dropdown)`
   gap: 1rem;
   .p-dropdown-label {
-    color: white;
+    color: ${colors.white};
     width: 100%;
   }
   .p-inputtext {
-    color: white;
+    color: ${colors.white};
     font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;

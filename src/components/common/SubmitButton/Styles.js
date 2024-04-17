@@ -12,7 +12,7 @@ export const Button = styled.button`
   width: 15rem;
   height: 3rem;
   background-color: ${colors.accent.primary};
-  border: solid 1px white;
+  border: solid 1px ${colors.white};
   margin: 1rem;
   border-radius: 6px;
   cursor: pointer;

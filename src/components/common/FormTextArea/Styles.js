@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { Input } from "antd";
 import { colors } from "../../../styles/stylesVariables";
-const { TextArea } = Input;
 
 export const Container = styled.div`
   display: flex;
@@ -30,7 +28,7 @@ export const StyledTextArea = styled.textarea`
   font-size: 1rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-  color: white;
+  color: ${colors.white};
   background-color: ${colors.background.primary};
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem white solid`};
