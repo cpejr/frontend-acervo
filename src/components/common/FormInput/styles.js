@@ -33,12 +33,8 @@ export const StyledInput = styled.input`
   ::placeholder {
     font-weight: 400;
   }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 2rem;
-    height: 3rem;
+  @media (max-width: 700px) {
+    font-size: 16px;
   }
   @media (max-width: 370px) {
     font-size: 1.2rem;
@@ -52,8 +48,8 @@ export const IconContainer = styled.div`
 
   svg {
     position: absolute;
-    left: 10px;
-    color: ${colors.icon};
+    right: 17%;
+    display: flex;
   }
 `;
 

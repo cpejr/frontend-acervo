@@ -3,12 +3,12 @@ import { colors, breakpoints } from "../../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
 
 export const Form = styled.form`
-  margin-top: 30px;
+  margin: 30px 0;
   align-items: center;
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 2rem;
+  gap: 2rem !important;
   height: 100%;
   box-shadow: none;
   z-index: 0;

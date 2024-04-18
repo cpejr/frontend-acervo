@@ -119,7 +119,6 @@ export default function ManageCollection() {
 
   function handlesubmit(data) {
     postMemorial(data);
-    console.log(data);
   }
 
   //backend calls
@@ -170,7 +169,6 @@ export default function ManageCollection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading]);
-
   return (
     <Container>
       <Title>ADICIONAR NOVO ARQUIVO </Title>

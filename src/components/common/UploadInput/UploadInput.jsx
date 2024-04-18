@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import { AddArchive, Upload } from "./styles";
+import { AddArchive, RemoveArchive, Upload } from "./styles";
 import FormInput from "../FormInput/FormInput";
-import { useState } from "react";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { AiOutlinePlusCircle, AiOutlineDelete } from "react-icons/ai";
 
 export default function UploadInput({
   inputKey,
@@ -12,30 +12,60 @@ export default function UploadInput({
   color,
   setArchivesArray,
   archivesArray,
+  values,
 }) {
   function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
   }
-
   function handleChange(info) {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
         setArchivesArray((prev) => [
           ...prev,
-          { name: info?.fileList[0].name, base64: url },
+          {
+            name: info?.fileList[0].name,
+            base64: url,
+            inputKey: info?.inputKey,
+          },
         ]);
       });
     }
   }
 
-  //Additional input logic
-  const [inputs, setInputs] = useState([
-    { inputKey, placeholder, error, icon: Icon, color, index: 0 },
-  ]);
-  const [archiveCount, setArchiveCount] = useState(1);
+  //Set initial archive count
+  const initialArchiveCount = values ? values.length : 1;
+  const [archiveCount, setArchiveCount] = useState(initialArchiveCount);
+
+  // Set initial inputs state
+  const [inputs, setInputs] = useState([]);
+  useEffect(() => {
+    if (values && values.length > 0) {
+      const newInputs = values.map((value, index) => ({
+        inputKey: `archive${index}`,
+        placeholder: value.name,
+        icon: Icon,
+        color,
+        error,
+        index,
+      }));
+      setInputs(newInputs);
+      setArchivesArray(
+        values.map((value, index) => ({
+          inputKey: `archive${index}`,
+          name: value.name,
+          base64: undefined,
+        }))
+      );
+    } else {
+      setInputs([
+        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
+      ]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
 
   function addInput() {
     const newInput = {
@@ -50,36 +80,64 @@ export default function UploadInput({
     setInputs([...inputs, newInput]);
     setArchiveCount(archiveCount + 1);
   }
-
+  //console.log("inputs", inputs);
+  function removeInput(inputKey) {
+    setInputs(inputs.filter((input) => input.inputKey !== inputKey));
+    setArchivesArray(
+      archivesArray.filter((archive) => archive.inputKey !== inputKey)
+    );
+  }
   return (
     <>
       {inputs.map((props) => (
-        <>
+        <div style={{ width: "100%" }} key={props.inputKey}>
           <Upload
             key={props.inputKey}
             name={props.inputKey}
-            onChange={handleChange}
+            onChange={(values) =>
+              handleChange({ ...values, inputKey: props.inputKey })
+            }
             beforeUpload={() => false}
             maxCount={1}
           >
             <FormInput
               {...props}
-              value={archivesArray[props.index]?.name}
+              value={
+                archivesArray.find(
+                  (archive) => archive.inputKey === props.inputKey
+                )?.name
+              }
               readOnly="readonly"
             />
           </Upload>
-        </>
+          <RemoveArchive
+            color={color}
+            onClick={() => removeInput(props.inputKey)}
+            hidden={
+              inputs.findIndex((input) => input.inputKey === props.inputKey) ===
+              0
+            }
+          >
+            <AiOutlineDelete
+              style={{
+                width: "2rem",
+                height: "3rem",
+                cursor: "pointer",
+              }}
+            />
+            Remover
+          </RemoveArchive>
+        </div>
       ))}
-      <AddArchive>
+      <AddArchive color={color} onClick={addInput}>
         <AiOutlinePlusCircle
           style={{
             width: "2rem",
             height: "3rem",
             cursor: "pointer",
           }}
-          onClick={addInput}
         />
-        Adicionar arquivo:
+        Adicionar arquivo
       </AddArchive>
     </>
   );
@@ -97,4 +155,5 @@ UploadInput.propTypes = {
   index: PropTypes.number,
   setArchivesArray: PropTypes.func,
   archivesArray: PropTypes.array,
+  values: PropTypes.array,
 };
