@@ -10,7 +10,7 @@ import {
 } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { ModalDeleteUser, Table, SearchBar } from "../../components";
+import { ModalDeleteItem, Table, SearchBar } from "../../components";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import {
@@ -76,14 +76,15 @@ export default function ManageUsers() {
 
     setUsers(formattedUsers);
   }
-  function handleTypeChange(_id, type) {
-    const newUserData = { type };
+  function handleTypeChange(_id, data) {
+    const newUserData = { data };
     updateUser({ _id, newUserData });
   }
   function handleUserDelete(_id) {
     deleteUser(_id);
     closeModalDelete();
   }
+
   //backend calls
   const { mutate: deleteUser } = useDeleteUsers({
     onSuccess: () => {
@@ -142,9 +143,9 @@ export default function ManageUsers() {
       ) : (
         <Table columns={columns} data={users} />
       )}
-      <ModalDeleteUser
+      <ModalDeleteItem
         close={closeModalDelete}
-        handleUserDelete={handleUserDelete}
+        handleItemDelete={handleUserDelete}
         id={userID}
         modal={modalDelete}
         modalCloseIcon={modalCloseButton}

@@ -1,51 +1,49 @@
 import PropTypes from "prop-types";
-import {
-  Container,
-  Label,
-  IconContainer,
-  StyledInput,
-  ErrorMessage,
-} from "./Styles";
+import { Container, IconContainer, StyledInput } from "./Styles";
 
 export default function FormInput({
-  name,
-  label,
+  inputKey,
   placeholder,
-  errors,
+  error,
   register,
   defaultValue,
+  type,
   icon: Icon,
-  readOnly,
+  color,
   ...props
 }) {
-  const errorMessage = errors?.[name]?.message;
+  const errorMessage = error[inputKey]?.message;
+
   return (
     <Container>
-      <Label htmlFor={name}>{label}</Label>
       <IconContainer>
-        {Icon && <Icon />}
+        {Icon && (
+          <Icon style={{ width: "2rem", height: "3.5rem", color: color }} />
+        )}
         <StyledInput
-          id={name}
-          {...register(name)}
+          id={inputKey}
+          inputKey={inputKey}
+          type={type}
+          autocomplete="off"
+          {...(register && { ...register(inputKey) })}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          error={errorMessage}
+          color={color}
           {...props}
-          readOnly={readOnly}
-          error={!!errorMessage}
         />
       </IconContainer>
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Container>
   );
 }
 
 FormInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  register: PropTypes.func.isRequired,
-  icon: PropTypes.elementType,
-  errors: PropTypes.object.isRequired,
+  register: PropTypes.func,
+  error: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
-  readOnly: PropTypes.string,
+  type: PropTypes.string,
+  color: PropTypes.string,
+  icon: PropTypes.elementType,
 };
