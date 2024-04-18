@@ -128,17 +128,18 @@ export default function ManageCollection() {
     },
   });
 
-  const { mutate: postMemorial } = usePostMemorial({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["memorial"],
-      });
-      toast.success("Post cadastrado!");
-    },
-    onError: (err) => {
-      toast.error("Erro ao cadastras post.", err);
-    },
-  });
+  const { mutate: postMemorial, isLoading: loadingPostMemorial } =
+    usePostMemorial({
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["memorial"],
+        });
+        toast.success("Post cadastrado!");
+      },
+      onError: (err) => {
+        toast.error("Erro ao cadastras post.", err);
+      },
+    });
 
   const { mutate: deleteMemorial } = useDeleteMemorial({
     onSuccess: () => {
@@ -162,7 +163,6 @@ export default function ManageCollection() {
       toast.error("Erro ao atualizar o post .", err);
     },
   });
-
   useEffect(() => {
     if (!isLoading && collection) {
       formatAllCollection();
@@ -178,6 +178,7 @@ export default function ManageCollection() {
         onSubmit={handlesubmit}
         schema={newCollectionValidationSchema}
         color={"white"}
+        loading={loadingPostMemorial}
       />
 
       <SubTitle>GERENCIAR ARQUIVOS </SubTitle>

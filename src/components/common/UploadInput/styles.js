@@ -15,6 +15,9 @@ export const Upload = styled(AntdUpload)`
   .ant-upload-list-item-container {
     display: none;
   }
+
+  cursor: ${(props) => (props.disabled ? "pointer" : "not-allowed")};
+  cursor: pointer !important;
 `;
 
 export const AddArchive = styled.div`

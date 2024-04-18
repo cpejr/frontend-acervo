@@ -80,7 +80,6 @@ export default function UploadInput({
     setInputs([...inputs, newInput]);
     setArchiveCount(archiveCount + 1);
   }
-  //console.log("inputs", inputs);
   function removeInput(inputKey) {
     setInputs(inputs.filter((input) => input.inputKey !== inputKey));
     setArchivesArray(
@@ -99,6 +98,9 @@ export default function UploadInput({
             }
             beforeUpload={() => false}
             maxCount={1}
+            disabled={archivesArray.some(
+              (archive) => archive.inputKey === props.inputKey
+            )}
           >
             <FormInput
               {...props}
@@ -108,15 +110,18 @@ export default function UploadInput({
                 )?.name
               }
               readOnly="readonly"
+              cursor={
+                archivesArray.some(
+                  (archive) => archive.inputKey === props.inputKey
+                )
+                  ? "not-allowed"
+                  : "pointer"
+              }
             />
           </Upload>
           <RemoveArchive
             color={color}
             onClick={() => removeInput(props.inputKey)}
-            hidden={
-              inputs.findIndex((input) => input.inputKey === props.inputKey) ===
-              0
-            }
           >
             <AiOutlineDelete
               style={{

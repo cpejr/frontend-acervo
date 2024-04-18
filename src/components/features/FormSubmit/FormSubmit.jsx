@@ -6,8 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
+import { LoadingOutlined } from "@ant-design/icons";
 
-export default function FormSubmit({ inputs, onSubmit, schema, color }) {
+export default function FormSubmit({
+  inputs,
+  onSubmit,
+  schema,
+  color,
+  loading,
+}) {
   const {
     handleSubmit,
     register,
@@ -20,7 +27,6 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
-
   const [archivesArray, setArchivesArray] = useState([]);
 
   function submitHandler(data) {
@@ -28,7 +34,6 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
     else onSubmit(data);
     reset();
   }
-  //console.log("archives", archivesArray);
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
@@ -81,7 +86,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
-        Enviar
+        {loading ? <LoadingOutlined /> : "Enviar"}
       </Button>
     </Form>
   );
@@ -92,4 +97,5 @@ FormSubmit.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
   color: PropTypes.string,
+  loading: PropTypes.bool,
 };
