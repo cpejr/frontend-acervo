@@ -12,7 +12,7 @@ export default function FormInput({
   color,
   ...props
 }) {
-  const errorMessage = error[inputKey]?.message;
+  //const errorMessage = error[inputKey]?.message;
 
   return (
     <Container>
@@ -28,7 +28,7 @@ export default function FormInput({
           {...(register && { ...register(inputKey) })}
           placeholder={placeholder}
           defaultValue={defaultValue}
-          error={errorMessage}
+          //error={errorMessage}
           color={color}
           {...props}
         />

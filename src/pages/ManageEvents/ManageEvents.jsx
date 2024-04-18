@@ -149,18 +149,21 @@ export default function ManageEvents() {
             placeholder="Nome do evento:"
             errors={errors}
             register={register}
+            inputKey="1"
           />
           <FormInput
             name="eventUpload"
             placeholder="URL da imagem:"
             errors={errors}
             register={register}
+            inputKey="2"
           />
           <FormInput
             name="shortDescription"
             placeholder="Descrição curta:"
             errors={errors}
             register={register}
+            inputKey="3"
           />
           <FormTextArea
             name="longDescription"
@@ -173,6 +176,7 @@ export default function ManageEvents() {
             placeholder="Link do evento:"
             errors={errors}
             register={register}
+            inputKey="4"
           />
           <Selects>
             <MultipleSelect
