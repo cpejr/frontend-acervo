@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { Container, Message, ModalStyle } from "./Styles";
 import Button from "../../../common/Button/Button";
+
 import { colors } from "../../../../styles/stylesVariables";
 
-export default function ModalDeleteUser({
+export default function ModalDeleteItem({
   close,
-  handleUserDelete,
+  handleItemDelete,
   id,
   modal,
   closeModal,
@@ -27,12 +28,11 @@ export default function ModalDeleteUser({
         <Message>Tem certeza que deseja excluir o item?</Message>
         <Button
           onClick={() => {
-            handleUserDelete(id);
+            handleItemDelete(id);
             close();
           }}
           type="button"
-          backgroundColor="transparent"
-          color={colors.modals.modalButton}
+          color={colors.font.primary}
           border="1px solid "
           borderRadius="0.5rem"
           marginTop="1.5rem"
@@ -50,9 +50,9 @@ export default function ModalDeleteUser({
   );
 }
 
-ModalDeleteUser.propTypes = {
+ModalDeleteItem.propTypes = {
   close: PropTypes.func.isRequired,
-  handleUserDelete: PropTypes.func.isRequired,
+  handleItemDelete: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   modal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,

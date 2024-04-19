@@ -3,6 +3,9 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
+  useLocation,
+  Navigate,
+  Outlet,
 } from "react-router-dom";
 
 import {
@@ -18,6 +21,14 @@ import {
   Memorial,
 } from "./pages";
 import { AppLayout } from "./components";
+import useAuthStore from "./Stores/auth";
+
+function PrivateAdminRoutes() {
+  const auth = useAuthStore((state) => state?.auth?.user?.type);
+  const { pathname: from } = useLocation();
+
+  return !auth ? <Navigate to="/" state={{ from }} /> : <Outlet></Outlet>;
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,11 +39,13 @@ const router = createBrowserRouter(
         <Route path="sobre" element={<AboutUs />} />
         <Route path="memorial" element={<Memorial />} />
         <Route path="eventos" element={<Events />} />
-        <Route path="gerenciar-memorial" element={<ManageCollection />} />
-        <Route path="gerenciar-eventos" element={<ManageEvents />} />
-        <Route path="gerenciar-usuarios" element={<ManageUsers />} />
-        <Route path="suporte" element={<Support />} />
+        <Route element={<PrivateAdminRoutes />}>
+          <Route path="gerenciar-memorial" element={<ManageCollection />} />
+          <Route path="gerenciar-eventos" element={<ManageEvents />} />
+          <Route path="gerenciar-usuarios" element={<ManageUsers />} />
+        </Route>
       </Route>
+      <Route path="suporte" element={<Support />} />
     </Route>
   )
 );
