@@ -67,6 +67,21 @@ export default function UploadInput({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
+  //remove inputs on submit and keep the amount of inputs as at least one
+  useEffect(() => {
+    if (archivesArray.length === 0 && !values)
+      setInputs([
+        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
+      ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [archivesArray]);
+
+  // console.log(inputs);
+  // console.log(archivesArray);
+  // console.log(
+  //   archivesArray.find((archive) => archive.inputKey === inputs[0].inputKey)
+  //     ?.name
+  // );
   function addInput() {
     const newInput = {
       inputKey: `archive${archiveCount}`,
@@ -107,7 +122,7 @@ export default function UploadInput({
               value={
                 archivesArray.find(
                   (archive) => archive.inputKey === props.inputKey
-                )?.name
+                )?.name ?? props.placeholder
               }
               readOnly="readonly"
               cursor={

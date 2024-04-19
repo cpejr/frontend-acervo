@@ -23,17 +23,21 @@ export default function FormSubmit({
   } = useForm({
     resolver: zodResolver(schema),
   });
+
   const [selectedOptions, setSelectedOptions] = useState({});
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
-  const [archivesArray, setArchivesArray] = useState([]);
 
+  const [archivesArray, setArchivesArray] = useState([]);
   function submitHandler(data) {
-    if (archivesArray[0]) onSubmit({ ...data, archives: archivesArray });
-    else onSubmit(data);
+    if (archivesArray[0]) {
+      onSubmit({ ...data, archives: archivesArray });
+      setArchivesArray([]);
+    } else onSubmit(data);
     reset();
   }
+
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
