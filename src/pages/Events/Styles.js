@@ -1,32 +1,44 @@
 import styled from "styled-components";
-import { breakpoints } from "../../styles/stylesVariables";
-import { imageEventNotFound } from "../../assets/index";
+import { colors, breakpoints } from "../../styles/stylesVariables";
+import { imageEventNotFound, titleBackground } from "../../assets/index";
 export const Container = styled.div`
   display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin-top: 85px;
-  margin-bottom: 100px;
-  gap: 2rem;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  gap: 3rem;
 
-  @media (max-width: ${breakpoints.miniTablet}) {
-    h1 {
-      font-size: 3rem;
-    }
-    h2 {
-      font-size: 1.2rem;
-    }
+  @media (max-width: 700px) {
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    h1 {
-      font-size: 2.7rem;
-    }
-    h2 {
-      font-size: 1.1rem;
-      text-align: center;
-    }
+`;
+
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 4rem;
+`;
+export const Title = styled.div`
+  color: ${colors.font.title};
+  font-size: 30px;
+  margin-left: 5%;
+  width: fit-content;
+  border-bottom: 2px solid ${colors.font.line};
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 27px;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 25px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 22px;
   }
 `;
 export const TrendingEvents = styled.div`

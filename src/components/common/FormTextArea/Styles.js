@@ -28,13 +28,11 @@ export const StyledTextArea = styled.textarea`
   font-size: 1rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-  color: ${colors.white};
+  color: ${colors.font.primary};
   background-color: ${colors.background.primary};
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem white solid`};
-  ::placeholder {
-    font-weight: 400;
-  }
+    props?.error ? "0.1rem yellow solid" : `0.1rem white solid`};
+
   @media (max-width: 700px) {
     font-weight: 400;
     font-size: 1.6rem;
@@ -50,7 +48,7 @@ export const ErrorMessage = styled.p`
   font-weight: 400;
   font-size: 1.3rem;
   line-height: 1rem;
-  color: red;
+  color: ${colors.error};
 
   @media (max-width: 700px) {
     font-weight: 500;

@@ -4,7 +4,7 @@ import { colors } from "../styles/stylesVariables";
 export const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
     background-color: ${colors.background.primary}; 
-    color: ${colors.white};
+    color: ${colors.font.primary};
     border-bottom: 0.5px solid ${colors.font.title};
     padding: 1rem 0;
     font-size: 1rem;

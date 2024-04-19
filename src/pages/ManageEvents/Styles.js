@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 
 export const Container = styled.div`
   display: flex;
@@ -67,6 +65,10 @@ export const Section = styled.section`
   width: 70%;
   height: 100%;
   gap: 2rem;
+  ::placeholder {
+    color: ${colors.font.primary};
+    font-weight: 400;
+  }
 
   @media (max-width: 700px) {
     width: 80%;
@@ -82,7 +84,6 @@ export const MultipleSelect = styled(MultiSelect)`
   .p-placeholder {
     color: ${colors.font.primary};
   }
-
   .p-multiselect-label {
     width: 215px;
   }
@@ -90,12 +91,6 @@ export const MultipleSelect = styled(MultiSelect)`
     width: 50%;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 33%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
     width: 50%;
   }
 `;
@@ -112,18 +107,4 @@ export const Selects = styled.div`
     gap: 1rem;
     align-items: center;
   }
-`;
-
-export const Table = styled(DataTable)`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  margin-bottom: 10rem;
-  align-self: center;
-  width: 90%;
-  min-height: 70%;
-`;
-export const TableColumn = styled(Column)`
-  display: flex;
-  background-color: ${colors.font.primary};
 `;

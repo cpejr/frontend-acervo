@@ -29,10 +29,7 @@ export const StyledInput = styled.input`
   width: 100%;
   background-color: ${colors.background.primary};
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem white solid`};
-  ::placeholder {
-    font-weight: 400;
-  }
+    props?.error ? "0.1rem #ffd100 solid" : `0.1rem white solid`};
 
   @media (max-width: ${breakpoints.mobile}) {
     font-weight: 400;
@@ -42,18 +39,6 @@ export const StyledInput = styled.input`
   }
   @media (max-width: 370px) {
     font-size: 1.2rem;
-  }
-`;
-
-export const IconContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  svg {
-    position: absolute;
-    left: 10px;
-    color: ${colors.icon};
   }
 `;
 

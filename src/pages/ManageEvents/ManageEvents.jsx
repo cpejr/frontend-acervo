@@ -19,14 +19,13 @@ import {
   SubmitButton,
   ModalDeleteEvent,
   ModalEditEvent,
+  Table,
 } from "../../components";
 import {
   Container,
   Title,
   Form,
   Section,
-  Table,
-  TableColumn,
   Selects,
   MultipleSelect,
   EventButtons,
@@ -225,16 +224,7 @@ export default function ManageEvents() {
           destroyOnClose
         />
       )}
-      <Table value={formattedEvents}>
-        {columns.map((data) => (
-          <TableColumn
-            sortable
-            key={data.field}
-            field={data.field}
-            header={data.header}
-          />
-        ))}
-      </Table>
+      <Table columns={columns} data={formattedEvents} />
     </Container>
   );
 }
