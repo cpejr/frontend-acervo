@@ -30,6 +30,7 @@ export default function FormSubmit({
   };
 
   const [archivesArray, setArchivesArray] = useState([]);
+
   function submitHandler(data) {
     if (archivesArray[0]) {
       onSubmit({ ...data, archives: archivesArray });

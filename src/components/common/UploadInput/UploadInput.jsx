@@ -14,12 +14,13 @@ export default function UploadInput({
   archivesArray,
   values,
 }) {
-  function getBase64(img, callback) {
+  const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
-  }
-  function handleChange(info) {
+  };
+
+  const handleChange = (info) => {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
@@ -33,56 +34,9 @@ export default function UploadInput({
         ]);
       });
     }
-  }
+  };
 
-  //Set initial archive count
-  const initialArchiveCount = values ? values.length : 1;
-  const [archiveCount, setArchiveCount] = useState(initialArchiveCount);
-
-  // Set initial inputs state
-  const [inputs, setInputs] = useState([]);
-  useEffect(() => {
-    if (values && values.length > 0) {
-      const newInputs = values.map((value, index) => ({
-        inputKey: `archive${index}`,
-        placeholder: value.name,
-        icon: Icon,
-        color,
-        error,
-        index,
-      }));
-      setInputs(newInputs);
-      setArchivesArray(
-        values.map((value, index) => ({
-          inputKey: `archive${index}`,
-          name: value.name,
-          base64: undefined,
-        }))
-      );
-    } else {
-      setInputs([
-        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
-      ]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
-
-  //remove inputs on submit and keep the amount of inputs as at least one
-  useEffect(() => {
-    if (archivesArray.length === 0 && !values)
-      setInputs([
-        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
-      ]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [archivesArray]);
-
-  // console.log(inputs);
-  // console.log(archivesArray);
-  // console.log(
-  //   archivesArray.find((archive) => archive.inputKey === inputs[0].inputKey)
-  //     ?.name
-  // );
-  function addInput() {
+  const addInput = () => {
     const newInput = {
       inputKey: `archive${archiveCount}`,
       placeholder,
@@ -94,17 +48,49 @@ export default function UploadInput({
 
     setInputs([...inputs, newInput]);
     setArchiveCount(archiveCount + 1);
-  }
-  function removeInput(inputKey) {
+  };
+
+  const removeInput = (inputKey) => {
     setInputs(inputs.filter((input) => input.inputKey !== inputKey));
     setArchivesArray(
       archivesArray.filter((archive) => archive.inputKey !== inputKey)
     );
-  }
+  };
+
+  const [archiveCount, setArchiveCount] = useState(values?.length ?? 1);
+  const [pageLoaded, setPageLoaded] = useState(false);
+  const [inputs, setInputs] = useState([]);
+
+  useEffect(() => {
+    if (!pageLoaded) {
+      const newInputs = (values ?? []).map((value, index) => ({
+        inputKey: `archive${index}`,
+        placeholder: value.name,
+        icon: Icon,
+        color,
+        error,
+        index,
+      }));
+      setInputs(newInputs);
+      setArchivesArray(
+        (values ?? []).map((value, index) => ({
+          inputKey: `archive${index}`,
+          name: value.name,
+          base64: undefined,
+        }))
+      );
+      setPageLoaded(true);
+    } else if (archivesArray.length === 0) {
+      setInputs([
+        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
+      ]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values, archivesArray, pageLoaded]);
   return (
     <>
-      {inputs.map((props) => (
-        <div style={{ width: "100%" }} key={props.inputKey}>
+      {inputs.map((props, index) => (
+        <div style={{ width: "100%" }} key={index}>
           <Upload
             key={props.inputKey}
             name={props.inputKey}
@@ -166,8 +152,7 @@ export default function UploadInput({
 UploadInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  register: PropTypes.func.isRequired,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.bool.isRequired,
   defaultValue: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,

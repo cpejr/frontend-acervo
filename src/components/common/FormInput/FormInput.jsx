@@ -24,7 +24,7 @@ export default function FormInput({
           id={inputKey}
           inputKey={inputKey}
           type={type}
-          autocomplete="off"
+          autoComplete="off"
           {...(register && { ...register(inputKey) })}
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -41,7 +41,7 @@ FormInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   register: PropTypes.func,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.bool.isRequired,
   defaultValue: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
