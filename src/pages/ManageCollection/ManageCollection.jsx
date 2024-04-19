@@ -21,9 +21,9 @@ import {
   AiOutlineCloseCircle,
   AiFillTool,
   AiOutlineLink,
-  AiOutlineLoading3Quarters,
   AiOutlineUpload,
 } from "react-icons/ai";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
@@ -128,7 +128,7 @@ export default function ManageCollection() {
     },
   });
 
-  const { mutate: postMemorial, isLoading: loadingPostMemorial } =
+  const { mutate: postMemorial, isPending: loadingPostMemorial } =
     usePostMemorial({
       onSuccess: () => {
         queryClient.invalidateQueries({
@@ -140,29 +140,31 @@ export default function ManageCollection() {
         toast.error("Erro ao cadastras post.", err);
       },
     });
+  const { mutate: deleteMemorial, isPending: loadingDeleteMemorial } =
+    useDeleteMemorial({
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["memorial"],
+        });
+        toast.success("Post deletado com sucesso!");
+      },
+      onError: (err) => {
+        toast.error("Erro ao excluir post.", err);
+      },
+    });
+  const { mutate: updateMemorial, isPending: loadingEditMemorial } =
+    useUpdateMemorial({
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["memorial"],
+        });
+        toast.success("post atualizado com sucesso!");
+      },
+      onError: (err) => {
+        toast.error("Erro ao atualizar o post .", err);
+      },
+    });
 
-  const { mutate: deleteMemorial } = useDeleteMemorial({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["memorial"],
-      });
-      toast.success("Post deletado com sucesso!");
-    },
-    onError: (err) => {
-      toast.error("Erro ao excluir post.", err);
-    },
-  });
-  const { mutate: updateMemorial } = useUpdateMemorial({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["memorial"],
-      });
-      toast.success("post atualizado com sucesso!");
-    },
-    onError: (err) => {
-      toast.error("Erro ao atualizar o post .", err);
-    },
-  });
   useEffect(() => {
     if (!isLoading && collection) {
       formatAllCollection();
@@ -182,13 +184,14 @@ export default function ManageCollection() {
       />
 
       <SubTitle>GERENCIAR ARQUIVOS </SubTitle>
-      {isLoading ? (
+      {isLoading || loadingEditMemorial || loadingDeleteMemorial ? (
         <LoadingStyles>
-          <AiOutlineLoading3Quarters />
+          <LoadingOutlined />
         </LoadingStyles>
       ) : (
         <Table columns={columns} data={collections} />
       )}
+
       <ModalDeleteItem
         close={closeModalDelete}
         handleItemDelete={handleMemorialDelete}
