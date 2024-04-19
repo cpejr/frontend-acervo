@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { AddArchive, RemoveArchive, Upload } from "./styles";
+import { AddArchive, RemoveArchive, Upload, ErrorMessage } from "./styles";
 import FormInput from "../FormInput/FormInput";
 import { useEffect, useState } from "react";
 import { AiOutlinePlusCircle, AiOutlineDelete } from "react-icons/ai";
@@ -110,6 +110,7 @@ export default function UploadInput({
                   (archive) => archive.inputKey === props.inputKey
                 )?.name ?? props.placeholder
               }
+              error={error}
               readOnly="readonly"
               cursor={
                 archivesArray.some(
@@ -133,6 +134,11 @@ export default function UploadInput({
             />
             Remover
           </RemoveArchive>
+          {error && (
+            <ErrorMessage color={color}>
+              Pelo menos um arquivo deve ser enviado
+            </ErrorMessage>
+          )}
         </div>
       ))}
       <AddArchive color={color} onClick={addInput}>

@@ -13,7 +13,6 @@ export default function FormInput({
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
-
   return (
     <Container>
       <IconContainer>

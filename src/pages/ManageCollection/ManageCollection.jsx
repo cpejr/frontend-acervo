@@ -137,7 +137,7 @@ export default function ManageCollection() {
         toast.success("Post cadastrado!");
       },
       onError: (err) => {
-        toast.error("Erro ao cadastras post.", err);
+        toast.error("Erro ao cadastrar post.", err);
       },
     });
   const { mutate: deleteMemorial, isPending: loadingDeleteMemorial } =
@@ -161,7 +161,7 @@ export default function ManageCollection() {
         toast.success("post atualizado com sucesso!");
       },
       onError: (err) => {
-        toast.error("Erro ao atualizar o post .", err);
+        toast.error("Erro ao atualizar o post.", err);
       },
     });
 

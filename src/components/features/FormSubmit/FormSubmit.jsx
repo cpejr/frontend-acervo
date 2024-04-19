@@ -30,12 +30,19 @@ export default function FormSubmit({
   };
 
   const [archivesArray, setArchivesArray] = useState([]);
+  const [archiveError, setArchiveError] = useState(false);
 
   function submitHandler(data) {
-    if (archivesArray[0]) {
+    const hasArchiveInput = inputs.some((input) => input.type === "archive");
+    if (hasArchiveInput && !archivesArray[0]) {
+      setArchiveError(true);
+      return;
+    } else if (hasArchiveInput) {
       onSubmit({ ...data, archives: archivesArray });
       setArchivesArray([]);
-    } else onSubmit(data);
+    } else {
+      onSubmit(data);
+    }
     reset();
   }
 
@@ -78,7 +85,7 @@ export default function FormSubmit({
               key={input.key}
               inputKey={input.key}
               placeholder={input.placeholder}
-              error={errors[input.key] ? true : false}
+              error={archiveError}
               register={register}
               values={input?.values}
               setArchivesArray={setArchivesArray}
