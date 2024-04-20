@@ -5,6 +5,7 @@ export { default as FormInput } from "./common/FormInput/FormInput.jsx";
 export { default as FormImageInput } from "./common/FormImageInput/FormImageInput.jsx";
 export { default as FormTextArea } from "./common/FormTextArea/FormTextArea.jsx";
 export { default as SubmitButton } from "./common/SubmitButton/SubmitButton.jsx";
+export { default as FormInputEvents } from "./common/FormInputEvents/FormInputEvents.jsx";
 
 //Features
 

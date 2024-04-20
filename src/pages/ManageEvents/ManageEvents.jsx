@@ -14,7 +14,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
 import {
-  FormInput,
+  FormInputEvents,
   FormTextArea,
   SubmitButton,
   ModalDeleteEvent,
@@ -144,21 +144,21 @@ export default function ManageEvents() {
       <Title>SUBMETER NOVO EVENTO</Title>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Section>
-          <FormInput
+          <FormInputEvents
             name="name"
             placeholder="Nome do evento:"
             errors={errors}
             register={register}
             inputKey="1"
           />
-          <FormInput
+          <FormInputEvents
             name="eventUpload"
             placeholder="URL da imagem:"
             errors={errors}
             register={register}
             inputKey="2"
           />
-          <FormInput
+          <FormInputEvents
             name="shortDescription"
             placeholder="Descrição curta:"
             errors={errors}
@@ -171,7 +171,7 @@ export default function ManageEvents() {
             errors={errors}
             register={register}
           />
-          <FormInput
+          <FormInputEvents
             name="link"
             placeholder="Link do evento:"
             errors={errors}
