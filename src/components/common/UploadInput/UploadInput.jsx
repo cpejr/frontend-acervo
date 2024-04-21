@@ -13,6 +13,7 @@ export default function UploadInput({
   setArchivesArray,
   archivesArray,
   values,
+  hasButtons,
 }) {
   function getBase64(img, callback) {
     const reader = new FileReader();
@@ -100,49 +101,54 @@ export default function UploadInput({
             beforeUpload={() => false}
             maxCount={1}
           >
-            <FormInput
-              {...props}
-              value={
-                archivesArray.find(
-                  (archive) => archive.inputKey === props.inputKey
-                )?.name
-              }
-              readOnly="readonly"
-            />
-          </Upload>
-          <RemoveArchive
-            color={color}
-            onClick={() => removeInput(props.inputKey)}
-            hidden={
-              inputs.findIndex((input) => input.inputKey === props.inputKey) ===
-              0
+            {
+              <FormInput
+                {...props}
+                value={
+                  archivesArray.find(
+                    (archive) => archive.inputKey === props.inputKey
+                  )?.name
+                }
+                readOnly="readonly"
+              />
             }
-          >
-            <AiOutlineDelete
-              style={{
-                width: "2rem",
-                height: "3rem",
-                cursor: "pointer",
-              }}
-            />
-            Remover
-          </RemoveArchive>
+          </Upload>
+          {hasButtons && (
+            <RemoveArchive
+              color={color}
+              onClick={() => removeInput(props.inputKey)}
+            >
+              <AiOutlineDelete
+                style={{
+                  width: "2rem",
+                  height: "3rem",
+                  cursor: "pointer",
+                }}
+              />
+              Remover
+            </RemoveArchive>
+          )}
         </div>
       ))}
-      <AddArchive color={color} onClick={addInput}>
-        <AiOutlinePlusCircle
-          style={{
-            width: "2rem",
-            height: "3rem",
-            cursor: "pointer",
-          }}
-        />
-        Adicionar arquivo
-      </AddArchive>
+      {hasButtons && (
+        <AddArchive color={color} onClick={addInput}>
+          <AiOutlinePlusCircle
+            style={{
+              width: "2rem",
+              height: "3rem",
+              cursor: "pointer",
+            }}
+          />
+          Adicionar arquivo
+        </AddArchive>
+      )}
     </>
   );
 }
 
+UploadInput.defaultProps = {
+  hasButtons: true,
+};
 UploadInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -156,4 +162,5 @@ UploadInput.propTypes = {
   setArchivesArray: PropTypes.func,
   archivesArray: PropTypes.array,
   values: PropTypes.array,
+  hasButtons: PropTypes.bool,
 };

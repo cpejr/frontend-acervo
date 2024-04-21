@@ -7,11 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
-import FormInput from "../../../common/FormInput/FormInput";
+import { FormInputEvents } from "../../../../components";
 import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
+import UploadInput from "../../../common/UploadInput/UploadInput";
 
 export default function ModalEditEvent({
   event,
@@ -22,6 +23,7 @@ export default function ModalEditEvent({
 }) {
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
+  const [archivesArray, setArchivesArray] = useState([]);
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -84,7 +86,7 @@ export default function ModalEditEvent({
       >
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
+          <FormInputEvents
             name="name"
             label="Nome do evento:"
             defaultValue={event.name}
@@ -92,15 +94,19 @@ export default function ModalEditEvent({
             placeholder="Nome do evento:"
             errors={errors}
           />
-          <FormInput
-            name="eventUpload"
-            label="Imagem do evento:"
-            defaultValue={event.eventUpload}
+          <UploadInput
+            key={"images"}
+            inputKey={"images"}
+            placeholder="Upload arquivo"
+            error={errors ? true : false}
             register={register}
-            placeholder="URL da imagem:"
-            errors={errors}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            icon={""}
+            color={"white"}
+            hasButtons={false}
           />
-          <FormInput
+          <FormInputEvents
             name="shortDescription"
             label="Descrição curta:"
             defaultValue={event.shortDescription}
@@ -108,7 +114,7 @@ export default function ModalEditEvent({
             placeholder="Descrição curta:"
             errors={errors}
           />
-          <FormInput
+          <FormInputEvents
             name="longDescription"
             label="Descrição longa:"
             defaultValue={event.longDescription}
@@ -116,7 +122,7 @@ export default function ModalEditEvent({
             placeholder="Descrição longa:"
             errors={errors}
           />
-          <FormInput
+          <FormInputEvents
             name="link"
             label="Link:"
             defaultValue={event.link}

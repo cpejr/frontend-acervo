@@ -31,6 +31,7 @@ import {
   MultipleSelect,
   EventButtons,
 } from "./Styles";
+import UploadInput from "../../components/common/UploadInput/UploadInput";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
@@ -39,7 +40,7 @@ export default function ManageEvents() {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
+  const [archivesArray, setArchivesArray] = useState([]);
   const { data: events } = useGetEvents({
     onError: (err) => {
       toast.error(err);
@@ -113,11 +114,20 @@ export default function ManageEvents() {
   };
 
   const onSubmit = (data, e) => {
+    let uploadEvent = {};
+    if (archivesArray[0]) {
+      uploadEvent = {
+        base64: archivesArray[0].base64,
+        name: archivesArray[0].name,
+      };
+    }
     const combinedData = {
       ...data,
       id_categoryPrice: idCategoriesPrices,
       id_categoryType: idCategoriesTypes,
+      uploadEvent,
     };
+    console.log(combinedData);
     createEvent(combinedData);
     e.target.reset();
   };
@@ -151,12 +161,18 @@ export default function ManageEvents() {
             register={register}
             inputKey="1"
           />
-          <FormInputEvents
-            name="eventUpload"
-            placeholder="URL da imagem:"
-            errors={errors}
+
+          <UploadInput
+            key={"images"}
+            inputKey={"images"}
+            placeholder="Upload arquivo"
+            error={errors ? true : false}
             register={register}
-            inputKey="2"
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            icon={""}
+            color={"white"}
+            hasButtons={false}
           />
           <FormInputEvents
             name="shortDescription"
