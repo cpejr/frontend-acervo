@@ -27,7 +27,7 @@ export const Column = styled.div`
   gap: 8px;
   padding-left: 15px;
   padding-right: 0;
-  border-left: 2px solid white;
+  border-left: 2px solid ${colors.white};
   @media (max-width: ${breakpoints.smallTablet}) {
     border-left: 0;
   }

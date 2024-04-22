@@ -38,7 +38,7 @@ export const DeleteButton = styled(Button)`
   align-items: center;
 
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid ${colors.white};
   border-radius: 0.5rem;
   color: ${colors.white};
 

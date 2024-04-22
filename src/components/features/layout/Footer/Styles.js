@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../../../styles/stylesVariables";
+import { breakpoints, colors } from "../../../../styles/stylesVariables";
 
 export const Container = styled.div`
   background-color: #000000;
@@ -27,7 +27,7 @@ export const Info = styled.div`
 `;
 export const SocialMedias = styled.div`
   padding: 25px;
-  border-left: 2px solid white;
+  border-left: 2px solid ${colors.white};
   @media (max-width: ${breakpoints.desktop}) {
     display: none;
   }
