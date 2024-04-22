@@ -45,9 +45,9 @@ export async function updateEvents({ _id, body }) {
   return data;
 }
 
-export const getEventsByCategoryId = async ({ id, name, type }) => {
+export const getEventsByCategoryId = async ({ id, name, type, dateRange }) => {
   const { data } = await api.get("/event/search-by-category", {
-    params: { id, name, type },
+    params: { id, name, type, dateRange },
   });
 
   return data;

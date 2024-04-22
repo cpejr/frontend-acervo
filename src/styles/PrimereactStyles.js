@@ -82,4 +82,13 @@ export const PrimereactStyles = createGlobalStyle`
     }
   }
 
+  .p-inputtext{
+    color: ${colors.font.secondary};
+    
+  }
+  .p-inputtext::placeholder {
+  color: ${colors.font.secondary};
+}
+
+
 `;

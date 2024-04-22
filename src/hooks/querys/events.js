@@ -45,12 +45,13 @@ export function useGetEventsByCategoryId({
   id,
   name,
   type,
+  dateRange,
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["events", { id, name, type }],
-    queryFn: () => getEventsByCategoryId({ id, name, type }),
+    queryKey: ["events", { id, name, type, dateRange }],
+    queryFn: () => getEventsByCategoryId({ id, name, type, dateRange }),
     onSuccess,
     onError,
   });
