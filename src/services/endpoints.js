@@ -25,6 +25,29 @@ export async function updateUser({ _id, newUserData }) {
 
   return data;
 }
+
+export async function updateFavoritesEvents({ userId, ids }) {
+  const { data } = await api.put(`/user/favoritesEvents/${userId}`, { ids });
+  return data;
+}
+
+export async function getFavoritesEvents({ userId }) {
+  const { data } = await api.get(`/user/favoritesEvents/${userId}`);
+  return data;
+}
+
+export async function getFavoritesMemorials({ userId }) {
+  const { data } = await api.get(`/user/favoritesMemorials/${userId}`);
+  return data;
+}
+
+export async function updateFavoritesMemorials({ userId, ids }) {
+  const { data } = await api.put(`/user/favoritesMemorials/${userId}`, { ids });
+  return data;
+}
+
+// Events
+
 export const getEvents = async (filters = {}) => {
   const { data } = await api.get(`/event`, { params: filters });
   return data;
@@ -52,7 +75,17 @@ export const getEventsByCategoryId = async ({ id, name, type, dateRange }) => {
 
   return data;
 };
+
+export const getIsFavoritedEvent = async ({ userId, eventId, enabled }) => {
+  const { data } = await api.get("/event/favorite", {
+    params: { userId, eventId, enabled },
+  });
+
+  return data;
+};
+
 //CategoryType endpoints
+
 export const getCategoryType = async (filters = {}) => {
   const { data } = await api.get("/categoryType", { params: filters });
   return data;
@@ -92,6 +125,14 @@ export async function updateMemorial({ _id, newData }) {
 
 export async function postMemorial(newMemorial) {
   const { data } = await api.post(`/memorial`, newMemorial);
+
+  return data;
+}
+
+export async function getIsFavoritedMemorial({ userId, memorialId }) {
+  const { data } = await api.get("/memorial/favorite", {
+    params: { userId, memorialId },
+  });
 
   return data;
 }

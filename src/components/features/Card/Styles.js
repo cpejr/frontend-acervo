@@ -104,6 +104,7 @@ export const LineSVG = styled.div`
   align-items: center;
   > svg {
     cursor: pointer;
+    color: ${colors.font.secondary};
     font-size: 30px;
     @media (max-width: ${breakpoints.miniTablet}) {
       font-size: 24px;

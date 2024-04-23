@@ -6,6 +6,7 @@ import {
   getEventsByCategoryId,
   deleteEvents,
   updateEvents,
+  getIsFavoritedEvent,
 } from "../../services/endpoints";
 
 export function useGetEvents({
@@ -52,6 +53,21 @@ export function useGetEventsByCategoryId({
   return useQuery({
     queryKey: ["events", { id, name, type, dateRange }],
     queryFn: () => getEventsByCategoryId({ id, name, type, dateRange }),
+    onSuccess,
+    onError,
+  });
+}
+
+export function useGetIsFavoritedEvent({
+  userId,
+  eventId,
+  enabled,
+  onSuccess = () => {},
+  onError = (err) => console.error(err),
+} = {}) {
+  return useQuery({
+    queryKey: ["events", { userId, eventId }],
+    queryFn: () => getIsFavoritedEvent({ userId, eventId, enabled }),
     onSuccess,
     onError,
   });
