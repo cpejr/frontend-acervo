@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const Container = styled.div`
   display: flex;
@@ -10,25 +9,22 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Label = styled.label`
-  color: ${colors.background.primary};
-
-  @media (max-width: 700px) {
-    font-size: 2rem;
-  }
-  @media (max-width: 370px) {
-    font-size: 1.5rem;
-  }
-`;
-
 export const StyledInput = styled.input`
-  height: 1rem;
-  padding: 1rem 2.2rem;
+  width: 70%;
+  height: 3rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
-  color: ${colors.font.primary};
-  width: 100%;
-  background-color: ${colors.background.primary};
+  color: ${(props) => props?.color};
+  cursor: ${(props) => props?.cursor};
+  font-size: 20px;
+  background-color: inherit;
+  padding-right: 25px;
+  background: url(${(props) => props?.icon}) no-repeat;
+  background-size: 40px;
+  background-position: 95%;
+  outline: none;
   border: ${(props) =>
+<<<<<<<< HEAD:src/components/common/FormSiriusInput/Styles.js
     props?.error ? "0.1rem #ffd100 solid" : `0.1rem white solid`};
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -36,14 +32,48 @@ export const StyledInput = styled.input`
     font-size: 1.6rem;
     line-height: 2rem;
     height: 3rem;
+========
+    props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
+  &::placeholder {
+    color: ${(props) => props?.color};
   }
-  @media (max-width: 370px) {
-    font-size: 1.2rem;
+  @media (max-width: 700px) {
+    font-size: 16px;
+>>>>>>>> DEV:src/components/common/FormInput/Styles.js
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid green;
+    -webkit-text-fill-color: green;
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 `;
+<<<<<<<< HEAD:src/components/common/FormSiriusInput/Styles.js
 
 export const ErrorMessage = styled.p`
   font-size: 1.3rem;
   color: ${colors.error};
   font-weight: 400;
+========
+export const IconContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    position: absolute;
+    right: 17%;
+    display: flex;
+  }
+>>>>>>>> DEV:src/components/common/FormInput/Styles.js
 `;
