@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Container, Label, StyledInput, ErrorMessage } from "./Styles";
 
-export default function FormInput({
+export default function FormSiriusInput({
   name,
   label,
   placeholder,
@@ -29,7 +29,7 @@ export default function FormInput({
   );
 }
 
-FormInput.propTypes = {
+FormSiriusInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
