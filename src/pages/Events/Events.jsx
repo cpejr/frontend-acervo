@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGetEventsByCategoryId } from "../../hooks/querys/events";
 import useDebounce from "../../services/useDebouce";
 import Card from "../../components/features/Card/Card";
@@ -13,7 +13,9 @@ import {
   Filter,
   EventNotFound,
 } from "./Styles";
+import { useGetArchives } from "../../hooks/querys/archive";
 import { SearchBar } from "../../components";
+
 export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
@@ -21,7 +23,11 @@ export default function Events() {
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
-
+  const { data: archives, isLoading: archivesLoading } = useGetArchives({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
   const { data: events } = useGetEventsByCategoryId({
     id: categoryIDsArrays,
     name: debouncedName,
@@ -30,6 +36,15 @@ export default function Events() {
       toast.error(err);
     },
   });
+
+  useEffect(() => {
+    if (archives && archives.length > 0) {
+      // Assuming each archive has an "id" property
+      const ids = archives.map((archive) => archive.id);
+      setCategoryIDsArrays(ids);
+    }
+  }, [archives]);
+
   return (
     <Container>
       <SearchBar
@@ -39,6 +54,7 @@ export default function Events() {
       ></SearchBar>
       <Filter>
         <FilterArea
+          archives={archives}
           types={types}
           setArray={setCategoryIDsArrays}
           setTypes={setTypes}
@@ -51,7 +67,8 @@ export default function Events() {
       </Filter>
       <TrendingEvents>
         <DivLine>
-          {events?.length === 0 && (
+          {archivesLoading && <div>Loading...</div>}
+          {!archivesLoading && events?.length === 0 && (
             <EventNotFound>Nenhum evento encontrado</EventNotFound>
           )}
           <Line>
