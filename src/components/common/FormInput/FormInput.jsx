@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Container, IconContainer, StyledInput } from "./Styles";
+import { Container, IconContainer, StyledInput } from "./styles";
 
 export default function FormInput({
   inputKey,
