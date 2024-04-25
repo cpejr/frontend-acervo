@@ -26,11 +26,11 @@ export default function Events() {
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
   const [archivesIds, setArchivesIds] = useState("");
   const queryClient = useQueryClient();
-  const { data: archives, isLoading } = useGetArchives(archivesIds, {
-    onError: (err) => {
-      toast.error("Erro ao pegar itens", err);
-    },
-  });
+  // const { data: archives, isLoading } = useGetArchives(archivesIds, {
+  //   onError: (err) => {
+  //     toast.error("Erro ao pegar itens", err);
+  //   },
+  // });
   const { data: events } = useGetEventsByCategoryId({
     id: categoryIDsArrays,
     name: debouncedName,
@@ -41,7 +41,6 @@ export default function Events() {
   });
 
   useEffect(() => {
-    console.log(events);
     if (events) {
       const ids = events.map((event) => event?.eventUpload);
       const idsString = ids.join(", ");
@@ -50,12 +49,8 @@ export default function Events() {
         queryKey: ["archives"],
       });
     }
-    if (archives && archives.length > 0) {
-      const ids = archives.map((archive) => archive.id);
-      setCategoryIDsArrays(ids);
-    }
   }, [events]);
-  console.log(archives);
+
   return (
     <Container>
       <SearchBar
@@ -65,7 +60,6 @@ export default function Events() {
       ></SearchBar>
       <Filter>
         <FilterArea
-          archives={archives}
           types={types}
           setArray={setCategoryIDsArrays}
           setTypes={setTypes}
@@ -86,7 +80,7 @@ export default function Events() {
               <Card
                 key={index}
                 data={card}
-                base64={archives && archives[index]}
+                //base64={archives && archives[index]}
               />
             ))}
           </Line>

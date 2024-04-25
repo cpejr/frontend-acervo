@@ -10,23 +10,34 @@ import {
   ButtonDiv,
 } from "./Styles";
 import { useState, useEffect } from "react";
+import { useGetArchives } from "../../../hooks/querys/archive";
 import PropTypes from "prop-types";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 export default function Card({ data, base64 }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   const [image, setImage] = useState(null);
+  const { data: archives, isLoading } = useGetArchives(
+    data?.eventUpload,
+    data.name,
+    {
+      onError: (err) => {
+        console.error("Erro ao pegar itens", err);
+      },
+    }
+  );
+  console.log(archives);
   useEffect(() => {
-    if (base64) {
-      setImage(base64);
+    if (!isLoading) {
+      setImage(archives);
     } else {
       setImage(null);
     }
-  }, [base64]);
+  }, [archives]);
 
   return (
     <StyledCard>
       <Image>
-        {image ? <img src={image} /> : <AiOutlineLoading3Quarters />}
+        <img src={image} />
       </Image>
       <Group>
         <LineSVG></LineSVG>
