@@ -4,6 +4,7 @@ import useDebounce from "../../services/useDebouce";
 import Card from "../../components/features/Card/Card";
 import FilterArea from "../../components/features/FilterArea/FilterArea";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 import {
   Container,
@@ -23,9 +24,11 @@ export default function Events() {
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
-  const { data: archives, isLoading: archivesLoading } = useGetArchives({
+  const [archivesIds, setArchivesIds] = useState("");
+  const queryClient = useQueryClient();
+  const { data: archives, isLoading } = useGetArchives(archivesIds, {
     onError: (err) => {
-      toast.error(err);
+      toast.error("Erro ao pegar itens", err);
     },
   });
   const { data: events } = useGetEventsByCategoryId({
@@ -38,13 +41,21 @@ export default function Events() {
   });
 
   useEffect(() => {
+    console.log(events);
+    if (events) {
+      const ids = events.map((event) => event?.eventUpload);
+      const idsString = ids.join(", ");
+      setArchivesIds(idsString);
+      queryClient.invalidateQueries({
+        queryKey: ["archives"],
+      });
+    }
     if (archives && archives.length > 0) {
-      // Assuming each archive has an "id" property
       const ids = archives.map((archive) => archive.id);
       setCategoryIDsArrays(ids);
     }
-  }, [archives]);
-
+  }, [events]);
+  console.log(archives);
   return (
     <Container>
       <SearchBar
@@ -67,13 +78,16 @@ export default function Events() {
       </Filter>
       <TrendingEvents>
         <DivLine>
-          {archivesLoading && <div>Loading...</div>}
-          {!archivesLoading && events?.length === 0 && (
+          {events?.length === 0 && (
             <EventNotFound>Nenhum evento encontrado</EventNotFound>
           )}
           <Line>
             {events?.map((card, index) => (
-              <Card key={index} data={card} />
+              <Card
+                key={index}
+                data={card}
+                base64={archives && archives[index]}
+              />
             ))}
           </Line>
         </DivLine>
