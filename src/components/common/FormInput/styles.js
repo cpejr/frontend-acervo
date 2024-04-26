@@ -25,7 +25,7 @@ export const StyledInput = styled.input`
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
   &::placeholder {
-    color: ${(props) => props?.color};
+    color: ${(props) => props?.placeholdercolor};
   }
   @media (max-width: 700px) {
     font-size: 16px;

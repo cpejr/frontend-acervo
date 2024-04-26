@@ -27,7 +27,7 @@ export const StyledInput = styled.input`
   border-radius: 0.4rem;
   color: ${colors.font.primary};
   width: 100%;
-  background-color: ${colors.background.primary};
+  background-color: inherit;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem white solid`};
   ::placeholder {

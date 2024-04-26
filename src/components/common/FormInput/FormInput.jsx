@@ -10,6 +10,7 @@ export default function FormInput({
   type,
   icon: Icon,
   color,
+  placeholdercolor,
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
@@ -30,6 +31,7 @@ export default function FormInput({
           defaultValue={defaultValue}
           error={errorMessage}
           color={color}
+          placeholdercolor={placeholdercolor}
           {...props}
         />
       </IconContainer>
