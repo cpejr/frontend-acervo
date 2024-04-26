@@ -205,3 +205,9 @@ export const Tag = styled.div`
     color: blue;
   }
 `;
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+  color: ${colors.font.secondary};
+`;
