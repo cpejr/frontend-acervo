@@ -48,4 +48,5 @@ FormInput.propTypes = {
   type: PropTypes.string,
   color: PropTypes.string,
   icon: PropTypes.elementType,
+  placeholdercolor: PropTypes.string,
 };

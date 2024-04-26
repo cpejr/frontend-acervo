@@ -25,11 +25,11 @@ export const StyledInput = styled.input`
   height: 1rem;
   padding: 1rem 2.2rem;
   border-radius: 0.4rem;
-  color: ${colors.font.primary};
+  color: ${(props) => props?.color};
   width: 100%;
   background-color: inherit;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem white solid`};
+    props?.error ? "0.1rem red solid" : `0.1rem ${props.color} solid`};
   ::placeholder {
     font-weight: 400;
   }

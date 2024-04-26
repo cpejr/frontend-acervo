@@ -16,6 +16,7 @@ export default function FormInputEvents({
   defaultValue,
   icon: Icon,
   readOnly,
+  color,
   ...props
 }) {
   const errorMessage = errors?.[name]?.message;
@@ -29,6 +30,7 @@ export default function FormInputEvents({
           {...register(name)}
           placeholder={placeholder}
           defaultValue={defaultValue}
+          color={color}
           {...props}
           readOnly={readOnly}
           error={!!errorMessage}
@@ -38,7 +40,7 @@ export default function FormInputEvents({
     </Container>
   );
 }
-
+FormInputEvents.defaultProps = { color: "white" };
 FormInputEvents.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
@@ -48,4 +50,6 @@ FormInputEvents.propTypes = {
   errors: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
   readOnly: PropTypes.string,
+  placeholdercolor: PropTypes.string,
+  color: PropTypes.string,
 };

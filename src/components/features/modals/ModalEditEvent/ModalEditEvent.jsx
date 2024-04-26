@@ -93,6 +93,7 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Nome do evento:"
             errors={errors}
+            color="black"
           />
           <UploadInput
             key={"images"}
@@ -113,6 +114,7 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Descrição curta:"
             errors={errors}
+            color="black"
           />
           <FormInputEvents
             name="longDescription"
@@ -121,6 +123,7 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Descrição longa:"
             errors={errors}
+            color="black"
           />
           <FormInputEvents
             name="link"
@@ -129,6 +132,7 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Link do evento:"
             errors={errors}
+            color="black"
           />
           <MultipleSelect
             value={idsCategoryPrice}
@@ -138,6 +142,7 @@ export default function ModalEditEvent({
             placeholder="Escolha as características"
             className="w-full md:w-20rem"
             filter
+            color="black"
           />
           <MultipleSelect
             value={idsCategoryType}
@@ -147,6 +152,7 @@ export default function ModalEditEvent({
             placeholder="Escolha as características"
             className="w-full md:w-20rem"
             filter
+            color="black"
           />
           <Button
             type="submit"
