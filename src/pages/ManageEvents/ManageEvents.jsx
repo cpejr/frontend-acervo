@@ -127,7 +127,6 @@ export default function ManageEvents() {
       id_categoryType: idCategoriesTypes,
       uploadEvent,
     };
-    console.log(combinedData);
     createEvent(combinedData);
     e.target.reset();
   };
@@ -173,6 +172,7 @@ export default function ManageEvents() {
             icon={""}
             color={"white"}
             hasButtons={false}
+            width="100%"
           />
           <FormInputEvents
             name="shortDescription"

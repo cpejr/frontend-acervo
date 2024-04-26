@@ -24,6 +24,7 @@ export default function ModalEditEvent({
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
+  const [value, setValue] = useState({});
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -53,16 +54,34 @@ export default function ModalEditEvent({
     if (modal) {
       setCategories();
     }
-  }, [modal]);
-
+    console.log(event);
+    if (event) {
+      const nome = [
+        {
+          name: event?.eventUpload?.name,
+          base64: undefined,
+        },
+      ];
+      setValue(nome);
+    }
+  }, [modal, event]);
   // On Submit
   const onSubmit = (data) => {
+    let uploadEvent = {};
+    if (archivesArray[1]) {
+      uploadEvent = {
+        base64: archivesArray[1].base64,
+        name: archivesArray[1].name,
+      };
+    }
+
     const body = {
       ...data,
       id_categoryType: idsCategoryType,
       id_categoryPrice: idsCategoryPrice,
+      uploadEvent: uploadEvent,
     };
-
+    console.log(body);
     updatEvent({ _id: _id, body: body });
     close();
   };
@@ -96,15 +115,15 @@ export default function ModalEditEvent({
           />
           <UploadInput
             key={"images"}
-            inputKey={"images"}
-            placeholder="Upload arquivo"
+            inputKey={"archive0"}
             error={errors ? true : false}
             register={register}
             setArchivesArray={setArchivesArray}
             archivesArray={archivesArray}
-            icon={""}
-            color={"white"}
+            values={value}
+            color={"black"}
             hasButtons={false}
+            width="100%"
           />
           <FormInputEvents
             name="shortDescription"

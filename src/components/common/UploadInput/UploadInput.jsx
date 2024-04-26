@@ -14,12 +14,14 @@ export default function UploadInput({
   archivesArray,
   values,
   hasButtons,
+  width,
 }) {
   function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
   }
+
   function handleChange(info) {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
@@ -65,6 +67,7 @@ export default function UploadInput({
         { inputKey, placeholder, error, icon: Icon, color, index: 0 },
       ]);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
@@ -81,13 +84,14 @@ export default function UploadInput({
     setInputs([...inputs, newInput]);
     setArchiveCount(archiveCount + 1);
   }
-  //console.log("inputs", inputs);
+
   function removeInput(inputKey) {
     setInputs(inputs.filter((input) => input.inputKey !== inputKey));
     setArchivesArray(
       archivesArray.filter((archive) => archive.inputKey !== inputKey)
     );
   }
+
   return (
     <>
       {inputs.map((props) => (
@@ -109,6 +113,7 @@ export default function UploadInput({
                     (archive) => archive.inputKey === props.inputKey
                   )?.name
                 }
+                width={width}
                 readOnly="readonly"
               />
             }
@@ -157,6 +162,7 @@ UploadInput.propTypes = {
   defaultValue: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
+  width: PropTypes.string,
   icon: PropTypes.elementType,
   index: PropTypes.number,
   setArchivesArray: PropTypes.func,

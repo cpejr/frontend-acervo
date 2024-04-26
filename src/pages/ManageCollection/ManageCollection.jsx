@@ -162,7 +162,7 @@ export default function ManageCollection() {
       toast.error("Erro ao atualizar o post .", err);
     },
   });
-
+  console.log(memorialValue, "/////////////////////////////////");
   useEffect(() => {
     if (!isLoading && collection) {
       formatAllCollection();

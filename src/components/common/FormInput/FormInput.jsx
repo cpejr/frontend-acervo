@@ -10,6 +10,7 @@ export default function FormInput({
   type,
   icon: Icon,
   color,
+  width,
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
@@ -30,19 +31,23 @@ export default function FormInput({
           defaultValue={defaultValue}
           error={errorMessage}
           color={color}
+          width={width}
           {...props}
         />
       </IconContainer>
     </Container>
   );
 }
-
+FormInput.defaultProps = {
+  width: "70%",
+};
 FormInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   register: PropTypes.func,
   error: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
+  width: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
   icon: PropTypes.elementType,

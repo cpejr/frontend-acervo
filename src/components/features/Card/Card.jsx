@@ -18,7 +18,7 @@ export default function Card({ data }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   const [image, setImage] = useState(null);
   const { data: archives, isLoading } = useGetArchives(
-    data?.eventUpload,
+    data?.eventUpload?._id,
     data.name,
     {
       onError: (err) => {
@@ -26,7 +26,6 @@ export default function Card({ data }) {
       },
     }
   );
-  console.log(isLoading, data.name);
   useEffect(() => {
     if (!isLoading) {
       setImage(archives);
