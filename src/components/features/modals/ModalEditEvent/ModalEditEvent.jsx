@@ -114,18 +114,6 @@ export default function ModalEditEvent({
             errors={errors}
             color="black"
           />
-          <UploadInput
-            key={"images"}
-            inputKey={"archive0"}
-            error={errors ? true : false}
-            register={register}
-            setArchivesArray={setArchivesArray}
-            archivesArray={archivesArray}
-            values={value}
-            color={"black"}
-            hasButtons={false}
-            width="100%"
-          />
           <FormInputEvents
             name="shortDescription"
             label="Descrição curta:"
@@ -152,6 +140,19 @@ export default function ModalEditEvent({
             placeholder="Link do evento:"
             errors={errors}
             color="black"
+          />
+
+          <UploadInput
+            key={"images"}
+            inputKey={"archive0"}
+            error={errors ? true : false}
+            register={register}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            values={value}
+            color={"black"}
+            hasButtons={false}
+            width="100%"
           />
           <MultipleSelect
             value={idsCategoryPrice}

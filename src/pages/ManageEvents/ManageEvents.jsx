@@ -161,19 +161,6 @@ export default function ManageEvents() {
             inputKey="1"
           />
 
-          <UploadInput
-            key={"images"}
-            inputKey={"images"}
-            placeholder="Upload arquivo"
-            error={errors ? true : false}
-            register={register}
-            setArchivesArray={setArchivesArray}
-            archivesArray={archivesArray}
-            icon={""}
-            color={"white"}
-            hasButtons={false}
-            width="100%"
-          />
           <FormInputEvents
             name="shortDescription"
             placeholder="Descrição curta:"
@@ -194,6 +181,7 @@ export default function ManageEvents() {
             register={register}
             inputKey="4"
           />
+
           <UploadInput
             key={"images"}
             inputKey={"images"}
@@ -203,8 +191,9 @@ export default function ManageEvents() {
             setArchivesArray={setArchivesArray}
             archivesArray={archivesArray}
             icon={""}
+            color={"white"}
             hasButtons={false}
-            color="white"
+            width="100%"
           />
           <Selects>
             <MultipleSelect
