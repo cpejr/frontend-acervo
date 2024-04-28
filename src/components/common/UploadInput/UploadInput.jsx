@@ -14,6 +14,7 @@ export default function UploadInput({
   archivesArray,
   values,
   hasButtons,
+  placeholdercolor,
   width,
 }) {
   function getBase64(img, callback) {
@@ -64,7 +65,14 @@ export default function UploadInput({
       );
     } else {
       setInputs([
-        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
+        {
+          inputKey,
+          placeholder,
+          error,
+          icon: Icon,
+          color,
+          index: 0,
+        },
       ]);
     }
 
@@ -79,6 +87,7 @@ export default function UploadInput({
       color,
       error,
       index: archiveCount,
+      placeholdercolor,
     };
 
     setInputs([...inputs, newInput]);
@@ -169,4 +178,5 @@ UploadInput.propTypes = {
   archivesArray: PropTypes.array,
   values: PropTypes.array,
   hasButtons: PropTypes.bool,
+  placeholdercolor: PropTypes.string,
 };

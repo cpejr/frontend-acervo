@@ -11,6 +11,7 @@ export default function FormInput({
   icon: Icon,
   color,
   width,
+  placeholdercolor,
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
@@ -31,6 +32,7 @@ export default function FormInput({
           defaultValue={defaultValue}
           error={errorMessage}
           color={color}
+          placeholdercolor={placeholdercolor}
           width={width}
           {...props}
         />
@@ -51,4 +53,5 @@ FormInput.propTypes = {
   type: PropTypes.string,
   color: PropTypes.string,
   icon: PropTypes.elementType,
+  placeholdercolor: PropTypes.string,
 };

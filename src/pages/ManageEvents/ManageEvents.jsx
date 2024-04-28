@@ -194,6 +194,18 @@ export default function ManageEvents() {
             register={register}
             inputKey="4"
           />
+          <UploadInput
+            key={"images"}
+            inputKey={"images"}
+            placeholder="Upload arquivo"
+            error={errors ? true : false}
+            register={register}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            icon={""}
+            hasButtons={false}
+            color="white"
+          />
           <Selects>
             <MultipleSelect
               value={idCategoriesTypes}
@@ -207,6 +219,7 @@ export default function ManageEvents() {
               className="w-full md:w-20rem"
               filter
             />
+
             <MultipleSelect
               value={idCategoriesPrices}
               name="id_categoryPrice"
