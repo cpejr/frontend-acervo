@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGetCards } from "../../hooks/querys/memorial";
+import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 
 export default function Memorial() {
@@ -80,7 +80,7 @@ export default function Memorial() {
     }
   }
 
-  const { mutate: getCards, data: memorialCards } = useGetCards({
+  const { mutate: getCards, data: memorialCards } = useGetMemorial({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["memorialCards"],
@@ -130,13 +130,15 @@ export default function Memorial() {
         </DivSelect>
       </Filter>
       <DivLine>
-        {memorialCards?.filter((card) =>
+        {memorialCards
+          ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
-          ).map((card) => (
-          <Line key={card.title}>
-            <LargeCard aria-label="Cartão de memorial" data={card} />
-          </Line>
-        ))}
+          )
+          .map((card) => (
+            <Line key={card.title}>
+              <LargeCard aria-label="Cartão de memorial" data={card} />
+            </Line>
+          ))}
       </DivLine>
     </Container>
   );
