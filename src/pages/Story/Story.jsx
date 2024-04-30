@@ -7,7 +7,7 @@ import ThirdStoryImage from "../../assets/ThirdStoryImage.svg";
 export default function Story() {
   return (
     <Container>
-      <Title>Sobre a Cidade de Bom Despacho</Title>
+      <Title>SOBRE A CIDADE DE BOM DESPACHO</Title>
 
       <Image src={FirstStoryImage} alt="Imagem de bom despacho" />
       <Paragraph>

@@ -12,8 +12,10 @@ import { Button } from "../../components";
 
 import { mapa, cidade, festa, apresentacao } from "../../assets/index";
 import Sponsors from "./Sponsors";
+import { redirect, useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <Container>
       <Overlay>
@@ -30,7 +32,7 @@ export default function Home() {
             desenvolvimento de projetos em diversas áreas.
           </p>
           <LargerImg src={mapa} alt="Painel com diversas impressões digitais" />
-          <Button>Saiba Mais</Button>
+          <Button onClick={() => navigate("/sobre")}>Saiba Mais</Button>
         </Column>
         <SmallerImg src={mapa} alt="Painel com diversas impressões digitais" />
       </Section>
@@ -52,7 +54,7 @@ export default function Home() {
             src={cidade}
             alt="Foto representando a cidade de Bom Despacho"
           />
-          <Button>Saiba Mais</Button>
+          <Button onClick={() => navigate("/memorial")}>Saiba Mais</Button>
         </Column>
       </Section>
 
@@ -68,7 +70,7 @@ export default function Home() {
             src={festa}
             alt="Foto representativa de uma das festas da cidade"
           />
-          <Button>Saiba Mais</Button>
+          <Button onClick={() => navigate("/eventos")}>Saiba Mais</Button>
         </Column>
         <SmallerImg
           src={festa}

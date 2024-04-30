@@ -12,8 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 50px;
-  color: ${colors.font.primary};
+  color: ${colors.font.title};
   text-decoration: underline ${colors.underline};
   text-decoration-skip-ink: auto;
   text-underline-offset: 1.3rem;
@@ -34,9 +33,9 @@ export const Line = styled.div`
   display: flex;
   flex-direction: row;
   width: 90%;
-  height: 30rem;
   flex-basis: 50%;
   gap: 3rem;
+  height: 10rem;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
     align-items: center;
@@ -46,7 +45,6 @@ export const ImageLine = styled.div`
   display: flex;
   flex-direction: row;
   width: 90%;
-  height: 30rem;
   flex-basis: 50%;
   gap: 3rem;
   @media (max-width: ${breakpoints.smallTablet}) {
@@ -58,9 +56,10 @@ export const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  height: 10%;
   > img {
     width: 100%;
-    height: 100%;
+    height: 50%;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
@@ -68,15 +67,8 @@ export const TextColumn = styled.div`
     }
   }
   > p {
-    font-size: 40px;
     color: ${colors.font.primary};
     text-align: justify;
-    @media (max-width: ${breakpoints.desktop}) {
-      font-size: 30px;
-    }
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 25px;
-    }
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 100%;
@@ -87,9 +79,10 @@ export const PintaColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
+  height: 10%;
   > img {
     width: 100%;
-    height: 100%;
+    height: 50%;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
@@ -97,15 +90,8 @@ export const PintaColumn = styled.div`
     }
   }
   > p {
-    font-size: 40px;
     color: ${colors.font.primary};
     text-align: justify;
-    @media (max-width: ${breakpoints.desktop}) {
-      font-size: 30px;
-    }
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 25px;
-    }
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 100%;
@@ -118,7 +104,7 @@ export const TextPintaColumn = styled.div`
   width: 70%;
   > img {
     width: 100%;
-    height: 100%;
+    height: 50%;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
@@ -126,15 +112,8 @@ export const TextPintaColumn = styled.div`
     }
   }
   > p {
-    font-size: 40px;
     color: ${colors.font.primary};
     text-align: justify;
-    @media (max-width: ${breakpoints.desktop}) {
-      font-size: 30px;
-    }
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 25px;
-    }
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 100%;
@@ -146,15 +125,12 @@ export const Banner = styled.div`
   width: 100%;
   justify-content: center;
   > p {
-    font-size: 48px;
+    font-size: 30px;
     color: ${colors.font.primary};
     width: 80%;
     text-align: center;
     @media (max-width: ${breakpoints.desktop}) {
-      font-size: 40px;
-    }
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 30px;
+      font-size: 25px;
     }
   }
 `;
@@ -162,14 +138,4 @@ export const TextLine = styled.div`
   display: flex;
   flex-direction: row;
   width: 90%;
-  > p {
-    font-size: 40px;
-    color: ${colors.font.primary};
-    @media (max-width: ${breakpoints.desktop}) {
-      font-size: 30px;
-    }
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 25px;
-    }
-  }
 `;
