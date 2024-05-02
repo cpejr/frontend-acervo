@@ -24,7 +24,6 @@ export default function ModalEditEvent({
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
-  const [value, setValue] = useState([{}]);
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -54,18 +53,11 @@ export default function ModalEditEvent({
     if (modal) {
       setCategories();
     }
-    console.log(event);
-    if (event) {
-      const nome = [
-        {
-          name: event?.eventUpload?.name,
-          base64: undefined,
-        },
-      ];
-      setValue(nome);
-    }
-  }, [modal, event]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modal]);
   // On Submit
+
   const onSubmit = (data) => {
     let uploadEvent = {};
     if (archivesArray[1]) {
@@ -81,7 +73,7 @@ export default function ModalEditEvent({
       id_categoryPrice: idsCategoryPrice,
       uploadEvent: uploadEvent,
     };
-    console.log(body);
+
     updatEvent({ _id: _id, body: body });
     close();
   };
@@ -145,14 +137,15 @@ export default function ModalEditEvent({
           <UploadInput
             key={"images"}
             inputKey={"archive0"}
-            error={errors ? true : false}
+            error={false}
             register={register}
             setArchivesArray={setArchivesArray}
             archivesArray={archivesArray}
-            values={value}
+            values={[{ name: event.eventUpload.name, base64: undefined }]}
             color={"black"}
             hasButtons={false}
             width="100%"
+            placeholder={event?.eventUpload?.name}
           />
           <MultipleSelect
             value={idsCategoryPrice}

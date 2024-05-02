@@ -41,6 +41,7 @@ export default function ManageEvents() {
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [archivesArray, setArchivesArray] = useState([]);
+  const [archiveError, setArchiveError] = useState(false);
   const { data: events } = useGetEvents({
     onError: (err) => {
       toast.error(err);
@@ -120,15 +121,18 @@ export default function ManageEvents() {
         base64: archivesArray[0].base64,
         name: archivesArray[0].name,
       };
+      const combinedData = {
+        ...data,
+        id_categoryPrice: idCategoriesPrices,
+        id_categoryType: idCategoriesTypes,
+        uploadEvent,
+      };
+      createEvent(combinedData);
+      e.target.reset();
+      setArchiveError(false);
+    } else {
+      setArchiveError(true);
     }
-    const combinedData = {
-      ...data,
-      id_categoryPrice: idCategoriesPrices,
-      id_categoryType: idCategoriesTypes,
-      uploadEvent,
-    };
-    createEvent(combinedData);
-    e.target.reset();
   };
   const {
     handleSubmit,
@@ -186,7 +190,7 @@ export default function ManageEvents() {
             key={"images"}
             inputKey={"images"}
             placeholder="Upload arquivo"
-            error={errors ? true : false}
+            error={archiveError}
             register={register}
             setArchivesArray={setArchivesArray}
             archivesArray={archivesArray}

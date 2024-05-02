@@ -74,6 +74,7 @@ export default function UploadInput({
         error,
         index,
       }));
+
       setInputs(newInputs);
       setArchivesArray(
         (values ?? []).map((value, index) => ({
@@ -98,6 +99,7 @@ export default function UploadInput({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, archivesArray, pageLoaded]);
+
   return (
     <>
       {inputs.map((props, index) => (
@@ -110,9 +112,12 @@ export default function UploadInput({
             }
             beforeUpload={() => false}
             maxCount={1}
-            disabled={archivesArray.some(
-              (archive) => archive.inputKey === props.inputKey
-            )}
+            disabled={
+              hasButtons &&
+              archivesArray.some(
+                (archive) => archive.inputKey === props.inputKey
+              )
+            }
           >
             <FormInput
               {...props}
@@ -125,6 +130,7 @@ export default function UploadInput({
               readOnly="readonly"
               width={width}
               cursor={
+                hasButtons &&
                 archivesArray.some(
                   (archive) => archive.inputKey === props.inputKey
                 )
