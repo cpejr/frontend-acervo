@@ -15,7 +15,6 @@ export default function FormInput({
   ...props
 }) {
   const errorMessage = error[inputKey]?.message;
-
   return (
     <Container>
       <IconContainer>
@@ -26,7 +25,7 @@ export default function FormInput({
           id={inputKey}
           inputKey={inputKey}
           type={type}
-          autocomplete="off"
+          autoComplete="off"
           {...(register && { ...register(inputKey) })}
           placeholder={placeholder}
           defaultValue={defaultValue}
@@ -47,7 +46,7 @@ FormInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   register: PropTypes.func,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.bool.isRequired,
   defaultValue: PropTypes.string,
   width: PropTypes.string,
   type: PropTypes.string,

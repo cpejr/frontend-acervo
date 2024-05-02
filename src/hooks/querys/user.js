@@ -8,7 +8,7 @@ import {
 
 export function useGetUsers({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
     queryKey: ["users"],
@@ -19,7 +19,7 @@ export function useGetUsers({
 }
 export function useDeleteUsers({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
     mutationFn: deleteUser,
@@ -29,7 +29,7 @@ export function useDeleteUsers({
 }
 export function useUpdateUsers({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
     mutationFn: updateUser,

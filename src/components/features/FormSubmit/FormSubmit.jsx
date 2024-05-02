@@ -6,8 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
+import { LoadingOutlined } from "@ant-design/icons";
 
-export default function FormSubmit({ inputs, onSubmit, schema, color }) {
+export default function FormSubmit({
+  inputs,
+  onSubmit,
+  schema,
+  color,
+  loading,
+}) {
   const {
     handleSubmit,
     register,
@@ -16,19 +23,29 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
   } = useForm({
     resolver: zodResolver(schema),
   });
+
   const [selectedOptions, setSelectedOptions] = useState({});
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
 
   const [archivesArray, setArchivesArray] = useState([]);
+  const [archiveError, setArchiveError] = useState(false);
 
   function submitHandler(data) {
-    if (archivesArray[0]) onSubmit({ ...data, archives: archivesArray });
-    else onSubmit(data);
+    const hasArchiveInput = inputs.some((input) => input.type === "archive");
+    if (hasArchiveInput && !archivesArray[0]) {
+      setArchiveError(true);
+      return;
+    } else if (hasArchiveInput) {
+      onSubmit({ ...data, archives: archivesArray });
+      setArchivesArray([]);
+    } else {
+      onSubmit(data);
+    }
     reset();
   }
-  //console.log("archives", archivesArray);
+
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
@@ -68,7 +85,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
               key={input.key}
               inputKey={input.key}
               placeholder={input.placeholder}
-              error={errors[input.key] ? true : false}
+              error={archiveError}
               register={register}
               values={input?.values}
               setArchivesArray={setArchivesArray}
@@ -81,7 +98,7 @@ export default function FormSubmit({ inputs, onSubmit, schema, color }) {
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
-        Enviar
+        {loading ? <LoadingOutlined /> : "Enviar"}
       </Button>
     </Form>
   );
@@ -92,4 +109,5 @@ FormSubmit.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
   color: PropTypes.string,
+  loading: PropTypes.bool,
 };

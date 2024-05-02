@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Upload as AntdUpload } from "antd";
+import { colors } from "../../../styles/stylesVariables";
 
 export const Container = styled.div`
   display: flex;
@@ -15,6 +16,9 @@ export const Upload = styled(AntdUpload)`
   .ant-upload-list-item-container {
     display: none;
   }
+
+  cursor: ${(props) => (props.disabled ? "pointer" : "not-allowed")};
+  cursor: pointer !important;
 `;
 
 export const AddArchive = styled.div`
@@ -34,4 +38,14 @@ export const RemoveArchive = styled.div`
   align-items: center;
   color: ${(props) => props.color};
   cursor: pointer;
+`;
+
+export const ErrorMessage = styled.p`
+  font-size: 1.3rem;
+  margin: 0px;
+  color: ${(props) =>
+    props.color === "white" ? colors.error.primary : colors.error.secondary};
+  font-weight: 400;
+  text-align: center;
+  margin-top: 10px;
 `;

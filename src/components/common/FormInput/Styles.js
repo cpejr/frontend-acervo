@@ -15,6 +15,7 @@ export const StyledInput = styled.input`
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
   color: ${(props) => props?.color};
+  cursor: ${(props) => props?.cursor};
   font-size: 20px;
   background-color: inherit;
   padding-right: 25px;

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { AddArchive, RemoveArchive, Upload } from "./styles";
+import { AddArchive, RemoveArchive, Upload, ErrorMessage } from "./styles";
 import FormInput from "../FormInput/FormInput";
 import { useEffect, useState } from "react";
 import { AiOutlinePlusCircle, AiOutlineDelete } from "react-icons/ai";
@@ -17,13 +17,13 @@ export default function UploadInput({
   placeholdercolor,
   width,
 }) {
-  function getBase64(img, callback) {
+  const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
-  }
+  };
 
-  function handleChange(info) {
+  const handleChange = (info) => {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
@@ -37,17 +37,36 @@ export default function UploadInput({
         ]);
       });
     }
-  }
+  };
 
-  //Set initial archive count
-  const initialArchiveCount = values ? values.length : 1;
-  const [archiveCount, setArchiveCount] = useState(initialArchiveCount);
+  const addInput = () => {
+    const newInput = {
+      inputKey: `archive${archiveCount}`,
+      placeholder,
+      icon: Icon,
+      color,
+      error,
+      index: archiveCount,
+    };
 
-  // Set initial inputs state
+    setInputs([...inputs, newInput]);
+    setArchiveCount(archiveCount + 1);
+  };
+
+  const removeInput = (inputKey) => {
+    setInputs(inputs.filter((input) => input.inputKey !== inputKey));
+    setArchivesArray(
+      archivesArray.filter((archive) => archive.inputKey !== inputKey)
+    );
+  };
+
+  const [archiveCount, setArchiveCount] = useState(values?.length ?? 1);
+  const [pageLoaded, setPageLoaded] = useState(false);
   const [inputs, setInputs] = useState([]);
+
   useEffect(() => {
-    if (values && values.length > 0) {
-      const newInputs = values.map((value, index) => ({
+    if (!pageLoaded) {
+      const newInputs = (values ?? []).map((value, index) => ({
         inputKey: `archive${index}`,
         placeholder: value.name,
         icon: Icon,
@@ -57,13 +76,14 @@ export default function UploadInput({
       }));
       setInputs(newInputs);
       setArchivesArray(
-        values.map((value, index) => ({
+        (values ?? []).map((value, index) => ({
           inputKey: `archive${index}`,
           name: value.name,
           base64: undefined,
         }))
       );
-    } else {
+      setPageLoaded(true);
+    } else if (archivesArray.length === 0) {
       setInputs([
         {
           inputKey,
@@ -77,34 +97,11 @@ export default function UploadInput({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values]);
-
-  function addInput() {
-    const newInput = {
-      inputKey: `archive${archiveCount}`,
-      placeholder,
-      icon: Icon,
-      color,
-      error,
-      index: archiveCount,
-      placeholdercolor,
-    };
-
-    setInputs([...inputs, newInput]);
-    setArchiveCount(archiveCount + 1);
-  }
-
-  function removeInput(inputKey) {
-    setInputs(inputs.filter((input) => input.inputKey !== inputKey));
-    setArchivesArray(
-      archivesArray.filter((archive) => archive.inputKey !== inputKey)
-    );
-  }
-
+  }, [values, archivesArray, pageLoaded]);
   return (
     <>
-      {inputs.map((props) => (
-        <div style={{ width: "100%" }} key={props.inputKey}>
+      {inputs.map((props, index) => (
+        <div style={{ width: "100%" }} key={index}>
           <Upload
             key={props.inputKey}
             name={props.inputKey}
@@ -113,6 +110,9 @@ export default function UploadInput({
             }
             beforeUpload={() => false}
             maxCount={1}
+            disabled={archivesArray.some(
+              (archive) => archive.inputKey === props.inputKey
+            )}
           >
             {
               <FormInput
@@ -120,12 +120,19 @@ export default function UploadInput({
                 value={
                   archivesArray.find(
                     (archive) => archive.inputKey === props.inputKey
-                  )?.name
-                }
+                )?.name ?? props.placeholder
+              }
+              error={error}
+              readOnly="readonly"
                 width={width}
-                readOnly="readonly"
-              />
-            }
+              cursor={
+                archivesArray.some(
+                  (archive) => archive.inputKey === props.inputKey
+                )
+                  ? "not-allowed"
+                  : "pointer"
+              }
+            />
           </Upload>
           {hasButtons && (
             <RemoveArchive
@@ -141,6 +148,11 @@ export default function UploadInput({
               />
               Remover
             </RemoveArchive>
+          {error && (
+            <ErrorMessage color={color}>
+              Pelo menos um arquivo deve ser enviado
+            </ErrorMessage>
+          )}
           )}
         </div>
       ))}
@@ -166,8 +178,7 @@ UploadInput.defaultProps = {
 UploadInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  register: PropTypes.func.isRequired,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.bool.isRequired,
   defaultValue: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,

@@ -19,7 +19,10 @@ export const colors = {
     background: "#f5eff9",
     modalButton: "#f19709",
   },
-  error: "#9E0000",
+  error: {
+    primary: "pink",
+    secondary: "#9E0000",
+  },
   warning: "#F19709",
   placeholder: "#DFDFDF",
   underline: "#FFD599",

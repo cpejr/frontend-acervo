@@ -8,7 +8,7 @@ import {
 
 export function useGetMemorial({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
     queryKey: ["memorial"],
@@ -20,7 +20,7 @@ export function useGetMemorial({
 
 export function useDeleteMemorial({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
     mutationFn: deleteMemorial,
@@ -31,7 +31,7 @@ export function useDeleteMemorial({
 
 export function useUpdateMemorial({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
     mutationFn: updateMemorial,
@@ -42,7 +42,7 @@ export function useUpdateMemorial({
 
 export function usePostMemorial({
   onSuccess = () => {},
-  onError = (err) => console.log(err),
+  onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
     mutationFn: postMemorial,

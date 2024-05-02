@@ -8,7 +8,7 @@ export const newCollectionValidationSchema = z
       .max(60, { message: "O título não pode exceder 60 caracteres" }),
     link: z
       .string({ required_error: "o link" })
-      .min(1, { message: "O URL deve ter pelo menos 1 caracter" }),
+      .min(1, { message: "O URL deve ter pelo menos um caractere" }),
     shortDescription: z
       .string({ required_error: "A descrição curta é obrigatória" })
       .min(1, { message: "Campo obrigatório" }),
