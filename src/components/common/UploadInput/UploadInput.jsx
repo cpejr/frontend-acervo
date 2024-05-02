@@ -14,7 +14,7 @@ export default function UploadInput({
   archivesArray,
   values,
   hasButtons,
-  placeholdercolor,
+
   width,
 }) {
   const getBase64 = (img, callback) => {
@@ -78,7 +78,7 @@ export default function UploadInput({
       setArchivesArray(
         (values ?? []).map((value, index) => ({
           inputKey: `archive${index}`,
-          name: value.name,
+          name: value?.name,
           base64: undefined,
         }))
       );
@@ -114,17 +114,16 @@ export default function UploadInput({
               (archive) => archive.inputKey === props.inputKey
             )}
           >
-            {
-              <FormInput
-                {...props}
-                value={
-                  archivesArray.find(
-                    (archive) => archive.inputKey === props.inputKey
+            <FormInput
+              {...props}
+              value={
+                archivesArray.find(
+                  (archive) => archive.inputKey === props.inputKey
                 )?.name ?? props.placeholder
               }
               error={error}
               readOnly="readonly"
-                width={width}
+              width={width}
               cursor={
                 archivesArray.some(
                   (archive) => archive.inputKey === props.inputKey
@@ -148,11 +147,11 @@ export default function UploadInput({
               />
               Remover
             </RemoveArchive>
+          )}
           {error && (
             <ErrorMessage color={color}>
               Pelo menos um arquivo deve ser enviado
             </ErrorMessage>
-          )}
           )}
         </div>
       ))}

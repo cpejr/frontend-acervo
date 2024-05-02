@@ -24,7 +24,7 @@ export default function ModalEditEvent({
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState([{}]);
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
