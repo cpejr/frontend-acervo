@@ -32,7 +32,7 @@ export default function Memorial() {
 
   const queryClient = useQueryClient();
   const [searchValue, setSearchValue] = useState("");
-  const [sortValue, setSelectedSort] = useState("title");
+  const [sortValue, setSelectedSort] = useState("");
 
   const handleSearchChange = (e) => {
     e.preventDefault();
@@ -40,8 +40,8 @@ export default function Memorial() {
   };
 
   const handleChangeSort = (e) => {
-    setSelectedSort(e.target.value);
-    updateCards(e.target.value);
+    setSelectedSort(e.value);
+    updateCards(e.value);
   };
 
   const handleChangeCheckbox = (e) => {
@@ -122,10 +122,13 @@ export default function Memorial() {
         <DivSelect>
           <UniSelect
             aria-label="Botão de ordenação"
+            value={sortValue}
             options={filters}
             optionLabel="label"
+            showClear
             placeholder="Ordenar Por"
             onChange={handleChangeSort}
+            className="w-full md:w-14rem"
           />
         </DivSelect>
       </Filter>
