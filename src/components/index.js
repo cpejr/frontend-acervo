@@ -1,6 +1,7 @@
 //Common
 export { default as Button } from "./common/Button/Button.js";
 export { default as Link } from "./common/Link/Link.js";
+export { default as FormInput } from "./common/FormInput/FormInput.jsx";
 export { default as FormSiriusInput } from "./common/FormSiriusInput/FormSiriusInput.jsx";
 export { default as FormImageInput } from "./common/FormImageInput/FormImageInput.jsx";
 export { default as FormTextArea } from "./common/FormTextArea/FormTextArea.jsx";
