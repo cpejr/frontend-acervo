@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Menu, Modal } from "antd";
+import { Menubar } from "primereact/menubar";
 import { breakpoints, colors, fonts } from "../../../../styles/stylesVariables";
 
 export const Container = styled.div`
@@ -49,6 +50,7 @@ export const Hamburguer = styled(Menu)`
   display: flex;
   align-items: center;
   justify-content: center;
+
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 6rem;
   }
@@ -117,5 +119,29 @@ export const ModalStyle = styled(Modal)`
     padding: 6;
     margin: 0;
     border-radius: none;
+  }
+`;
+export const Header = styled(Menubar)`
+  background: none;
+  border: none;
+  font-family: ${fonts.Cabin};
+  color: #ffd100;
+  .p-menubar {
+  }
+  .p-menu-list {
+  }
+  .p-menuitem {
+    background-color: ${colors.background.secondary};
+  }
+  .p-menuitem-text {
+    color: ${colors.accent.primary};
+  }
+
+  .p-submenu-icon {
+    color: ${colors.accent.primary};
+  }
+
+  :hover {
+    background: none;
   }
 `;

@@ -39,11 +39,10 @@ const router = createBrowserRouter(
         <Route path="sobre" element={<AboutUs />} />
         <Route path="memorial" element={<Memorial />} />
         <Route path="eventos" element={<Events />} />
-        <Route element={<PrivateAdminRoutes />}>
-          <Route path="gerenciar-memorial" element={<ManageCollection />} />
-          <Route path="gerenciar-eventos" element={<ManageEvents />} />
-          <Route path="gerenciar-usuarios" element={<ManageUsers />} />
-        </Route>
+        <Route path="gerenciar-memorial" element={<ManageCollection />} />
+        <Route path="gerenciar-eventos" element={<ManageEvents />} />
+        <Route path="gerenciar-usuarios" element={<ManageUsers />} />
+        <Route element={<PrivateAdminRoutes />}></Route>
       </Route>
       <Route path="suporte" element={<Support />} />
     </Route>
