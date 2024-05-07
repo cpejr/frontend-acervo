@@ -82,4 +82,37 @@ export const PrimereactStyles = createGlobalStyle`
     }
   }
 
+  .p-menubar{
+    display: flex;
+    justify-content: space-around;
+    background-color: ${colors.background.secondary};
+    border: none;
+  }
+  .p-menuitem{
+    background-color: ${colors.background.secondary};
+    &:hover{
+      background-color: ${colors.background.secondary};
+    }
+  }
+  .p-menuitem-link{
+    background-color: ${colors.background.secondary};
+    &:hover{
+      background-color: ${colors.background.secondary};
+    }
+  
+  }
+  .p-menuitem-text{
+    color: ${colors.font.primary};
+   
+  }
+  .p-submenu-icon{
+    color: ${colors.font.primary};
+  }
+  .p-submenu-list{
+    background-color: ${colors.background.secondary};
+  }
+  .p-submenu-list{
+    cursor: pointer;
+  }
+
 `;

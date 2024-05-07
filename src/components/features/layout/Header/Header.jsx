@@ -55,7 +55,7 @@ export default function NavBar() {
   return (
     <Container>
       <City src={LogoCidade} onClick={() => navigate("/")}></City>
-      <HamburgerMenu></HamburgerMenu>
+      <HamburgerMenu />
       <Header model={items} />
       <LoginSocialArea />
     </Container>

@@ -122,26 +122,7 @@ export const ModalStyle = styled(Modal)`
   }
 `;
 export const Header = styled(Menubar)`
-  background: none;
-  border: none;
-  font-family: ${fonts.Cabin};
-  color: #ffd100;
-  .p-menubar {
-  }
-  .p-menu-list {
-  }
-  .p-menuitem {
-    background-color: ${colors.background.secondary};
-  }
-  .p-menuitem-text {
-    color: ${colors.accent.primary};
-  }
-
-  .p-submenu-icon {
-    color: ${colors.accent.primary};
-  }
-
-  :hover {
-    background: none;
-  }
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 `;
