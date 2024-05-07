@@ -102,11 +102,11 @@ export const PrimereactStyles = createGlobalStyle`
   
   }
   .p-menuitem-text{
-    color: ${colors.font.primary};
+    color: ${colors.accent.primary};
    
   }
   .p-submenu-icon{
-    color: ${colors.font.primary};
+    color: ${colors.accent.primary};
   }
   .p-submenu-list{
     background-color: ${colors.background.secondary};
