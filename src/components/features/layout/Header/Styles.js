@@ -51,7 +51,7 @@ export const Hamburguer = styled(Menu)`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 960px) {
+  @media (max-width: ${breakpoints.mediumTablet}) {
     width: 8rem;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
@@ -132,7 +132,7 @@ export const Header = styled(Menubar)`
   @media (max-width: ${breakpoints.tablet}) {
     width: 60%;
   }
-  @media (max-width: 960px) {
+  @media (max-width: ${breakpoints.mediumTablet}) {
     display: none;
   }
 `;
