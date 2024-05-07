@@ -26,8 +26,8 @@ export default function Memorial() {
   ]);
 
   const filters = [
-    { label: "Nome", value: "title" },
-    { label: "Data", value: "date" },
+    { label: "Favoritos", value: "title" },
+    { label: "Melhor avaliados", value: "date" },
   ];
 
   const queryClient = useQueryClient();
