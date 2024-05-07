@@ -41,8 +41,6 @@ export default function ManageCollection() {
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
 
-  const [types, setTypes] = useState([]);
-  const [prices, setPrices] = useState([]);
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -59,14 +57,25 @@ export default function ManageCollection() {
       return category?.name;
     });
 
-    setPrices(prices);
+    if (prices) {
+      inputs[4].selects[0] = {
+        key: "id_categoryPrice",
+        placeholder: "Escolha o preço",
+        options: prices,
+      };
+    }
   }, [categoryPrice]);
   useEffect(() => {
     let types = categoryType?.map((category) => {
       return category?.name;
     });
-
-    setTypes(types);
+    if (types) {
+      inputs[4].selects[1] = {
+        key: "id_categoryType",
+        placeholder: "Escolha a categoria",
+        options: types,
+      };
+    }
   }, [categoryType]);
 
   const [inputs] = useState([
@@ -91,21 +100,9 @@ export default function ManageCollection() {
       placeholder: "Link",
       icon: AiOutlineLink,
     },
-
     {
       type: "selects",
-      selects: [
-        {
-          key: "id_categoryType",
-          placeholder: "Escolha as características",
-          options: types,
-        },
-        {
-          key: "id_categoryPrice",
-          placeholder: "Escolha as características",
-          options: prices,
-        },
-      ],
+      selects: [],
     },
     {
       type: "archive",

@@ -24,10 +24,13 @@ export default function FormSubmit({
     resolver: zodResolver(schema),
   });
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   const handleSelectChange = (key, value) => {
-    setSelectedOptions(selectedOptions.concat({ [key]: value }));
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [key]: value,
+    }));
   };
 
   const [archivesArray, setArchivesArray] = useState([]);
@@ -40,7 +43,7 @@ export default function FormSubmit({
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
-      //onSubmit({ ...data, archives: archivesArra  y, selectedOptions });
+      //onSubmit({ ...data, archives: archivesArray, selectedOptions });
       //console.log({ ...data, archives: archivesArray, selectedOptions });
       setArchivesArray([]);
     } else {
@@ -56,12 +59,12 @@ export default function FormSubmit({
           return (
             <Selects key="selects">
               {input?.selects.map((select) => {
-                console.log(select);
                 return (
                   <Select
                     key={select.key}
                     options={select.options}
                     placeholder={select.placeholder}
+                    value={selectedOptions[select.key] || ""}
                     onChange={(e) => {
                       handleSelectChange(select.key, e.target.value);
                     }}
