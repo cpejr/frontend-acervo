@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../../components/features/layout/Header/Header";
+import Footer from "../../components/features/layout/Footer/Footer";
 import { Button } from "../../components";
 import { BomDespachoImageSupportPage, QRCodeImage, WhatsAppIcon } from "../../assets";
 import { 
@@ -19,7 +20,8 @@ import {
   WhatsAppButtonArea,
   WhatsAppImage,
   ButtonText,
-  Redirecionar
+  Redirecionar,
+  FooterArea
 } from "./Styles";
 
 export default function Support() {
@@ -74,6 +76,9 @@ export default function Support() {
           </Redirecionar>
         </WhatsAppButtonArea>
       </DonationArea>
+      <FooterArea>
+        <Footer /> 
+      </FooterArea>
     </Container>
   )
 }

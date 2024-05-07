@@ -72,7 +72,7 @@ export const TextArea = styled.div`
     }
 
     @media(max-width: ${breakpoints.smallDevice}){
-        padding: 30px 50px;
+        padding: 30px;
     }
 `;
 
@@ -132,7 +132,7 @@ export const QRCodeArea = styled.div`
 
     @media(max-width: ${breakpoints.mobile}){
         width: 100%;
-        padding-left: 20px;
+        //padding-left: 20px;
     }
 `;
 
@@ -187,6 +187,11 @@ export const QRCode = styled.img`
     @media(max-width: ${breakpoints.mediumMobile}){
         padding: 0% 0% 5% 0%;
     } 
+
+    @media(max-width: ${breakpoints.miniTablet}){
+        width: 50%;
+        height: 50%;
+    }
 `;
 
 export const QRCodeText = styled.div`
@@ -249,4 +254,10 @@ export const Redirecionar = styled.a`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+`;
+
+export const FooterArea = styled.div`
+    width: 100%;
+    height: auto;
 `;
