@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors, breakpoints } from "../../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
+import { MultiSelect } from "primereact/multiselect";
 
 export const Form = styled.form`
   margin: 30px 0;
@@ -24,13 +24,13 @@ export const Form = styled.form`
   }
 `;
 
-export const Select = styled(Dropdown)`
-  width: 70%;
+export const Select = styled(MultiSelect)`
+  width: 100%;
   background-color: ${colors.font.primary};
   color: ${colors.font.secondary};
   border-radius: 4px;
   border: 2px solid ${colors.background.primary};
-  height: 4vh;
+  height: 5vh;
   text-align: center;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
@@ -67,4 +67,17 @@ export const ErrorMessage = styled.p`
 `;
 export const InputKeep = styled.div`
   width: 100%;
+`;
+export const Selects = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  gap: 10rem;
+  justify-content: space-around;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
 `;

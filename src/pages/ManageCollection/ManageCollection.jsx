@@ -15,6 +15,8 @@ import {
   useDeleteMemorial,
   useUpdateMemorial,
 } from "../../hooks/querys/memorial";
+import { useGetCategoryPrice } from "../../hooks/querys/categoryPrice";
+import { useGetCategoryType } from "../../hooks/querys/categoryType";
 import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import {
@@ -38,6 +40,35 @@ export default function ManageCollection() {
 
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
+
+  const [types, setTypes] = useState([]);
+  const [prices, setPrices] = useState([]);
+  const { data: categoryType } = useGetCategoryType({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+  const { data: categoryPrice } = useGetCategoryPrice({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+
+  useEffect(() => {
+    let prices = categoryPrice?.map((category) => {
+      return category?.name;
+    });
+
+    setPrices(prices);
+  }, [categoryPrice]);
+  useEffect(() => {
+    let types = categoryType?.map((category) => {
+      return category?.name;
+    });
+
+    setTypes(types);
+  }, [categoryType]);
+
   const [inputs] = useState([
     {
       type: "input",
@@ -59,6 +90,22 @@ export default function ManageCollection() {
       key: "link",
       placeholder: "Link",
       icon: AiOutlineLink,
+    },
+
+    {
+      type: "selects",
+      selects: [
+        {
+          key: "id_categoryType",
+          placeholder: "Escolha as características",
+          options: types,
+        },
+        {
+          key: "id_categoryPrice",
+          placeholder: "Escolha as características",
+          options: prices,
+        },
+      ],
     },
     {
       type: "archive",
@@ -171,6 +218,7 @@ export default function ManageCollection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading]);
+
   return (
     <Container>
       <Title>ADICIONAR NOVO ARQUIVO </Title>

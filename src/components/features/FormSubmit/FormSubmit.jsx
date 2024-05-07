@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
+import { Form, Select, ErrorMessage, InputKeep, Selects } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -24,9 +24,10 @@ export default function FormSubmit({
     resolver: zodResolver(schema),
   });
 
-  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
   const handleSelectChange = (key, value) => {
-    setSelectedOptions({ ...selectedOptions, [key]: value });
+    setSelectedOptions(selectedOptions.concat({ [key]: value }));
   };
 
   const [archivesArray, setArchivesArray] = useState([]);
@@ -34,14 +35,16 @@ export default function FormSubmit({
 
   function submitHandler(data) {
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
+
     if (hasArchiveInput && !archivesArray[0]) {
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
-      onSubmit({ ...data, archives: archivesArray });
+      //onSubmit({ ...data, archives: archivesArra  y, selectedOptions });
+      //console.log({ ...data, archives: archivesArray, selectedOptions });
       setArchivesArray([]);
     } else {
-      onSubmit(data);
+      onSubmit(data, selectedOptions);
     }
     reset();
   }
@@ -49,17 +52,23 @@ export default function FormSubmit({
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
-        if (input.type === "select") {
+        if (input.type === "selects") {
           return (
-            <Select
-              key={input.key}
-              {...register(input.key, { required: input.required })}
-              error={errors[input.key] ? true : false}
-              options={input.options}
-              placeholder={input.placeholder}
-              value={selectedOptions[input.key] || ""}
-              onChange={(e) => handleSelectChange(input.key, e.target.value)}
-            ></Select>
+            <Selects key="selects">
+              {input?.selects.map((select) => {
+                console.log(select);
+                return (
+                  <Select
+                    key={select.key}
+                    options={select.options}
+                    placeholder={select.placeholder}
+                    onChange={(e) => {
+                      handleSelectChange(select.key, e.target.value);
+                    }}
+                  ></Select>
+                );
+              })}
+            </Selects>
           );
         } else if (input.type === "input") {
           return (
