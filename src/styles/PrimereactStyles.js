@@ -20,7 +20,7 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-dropdown-item {
-    background-color: ${colors.white};
+    background-color: ${colors.background.white};
     color:${colors.font.secondary};
     text-align: center;
     &:hover {

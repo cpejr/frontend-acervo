@@ -27,7 +27,7 @@ export const Info = styled.div`
 `;
 export const SocialMedias = styled.div`
   padding: 25px;
-  border-left: 2px solid ${colors.white};
+  border-left: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.desktop}) {
     display: none;
   }

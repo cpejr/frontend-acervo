@@ -16,7 +16,7 @@ export const Message = styled.h1`
   font-size: 2.1rem;
   text-align: center;
   margin: 1.4rem;
-  color: ${colors.white};
+  color: ${colors.font.primary};
   @media (max-width: 375px) {
     font-size: 1.5rem;
     margin: 1rem;
@@ -38,9 +38,9 @@ export const DeleteButton = styled(Button)`
   align-items: center;
 
   background-color: transparent;
-  border: 1px solid ${colors.white};
+  border: 1px solid ${colors.font.primary};
   border-radius: 0.5rem;
-  color: ${colors.white};
+  color: ${colors.font.primary};
 
   margin-top: 1.5rem;
 
@@ -50,7 +50,7 @@ export const DeleteButton = styled(Button)`
   line-height: 2.2rem;
 
   &:hover {
-    background-color: ${colors.white};
+    background-color: ${colors.background.white};
     color: ${colors.black};
     cursor: pointer;
   }

@@ -12,7 +12,7 @@ export const StyledCard = styled(Card)`
   align-items: center;
   border-radius: 24px;
   gap: 3.33rem;
-  background-color: ${colors.white};
+  background-color: ${colors.background.white};
   margin-bottom: 4rem;
   &:hover {
   }
