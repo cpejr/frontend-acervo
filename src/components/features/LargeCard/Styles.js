@@ -49,7 +49,7 @@ export const Image = styled.div`
 
 export const CardTitle = styled.div`
   display: flex;
-  word-break:break-all;
+  word-break: break-all;
   flex-direction: row;
   width: 100%;
   align-items: center;
@@ -102,4 +102,14 @@ export const FavoriteIcon = styled.div`
   margin-left: 5px;
   font-size: 2rem;
   cursor: pointer;
+`;
+
+export const CarouselStyles = styled.div`
+  .carousel .slide {
+    display: flex;
+    justify-content: center;
+  }
+  .carousel.carousel-slider .control-arrow {
+    background: ${colors.background.primary};
+  }
 `;
