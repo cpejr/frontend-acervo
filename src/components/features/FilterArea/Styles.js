@@ -90,4 +90,9 @@ export const UniSelect = styled(Dropdown)`
 export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;
+  .p-inputtext {
+    background-color: ${colors.background.primary};
+    color: ${colors.font.primary};
+    border: solid 1px ${colors.font.primary};
+  }
 `;
