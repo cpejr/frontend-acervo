@@ -27,7 +27,7 @@ export const Column = styled.div`
   gap: 8px;
   padding-left: 15px;
   padding-right: 0;
-  border-left: 2px solid white;
+  border-left: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.smallTablet}) {
     border-left: 0;
   }
@@ -113,7 +113,7 @@ export const ModalStyle = styled(Modal)`
     padding: 1rem;
     align-items: center;
     justify-content: center;
-    color: ${colors.white};
+    color: ${colors.font.primary};
     padding: 6;
     margin: 0;
     border-radius: none;

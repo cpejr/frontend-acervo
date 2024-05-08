@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
-import FormInput from "../../../common/FormInput/FormInput";
+import FormSiriusInput from "../../../common/FormSiriusInput/FormSiriusInput";
 import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
@@ -35,6 +35,7 @@ export default function ModalEditEvent({
   });
   const { mutate: updatEvent } = useUpdateEvents({
     onSuccess: () => {
+      toast.success("Evento editado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -84,7 +85,7 @@ export default function ModalEditEvent({
       >
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
+          <FormSiriusInput
             name="name"
             label="Nome do evento:"
             defaultValue={event.name}
@@ -92,7 +93,7 @@ export default function ModalEditEvent({
             placeholder="Nome do evento:"
             errors={errors}
           />
-          <FormInput
+          <FormSiriusInput
             name="eventUpload"
             label="Imagem do evento:"
             defaultValue={event.eventUpload}
@@ -100,7 +101,7 @@ export default function ModalEditEvent({
             placeholder="URL da imagem:"
             errors={errors}
           />
-          <FormInput
+          <FormSiriusInput
             name="shortDescription"
             label="Descrição curta:"
             defaultValue={event.shortDescription}
@@ -108,7 +109,7 @@ export default function ModalEditEvent({
             placeholder="Descrição curta:"
             errors={errors}
           />
-          <FormInput
+          <FormSiriusInput
             name="longDescription"
             label="Descrição longa:"
             defaultValue={event.longDescription}
@@ -116,7 +117,7 @@ export default function ModalEditEvent({
             placeholder="Descrição longa:"
             errors={errors}
           />
-          <FormInput
+          <FormSiriusInput
             name="link"
             label="Link:"
             defaultValue={event.link}
@@ -126,7 +127,7 @@ export default function ModalEditEvent({
           />
           <MultipleSelect
             value={idsCategoryPrice}
-            name="id_categoryPrice"
+            onChange={(e) => setIdsCategoryPrice(e.value)}
             options={transformArrayItems(categoryPrice)}
             optionLabel="label"
             placeholder="Escolha as características"
@@ -135,7 +136,7 @@ export default function ModalEditEvent({
           />
           <MultipleSelect
             value={idsCategoryType}
-            name="id_categoryType"
+            onChange={(e) => setIdsCategoryType(e.value)}
             options={transformArrayItems(categoryType)}
             optionLabel="label"
             placeholder="Escolha as características"
