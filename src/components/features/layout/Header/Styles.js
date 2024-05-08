@@ -128,11 +128,4 @@ export const Header = styled(Menubar)`
   display: flex;
   justify-content: space-around;
   width: 100%;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 60%;
-  }
-  @media (max-width: ${breakpoints.mediumTablet}) {
-    display: none;
-  }
 `;

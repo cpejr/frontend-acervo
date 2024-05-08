@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { colors } from "../styles/stylesVariables";
+import { colors, breakpoints } from "../styles/stylesVariables";
 
 export const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
@@ -87,6 +87,12 @@ export const PrimereactStyles = createGlobalStyle`
     justify-content: space-around;
     background-color: ${colors.background.secondary};
     border: none;
+    @media (max-width: ${breakpoints.mediumTablet}) {
+    display: none;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 60%;
+  }
   }
   .p-menuitem{
     background-color: ${colors.background.secondary};
@@ -103,7 +109,8 @@ export const PrimereactStyles = createGlobalStyle`
   }
   .p-menuitem-text{
     color: ${colors.accent.primary};
-   
+    
+ 
   }
   .p-submenu-icon{
     color: ${colors.accent.primary};
