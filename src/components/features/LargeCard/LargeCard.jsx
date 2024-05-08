@@ -1,4 +1,11 @@
-import { CiBookmark } from "react-icons/ci";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import useAuthStore from "../../../Stores/auth";
+import { useQueryClient } from "@tanstack/react-query";
+import { useUpdateFavoritesMemorials } from "../../../hooks/querys/user";
+import { useGetIsFavoritedMemorial } from "../../../hooks/querys/memorial";
+import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+
 import {
   StyledCard,
   Group,
@@ -17,7 +24,45 @@ const images = [
 ];
 
 export default function LargeCard({ data }) {
+  const queryClient = useQueryClient();
+  const userId = useAuthStore((state) => state?.auth?.user?._id);
   const { title, description } = data;
+
+  const { data: isFavorited } = useGetIsFavoritedMemorial({
+    userId: userId,
+    eventId: data?._id,
+    enabled: !!userId,
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+  const { mutate: updateFavoriteMemorial } = useUpdateFavoritesMemorials({
+    userId: userId,
+    ids: [data?._id],
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["favoritesMemorials"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Memorial Atualizado");
+    },
+    onError: (err) => {
+      toast.err(err);
+    },
+  });
+  const onSubmit = async (event) => {
+    event.stopPropagation();
+    if (userId) {
+      updateFavoriteMemorial({
+        userId: userId,
+        eventId: data?._id,
+      });
+    } else {
+      toast.error("Você precisa estar logado para favoritar um evento");
+    }
+  };
 
   return (
     <StyledCard>
@@ -33,7 +78,11 @@ export default function LargeCard({ data }) {
         <CardTitle>
           {title}
           <FavoriteIcon>
-            <CiBookmark />
+            {isFavorited ? (
+              <FaBookmark onClick={onSubmit} />
+            ) : (
+              <FaRegBookmark onClick={onSubmit} />
+            )}{" "}
           </FavoriteIcon>
         </CardTitle>
       </Group>
@@ -43,3 +92,7 @@ export default function LargeCard({ data }) {
     </StyledCard>
   );
 }
+
+LargeCard.propTypes = {
+  data: PropTypes.object.isRequired,
+};

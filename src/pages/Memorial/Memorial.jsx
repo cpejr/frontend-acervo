@@ -2,19 +2,20 @@ import { useState } from "react";
 import {
   Container,
   Title,
-  Filter,
-  Characteristics,
+  ContainerFilter,
   DivSelect,
-  FilterTitle,
   UniSelect,
-  StyledCheckbox,
-  VerticalLine,
   DivLine,
+  Calendar,
+  Buttons,
+  ButtonsDiv,
   Line,
 } from "../Memorial/Styles";
+import { toast } from "react-toastify";
+import { useGetMemorialByDate } from "../../hooks/querys/memorial";
+
 import { SearchBar } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
-import { Checkbox } from "primereact/checkbox";
 
 const cardData = [
   { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
@@ -22,23 +23,40 @@ const cardData = [
 ];
 
 export default function Memorial() {
+  const [searchValue, setSearchValue] = useState("");
+  const [dates, setDates] = useState(null);
+  const [dateRange, setDateRange] = useState();
+  const { data: memorial } = useGetMemorialByDate({
+    dateRange: dateRange,
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+  console.log(dateRange);
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },
   ];
-
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-    { label: "Característica 3" },
-  ];
-
-  const [searchValue, setSearchValue] = useState("");
-
+  const handleFilterChange = () => {
+    const [initialDate, finalDate] = dates;
+    let formattedDateRange;
+    if (finalDate === null) {
+      formattedDateRange = { oneDate: initialDate.toISOString() };
+    } else {
+      formattedDateRange = {
+        initialDate: initialDate.toISOString(),
+        finalDate: finalDate.toISOString(),
+      };
+    }
+    setDateRange(formattedDateRange);
+  };
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
-
+  const handleResetFilter = () => {
+    setDates([]);
+    setDateRange({});
+  };
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -47,25 +65,29 @@ export default function Memorial() {
         value={searchValue}
         search={handleSearchChange}
       />
-      <Filter>
-        <Characteristics>
-          <FilterTitle>Características:</FilterTitle>
-          {characteristicCheckboxes.map((checkbox, index) => (
-            <label key={index}>
-              <Checkbox />
-              {checkbox.label}
-            </label>
-          ))}
-        </Characteristics>
-        <VerticalLine />
+      <ContainerFilter>
         <DivSelect>
+          <Calendar
+            value={dates}
+            onChange={(e) => setDates(e.value)}
+            selectionMode="range"
+            readOnlyInput
+            hideOnRangeSelection
+            placeholder="Determine uma data"
+            showButtonBar
+            dateFormat="dd/mm/yy"
+          />
           <UniSelect
             options={filters}
             optionLabel="label"
             placeholder="Ordenar Por"
           />
         </DivSelect>
-      </Filter>
+        <ButtonsDiv>
+          <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+          <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+        </ButtonsDiv>
+      </ContainerFilter>
       <DivLine>
         {cardData
           .filter((card) =>

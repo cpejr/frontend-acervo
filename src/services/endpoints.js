@@ -136,3 +136,11 @@ export async function getIsFavoritedMemorial({ userId, memorialId }) {
 
   return data;
 }
+
+export const getMemorialByDate = async ({ dateRange }) => {
+  const { data } = await api.get("/memorial/search-by-date", {
+    params: { dateRange },
+  });
+
+  return data;
+};
