@@ -24,7 +24,6 @@ export default function LargeCard({ data }) {
       },
     }
   );
-  console.log(archiveData);
 
   return (
     <StyledCard>

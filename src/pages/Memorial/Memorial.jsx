@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Container,
   Title,
@@ -11,7 +11,7 @@ import {
   DivLine,
   Line,
 } from "../Memorial/Styles";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
@@ -41,7 +41,7 @@ export default function Memorial() {
 
   const handleChangeSort = (e) => {
     setSelectedSort(e.value);
-    updateCards(e.value);
+    //updateCards(e.value);
   };
 
   const handleChangeCheckbox = (e) => {
@@ -55,32 +55,32 @@ export default function Memorial() {
     const newCheckedStates = [...characteristicCheckboxes];
     newCheckedStates[index].checked = !newCheckedStates[index].checked;
     setCharacteristicCheckboxes(newCheckedStates);
-    updateCards();
+    //updateCards();
   };
 
-  function updateCards(sort) {
-    try {
-      let selectedFilters = [];
-      characteristicCheckboxes.forEach((val) => {
-        if (val.checked) selectedFilters.push(val.value);
-      });
+  // function updateCards(sort) {
+  //   try {
+  //     let selectedFilters = [];
+  //     characteristicCheckboxes.forEach((val) => {
+  //       if (val.checked) selectedFilters.push(val.value);
+  //     });
 
-      if (!sort) {
-        sort = sortValue;
-      }
+  //     if (!sort) {
+  //       sort = sortValue;
+  //     }
 
-      const selection = {
-        order: sort,
-        filters: selectedFilters,
-      };
+  //     const selection = {
+  //       order: sort,
+  //       filters: selectedFilters,
+  //     };
 
-      getCards(selection);
-    } catch (e) {
-      toast.error("Erro ao carregar memorial");
-    }
-  }
+  //     getCards(selection);
+  //   } catch (e) {
+  //     toast.error("Erro ao carregar memorial");
+  //   }
+  // }
 
-  const { mutate: getCards, data: memorialCards } = useGetMemorial({
+  const { data: memorialCards } = useGetMemorial({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["memorialCards"],
@@ -89,10 +89,10 @@ export default function Memorial() {
     onError: () => {},
   });
 
-  useEffect(() => {
-    updateCards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   updateCards();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <Container>
