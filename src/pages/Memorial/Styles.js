@@ -131,3 +131,8 @@ export const UniSelect = styled(Dropdown)`
     width: 20%;
   }
 `;
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+`;

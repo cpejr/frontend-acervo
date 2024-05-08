@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Title,
@@ -17,14 +17,14 @@ import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
-
+import { LoadingOutlined } from "@ant-design/icons";
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
     { label: "Característica 1", value: "c1", checked: false },
     { label: "Característica 2", value: "c2", checked: false },
     { label: "Característica 3", value: "c3", checked: false },
   ]);
-
+  const [imagesLoading, setImagesLoading] = useState(true);
   const filters = [
     { label: "Favoritos", value: "title" },
     { label: "Melhor avaliados", value: "date" },
@@ -80,19 +80,26 @@ export default function Memorial() {
   //   }
   // }
 
-  const { data: memorialCards } = useGetMemorial({
+  const {
+    data: memorialCards,
+    isLoading,
+    isError,
+  } = useGetMemorial({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["memorialCards"],
       });
     },
-    onError: () => {},
+    onError: () => {
+      setImagesLoading(false);
+    },
   });
 
-  // useEffect(() => {
-  //   updateCards();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    if (!isLoading && !isError) {
+      setImagesLoading(false);
+    }
+  }, [isLoading, isError]);
 
   return (
     <Container>
@@ -139,7 +146,11 @@ export default function Memorial() {
           )
           .map((card) => (
             <Line key={card.title}>
-              <LargeCard aria-label="Cartão de memorial" data={card} />
+              {imagesLoading ? (
+                <LoadingOutlined />
+              ) : (
+                <LargeCard aria-label="Cartão de memorial" data={card} />
+              )}
             </Line>
           ))}
       </DivLine>
