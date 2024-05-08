@@ -5,6 +5,10 @@ export const Container = styled.div`
     width: 100%;
     height: auto;
     background-color: ${colors.background.primary};
+
+    @media(max-width: ${breakpoints.biggerScreen}){
+        overflow-x: hidden;
+    }
 `;
 export const HeaderArea = styled.div``;
 
@@ -73,6 +77,10 @@ export const TextArea = styled.div`
 
     @media(max-width: ${breakpoints.smallDevice}){
         padding: 30px;
+    }
+
+    @media(max-width: ${breakpoints.newsletter}){
+        padding: 40px;
     }
 `;
 
@@ -231,6 +239,10 @@ export const ButtonText = styled.div`
 
     @media(max-width: ${breakpoints.smallTablet}){
         font-size: 20px;
+    }
+
+    @media(max-width: ${breakpoints.miniDevice}){
+        font-size: 18px;
     }
 `;
 

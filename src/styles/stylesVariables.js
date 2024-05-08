@@ -44,4 +44,5 @@ export const breakpoints = {
   smallMobile: "500px",
   mediumMobile: "400px",
   smallDevice: "350px",
+  miniDevice: "300px",
 };
