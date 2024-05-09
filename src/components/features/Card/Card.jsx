@@ -35,7 +35,7 @@ export default function Card({ data }) {
         <OrangeButton
           onClick={(event) => {
             event.stopPropagation();
-            window.open(data?.link, "_blank");
+            window.open(data?.name, "_blank");
           }}
         >
           Link
