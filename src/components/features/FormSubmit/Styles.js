@@ -25,7 +25,7 @@ export const Form = styled.form`
 `;
 
 export const Select = styled(MultiSelect)`
-  width: 100%;
+  width: 40%;
   background-color: ${colors.font.primary};
   color: ${colors.font.secondary};
   border-radius: 4px;
@@ -51,10 +51,10 @@ export const Select = styled(MultiSelect)`
     width: 50%;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    width: 33%;
+    width: 70%;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
-    width: 50%;
+    width: 60%;
   }
 `;
 export const ErrorMessage = styled.p`

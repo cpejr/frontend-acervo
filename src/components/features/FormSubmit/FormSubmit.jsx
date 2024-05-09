@@ -43,12 +43,15 @@ export default function FormSubmit({
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
-      //onSubmit({ ...data, archives: archivesArray, selectedOptions });
-      //console.log({ ...data, archives: archivesArray, selectedOptions });
+      onSubmit({ ...data, archives: archivesArray, selectedOptions });
+
       setArchivesArray([]);
+      setSelectedOptions({});
     } else {
       onSubmit(data, selectedOptions);
+      setSelectedOptions({});
     }
+    console.log(selectedOptions);
     reset();
   }
 
@@ -57,20 +60,16 @@ export default function FormSubmit({
       {inputs.map((input) => {
         if (input.type === "selects") {
           return (
-            <Selects key="selects">
-              {input?.selects.map((select) => {
-                return (
-                  <Select
-                    key={select.key}
-                    options={select.options}
-                    placeholder={select.placeholder}
-                    value={selectedOptions[select.key] || ""}
-                    onChange={(e) => {
-                      handleSelectChange(select.key, e.target.value);
-                    }}
-                  ></Select>
-                );
-              })}
+            <Selects key={input.key}>
+              <Select
+                key={input.key}
+                options={input.options}
+                placeholder={input.placeholder}
+                value={selectedOptions[input.key] || ""}
+                onChange={(e) => {
+                  handleSelectChange(input.key, e.target.value);
+                }}
+              ></Select>
             </Selects>
           );
         } else if (input.type === "input") {

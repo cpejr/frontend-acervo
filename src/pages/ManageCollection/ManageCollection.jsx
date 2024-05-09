@@ -15,7 +15,6 @@ import {
   useDeleteMemorial,
   useUpdateMemorial,
 } from "../../hooks/querys/memorial";
-import { useGetCategoryPrice } from "../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
 import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -46,31 +45,14 @@ export default function ManageCollection() {
       toast.error(err);
     },
   });
-  const { data: categoryPrice } = useGetCategoryPrice({
-    onError: (err) => {
-      toast.error(err);
-    },
-  });
 
-  useEffect(() => {
-    let prices = categoryPrice?.map((category) => {
-      return category?.name;
-    });
-
-    if (prices) {
-      inputs[4].selects[0] = {
-        key: "id_categoryPrice",
-        placeholder: "Escolha o preço",
-        options: prices,
-      };
-    }
-  }, [categoryPrice]);
   useEffect(() => {
     let types = categoryType?.map((category) => {
       return category?.name;
     });
     if (types) {
-      inputs[4].selects[1] = {
+      inputs[4] = {
+        type: "selects",
         key: "id_categoryType",
         placeholder: "Escolha a categoria",
         options: types,
@@ -100,10 +82,7 @@ export default function ManageCollection() {
       placeholder: "Link",
       icon: AiOutlineLink,
     },
-    {
-      type: "selects",
-      selects: [],
-    },
+    {},
     {
       type: "archive",
       key: "archive",
