@@ -3,10 +3,9 @@ import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const StyledCard = styled(Card)`
-  display: flex;
+  display: block;
   flex-direction: column;
   width: 50%;
-  max-width: 60%;
   margin-top: 3rem;
   height: auto;
   align-items: center;
@@ -32,73 +31,39 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const Image = styled.div`
-  display: flex;
-  height: auto;
-  width: 100%;
-  cursor: pointer;
-  > img {
-    width: 100%;
-    height: 14rem;
-    border-radius: 1rem;
-    @media (max-width: ${breakpoints.miniTablet}) {
-      height: 12rem;
-    }
-  }
-`;
-
 export const CardTitle = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+  margin-top: 1rem;
   align-items: center;
-  justify-content: space-between;
-  height: auto;
   font-size: 30px;
   color: ${colors.font.secondary};
-  margin-top: 1rem;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
   }
 `;
 
-export const CardLine = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
+export const ShortDesc = styled.div`
   font-size: 20px;
   color: ${colors.font.secondary};
+  word-break: break-word;
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 24px;
+    font-size: 18px;
   }
 `;
 
-export const LineSVG = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
-  > svg {
-    font-size: 30px;
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 24px;
-    }
-  }
-`;
-
-export const Group = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 17.5px;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 15.75px;
-  }
-`;
-
-export const FavoriteIcon = styled.div`
+export const LongDesc = styled.div`
+  font-size: 17px;
   color: ${colors.font.secondary};
-  margin-left: 5px;
-  font-size: 2rem;
-  cursor: pointer;
+  word-break: break-word;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 15px;
+  }
+`;
+
+export const LinkDesc = styled.div`
+  font-size: 17px;
+  color: ${colors.font.secondary};
+  word-break: break-word;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 15px;
+  }
 `;
