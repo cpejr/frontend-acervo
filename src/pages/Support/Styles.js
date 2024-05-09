@@ -15,6 +15,14 @@ export const HeaderArea = styled.div``;
 export const Image = styled.img`
     width: 100%;
     height: auto;
+
+    /* @media(min-width: ${breakpoints.desktop}){
+        height: 33rem;
+    } */
+
+    @media(min-width: ${breakpoints.tablet}){
+        height: 33rem;
+    }
 `;
 
 export const Title = styled.h1`
