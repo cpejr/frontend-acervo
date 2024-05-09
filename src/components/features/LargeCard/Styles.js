@@ -51,19 +51,19 @@ export const ShortDesc = styled.div`
 `;
 
 export const LongDesc = styled.div`
-  font-size: 15px;
+  font-size: 17px;
   color: ${colors.font.secondary};
   word-break: break-word;
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 13px;
+    font-size: 15px;
   }
 `;
 
 export const LinkDesc = styled.div`
-  font-size: 15px;
+  font-size: 17px;
   color: ${colors.font.secondary};
   word-break: break-word;
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 13px;
+    font-size: 15px;
   }
 `;
