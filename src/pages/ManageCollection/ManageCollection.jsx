@@ -50,6 +50,7 @@ export default function ManageCollection() {
     let types = categoryType?.map((category) => {
       return category?.name;
     });
+
     if (types) {
       inputs[4] = {
         type: "selects",
