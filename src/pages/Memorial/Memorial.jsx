@@ -11,13 +11,11 @@ import {
   DivLine,
   Line,
 } from "../Memorial/Styles";
-//import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
-import { LoadingOutlined } from "@ant-design/icons";
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
     { label: "Característica 1", value: "c1", checked: false },
@@ -41,7 +39,6 @@ export default function Memorial() {
 
   const handleChangeSort = (e) => {
     setSelectedSort(e.value);
-    //updateCards(e.value);
   };
 
   const handleChangeCheckbox = (e) => {
@@ -55,30 +52,7 @@ export default function Memorial() {
     const newCheckedStates = [...characteristicCheckboxes];
     newCheckedStates[index].checked = !newCheckedStates[index].checked;
     setCharacteristicCheckboxes(newCheckedStates);
-    //updateCards();
   };
-
-  // function updateCards(sort) {
-  //   try {
-  //     let selectedFilters = [];
-  //     characteristicCheckboxes.forEach((val) => {
-  //       if (val.checked) selectedFilters.push(val.value);
-  //     });
-
-  //     if (!sort) {
-  //       sort = sortValue;
-  //     }
-
-  //     const selection = {
-  //       order: sort,
-  //       filters: selectedFilters,
-  //     };
-
-  //     getCards(selection);
-  //   } catch (e) {
-  //     toast.error("Erro ao carregar memorial");
-  //   }
-  // }
 
   const {
     data: memorialCards,
@@ -146,11 +120,11 @@ export default function Memorial() {
           )
           .map((card) => (
             <Line key={card.title}>
-              {imagesLoading ? (
-                <LoadingOutlined />
-              ) : (
-                <LargeCard aria-label="Cartão de memorial" data={card} />
-              )}
+              <LargeCard
+                aria-label="Cartão de memorial"
+                data={card}
+                imagesLoading={imagesLoading}
+              />
             </Line>
           ))}
       </DivLine>

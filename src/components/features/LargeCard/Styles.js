@@ -3,6 +3,7 @@ import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const StyledCard = styled(Card)`
+  position: relative; /* Ensure positioning context for absolute positioning */
   display: block;
   flex-direction: column;
   width: 50%;
@@ -112,4 +113,15 @@ export const CarouselStyles = styled.div`
   .carousel.carousel-slider .control-arrow {
     background: ${colors.background.primary};
   }
+`;
+
+export const LoadingContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
