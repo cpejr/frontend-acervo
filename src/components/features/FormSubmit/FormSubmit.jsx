@@ -14,6 +14,7 @@ export default function FormSubmit({
   schema,
   color,
   loading,
+  selectedOptionsInitial,
 }) {
   const {
     handleSubmit,
@@ -24,7 +25,9 @@ export default function FormSubmit({
     resolver: zodResolver(schema),
   });
 
-  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState(
+    selectedOptionsInitial
+  );
 
   const handleSelectChange = (key, value) => {
     setSelectedOptions((prevSelectedOptions) => ({
@@ -51,7 +54,7 @@ export default function FormSubmit({
       onSubmit(data, selectedOptions);
       setSelectedOptions({});
     }
-    console.log(selectedOptions);
+
     reset();
   }
 
@@ -121,4 +124,5 @@ FormSubmit.propTypes = {
   schema: PropTypes.object.isRequired,
   color: PropTypes.string,
   loading: PropTypes.bool,
+  selectedOptionsInitial: PropTypes.object,
 };

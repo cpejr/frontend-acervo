@@ -39,7 +39,7 @@ export default function ManageCollection() {
 
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
-
+  const [selectOptions, setSelectOptions] = useState();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -59,6 +59,7 @@ export default function ManageCollection() {
         options: types,
       };
     }
+    setSelectOptions(types);
   }, [categoryType]);
 
   const [inputs] = useState([
@@ -114,6 +115,7 @@ export default function ManageCollection() {
                 title: collection.title,
                 archives: collection.archive,
                 link: collection.link,
+                id_categoryType: collection?.id_categoryType,
               });
             }}
           />
@@ -206,6 +208,7 @@ export default function ManageCollection() {
         schema={newCollectionValidationSchema}
         color={"white"}
         loading={loadingPostMemorial}
+        selectedOptionsInitial={{}}
       />
 
       <SubTitle>GERENCIAR ARQUIVOS </SubTitle>
@@ -234,6 +237,7 @@ export default function ManageCollection() {
         modal={modalUpdate}
         modalCloseIcon={modalCloseButton}
         closeModal={closeModalUpdate}
+        options={selectOptions}
       />
     </Container>
   );

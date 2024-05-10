@@ -31,7 +31,7 @@ export const Select = styled(MultiSelect)`
   border-radius: 4px;
   border: 2px solid ${colors.background.primary};
   height: 5vh;
-  text-align: center;
+  text-align: left;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
   ::placeholder {

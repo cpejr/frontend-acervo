@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { ModalStyle } from "./Styles";
 import FormSubmit from "../../FormSubmit/FormSubmit";
+import { useState, useEffect } from "react";
 import { updateCollectionValidationSchema } from "./utils";
 import { FaLink } from "react-icons/fa6";
 import { AiOutlineUpload } from "react-icons/ai";
@@ -13,7 +14,10 @@ export default function ModalUpdateMemorial({
   modal,
   closeModal,
   modalCloseIcon,
+  options,
 }) {
+  const [initialValues, setInitialValues] = useState({});
+
   const inputs = [
     {
       type: "input",
@@ -29,6 +33,12 @@ export default function ModalUpdateMemorial({
       icon: FaLink,
     },
     {
+      type: "selects",
+      key: "id_categoryType",
+      placeholder: "Escolha a categoria",
+      options: options,
+    },
+    {
       type: "archive",
       key: "archive",
       placeholder: "Adicionar Arquivo",
@@ -40,6 +50,12 @@ export default function ModalUpdateMemorial({
     },
   ];
 
+  useEffect(() => {
+    if (values?.id_categoryType) {
+      const categoryNames = values.id_categoryType.map((cat) => cat.name);
+      setInitialValues({ id_categoryType: categoryNames });
+    }
+  }, [values.id_categoryType]);
   function handleSubmit(data) {
     handleMemorialUpdate(id, data);
     close();
@@ -62,6 +78,7 @@ export default function ModalUpdateMemorial({
         onSubmit={handleSubmit}
         schema={updateCollectionValidationSchema}
         color={"black"}
+        selectedOptionsInitial={initialValues}
       ></FormSubmit>
     </ModalStyle>
   );
@@ -75,4 +92,5 @@ ModalUpdateMemorial.propTypes = {
   closeModal: PropTypes.func.isRequired,
   modalCloseIcon: PropTypes.object.isRequired,
   values: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
 };
