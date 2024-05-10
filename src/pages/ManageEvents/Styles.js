@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 
 export const Container = styled.div`
   display: flex;
@@ -10,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding-top: 8rem;
+  padding-top: 3rem;
   gap: 3rem;
 
   @media (max-width: 700px) {
@@ -21,25 +19,23 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.p`
-  display: flex;
-  align-items: center;
-  font-size: 4rem;
-  color: ${colors.white};
-  font-weight: 600;
-  margin: 0;
-  margin-left: 5rem;
-  text-align: center;
-
-  @media (max-width: 700px) {
-    font-weight: 600;
-    font-size: 2.5rem;
-    line-height: 3.9rem;
-    height: 3.9rem;
+export const Title = styled.div`
+  color: ${colors.font.title};
+  font-size: 30px;
+  margin-left: 5%;
+  width: fit-content;
+  border-bottom: 2px solid ${colors.font.title};
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 27px;
   }
-
-  @media (max-width: 370px) {
-    font-size: 2.5rem;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 25px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 22px;
   }
 `;
 
@@ -69,6 +65,10 @@ export const Section = styled.section`
   width: 70%;
   height: 100%;
   gap: 2rem;
+  ::placeholder {
+    color: ${colors.font.primary};
+    font-weight: 400;
+  }
 
   @media (max-width: 700px) {
     width: 80%;
@@ -80,6 +80,10 @@ export const EventButtons = styled.div`
   gap: 8px;
 `;
 export const MultipleSelect = styled(MultiSelect)`
+  background-color: ${colors.background.primary};
+  .p-placeholder {
+    color: ${colors.font.primary};
+  }
   .p-multiselect-label {
     width: 215px;
   }
@@ -89,36 +93,18 @@ export const MultipleSelect = styled(MultiSelect)`
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 50%;
   }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 33%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 50%;
-  }
 `;
 export const Selects = styled.div`
   display: flex;
+  color: #808080;
   flex-direction: row;
   width: 100%;
   gap: 3rem;
-  justify-content: space-around;
+  justify-content: center;
 
   @media (max-width: 850px) {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
   }
-`;
-
-export const Table = styled(DataTable)`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  align-self: center;
-  width: 90%;
-  min-height: 70%;
-`;
-export const TableColumn = styled(Column)`
-  display: flex;
-  background-color: ${colors.font.primary};
 `;

@@ -1,11 +1,10 @@
-import { CiBookmark } from "react-icons/ci";
+import PropTypes from "prop-types";
 import {
   StyledCard,
-  Group,
-  LineSVG,
-  CardLine,
+  ShortDesc,
+  LongDesc,
+  LinkDesc,
   CardTitle,
-  FavoriteIcon,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -17,7 +16,7 @@ const images = [
 ];
 
 export default function LargeCard({ data }) {
-  const { title, description, shortDescription } = data;
+  const { title, shortDescription, longDescription, link } = data;
 
   return (
     <StyledCard>
@@ -28,21 +27,22 @@ export default function LargeCard({ data }) {
           </div>
         ))}
       </Carousel>
-      <Group>
-        <LineSVG></LineSVG>
         <CardTitle>
           {title}
-          <FavoriteIcon>
-            <CiBookmark />
-          </FavoriteIcon>
         </CardTitle>
-      </Group>
-      <CardLine>
-        <p>{description}</p>
-      </CardLine>
-      <CardLine>
-        <p>{shortDescription}</p>
-      </CardLine>
+        <ShortDesc>
+          <p>{shortDescription}</p>
+        </ShortDesc>
+        <LongDesc>
+          <p>{longDescription}</p>
+        </LongDesc>
+        <LinkDesc>
+          <a href= {link} >{link}</a>
+        </LinkDesc>
     </StyledCard>
   );
+}
+
+LargeCard.propTypes = {
+  data: PropTypes.object
 }

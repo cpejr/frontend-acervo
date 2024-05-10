@@ -24,6 +24,10 @@ export default function Memorial() {
     { label: "Característica 2", value: "c2", checked: false },
     { label: "Característica 3", value: "c3", checked: false },
   ]);
+const cardData = [
+  { _id: 1, title: "Card 1", shortDescription: "Descrição do Card 1", longDescription: "Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonga", link:"https://www.google.com/u/1" },
+  { _id: 2, title: "Card 2", shortDescription: "Descrição do Card 2", longDescription: "Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonga", link:"https://www.google.com/u/1" },
+];
 
   const filters = [
     { label: "Nome", value: "title" },
