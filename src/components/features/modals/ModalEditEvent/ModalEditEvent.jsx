@@ -99,7 +99,7 @@ export default function ModalEditEvent({
       >
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormInputEvents
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="name"
             label="Nome do evento:"
@@ -109,7 +109,7 @@ export default function ModalEditEvent({
             errors={errors}
             color="black"
           />
-          <FormInputEvents
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="eventUpload"
             label="Imagem do evento:"
@@ -127,7 +127,7 @@ export default function ModalEditEvent({
             errors={errors}
             color="black"
           />
-          <FormInputEvents
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="longDescription"
             label="Descrição longa:"
@@ -137,7 +137,7 @@ export default function ModalEditEvent({
             errors={errors}
             color="black"
           />
-          <FormInputEvents
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="link"
             label="Link:"

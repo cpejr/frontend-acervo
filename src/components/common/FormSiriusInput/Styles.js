@@ -22,9 +22,12 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  height: 1rem;
-  padding: 1rem 2.2rem;
+  height: 3rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
+  color: ${(props) => props?.color};
+  cursor: ${(props) => props?.cursor};
+  font-size: 20px;
   color: ${colors.font.primary};
   width: 100%;
   background-color: ${colors.background.primary};
