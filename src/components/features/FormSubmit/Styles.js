@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, breakpoints } from "../../../styles/stylesVariables";
+
 import { MultiSelect } from "primereact/multiselect";
 
 export const Form = styled.form`
@@ -26,23 +26,20 @@ export const Form = styled.form`
 
 export const Select = styled(MultiSelect)`
   width: 40%;
-  background-color: ${colors.font.primary};
-  color: ${colors.font.secondary};
+  background-color: inherit;
+  color: ${(props) => props?.selectColor};
   border-radius: 4px;
-  border: 2px solid ${colors.background.primary};
-  height: 5vh;
+  height: 6.5vh;
   text-align: left;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
-  ::placeholder {
-    font-weight: 400;
-  }
+    props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`};
+
   .p-multiselect-label {
     width: 215px;
     overflow-x: scroll;
   }
-  &:hover {
-    border: 2px solid ${colors.font.other};
+  .p-placeholder {
+    color: ${(props) => props?.selectColor};
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 50%;
