@@ -25,17 +25,17 @@ export const Label = styled.label`
 
 export const StyledTextArea = styled.textarea`
   height: 6rem;
-  font-size: 1rem;
+  font-size: 20px;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
   color: ${colors.font.primary};
   background-color: ${colors.background.primary};
   border: ${(props) =>
     props?.error ? "0.1rem yellow solid" : `0.1rem white solid`};
+  outline: none;
 
   @media (max-width: 700px) {
     font-weight: 400;
-    font-size: 1.6rem;
     line-height: 2rem;
     height: 3rem;
   }

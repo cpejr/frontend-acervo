@@ -30,6 +30,7 @@ import {
   MultipleSelect,
   EventButtons,
 } from "./Styles";
+import UploadInput from "../../components/common/UploadInput/UploadInput";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
@@ -38,7 +39,8 @@ export default function ManageEvents() {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
+  const [archivesArray, setArchivesArray] = useState([]);
+  const [archiveError, setArchiveError] = useState(false);
   const { data: events } = useGetEvents({
     onError: (err) => {
       toast.error(err);
@@ -114,13 +116,25 @@ export default function ManageEvents() {
   };
 
   const onSubmit = (data, e) => {
-    const combinedData = {
-      ...data,
-      id_categoryPrice: idCategoriesPrices,
-      id_categoryType: idCategoriesTypes,
-    };
-    createEvent(combinedData);
-    e.target.reset();
+    let uploadEvent = {};
+    if (archivesArray[0]) {
+      uploadEvent = {
+        base64: archivesArray[0].base64,
+        name: archivesArray[0].name,
+      };
+      const combinedData = {
+        ...data,
+        id_categoryPrice: idCategoriesPrices,
+        id_categoryType: idCategoriesTypes,
+        uploadEvent,
+      };
+      createEvent(combinedData);
+      e.target.reset();
+      setArchivesArray([]);
+      setArchiveError(false);
+    } else {
+      setArchiveError(true);
+    }
   };
   const {
     handleSubmit,
@@ -147,33 +161,43 @@ export default function ManageEvents() {
         <Section>
           <FormSiriusInput
             name="name"
-            placeholder="Nome do evento:"
+            placeholder="Nome do evento"
             errors={errors}
             register={register}
-          />
-          <FormSiriusInput
-            name="eventUpload"
-            placeholder="URL da imagem:"
-            errors={errors}
-            register={register}
+            inputKey="1"
           />
           <FormSiriusInput
             name="shortDescription"
-            placeholder="Descrição curta:"
+            placeholder="Descrição curta"
             errors={errors}
             register={register}
+            inputKey="3"
           />
           <FormTextArea
             name="longDescription"
-            placeholder="Descrição longa:"
+            placeholder="Descrição longa"
             errors={errors}
             register={register}
           />
           <FormSiriusInput
             name="link"
-            placeholder="Link do evento:"
+            placeholder="Link do evento"
             errors={errors}
             register={register}
+            inputKey="4"
+          />
+
+          <UploadInput
+            key="images"
+            inputKey="images"
+            placeholder="Imagem do evento"
+            error={archiveError}
+            register={register}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            color="white"
+            hasButtons={false}
+            width="100%"
           />
           <Selects>
             <MultipleSelect
@@ -188,6 +212,7 @@ export default function ManageEvents() {
               className="w-full md:w-20rem"
               filter
             />
+
             <MultipleSelect
               value={idCategoriesPrices}
               name="id_categoryPrice"

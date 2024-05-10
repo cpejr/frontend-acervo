@@ -88,3 +88,9 @@ export async function postMemorial(newMemorial) {
 
   return data;
 }
+//Archives
+export async function getArchives(archives) {
+  const { data } = await api.get(`/archive/?archive=${archives}`);
+
+  return data;
+}

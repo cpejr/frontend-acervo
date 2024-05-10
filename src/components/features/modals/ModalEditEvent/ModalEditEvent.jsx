@@ -7,11 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
+import { FormInputEvents } from "../../../../components";
 import FormSiriusInput from "../../../common/FormSiriusInput/FormSiriusInput";
 import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
+import UploadInput from "../../../common/UploadInput/UploadInput";
 
 export default function ModalEditEvent({
   event,
@@ -22,6 +24,7 @@ export default function ModalEditEvent({
 }) {
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
+  const [archivesArray, setArchivesArray] = useState([]);
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -52,14 +55,25 @@ export default function ModalEditEvent({
     if (modal) {
       setCategories();
     }
-  }, [modal]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modal]);
   // On Submit
+
   const onSubmit = (data) => {
+    let uploadEvent = {};
+    if (archivesArray[1]) {
+      uploadEvent = {
+        base64: archivesArray[1].base64,
+        name: archivesArray[1].name,
+      };
+    }
+
     const body = {
       ...data,
       id_categoryType: idsCategoryType,
       id_categoryPrice: idsCategoryPrice,
+      uploadEvent: uploadEvent,
     };
 
     updatEvent({ _id: _id, body: body });
@@ -85,6 +99,7 @@ export default function ModalEditEvent({
       >
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="name"
             label="Nome do evento:"
@@ -92,7 +107,9 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Nome do evento:"
             errors={errors}
+            color="black"
           />
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="eventUpload"
             label="Imagem do evento:"
@@ -108,7 +125,9 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Descrição curta:"
             errors={errors}
+            color="black"
           />
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="longDescription"
             label="Descrição longa:"
@@ -116,7 +135,9 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Descrição longa:"
             errors={errors}
+            color="black"
           />
+          {/* <FormInputEvents */}
           <FormSiriusInput
             name="link"
             label="Link:"
@@ -124,6 +145,21 @@ export default function ModalEditEvent({
             register={register}
             placeholder="Link do evento:"
             errors={errors}
+            color="black"
+          />
+
+          <UploadInput
+            key={"images"}
+            inputKey={"archive0"}
+            error={false}
+            register={register}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            values={[{ name: event.eventUpload.name, base64: undefined }]}
+            color={"black"}
+            hasButtons={false}
+            width="100%"
+            placeholder={event?.eventUpload?.name}
           />
           <MultipleSelect
             value={idsCategoryPrice}
@@ -133,6 +169,7 @@ export default function ModalEditEvent({
             placeholder="Escolha as características"
             className="w-full md:w-20rem"
             filter
+            color="black"
           />
           <MultipleSelect
             value={idsCategoryType}
@@ -142,6 +179,7 @@ export default function ModalEditEvent({
             placeholder="Escolha as características"
             className="w-full md:w-20rem"
             filter
+            color="black"
           />
           <Button
             type="submit"

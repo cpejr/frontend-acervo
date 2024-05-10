@@ -15,7 +15,9 @@ import {
   Title,
   BackgroundTitle,
 } from "./Styles";
+
 import { SearchBar } from "../../components";
+
 export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
@@ -32,6 +34,7 @@ export default function Events() {
       toast.error(err);
     },
   });
+
   return (
     <Container>
       <BackgroundTitle>
