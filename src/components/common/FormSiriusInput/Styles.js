@@ -33,15 +33,16 @@ export const StyledInput = styled.input`
   background-color: ${colors.background.primary};
   border: ${(props) =>
     props?.error ? "0.1rem #ffd100 solid" : `0.1rem white solid`};
+  outline: none;
 
   @media (max-width: ${breakpoints.mobile}) {
     font-weight: 400;
-    font-size: 1.6rem;
     line-height: 2rem;
     height: 3rem;
   }
   @media (max-width: 370px) {
     font-size: 1.2rem;
+    outline: none !important;
   }
 `;
 

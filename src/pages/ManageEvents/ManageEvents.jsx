@@ -15,7 +15,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { newEventValidationSchema } from "./utils";
 import {
   FormSiriusInput,
-  FormInputEvents,
   FormTextArea,
   SubmitButton,
   ModalDeleteEvent,
