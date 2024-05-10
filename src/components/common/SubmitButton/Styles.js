@@ -37,14 +37,7 @@ export const Button = styled.button`
     width: 128px;
     height: 40px;
   }
-  &:hover {
-    background-color: ${colors.background.primary};
-    color: ${colors.font.secondary};
-    > p {
-      font-weight: 500;
-      font-size: 1.5rem;
-    }
-  }
+
   p {
     color: ${colors.background.p};
     text-transform: uppercase;

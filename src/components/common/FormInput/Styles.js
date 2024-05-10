@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const StyledInput = styled.input`
-  width: 70%;
+  width: ${(props) => props?.width};
   height: 3rem;
   padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
