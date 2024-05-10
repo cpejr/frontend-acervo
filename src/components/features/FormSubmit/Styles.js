@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { breakpoints } from "../../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
 
 export const Form = styled.form`
@@ -25,7 +25,7 @@ export const Form = styled.form`
 `;
 
 export const Select = styled(MultiSelect)`
-  width: 40%;
+  width: 25%;
   background-color: inherit;
   color: ${(props) => props?.selectColor};
   border-radius: 4px;
@@ -42,13 +42,13 @@ export const Select = styled(MultiSelect)`
     color: ${(props) => props?.selectColor};
   }
   @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
+    width: 25%;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
+    width: 25%;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    width: 70%;
+    width: 45%;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
     width: 60%;
