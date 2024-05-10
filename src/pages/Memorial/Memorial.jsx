@@ -17,8 +17,8 @@ import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { Checkbox } from "primereact/checkbox";
 
 const cardData = [
-  { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-  { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+  { _id: 1, title: "Card 1", shortDescription: "Descrição do Card 1", longDescription: "Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonga", link:"https://www.google.com/u/1" },
+  { _id: 2, title: "Card 2", shortDescription: "Descrição do Card 2", longDescription: "Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonga", link:"https://www.google.com/u/1" },
 ];
 
 export default function Memorial() {

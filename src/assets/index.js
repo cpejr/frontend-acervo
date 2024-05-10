@@ -9,6 +9,7 @@ export { default as prefeitura } from "./Home/Prefeitura.svg";
 export { default as background } from "./Home/background.png";
 export { default as apresentacao } from "./Home/Apresentacao.svg";
 export { default as imageEventNotFound } from "./Home/EventNotFound.png";
+export { default as titleBackground } from "./Home/titleBackground.png";
 export { default as Add } from "./Add.svg";
 
 export { default as Logo } from "./Footer/LogoBranca.svg";

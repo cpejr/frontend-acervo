@@ -59,13 +59,6 @@ export const getCategoryType = async (filters = {}) => {
   return data;
 };
 
-export const getCategoryTypeByName = async (name) => {
-  const { data } = await api.get("/categoryType/search-by-name", {
-    params: { name },
-  });
-  return data;
-};
-
 //CategoryType endpoints
 export const getCategoryPrice = async (filters = {}) => {
   const { data } = await api.get("/categoryPrice", { params: filters });

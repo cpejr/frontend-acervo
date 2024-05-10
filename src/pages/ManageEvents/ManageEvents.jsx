@@ -14,19 +14,19 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
 import {
+  FormSiriusInput,
   FormInputEvents,
   FormTextArea,
   SubmitButton,
   ModalDeleteEvent,
   ModalEditEvent,
+  Table,
 } from "../../components";
 import {
   Container,
   Title,
   Form,
   Section,
-  Table,
-  TableColumn,
   Selects,
   MultipleSelect,
   EventButtons,
@@ -71,6 +71,7 @@ export default function ManageEvents() {
 
   const { mutate: createEvent } = useCreateEvents({
     onSuccess: () => {
+      toast.success("Evento criado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -82,6 +83,7 @@ export default function ManageEvents() {
 
   const { mutate: deleteEvent } = useDeleteEvents({
     onSuccess: () => {
+      toast.success("Evento deletado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -157,15 +159,20 @@ export default function ManageEvents() {
       <Title>SUBMETER NOVO EVENTO</Title>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Section>
-          <FormInputEvents
+          <FormSiriusInput
             name="name"
             placeholder="Nome do evento:"
             errors={errors}
             register={register}
             inputKey="1"
           />
-
-          <FormInputEvents
+          <FormSiriusInput
+            name="eventUpload"
+            placeholder="URL da imagem:"
+            errors={errors}
+            register={register}
+          />
+          <FormSiriusInput
             name="shortDescription"
             placeholder="Descrição curta:"
             errors={errors}
@@ -178,7 +185,7 @@ export default function ManageEvents() {
             errors={errors}
             register={register}
           />
-          <FormInputEvents
+          <FormSiriusInput
             name="link"
             placeholder="Link do evento:"
             errors={errors}
@@ -249,16 +256,7 @@ export default function ManageEvents() {
           destroyOnClose
         />
       )}
-      <Table value={formattedEvents}>
-        {columns.map((data) => (
-          <TableColumn
-            sortable
-            key={data.field}
-            field={data.field}
-            header={data.header}
-          />
-        ))}
-      </Table>
+      <Table columns={columns} data={formattedEvents} />
     </Container>
   );
 }
