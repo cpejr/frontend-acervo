@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, Select, ErrorMessage, InputKeep, Selects } from "./Styles";
+import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -38,18 +38,24 @@ export default function FormSubmit({
 
   const [archivesArray, setArchivesArray] = useState([]);
   const [archiveError, setArchiveError] = useState(false);
+  const [selectError, setSelectError] = useState(false);
 
   function submitHandler(data) {
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
-
+    console.log(selectedOptions.id_categoryType.length);
+    if (selectedOptions.id_categoryType.length === 0) {
+      setSelectError(true);
+      return;
+    }
     if (hasArchiveInput && !archivesArray[0]) {
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
       onSubmit({ ...data, archives: archivesArray, selectedOptions });
-
       setArchivesArray([]);
       setSelectedOptions({});
+      setSelectError(false);
+      setArchiveError(false);
     } else {
       onSubmit(data, selectedOptions);
       setSelectedOptions({});
@@ -63,7 +69,7 @@ export default function FormSubmit({
       {inputs.map((input) => {
         if (input.type === "selects") {
           return (
-            <Selects key={input.key}>
+            <>
               <Select
                 key={input.key}
                 options={input.options}
@@ -73,7 +79,13 @@ export default function FormSubmit({
                   handleSelectChange(input.key, e.target.value);
                 }}
               ></Select>
-            </Selects>
+
+              {selectError && (
+                <ErrorMessage>
+                  pelo menos uma categoria é necessaria
+                </ErrorMessage>
+              )}
+            </>
           );
         } else if (input.type === "input") {
           return (
