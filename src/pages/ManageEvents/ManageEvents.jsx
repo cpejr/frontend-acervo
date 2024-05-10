@@ -130,6 +130,7 @@ export default function ManageEvents() {
       };
       createEvent(combinedData);
       e.target.reset();
+      setArchivesArray([]);
       setArchiveError(false);
     } else {
       setArchiveError(true);
@@ -166,12 +167,6 @@ export default function ManageEvents() {
             inputKey="1"
           />
           <FormSiriusInput
-            name="eventUpload"
-            placeholder="URL da imagem"
-            errors={errors}
-            register={register}
-          />
-          <FormSiriusInput
             name="shortDescription"
             placeholder="Descrição curta"
             errors={errors}
@@ -193,15 +188,14 @@ export default function ManageEvents() {
           />
 
           <UploadInput
-            key={"images"}
-            inputKey={"images"}
-            placeholder="Upload arquivo"
+            key="images"
+            inputKey="images"
+            placeholder="Imagem do evento"
             error={archiveError}
             register={register}
             setArchivesArray={setArchivesArray}
             archivesArray={archivesArray}
-            icon={""}
-            color={"white"}
+            color="white"
             hasButtons={false}
             width="100%"
           />
