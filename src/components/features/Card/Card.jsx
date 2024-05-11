@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   StyledCard,
   OrangeButton,
@@ -10,7 +11,9 @@ import {
   ButtonDiv,
 } from "./Styles";
 import PropTypes from "prop-types";
+
 export default function Card({ data }) {
+  const navigate = useNavigate()
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   return (
     <StyledCard>
@@ -35,7 +38,7 @@ export default function Card({ data }) {
         <OrangeButton
           onClick={(event) => {
             event.stopPropagation();
-            window.open(data?.name, "_blank");
+            navigate(`/eventos/${data?.name}`)
           }}
         >
           Link

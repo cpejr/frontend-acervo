@@ -95,3 +95,9 @@ export async function postMemorial(newMemorial) {
 
   return data;
 }
+export async function getReadByName({name}) {
+  const {data} = await api.get("/event/search-by-name", {
+    params: {name}
+  });
+  return data;
+}

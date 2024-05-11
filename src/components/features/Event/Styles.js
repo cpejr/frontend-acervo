@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { Button, Rate } from "antd";
 
 export const Row = styled.div`
   display: flex;
@@ -63,7 +62,8 @@ export const DataCollumn = styled.div`
   > p {
     font-size: 25px;
     text-align: justify;
-
+    justify-content: center;
+    display: flex;
     @media (max-width: ${breakpoints.desktop}) {
       font-size: 20px;
     }
@@ -84,30 +84,6 @@ export const Group = styled.div`
   flex-direction: row;
   width: 100%;
 `;
-export const LineSVG = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
-  font-size: 55px;
-  gap: 1rem;
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 40px;
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 30px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 25px;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 20px;
-  }
-  > svg {
-    cursor: pointer;
-  }
-`;
 export const TagsLine = styled.div`
   display: flex;
   flex-direction: row;
@@ -127,20 +103,6 @@ export const TagsLine = styled.div`
     display: none;
   }
 `;
-export const TabletTagsLine = styled.div`
-  display: none;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
-  gap: 1rem;
-  font-size: 1rem;
-
-  @media (max-width: ${breakpoints.smallTablet}) {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-  }
-`;
 export const Line = styled.div`
   display: flex;
   flex-direction: row;
@@ -148,6 +110,7 @@ export const Line = styled.div`
   height: auto;
   gap: 1rem;
   font-size: 55px;
+  justify-content: center;
   @media (max-width: ${breakpoints.desktop}) {
     font-size: 40px;
   }
@@ -167,8 +130,8 @@ export const Tag = styled.div`
   width: auto;
   padding: 5px 1.5rem;
   height: 2rempx;
-  border: 1px solid ${colors.background.primary};
-  color: ${colors.white};
+  border: 1px solid ${colors.background.secondary};
+  color: ${colors.font.primary};
   font-size: 15px;
   border-radius: 20px;
   align-items: center;
@@ -180,71 +143,8 @@ export const Tag = styled.div`
     padding: 5px 1rem;
   }
   &:hover {
-    border: 1px solid ${colors.background.secondary};
-    color: ${colors.background.primary};
-  }
-`;
-export const Stars = styled(Rate)`
-  color: ${colors.background.secondary};
-  font-size: 55px;
-  .ant-rate-star-second {
-    color: ${colors.background.primary};
-  }
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 45px;
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 35px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 30px;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 25px;
-  }
-`;
-
-export const BlueButton = styled(Button)`
-  width: 13rem;
-  height: 3rem;
-  align-self: center;
-  font-size: 24px;
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 22px;
-    width: 11rem;
-    height: 2.54rem;
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 20px;
-    width: 10rem;
-    height: 2.31rem;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 22px;
-    width: 11rem;
-    height: 3rem;
-  }
-`;
-export const RateDiv = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 1rem;
-  > p {
-    font-size: 35px;
-
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 30px;
-    }
-    @media (max-width: ${breakpoints.mobile}) {
-      font-size: 25px;
-    }
-
-    @media (max-width: ${breakpoints.smallDevice}) {
-      font-size: 20px;
-    }
+    border: 1px solid ${colors.background.menu};
+    color: ${colors.font.line};
   }
 `;
 export const KnowMore = styled.div`
@@ -281,62 +181,6 @@ export const KnowMore = styled.div`
     }
     @media (max-width: ${breakpoints.mobile}) {
       font-size: 17px;
-    }
-  }
-`;
-export const VideoDiv = styled.div`
-  display: flex;
-  width: 40rem;
-  height: 22.5rem;
-  border-radius: 6px;
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 30rem;
-    height: 16.875rem;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 25rem;
-    height: 14.0625rem;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 20rem;
-    height: 11.25rem;
-  }
-`;
-
-export const IconContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Icon = styled.a`
-  font-size: 1.5rem;
-  cursor: pointer;
-`;
-export const HtmlContainer = styled.section`
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  > * {
-    width: 100%;
-  }
-
-  width: 60%;
-  p:has(img) {
-    text-align: center;
-  }
-
-  img {
-    width: 40vw;
-    height: auto;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 90%;
-    img {
-      width: 80vw;
     }
   }
 `;
