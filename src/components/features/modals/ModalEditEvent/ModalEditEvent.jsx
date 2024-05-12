@@ -14,7 +14,14 @@ import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
 import UploadInput from "../../../common/UploadInput/UploadInput";
 
-export default function ModalEditEvent({ event, close, _id, modal, transformArrayItems }) {
+export default function ModalEditEvent({
+  event,
+  close,
+  _id,
+  modal,
+  transformArrayItems,
+  updateEvent,
+}) {
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
@@ -29,17 +36,18 @@ export default function ModalEditEvent({ event, close, _id, modal, transformArra
       toast.error(err);
     },
   });
-  const { mutate: updatEvent } = useUpdateEvents({
-    onSuccess: () => {
-      toast.success("Evento editado com sucesso");
-      queryClient.invalidateQueries({
-        queryKey: ["events"],
-      });
-    },
-    onError: (err) => {
-      return err;
-    },
-  });
+  // const { mutate: updateEvent } = useUpdateEvents({
+  //   onSuccess: () => {
+  //     toast.success("Evento editado com sucesso");
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["events"],
+  //     });
+  //   },
+  //   onError: (err) => {
+  //     return err;
+  //   },
+  // });
+
   const setCategories = () => {
     setIdsCategoryType(event?.id_categoryType?.map((ids) => ids._id) || []);
     setIdsCategoryPrice(event?.id_categoryPrice?.map((ids) => ids._id) || []);
@@ -68,7 +76,7 @@ export default function ModalEditEvent({ event, close, _id, modal, transformArra
       uploadEvent: uploadEvent,
     };
 
-    updatEvent({ _id: _id, body: body });
+    updateEvent({ _id: _id, body: body });
     close();
   };
   const {
@@ -181,4 +189,5 @@ ModalEditEvent.propTypes = {
   close: PropTypes.func.isRequired,
   modal: PropTypes.bool.isRequired,
   transformArrayItems: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
 };

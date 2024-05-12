@@ -9,6 +9,7 @@ import {
   useCreateEvents,
   useDeleteEvents,
   useGetEvents,
+  useUpdateEvents,
 } from "../../hooks/querys/events";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -29,8 +30,10 @@ import {
   Selects,
   MultipleSelect,
   EventButtons,
+  LoadingStyles,
 } from "./Styles";
 import UploadInput from "../../components/common/UploadInput/UploadInput";
+import { LoadingOutlined } from "@ant-design/icons";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
@@ -68,7 +71,7 @@ export default function ManageEvents() {
     },
   });
 
-  const { mutate: createEvent } = useCreateEvents({
+  const { mutate: createEvent, isPending: isCreateEventPending } = useCreateEvents({
     onSuccess: () => {
       toast.success("Evento criado com sucesso");
       queryClient.invalidateQueries({
@@ -80,9 +83,21 @@ export default function ManageEvents() {
     },
   });
 
-  const { mutate: deleteEvent } = useDeleteEvents({
+  const { mutate: deleteEvent, isPending: isPendingDelete } = useDeleteEvents({
     onSuccess: () => {
       toast.success("Evento deletado com sucesso");
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+      });
+    },
+    onError: (err) => {
+      return err;
+    },
+  });
+
+  const { mutate: updateEvent, isPending: isPendingUpdate } = useUpdateEvents({
+    onSuccess: () => {
+      toast.success("Evento editado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -154,6 +169,7 @@ export default function ManageEvents() {
     }));
     return newArray;
   };
+
   return (
     <Container>
       <Title>SUBMETER NOVO EVENTO</Title>
@@ -227,7 +243,7 @@ export default function ManageEvents() {
             />
           </Selects>
         </Section>
-        <SubmitButton>ENVIAR</SubmitButton>
+        <SubmitButton>{isCreateEventPending ? <LoadingOutlined /> : "ENVIAR"}</SubmitButton>
       </Form>
       <Title>GERENCIAR EVENTOS</Title>
       {isDeleteModalOpen && (
@@ -244,12 +260,20 @@ export default function ManageEvents() {
           _id={selectedEventId}
           modal={true}
           event={selectedEvent}
+          updateEvent={updateEvent}
           close={handleCloseEditModal}
           transformArrayItems={transformArrayItems}
           destroyOnClose
         />
       )}
-      <Table columns={columns} data={formattedEvents} />
+
+      {isPendingDelete || isPendingUpdate ? (
+        <LoadingStyles>
+          <LoadingOutlined />
+        </LoadingStyles>
+      ) : (
+        <Table columns={columns} data={formattedEvents} />
+      )}
     </Container>
   );
 }
