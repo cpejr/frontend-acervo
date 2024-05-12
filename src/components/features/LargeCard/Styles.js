@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
+import { FaRegBookmark } from "react-icons/fa";
 
 export const StyledCard = styled(Card)`
   position: relative; /* Ensure positioning context for absolute positioning */
@@ -14,8 +15,7 @@ export const StyledCard = styled(Card)`
   gap: 3.33rem;
   background-color: ${colors.background.white};
   margin-bottom: 4rem;
-  &:hover {
-  }
+  min-height: 30rem;
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 80%;
     max-width: 80%;
@@ -32,7 +32,7 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const CardTitle = styled.div`
+export const Title = styled.div`
   display: flex;
   word-break: break-all;
   flex-direction: row;
@@ -45,7 +45,7 @@ export const CardTitle = styled.div`
   }
 `;
 
-export const ShortDesc = styled.div`
+export const ShortDescription = styled.div`
   font-size: 20px;
   color: ${colors.font.secondary};
   word-break: break-word;
@@ -54,7 +54,7 @@ export const ShortDesc = styled.div`
   }
 `;
 
-export const LongDesc = styled.div`
+export const LongDescription = styled.div`
   font-size: 17px;
   color: ${colors.font.secondary};
   word-break: break-word;
@@ -63,16 +63,7 @@ export const LongDesc = styled.div`
   }
 `;
 
-export const LinkDesc = styled.div`
-  font-size: 17px;
-  color: ${colors.font.secondary};
-  word-break: break-word;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 15px;
-  }
-`;
-
-export const FavoriteIcon = styled.div`
+export const FavoriteIcon = styled(FaRegBookmark)`
   color: ${colors.font.secondary};
   margin-left: 5px;
   font-size: 2rem;
@@ -98,4 +89,20 @@ export const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 0;
+  width: 90%;
+  margin: 0 auto;
 `;

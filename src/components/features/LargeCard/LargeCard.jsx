@@ -1,21 +1,23 @@
 import PropTypes from "prop-types";
 import {
   StyledCard,
-  ShortDesc,
-  LongDesc,
-  LinkDesc,
-  CardTitle,
+  ShortDescription,
+  LongDescription,
+  Title,
   FavoriteIcon,
   CarouselStyles,
   LoadingContainer,
+  TitleContainer,
+  Content,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetArchives } from "../../../hooks/querys/archive";
 import { LoadingOutlined } from "@ant-design/icons";
+import Button from "../../common/Button/Button";
 
 export default function LargeCard({ data, imagesLoading }) {
-  const { title, description, shortDescription, longDescription, link, archive } = data;
+  const { title, shortDescription, longDescription, link, archive } = data;
   const archiveIDs = archive.map((file) => file._id);
   const formatedArchives = archiveIDs.join(", ");
   const { data: archiveData, isLoading } = useGetArchives(formatedArchives, title, {
@@ -61,32 +63,17 @@ export default function LargeCard({ data, imagesLoading }) {
               </Carousel>
             </CarouselStyles>
           )}
-
-          <CardTitle>{title}</CardTitle>
-          <ShortDesc>
-            <p>{shortDescription}</p>
-          </ShortDesc>
-          <LongDesc>
-            <p>{longDescription}</p>
-          </LongDesc>
-          <LinkDesc>
-            <a href={link}>{link}</a>
-          </LinkDesc>
-          {/* <Group>
-            <LineSVG></LineSVG>
-            <CardTitle>
-              {title}
-              <FavoriteIcon>
-                <CiBookmark />
-              </FavoriteIcon>
-            </CardTitle>
-          </Group>
-          <CardLine>
-            <p>{description}</p>
-          </CardLine>
-          <CardLine>
-            <p>{shortDescription}</p>
-          </CardLine> */}
+          <Content>
+            <TitleContainer>
+              <Title>{title}</Title>
+              <FavoriteIcon />
+            </TitleContainer>
+            <ShortDescription>{shortDescription}</ShortDescription>
+            <LongDescription>{longDescription}</LongDescription>
+            <Button onClick={() => window.open(link, "_blank")} width="10rem" marginLeft="auto">
+              Navegar
+            </Button>
+          </Content>
         </>
       )}
     </StyledCard>
@@ -95,4 +82,5 @@ export default function LargeCard({ data, imagesLoading }) {
 
 LargeCard.propTypes = {
   data: PropTypes.object,
+  imagesLoading: PropTypes.bool,
 };
