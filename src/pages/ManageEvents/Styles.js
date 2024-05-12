@@ -108,3 +108,9 @@ export const Selects = styled.div`
     align-items: center;
   }
 `;
+
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+`;

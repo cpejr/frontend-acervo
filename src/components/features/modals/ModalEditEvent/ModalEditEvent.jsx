@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
-import { FormInputEvents } from "../../../../components";
 import FormSiriusInput from "../../../common/FormSiriusInput/FormSiriusInput";
 import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
@@ -21,6 +20,7 @@ export default function ModalEditEvent({
   _id,
   modal,
   transformArrayItems,
+  updateEvent,
 }) {
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
@@ -36,17 +36,18 @@ export default function ModalEditEvent({
       toast.error(err);
     },
   });
-  const { mutate: updatEvent } = useUpdateEvents({
-    onSuccess: () => {
-      toast.success("Evento editado com sucesso");
-      queryClient.invalidateQueries({
-        queryKey: ["events"],
-      });
-    },
-    onError: (err) => {
-      return err;
-    },
-  });
+  // const { mutate: updateEvent } = useUpdateEvents({
+  //   onSuccess: () => {
+  //     toast.success("Evento editado com sucesso");
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["events"],
+  //     });
+  //   },
+  //   onError: (err) => {
+  //     return err;
+  //   },
+  // });
+
   const setCategories = () => {
     setIdsCategoryType(event?.id_categoryType?.map((ids) => ids._id) || []);
     setIdsCategoryPrice(event?.id_categoryPrice?.map((ids) => ids._id) || []);
@@ -62,13 +63,12 @@ export default function ModalEditEvent({
 
   const onSubmit = (data) => {
     let uploadEvent = {};
-    if (archivesArray[1]) {
+    if (archivesArray[0]) {
       uploadEvent = {
-        base64: archivesArray[1].base64,
-        name: archivesArray[1].name,
+        base64: archivesArray[0]?.base64,
+        name: archivesArray[0]?.name,
       };
     }
-
     const body = {
       ...data,
       id_categoryType: idsCategoryType,
@@ -76,10 +76,9 @@ export default function ModalEditEvent({
       uploadEvent: uploadEvent,
     };
 
-    updatEvent({ _id: _id, body: body });
+    updateEvent({ _id: _id, body: body });
     close();
   };
-
   const {
     handleSubmit,
     register,
@@ -87,36 +86,19 @@ export default function ModalEditEvent({
   } = useForm({
     resolver: zodResolver(newEventValidationSchema),
   });
-
   return (
     <Container>
-      <ModalStyle
-        open={modal}
-        onCancel={close}
-        centered
-        destroyOnClose
-        footer={null}
-      >
+      <ModalStyle open={modal} onCancel={close} centered destroyOnClose footer={null}>
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {/* <FormInputEvents */}
           <FormSiriusInput
             name="name"
             label="Nome do evento:"
-            defaultValue={event.name}
+            defaultValue={event?.name}
             register={register}
             placeholder="Nome do evento:"
             errors={errors}
             color="black"
-          />
-          {/* <FormInputEvents */}
-          <FormSiriusInput
-            name="eventUpload"
-            label="Imagem do evento:"
-            defaultValue={event.eventUpload}
-            register={register}
-            placeholder="URL da imagem:"
-            errors={errors}
           />
           <FormSiriusInput
             name="shortDescription"
@@ -127,7 +109,6 @@ export default function ModalEditEvent({
             errors={errors}
             color="black"
           />
-          {/* <FormInputEvents */}
           <FormSiriusInput
             name="longDescription"
             label="Descrição longa:"
@@ -137,7 +118,6 @@ export default function ModalEditEvent({
             errors={errors}
             color="black"
           />
-          {/* <FormInputEvents */}
           <FormSiriusInput
             name="link"
             label="Link:"
@@ -155,7 +135,7 @@ export default function ModalEditEvent({
             register={register}
             setArchivesArray={setArchivesArray}
             archivesArray={archivesArray}
-            values={[{ name: event.eventUpload.name, base64: undefined }]}
+            values={[{ name: event?.eventUpload?.name, base64: undefined }]}
             color={"black"}
             hasButtons={false}
             width="100%"
@@ -209,4 +189,5 @@ ModalEditEvent.propTypes = {
   close: PropTypes.func.isRequired,
   modal: PropTypes.bool.isRequired,
   transformArrayItems: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
 };
