@@ -25,18 +25,17 @@ export const Form = styled.form`
 `;
 
 export const Select = styled(MultiSelect)`
-  width: 25%;
+  width: 70%;
   background-color: inherit;
   color: ${(props) => props?.selectColor};
   border-radius: 4px;
   height: 6.5vh;
   text-align: left;
-  border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`};
+  border: ${(props) => (props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`)};
 
   .p-multiselect-label {
     width: 215px;
-    overflow-x: scroll;
+    overflow-x: hidden;
   }
   .p-placeholder {
     color: ${(props) => props?.selectColor};

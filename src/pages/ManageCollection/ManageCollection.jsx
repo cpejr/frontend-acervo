@@ -2,12 +2,7 @@ import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { Container, Title, LoadingStyles, SubTitle } from "./Styles";
-import {
-  Table,
-  ModalDeleteItem,
-  FormSubmit,
-  ModalUpdateMemorial,
-} from "../../components";
+import { Table, ModalDeleteItem, FormSubmit, ModalUpdateMemorial } from "../../components";
 
 import {
   useGetMemorial,
@@ -18,12 +13,7 @@ import {
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
 import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import {
-  AiOutlineCloseCircle,
-  AiFillTool,
-  AiOutlineLink,
-  AiOutlineUpload,
-} from "react-icons/ai";
+import { AiOutlineCloseCircle, AiFillTool, AiOutlineLink, AiOutlineUpload } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
 
 export default function ManageCollection() {
@@ -154,42 +144,39 @@ export default function ManageCollection() {
     },
   });
 
-  const { mutate: postMemorial, isPending: loadingPostMemorial } =
-    usePostMemorial({
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["memorial"],
-        });
-        toast.success("Post cadastrado!");
-      },
-      onError: (err) => {
-        toast.error("Erro ao cadastrar post.", err);
-      },
-    });
-  const { mutate: deleteMemorial, isPending: loadingDeleteMemorial } =
-    useDeleteMemorial({
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["memorial"],
-        });
-        toast.success("Post deletado com sucesso!");
-      },
-      onError: (err) => {
-        toast.error("Erro ao excluir post.", err);
-      },
-    });
-  const { mutate: updateMemorial, isPending: loadingEditMemorial } =
-    useUpdateMemorial({
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["memorial"],
-        });
-        toast.success("post atualizado com sucesso!");
-      },
-      onError: (err) => {
-        toast.error("Erro ao atualizar o post.", err);
-      },
-    });
+  const { mutate: postMemorial, isPending: loadingPostMemorial } = usePostMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Post cadastrado!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao cadastrar post.", err);
+    },
+  });
+  const { mutate: deleteMemorial, isPending: loadingDeleteMemorial } = useDeleteMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Post deletado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao excluir post.", err);
+    },
+  });
+  const { mutate: updateMemorial, isPending: loadingEditMemorial } = useUpdateMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("post atualizado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao atualizar o post.", err);
+    },
+  });
 
   useEffect(() => {
     if (!isLoading && collection) {
