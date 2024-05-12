@@ -7,13 +7,12 @@ export const StyledCard = styled(Card)`
   display: block;
   flex-direction: column;
   width: 50%;
-  max-width: 60%;
   margin-top: 3rem;
   height: auto;
   align-items: center;
   border-radius: 24px;
   gap: 3.33rem;
-  background-color: white;
+  background-color: ${colors.background.white};
   margin-bottom: 4rem;
   &:hover {
   }
@@ -33,68 +32,43 @@ export const StyledCard = styled(Card)`
   }
 `;
 
-export const Image = styled.div`
-  display: flex;
-  height: auto;
-  width: 100%;
-  cursor: pointer;
-  > img {
-    width: 100%;
-    height: 14rem;
-    border-radius: 1rem;
-    @media (max-width: ${breakpoints.miniTablet}) {
-      height: 12rem;
-    }
-  }
-`;
-
 export const CardTitle = styled.div`
   display: flex;
   word-break: break-all;
   flex-direction: row;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
-  height: auto;
   font-size: 30px;
   color: ${colors.font.secondary};
-  margin-top: 1rem;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
   }
 `;
 
-export const CardLine = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
+export const ShortDesc = styled.div`
   font-size: 20px;
   color: ${colors.font.secondary};
+  word-break: break-word;
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 24px;
+    font-size: 18px;
   }
 `;
 
-export const LineSVG = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
-  > svg {
-    font-size: 30px;
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 24px;
-    }
+export const LongDesc = styled.div`
+  font-size: 17px;
+  color: ${colors.font.secondary};
+  word-break: break-word;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 15px;
   }
 `;
 
-export const Group = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 17.5px;
+export const LinkDesc = styled.div`
+  font-size: 17px;
+  color: ${colors.font.secondary};
+  word-break: break-word;
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 15.75px;
+    font-size: 15px;
   }
 `;
 

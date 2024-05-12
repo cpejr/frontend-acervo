@@ -108,7 +108,7 @@ export default function AboutUs() {
         </TextColumn>
         <TextColumn>
           <img
-            style={{ border: "none", height: "20rem" }}
+            style={{ border: "none", height: "30rem" }}
             src={BomDespachoImage}
             alt="Bom Despacho Image"
           />

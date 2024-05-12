@@ -22,27 +22,38 @@ export const Label = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  height: 3rem;
-  padding: 0.8rem 1.6rem;
+  height: 1rem;
+  padding: 1rem 2.2rem;
   border-radius: 0.4rem;
   color: ${(props) => props?.color};
-  cursor: ${(props) => props?.cursor};
-  font-size: 20px;
-  color: ${colors.font.primary};
   width: 100%;
-  background-color: ${colors.background.primary};
+  background-color: inherit;
   border: ${(props) =>
-    props?.error ? "0.1rem #ffd100 solid" : `0.1rem white solid`};
-  outline: none;
+    props?.error ? "0.1rem red solid" : `0.1rem ${props.color} solid`};
+  ::placeholder {
+    font-weight: 400;
+  }
 
   @media (max-width: ${breakpoints.mobile}) {
     font-weight: 400;
+    font-size: 1.6rem;
     line-height: 2rem;
     height: 3rem;
   }
   @media (max-width: 370px) {
     font-size: 1.2rem;
-    outline: none !important;
+  }
+`;
+
+export const IconContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  svg {
+    position: absolute;
+    left: 10px;
+    color: ${colors.icon};
   }
 `;
 

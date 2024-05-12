@@ -12,8 +12,12 @@ import {
   TrendingEvents,
   Filter,
   EventNotFound,
+  Title,
+  BackgroundTitle,
 } from "./Styles";
+
 import { SearchBar } from "../../components";
+
 export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
@@ -30,8 +34,12 @@ export default function Events() {
       toast.error(err);
     },
   });
+
   return (
     <Container>
+      <BackgroundTitle>
+        <Title>EVENTOS</Title>
+      </BackgroundTitle>
       <SearchBar
         value={names}
         search={(e) => setNames(e.target.value)}

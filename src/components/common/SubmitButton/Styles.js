@@ -9,10 +9,11 @@ export const SubmitSpace = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 150rem;
+  width: 15rem;
   height: 3rem;
   background-color: ${colors.accent.primary};
-  border: solid 1px white;
+  border: solid 1px ${colors.font.primary};
+  margin: 1rem;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
@@ -36,14 +37,7 @@ export const Button = styled.button`
     width: 128px;
     height: 40px;
   }
-  &:hover {
-    background-color: ${colors.background.primary};
-    color: ${colors.font.secondary};
-    > p {
-      font-weight: 500;
-      font-size: 1.5rem;
-    }
-  }
+
   p {
     color: ${colors.background.p};
     text-transform: uppercase;

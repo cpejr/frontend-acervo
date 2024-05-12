@@ -1,9 +1,9 @@
-import { CiBookmark } from "react-icons/ci";
+import PropTypes from "prop-types";
 import {
   StyledCard,
-  Group,
-  LineSVG,
-  CardLine,
+  ShortDesc,
+  LongDesc,
+  LinkDesc,
   CardTitle,
   FavoriteIcon,
   CarouselStyles,
@@ -93,6 +93,22 @@ export default function LargeCard({ data, imagesLoading }) {
           </CardLine>
         </>
       )}
+        <CardTitle>
+          {title}
+        </CardTitle>
+        <ShortDesc>
+          <p>{shortDescription}</p>
+        </ShortDesc>
+        <LongDesc>
+          <p>{longDescription}</p>
+        </LongDesc>
+        <LinkDesc>
+          <a href= {link} >{link}</a>
+        </LinkDesc>
     </StyledCard>
   );
+}
+
+LargeCard.propTypes = {
+  data: PropTypes.object
 }
