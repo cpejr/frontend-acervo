@@ -22,19 +22,28 @@ export default function UploadInput({
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
   };
-
   const handleChange = (info) => {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
-        setArchivesArray((prev) => [
-          ...prev,
-          {
-            name: info?.fileList[0].name,
-            base64: url,
-            inputKey: info?.inputKey,
-          },
-        ]);
+        if (hasButtons === false) {
+          setArchivesArray([
+            {
+              name: info?.fileList[0].name,
+              base64: url,
+              inputKey: info?.inputKey,
+            },
+          ]);
+        } else {
+          setArchivesArray((prev) => [
+            ...prev,
+            {
+              name: info?.fileList[0].name,
+              base64: url,
+              inputKey: info?.inputKey,
+            },
+          ]);
+        }
       });
     }
   };
@@ -55,9 +64,7 @@ export default function UploadInput({
 
   const removeInput = (inputKey) => {
     setInputs(inputs.filter((input) => input.inputKey !== inputKey));
-    setArchivesArray(
-      archivesArray.filter((archive) => archive.inputKey !== inputKey)
-    );
+    setArchivesArray(archivesArray.filter((archive) => archive.inputKey !== inputKey));
   };
 
   const [archiveCount, setArchiveCount] = useState(values?.length ?? 1);
@@ -107,43 +114,31 @@ export default function UploadInput({
           <Upload
             key={props.inputKey}
             name={props.inputKey}
-            onChange={(values) =>
-              handleChange({ ...values, inputKey: props.inputKey })
-            }
+            onChange={(values) => handleChange({ ...values, inputKey: props.inputKey })}
             beforeUpload={() => false}
             maxCount={1}
             disabled={
-              hasButtons &&
-              archivesArray.some(
-                (archive) => archive.inputKey === props.inputKey
-              )
+              hasButtons && archivesArray.some((archive) => archive.inputKey === props.inputKey)
             }
           >
             <FormInput
               {...props}
               value={
-                archivesArray.find(
-                  (archive) => archive.inputKey === props.inputKey
-                )?.name ?? props.placeholder
+                archivesArray.find((archive) => archive.inputKey === props.inputKey)?.name ??
+                props.placeholder
               }
               error={error}
               readOnly="readonly"
               width={width}
               cursor={
-                hasButtons &&
-                archivesArray.some(
-                  (archive) => archive.inputKey === props.inputKey
-                )
+                hasButtons && archivesArray.some((archive) => archive.inputKey === props.inputKey)
                   ? "not-allowed"
                   : "pointer"
               }
             />
           </Upload>
           {hasButtons && (
-            <RemoveArchive
-              color={color}
-              onClick={() => removeInput(props.inputKey)}
-            >
+            <RemoveArchive color={color} onClick={() => removeInput(props.inputKey)}>
               <AiOutlineDelete
                 style={{
                   width: "2rem",
@@ -155,9 +150,7 @@ export default function UploadInput({
             </RemoveArchive>
           )}
           {error && (
-            <ErrorMessage color={color}>
-              Pelo menos um arquivo deve ser enviado
-            </ErrorMessage>
+            <ErrorMessage color={color}>Pelo menos um arquivo deve ser enviado</ErrorMessage>
           )}
         </div>
       ))}
