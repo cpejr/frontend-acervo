@@ -15,18 +15,14 @@ import { useGetArchives } from "../../../hooks/querys/archive";
 import { LoadingOutlined } from "@ant-design/icons";
 
 export default function LargeCard({ data, imagesLoading }) {
-  const { title, description, shortDescription, archive } = data;
+  const { title, description, shortDescription, longDescription, link, archive } = data;
   const archiveIDs = archive.map((file) => file._id);
   const formatedArchives = archiveIDs.join(", ");
-  const { data: archiveData, isLoading } = useGetArchives(
-    formatedArchives,
-    title,
-    {
-      onError: (err) => {
-        console.error("Erro ao pegar itens", err);
-      },
-    }
-  );
+  const { data: archiveData, isLoading } = useGetArchives(formatedArchives, title, {
+    onError: (err) => {
+      console.error("Erro ao pegar itens", err);
+    },
+  });
 
   return (
     <StyledCard>
@@ -38,16 +34,10 @@ export default function LargeCard({ data, imagesLoading }) {
         <>
           {archiveData && (
             <CarouselStyles>
-              <Carousel
-                showStatus={false}
-                showIndicators={false}
-                showThumbs={false}
-              >
+              <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
                 {archiveData.map((file, index) => (
                   <div key={index}>
-                    {file.startsWith("data:image") && (
-                      <img src={file} alt={`Imagem ${index}`} />
-                    )}
+                    {file.startsWith("data:image") && <img src={file} alt={`Imagem ${index}`} />}
                     {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
@@ -61,12 +51,7 @@ export default function LargeCard({ data, imagesLoading }) {
                       </audio>
                     )}
                     {file.startsWith("data:application/pdf") && (
-                      <object
-                        data={file}
-                        type="application/pdf"
-                        width="100%"
-                        height="400px"
-                      >
+                      <object data={file} type="application/pdf" width="100%" height="400px">
                         Seu navegador não suporta visualização de PDF. Você pode{" "}
                         <a href={file}>baixá-lo aqui</a>.
                       </object>
@@ -76,7 +61,18 @@ export default function LargeCard({ data, imagesLoading }) {
               </Carousel>
             </CarouselStyles>
           )}
-          <Group>
+
+          <CardTitle>{title}</CardTitle>
+          <ShortDesc>
+            <p>{shortDescription}</p>
+          </ShortDesc>
+          <LongDesc>
+            <p>{longDescription}</p>
+          </LongDesc>
+          <LinkDesc>
+            <a href={link}>{link}</a>
+          </LinkDesc>
+          {/* <Group>
             <LineSVG></LineSVG>
             <CardTitle>
               {title}
@@ -90,25 +86,13 @@ export default function LargeCard({ data, imagesLoading }) {
           </CardLine>
           <CardLine>
             <p>{shortDescription}</p>
-          </CardLine>
+          </CardLine> */}
         </>
       )}
-        <CardTitle>
-          {title}
-        </CardTitle>
-        <ShortDesc>
-          <p>{shortDescription}</p>
-        </ShortDesc>
-        <LongDesc>
-          <p>{longDescription}</p>
-        </LongDesc>
-        <LinkDesc>
-          <a href= {link} >{link}</a>
-        </LinkDesc>
     </StyledCard>
   );
 }
 
 LargeCard.propTypes = {
-  data: PropTypes.object
-}
+  data: PropTypes.object,
+};
