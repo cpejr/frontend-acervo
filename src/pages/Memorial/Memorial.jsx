@@ -2,21 +2,34 @@ import { useState, useEffect } from "react";
 import {
   Container,
   Title,
-  Filter,
-  Characteristics,
+  ContainerFilter,
   DivSelect,
-  FilterTitle,
   UniSelect,
   VerticalLine,
   DivLine,
+  Calendar,
+  Buttons,
+  ButtonsDiv,
   Line,
 } from "../Memorial/Styles";
+import { toast } from "react-toastify";
+import { useGetMemorialByDate } from "../../hooks/querys/memorial";
+
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 export default function Memorial() {
+  const [searchValue, setSearchValue] = useState("");
+  const [dates, setDates] = useState(null);
+  const [dateRange, setDateRange] = useState();
+  const { data: memorial } = useGetMemorialByDate({
+    dateRange: dateRange,
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
     { label: "Característica 1", value: "c1", checked: false },
     { label: "Característica 2", value: "c2", checked: false },
@@ -27,6 +40,19 @@ export default function Memorial() {
     { label: "Favoritos", value: "title" },
     { label: "Melhor avaliados", value: "date" },
   ];
+  const handleFilterChange = () => {
+    const [initialDate, finalDate] = dates;
+    let formattedDateRange;
+    if (finalDate === null) {
+      formattedDateRange = { oneDate: initialDate.toISOString() };
+    } else {
+      formattedDateRange = {
+        initialDate: initialDate.toISOString(),
+        finalDate: finalDate.toISOString(),
+      };
+    }
+    setDateRange(formattedDateRange);
+  };
 
   const queryClient = useQueryClient();
   const [searchValue, setSearchValue] = useState("");
@@ -36,7 +62,10 @@ export default function Memorial() {
     e.preventDefault();
     setSearchValue(e.target.value);
   };
-
+  const handleResetFilter = () => {
+    setDates([]);
+    setDateRange({});
+  };
   const handleChangeSort = (e) => {
     setSelectedSort(e.value);
   };
@@ -84,23 +113,18 @@ export default function Memorial() {
         value={searchValue}
         search={handleSearchChange}
       />
-      <Filter>
-        <Characteristics>
-          <FilterTitle>Características:</FilterTitle>
-          {characteristicCheckboxes.map((checkbox) => (
-            <label key={checkbox.value}>
-              <Checkbox
-                aria-label="Botão seletor de caracteristicas"
-                checked={checkbox.checked}
-                name={checkbox.value}
-                onChange={handleChangeCheckbox}
-              />
-              {checkbox.label}
-            </label>
-          ))}
-        </Characteristics>
-        <VerticalLine />
+      <ContainerFilter>
         <DivSelect>
+          <Calendar
+            value={dates}
+            onChange={(e) => setDates(e.value)}
+            selectionMode="range"
+            readOnlyInput
+            hideOnRangeSelection
+            placeholder="Determine uma data"
+            showButtonBar
+            dateFormat="dd/mm/yy"
+          />
           <UniSelect
             aria-label="Botão de ordenação"
             value={sortValue}
@@ -112,7 +136,11 @@ export default function Memorial() {
             className="w-full md:w-14rem"
           />
         </DivSelect>
-      </Filter>
+        <ButtonsDiv>
+          <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+          <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+        </ButtonsDiv>
+      </ContainerFilter>
       <DivLine>
         {memorialCards
           ?.filter((card) =>

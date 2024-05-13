@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import { Container, DeleteButton, Message } from "./Styles";
+import { useNavigate } from "react-router-dom";
 
 export default function ModalLogoff({ close, handleLogOff }) {
+  // States and Variables
+  const navigate = useNavigate();
   return (
     <Container>
-      <Message>Tem certeza que deseja sair?</Message>
+      <Message>Você deseja sair?</Message>
       <DeleteButton
         onClick={() => {
           handleLogOff();
@@ -13,6 +16,14 @@ export default function ModalLogoff({ close, handleLogOff }) {
         type="button"
       >
         Sair
+      </DeleteButton>
+      <DeleteButton
+        onClick={() => {
+          navigate("/favoritos");
+          close();
+        }}
+      >
+        Ver Favoritos
       </DeleteButton>
     </Container>
   );

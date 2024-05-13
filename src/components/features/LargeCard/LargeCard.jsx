@@ -1,4 +1,15 @@
+<<<<<<< HEAD
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import useAuthStore from "../../../Stores/auth";
+import { useQueryClient } from "@tanstack/react-query";
+import { useUpdateFavoritesMemorials } from "../../../hooks/querys/user";
+import { useGetIsFavoritedMemorial } from "../../../hooks/querys/memorial";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+
+=======
+import PropTypes from "prop-types";
+>>>>>>> DEV
 import {
   StyledCard,
   ShortDescription,
@@ -16,6 +27,18 @@ import { useGetArchives } from "../../../hooks/querys/archive";
 import { LoadingOutlined } from "@ant-design/icons";
 import Button from "../../common/Button/Button";
 
+<<<<<<< HEAD
+const images = [
+  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
+  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
+  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
+];
+
+export default function LargeCard({ data }) {
+  const queryClient = useQueryClient();
+  const userId = useAuthStore((state) => state?.auth?.user?._id);
+  const { title, description } = data;
+=======
 export default function LargeCard({ data, imagesLoading }) {
   const { title, shortDescription, longDescription, link, archive } = data;
   const archiveIDs = archive.map((file) => file._id);
@@ -25,9 +48,71 @@ export default function LargeCard({ data, imagesLoading }) {
       console.error("Erro ao pegar itens", err);
     },
   });
+>>>>>>> DEV
+
+  const { data: isFavorited } = useGetIsFavoritedMemorial({
+    userId: userId,
+    eventId: data?._id,
+    enabled: !!userId,
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+  const { mutate: updateFavoriteMemorial } = useUpdateFavoritesMemorials({
+    userId: userId,
+    ids: [data?._id],
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["favoritesMemorials"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Memorial Atualizado");
+    },
+    onError: (err) => {
+      toast.err(err);
+    },
+  });
+  const onSubmit = async (event) => {
+    event.stopPropagation();
+    if (userId) {
+      updateFavoriteMemorial({
+        userId: userId,
+        eventId: data?._id,
+      });
+    } else {
+      toast.error("Você precisa estar logado para favoritar um evento");
+    }
+  };
 
   return (
     <StyledCard>
+<<<<<<< HEAD
+      <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img alt={`carousel-img-${index}`} src={image} />
+          </div>
+        ))}
+      </Carousel>
+      <Group>
+        <LineSVG></LineSVG>
+        <CardTitle>
+          {title}
+          <FavoriteIcon>
+            {isFavorited ? (
+              <FaBookmark onClick={onSubmit} />
+            ) : (
+              <FaRegBookmark onClick={onSubmit} />
+            )}{" "}
+          </FavoriteIcon>
+        </CardTitle>
+      </Group>
+      <CardLine>
+        <p>{description}</p>
+      </CardLine>
+=======
       {isLoading || imagesLoading || !archiveData ? (
         <LoadingContainer>
           <LoadingOutlined style={{ fontSize: 30, color: "#000102" }} />
@@ -76,11 +161,16 @@ export default function LargeCard({ data, imagesLoading }) {
           </Content>
         </>
       )}
+>>>>>>> DEV
     </StyledCard>
   );
 }
 
 LargeCard.propTypes = {
+<<<<<<< HEAD
+  data: PropTypes.object.isRequired,
+=======
   data: PropTypes.object,
   imagesLoading: PropTypes.bool,
+>>>>>>> DEV
 };
