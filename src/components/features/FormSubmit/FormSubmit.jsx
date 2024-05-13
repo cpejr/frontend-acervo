@@ -14,6 +14,7 @@ export default function FormSubmit({
   schema,
   color,
   loading,
+  selectedOptionsInitial,
 }) {
   const {
     handleSubmit,
@@ -24,42 +25,73 @@ export default function FormSubmit({
     resolver: zodResolver(schema),
   });
 
-  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState(
+    selectedOptionsInitial
+  );
+
   const handleSelectChange = (key, value) => {
-    setSelectedOptions({ ...selectedOptions, [key]: value });
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [key]: value,
+    }));
   };
 
   const [archivesArray, setArchivesArray] = useState([]);
   const [archiveError, setArchiveError] = useState(false);
+  const [selectError, setSelectError] = useState(false);
 
   function submitHandler(data) {
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
+    console.log(selectedOptions);
+    if (
+      Object.keys(selectedOptions).length === 0 ||
+      selectedOptions.id_categoryType.length === 0
+    ) {
+      setSelectError(true);
+      console.log("ola");
+      console.log(selectError);
+      return;
+    }
     if (hasArchiveInput && !archivesArray[0]) {
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
-      onSubmit({ ...data, archives: archivesArray });
+      onSubmit({ ...data, archives: archivesArray, selectedOptions });
       setArchivesArray([]);
+      setSelectedOptions({});
+      setSelectError(false);
+      setArchiveError(false);
     } else {
-      onSubmit(data);
+      onSubmit(data, selectedOptions);
+      setSelectedOptions({});
     }
+
     reset();
   }
 
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
-        if (input.type === "select") {
+        if (input.type === "selects") {
           return (
-            <Select
-              key={input.key}
-              {...register(input.key, { required: input.required })}
-              error={errors[input.key] ? true : false}
-              options={input.options}
-              placeholder={input.placeholder}
-              value={selectedOptions[input.key] || ""}
-              onChange={(e) => handleSelectChange(input.key, e.target.value)}
-            ></Select>
+            <>
+              <Select
+                key={input.key}
+                options={input.options}
+                selectColor={color}
+                placeholder={input.placeholder}
+                value={selectedOptions[input.key] || ""}
+                onChange={(e) => {
+                  handleSelectChange(input.key, e.target.value);
+                }}
+              ></Select>
+
+              {selectError && (
+                <ErrorMessage>
+                  pelo menos uma categoria é necessaria
+                </ErrorMessage>
+              )}
+            </>
           );
         } else if (input.type === "input") {
           return (
@@ -110,4 +142,5 @@ FormSubmit.propTypes = {
   schema: PropTypes.object.isRequired,
   color: PropTypes.string,
   loading: PropTypes.bool,
+  selectedOptionsInitial: PropTypes.object,
 };

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import useAuthStore from "../../../Stores/auth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -6,17 +7,27 @@ import { useGetIsFavoritedMemorial } from "../../../hooks/querys/memorial";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
+=======
+import PropTypes from "prop-types";
+>>>>>>> DEV
 import {
   StyledCard,
-  Group,
-  LineSVG,
-  CardLine,
-  CardTitle,
+  ShortDescription,
+  LongDescription,
+  Title,
   FavoriteIcon,
+  CarouselStyles,
+  LoadingContainer,
+  TitleContainer,
+  Content,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useGetArchives } from "../../../hooks/querys/archive";
+import { LoadingOutlined } from "@ant-design/icons";
+import Button from "../../common/Button/Button";
 
+<<<<<<< HEAD
 const images = [
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
@@ -27,6 +38,17 @@ export default function LargeCard({ data }) {
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
   const { title, description } = data;
+=======
+export default function LargeCard({ data, imagesLoading }) {
+  const { title, shortDescription, longDescription, link, archive } = data;
+  const archiveIDs = archive.map((file) => file._id);
+  const formatedArchives = archiveIDs.join(", ");
+  const { data: archiveData, isLoading } = useGetArchives(formatedArchives, title, {
+    onError: (err) => {
+      console.error("Erro ao pegar itens", err);
+    },
+  });
+>>>>>>> DEV
 
   const { data: isFavorited } = useGetIsFavoritedMemorial({
     userId: userId,
@@ -66,6 +88,7 @@ export default function LargeCard({ data }) {
 
   return (
     <StyledCard>
+<<<<<<< HEAD
       <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
         {images.map((image, index) => (
           <div key={index}>
@@ -89,10 +112,65 @@ export default function LargeCard({ data }) {
       <CardLine>
         <p>{description}</p>
       </CardLine>
+=======
+      {isLoading || imagesLoading || !archiveData ? (
+        <LoadingContainer>
+          <LoadingOutlined style={{ fontSize: 30, color: "#000102" }} />
+        </LoadingContainer>
+      ) : (
+        <>
+          {archiveData && (
+            <CarouselStyles>
+              <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
+                {archiveData.map((file, index) => (
+                  <div key={index}>
+                    {file.startsWith("data:image") && <img src={file} alt={`Imagem ${index}`} />}
+                    {file.startsWith("data:video") && (
+                      <video controls width="100%" height="auto">
+                        <source src={file} type="video/mp4" />
+                        Seu navegador não suporta o elemento de vídeo.
+                      </video>
+                    )}
+                    {file.startsWith("data:audio") && (
+                      <audio controls>
+                        <source src={file} type="audio/mpeg" />
+                        Seu navegador não suporta o elemento de áudio.
+                      </audio>
+                    )}
+                    {file.startsWith("data:application/pdf") && (
+                      <object data={file} type="application/pdf" width="100%" height="400px">
+                        Seu navegador não suporta visualização de PDF. Você pode{" "}
+                        <a href={file}>baixá-lo aqui</a>.
+                      </object>
+                    )}
+                  </div>
+                ))}
+              </Carousel>
+            </CarouselStyles>
+          )}
+          <Content>
+            <TitleContainer>
+              <Title>{title}</Title>
+              <FavoriteIcon />
+            </TitleContainer>
+            <ShortDescription>{shortDescription}</ShortDescription>
+            <LongDescription>{longDescription}</LongDescription>
+            <Button onClick={() => window.open(link, "_blank")} width="10rem" marginLeft="auto">
+              Navegar
+            </Button>
+          </Content>
+        </>
+      )}
+>>>>>>> DEV
     </StyledCard>
   );
 }
 
 LargeCard.propTypes = {
+<<<<<<< HEAD
   data: PropTypes.object.isRequired,
+=======
+  data: PropTypes.object,
+  imagesLoading: PropTypes.bool,
+>>>>>>> DEV
 };

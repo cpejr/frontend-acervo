@@ -10,8 +10,12 @@ import {
   LineSVG,
   Group,
   ButtonDiv,
+  LoadingStyles,
 } from "./Styles";
+import { useState, useEffect } from "react";
+import { useGetArchives } from "../../../hooks/querys/archive";
 import PropTypes from "prop-types";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
@@ -19,6 +23,25 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useGetIsFavoritedEvent } from "../../../hooks/querys/events";
 export default function Card({ data }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
+  const [image, setImage] = useState(null);
+  const { data: archives, isLoading } = useGetArchives(
+    data?.eventUpload?._id,
+    data.name,
+    {
+      onError: (err) => {
+        console.error("Erro ao pegar itens", err);
+      },
+    }
+  );
+  useEffect(() => {
+    if (!isLoading) {
+      setImage(archives);
+    } else {
+      setImage(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [archives]);
+
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
   // BackEnd Calls
@@ -64,7 +87,13 @@ export default function Card({ data }) {
   return (
     <StyledCard>
       <Image>
-        <img src={data.eventUpload} />
+        {isLoading ? (
+          <LoadingStyles>
+            <AiOutlineLoading3Quarters />
+          </LoadingStyles>
+        ) : (
+          <img src={image} alt="Event" />
+        )}
       </Image>
       <Group>
         <Line>{data.name}</Line>
