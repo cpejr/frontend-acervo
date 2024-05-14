@@ -23,8 +23,9 @@ export const Message = styled.h1`
   }
 `;
 export const MultipleSelect = styled(MultiSelect)`
-  background-color: ${colors.background.primary};
-
+  background-color: "white";
+  border: 0.1rem black solid;
+  color: ${(props) => props?.color};
   .p-multiselect-label {
     width: 215px;
   }

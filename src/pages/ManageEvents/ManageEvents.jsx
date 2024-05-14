@@ -9,28 +9,31 @@ import {
   useCreateEvents,
   useDeleteEvents,
   useGetEvents,
+  useUpdateEvents,
 } from "../../hooks/querys/events";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
 import {
-  FormInput,
+  FormSiriusInput,
   FormTextArea,
   SubmitButton,
   ModalDeleteEvent,
   ModalEditEvent,
+  Table,
 } from "../../components";
 import {
   Container,
   Title,
   Form,
   Section,
-  Table,
-  TableColumn,
   Selects,
   MultipleSelect,
   EventButtons,
+  LoadingStyles,
 } from "./Styles";
+import UploadInput from "../../components/common/UploadInput/UploadInput";
+import { LoadingOutlined } from "@ant-design/icons";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
@@ -39,7 +42,8 @@ export default function ManageEvents() {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
+  const [archivesArray, setArchivesArray] = useState([]);
+  const [archiveError, setArchiveError] = useState(false);
   const { data: events } = useGetEvents({
     onError: (err) => {
       toast.error(err);
@@ -67,8 +71,9 @@ export default function ManageEvents() {
     },
   });
 
-  const { mutate: createEvent } = useCreateEvents({
+  const { mutate: createEvent, isPending: isCreateEventPending } = useCreateEvents({
     onSuccess: () => {
+      toast.success("Evento criado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -78,8 +83,21 @@ export default function ManageEvents() {
     },
   });
 
-  const { mutate: deleteEvent } = useDeleteEvents({
+  const { mutate: deleteEvent, isPending: isPendingDelete } = useDeleteEvents({
     onSuccess: () => {
+      toast.success("Evento deletado com sucesso");
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+      });
+    },
+    onError: (err) => {
+      return err;
+    },
+  });
+
+  const { mutate: updateEvent, isPending: isPendingUpdate } = useUpdateEvents({
+    onSuccess: () => {
+      toast.success("Evento editado com sucesso");
       queryClient.invalidateQueries({
         queryKey: ["events"],
       });
@@ -113,13 +131,25 @@ export default function ManageEvents() {
   };
 
   const onSubmit = (data, e) => {
-    const combinedData = {
-      ...data,
-      id_categoryPrice: idCategoriesPrices,
-      id_categoryType: idCategoriesTypes,
-    };
-    createEvent(combinedData);
-    e.target.reset();
+    let uploadEvent = {};
+    if (archivesArray[0]) {
+      uploadEvent = {
+        base64: archivesArray[0].base64,
+        name: archivesArray[0].name,
+      };
+      const combinedData = {
+        ...data,
+        id_categoryPrice: idCategoriesPrices,
+        id_categoryType: idCategoriesTypes,
+        uploadEvent,
+      };
+      createEvent(combinedData);
+      e.target.reset();
+      setArchivesArray([]);
+      setArchiveError(false);
+    } else {
+      setArchiveError(true);
+    }
   };
   const {
     handleSubmit,
@@ -139,40 +169,51 @@ export default function ManageEvents() {
     }));
     return newArray;
   };
+
   return (
     <Container>
       <Title>SUBMETER NOVO EVENTO</Title>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Section>
-          <FormInput
+          <FormSiriusInput
             name="name"
-            placeholder="Nome do evento:"
+            placeholder="Nome do evento"
             errors={errors}
             register={register}
+            inputKey="1"
           />
-          <FormInput
-            name="eventUpload"
-            placeholder="URL da imagem:"
-            errors={errors}
-            register={register}
-          />
-          <FormInput
+          <FormSiriusInput
             name="shortDescription"
-            placeholder="Descrição curta:"
+            placeholder="Descrição curta"
             errors={errors}
             register={register}
+            inputKey="3"
           />
           <FormTextArea
             name="longDescription"
-            placeholder="Descrição longa:"
+            placeholder="Descrição longa"
             errors={errors}
             register={register}
           />
-          <FormInput
+          <FormSiriusInput
             name="link"
-            placeholder="Link do evento:"
+            placeholder="Link do evento"
             errors={errors}
             register={register}
+            inputKey="4"
+          />
+
+          <UploadInput
+            key="images"
+            inputKey="images"
+            placeholder="Imagem do evento"
+            error={archiveError}
+            register={register}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            color="white"
+            hasButtons={false}
+            width="100%"
           />
           <Selects>
             <MultipleSelect
@@ -187,6 +228,7 @@ export default function ManageEvents() {
               className="w-full md:w-20rem"
               filter
             />
+
             <MultipleSelect
               value={idCategoriesPrices}
               name="id_categoryPrice"
@@ -201,7 +243,7 @@ export default function ManageEvents() {
             />
           </Selects>
         </Section>
-        <SubmitButton>ENVIAR</SubmitButton>
+        <SubmitButton>{isCreateEventPending ? <LoadingOutlined /> : "ENVIAR"}</SubmitButton>
       </Form>
       <Title>GERENCIAR EVENTOS</Title>
       {isDeleteModalOpen && (
@@ -218,21 +260,20 @@ export default function ManageEvents() {
           _id={selectedEventId}
           modal={true}
           event={selectedEvent}
+          updateEvent={updateEvent}
           close={handleCloseEditModal}
           transformArrayItems={transformArrayItems}
           destroyOnClose
         />
       )}
-      <Table value={formattedEvents}>
-        {columns.map((data) => (
-          <TableColumn
-            sortable
-            key={data.field}
-            field={data.field}
-            header={data.header}
-          />
-        ))}
-      </Table>
+
+      {isPendingDelete || isPendingUpdate ? (
+        <LoadingStyles>
+          <LoadingOutlined />
+        </LoadingStyles>
+      ) : (
+        <Table columns={columns} data={formattedEvents} />
+      )}
     </Container>
   );
 }

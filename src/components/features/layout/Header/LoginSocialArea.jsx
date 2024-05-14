@@ -39,7 +39,9 @@ export default function LoginSocialArea() {
   const [modalLogOff, setModalLogOff] = useState(false);
   const openModalLogOff = () => setModalLogOff(true);
   const closeModalLogOff = () => setModalLogOff(false);
-  const modalCloseButton = <CloseOutlined style={{ color: colors.white }} />;
+  const modalCloseButton = (
+    <CloseOutlined style={{ color: colors.font.primary }} />
+  );
 
   // BackEnd Calls
 

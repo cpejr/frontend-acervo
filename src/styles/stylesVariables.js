@@ -4,6 +4,7 @@ export const colors = {
     secondary: "#000000",
     hover: "#53190a",
     menu: "#1C1C1C",
+    white: "#FFF",
   },
   font: {
     primary: "#FFF",
