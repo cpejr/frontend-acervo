@@ -7,13 +7,24 @@ import {
   UniSelect,
   DivLine,
   Line,
+  MultipleSelect,
+  Buttons,
+  ButtonsDiv,
 } from "../Memorial/Styles";
 import { SearchBar } from "../../components";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetMemorial } from "../../hooks/querys/memorial";
+import { useGetCategoryType } from "../../hooks/querys/categoryType";
+import { toast } from "react-toastify";
+import useDebounce from "../../services/useDebouce";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 export default function Memorial() {
   const [imagesLoading, setImagesLoading] = useState(true);
+  const [types, setTypes] = useState([]);
+  const [names, setNames] = useState("");
+  const debouncedName = useDebounce(names);
+  const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
+  const [filter, setFilter] = useState([]);
   const filters = [
     { label: "Favoritos", value: "title" },
     { label: "Melhor avaliados", value: "date" },
@@ -46,13 +57,33 @@ export default function Memorial() {
       setImagesLoading(false);
     },
   });
-
+  const { data: categoryType } = useGetCategoryType({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
   useEffect(() => {
     if (!isLoading && !isError) {
       setImagesLoading(false);
     }
   }, [isLoading, isError]);
-
+  const transformArrayItems = (OriginalArray) => {
+    const newArray = OriginalArray?.map((item) => ({
+      value: item?._id,
+      label: item?.name,
+    }));
+    return newArray;
+  };
+  const handleFilterChange = () => {
+    const newArray = [...types];
+    setCategoryIDsArrays(newArray);
+  };
+  const handleResetFilter = () => {
+    setTypes([]);
+    setFilter([]);
+    setCategoryIDsArrays([]);
+    setNames([]);
+  };
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -64,6 +95,15 @@ export default function Memorial() {
       />
       <Filter>
         <DivSelect>
+          <MultipleSelect
+            value={types}
+            onChange={(e) => setTypes(e.value)}
+            options={transformArrayItems(categoryType)}
+            optionLabel="label"
+            placeholder="Escolha o tipo"
+            className="w-full md:w-20rem"
+            filter
+          />
           <UniSelect
             aria-label="Botão de ordenação"
             value={sortValue}
@@ -76,6 +116,10 @@ export default function Memorial() {
           />
         </DivSelect>
       </Filter>
+      <ButtonsDiv>
+        <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+        <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+      </ButtonsDiv>
       <DivLine>
         {memorialCards
           ?.filter((card) =>

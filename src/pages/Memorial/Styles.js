@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
-
+import { MultiSelect } from "primereact/multiselect";
+import { Button } from "antd";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,7 +98,8 @@ export const DivSelect = styled.div`
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width: 10%;
+  width: 15%;
+  gap: 30px;
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 40%;
   }
@@ -135,4 +137,39 @@ export const LoadingStyles = styled.div`
   display: "block";
   font-size: 24px;
   margin: 20px auto;
+`;
+export const MultipleSelect = styled(MultiSelect)`
+  background-color: ${colors.background.primary};
+  .p-placeholder {
+    color: ${colors.font.primary};
+  }
+  .p-multiselect-label {
+    width: 215px;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 50%;
+  }
+`;
+export const ButtonsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 20px;
+`;
+export const Buttons = styled(Button)`
+  border: 1px solid #d1d5db;
+  width: 130px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: ${colors.black};
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 90%;
+  }
 `;
