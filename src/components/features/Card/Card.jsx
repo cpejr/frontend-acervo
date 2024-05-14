@@ -95,7 +95,7 @@ export default function Card({ data }) {
         )}
       </Image>
       <Group>
-        <Line>{data.name}</Line>
+        <Line>{data?.name}</Line>
         <LineSVG>
           {isFavorited ? (
             <FaBookmark onClick={onSubmit} />

@@ -1,4 +1,3 @@
-import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import useAuthStore from "../../../Stores/auth";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateFavoritesMemorials } from "../../../hooks/querys/user";
@@ -16,6 +15,7 @@ import {
   LoadingContainer,
   TitleContainer,
   Content,
+  FavoriteFilledIcon,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -24,9 +24,15 @@ import { LoadingOutlined } from "@ant-design/icons";
 import Button from "../../common/Button/Button";
 
 export default function LargeCard({ data, imagesLoading }) {
+  // States and Variables
   const { title, shortDescription, longDescription, link, archive } = data;
   const archiveIDs = archive.map((file) => file._id);
   const formatedArchives = archiveIDs.join(", ");
+  const queryClient = useQueryClient();
+  const userId = useAuthStore((state) => state?.auth?.user?._id);
+
+  // BackEnd Calls
+
   const { data: archiveData, isLoading } = useGetArchives(
     formatedArchives,
     title,
@@ -37,17 +43,15 @@ export default function LargeCard({ data, imagesLoading }) {
     }
   );
 
-  const queryClient = useQueryClient();
-  const userId = useAuthStore((state) => state?.auth?.user?._id);
-
   const { data: isFavorited } = useGetIsFavoritedMemorial({
     userId: userId,
-    eventId: data?._id,
+    memorialId: data?._id,
     enabled: !!userId,
     onError: (err) => {
       console.error(err);
     },
   });
+
   const { mutate: updateFavoriteMemorial } = useUpdateFavoritesMemorials({
     userId: userId,
     ids: [data?._id],
@@ -58,12 +62,17 @@ export default function LargeCard({ data, imagesLoading }) {
       queryClient.invalidateQueries({
         queryKey: ["memorial"],
       });
+      queryClient.invalidateQueries({
+        queryKey: [title],
+      });
+
       toast.success("Memorial Atualizado");
     },
     onError: (err) => {
       toast.err(err);
     },
   });
+
   const onSubmit = async (event) => {
     event.stopPropagation();
     if (userId) {
@@ -127,7 +136,11 @@ export default function LargeCard({ data, imagesLoading }) {
           <Content>
             <TitleContainer>
               <Title> {title} </Title>
-              <FavoriteIcon />
+              {isFavorited ? (
+                <FavoriteFilledIcon onClick={onSubmit} />
+              ) : (
+                <FavoriteIcon onClick={onSubmit} />
+              )}
             </TitleContainer>
             <ShortDescription>{shortDescription}</ShortDescription>
             <LongDescription>{longDescription}</LongDescription>

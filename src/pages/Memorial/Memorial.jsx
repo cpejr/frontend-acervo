@@ -20,8 +20,6 @@ import { useGetMemorialByDate } from "../../hooks/querys/memorial";
 
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
-import { useQueryClient } from "@tanstack/react-query";
-import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
@@ -33,19 +31,23 @@ export default function Memorial() {
   const [searchValue, setSearchValue] = useState("");
   const [dates, setDates] = useState(null);
   const [dateRange, setDateRange] = useState();
-  const { data: memorial } = useGetMemorialByDate({
+  const {
+    data: memorial,
+    isLoading,
+    isError,
+  } = useGetMemorialByDate({
     dateRange: dateRange,
     onError: (err) => {
+      setImagesLoading(false);
       toast.error(err);
     },
   });
-  console.log(dateRange);
+
   const filters = [
     { label: "Favoritos", value: "title" },
     { label: "Melhor avaliados", value: "date" },
   ];
 
-  const queryClient = useQueryClient();
   const [sortValue, setSelectedSort] = useState("");
 
   const handleFilterChange = () => {
@@ -86,21 +88,6 @@ export default function Memorial() {
     newCheckedStates[index].checked = !newCheckedStates[index].checked;
     setCharacteristicCheckboxes(newCheckedStates);
   };
-
-  const {
-    data: memorialCards,
-    isLoading,
-    isError,
-  } = useGetMemorial({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["memorialCards"],
-      });
-    },
-    onError: () => {
-      setImagesLoading(false);
-    },
-  });
 
   useEffect(() => {
     if (!isLoading && !isError) {
@@ -163,7 +150,7 @@ export default function Memorial() {
         </ContainerFilter>
       </Filter>
       <DivLine>
-        {memorialCards
+        {memorial
           ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
           )
