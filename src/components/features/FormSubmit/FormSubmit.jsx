@@ -42,14 +42,11 @@ export default function FormSubmit({
 
   function submitHandler(data) {
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
-    console.log(selectedOptions);
     if (
       Object.keys(selectedOptions).length === 0 ||
       selectedOptions.id_categoryType.length === 0
     ) {
       setSelectError(true);
-      console.log("ola");
-      console.log(selectError);
       return;
     }
     if (hasArchiveInput && !archivesArray[0]) {
