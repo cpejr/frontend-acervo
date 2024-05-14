@@ -3,25 +3,16 @@ import {
   Container,
   Title,
   Filter,
-  Characteristics,
   DivSelect,
-  FilterTitle,
   UniSelect,
-  VerticalLine,
   DivLine,
   Line,
 } from "../Memorial/Styles";
 import { SearchBar } from "../../components";
-import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 export default function Memorial() {
-  const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
-    { label: "Característica 1", value: "c1", checked: false },
-    { label: "Característica 2", value: "c2", checked: false },
-    { label: "Característica 3", value: "c3", checked: false },
-  ]);
   const [imagesLoading, setImagesLoading] = useState(true);
   const filters = [
     { label: "Favoritos", value: "title" },
@@ -39,19 +30,6 @@ export default function Memorial() {
 
   const handleChangeSort = (e) => {
     setSelectedSort(e.value);
-  };
-
-  const handleChangeCheckbox = (e) => {
-    let index = 0;
-    for (; index < characteristicCheckboxes.length; index++) {
-      if (characteristicCheckboxes[index].value === e.target.name) {
-        break;
-      }
-    }
-
-    const newCheckedStates = [...characteristicCheckboxes];
-    newCheckedStates[index].checked = !newCheckedStates[index].checked;
-    setCharacteristicCheckboxes(newCheckedStates);
   };
 
   const {
@@ -85,21 +63,6 @@ export default function Memorial() {
         search={handleSearchChange}
       />
       <Filter>
-        <Characteristics>
-          <FilterTitle>Características:</FilterTitle>
-          {characteristicCheckboxes.map((checkbox) => (
-            <label key={checkbox.value}>
-              <Checkbox
-                aria-label="Botão seletor de caracteristicas"
-                checked={checkbox.checked}
-                name={checkbox.value}
-                onChange={handleChangeCheckbox}
-              />
-              {checkbox.label}
-            </label>
-          ))}
-        </Characteristics>
-        <VerticalLine />
         <DivSelect>
           <UniSelect
             aria-label="Botão de ordenação"
