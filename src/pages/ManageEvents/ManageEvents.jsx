@@ -15,7 +15,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
 import {
-  FormSiriusInput,
+  FormInputEvents,
   FormTextArea,
   SubmitButton,
   ModalDeleteEvent,
@@ -71,17 +71,18 @@ export default function ManageEvents() {
     },
   });
 
-  const { mutate: createEvent, isPending: isCreateEventPending } = useCreateEvents({
-    onSuccess: () => {
-      toast.success("Evento criado com sucesso");
-      queryClient.invalidateQueries({
-        queryKey: ["events"],
-      });
-    },
-    onError: (err) => {
-      return err;
-    },
-  });
+  const { mutate: createEvent, isPending: isCreateEventPending } =
+    useCreateEvents({
+      onSuccess: () => {
+        toast.success("Evento criado com sucesso");
+        queryClient.invalidateQueries({
+          queryKey: ["events"],
+        });
+      },
+      onError: (err) => {
+        return err;
+      },
+    });
 
   const { mutate: deleteEvent, isPending: isPendingDelete } = useDeleteEvents({
     onSuccess: () => {
@@ -175,14 +176,14 @@ export default function ManageEvents() {
       <Title>SUBMETER NOVO EVENTO</Title>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Section>
-          <FormSiriusInput
+          <FormInputEvents
             name="name"
             placeholder="Nome do evento"
             errors={errors}
             register={register}
             inputKey="1"
           />
-          <FormSiriusInput
+          <FormInputEvents
             name="shortDescription"
             placeholder="Descrição curta"
             errors={errors}
@@ -195,7 +196,7 @@ export default function ManageEvents() {
             errors={errors}
             register={register}
           />
-          <FormSiriusInput
+          <FormInputEvents
             name="link"
             placeholder="Link do evento"
             errors={errors}
@@ -243,7 +244,9 @@ export default function ManageEvents() {
             />
           </Selects>
         </Section>
-        <SubmitButton>{isCreateEventPending ? <LoadingOutlined /> : "ENVIAR"}</SubmitButton>
+        <SubmitButton>
+          {isCreateEventPending ? <LoadingOutlined /> : "ENVIAR"}
+        </SubmitButton>
       </Form>
       <Title>GERENCIAR EVENTOS</Title>
       {isDeleteModalOpen && (

@@ -15,6 +15,10 @@ function App() {
           fontSize: "15px",
         },
         components: {
+          ModalEditEvent:{
+            
+
+          },
           Select: {
             colorBgElevated: colors.background.primary,
             optionSelectedBg: colors.background.primary,
