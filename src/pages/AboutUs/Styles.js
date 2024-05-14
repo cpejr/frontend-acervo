@@ -36,6 +36,7 @@ export const Line = styled.div`
   gap: 3rem;
   height: 10rem;
   flex-basis: 10%;
+  align-items: center;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
     align-items: center;
@@ -45,7 +46,7 @@ export const ImageLine = styled.div`
   display: flex;
   flex-direction: row;
   width: 70%;
-  flex-basis: 50%;
+  flex-basis: 60%;
   gap: 3rem;
   align-items: center;
   @media (max-width: ${breakpoints.smallTablet}) {
@@ -71,12 +72,13 @@ export const TextColumn = styled.div`
   > p {
     color: ${colors.font.primary};
     text-align: justify;
-    align-self: center;
     justify-self: center;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 100%;
-    flex-direction: row;
+    align-items: center;
+
+    @media (max-width: ${breakpoints.smallTablet}) {
+      width: 100%;
+      flex-direction: row;
+    }
   }
 `;
 export const PintaColumn = styled.div`
