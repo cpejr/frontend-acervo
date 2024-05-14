@@ -11,7 +11,10 @@ import {
   Buttons,
   ButtonsDiv,
   Line,
-} from "../Memorial/Styles";
+  Characteristics,
+  FilterTitle,
+  Filter,
+} from "./Styles";
 import { toast } from "react-toastify";
 import { useGetMemorialByDate } from "../../hooks/querys/memorial";
 
@@ -43,7 +46,6 @@ export default function Memorial() {
   ];
 
   const queryClient = useQueryClient();
-  const [searchValue, setSearchValue] = useState("");
   const [sortValue, setSelectedSort] = useState("");
 
   const handleFilterChange = () => {
@@ -131,34 +133,35 @@ export default function Memorial() {
           ))}
         </Characteristics>
         <VerticalLine />
-      <ContainerFilter>
-        <DivSelect>
-          <Calendar
-            value={dates}
-            onChange={(e) => setDates(e.value)}
-            selectionMode="range"
-            readOnlyInput
-            hideOnRangeSelection
-            placeholder="Determine uma data"
-            showButtonBar
-            dateFormat="dd/mm/yy"
-          />
-          <UniSelect
-            aria-label="Botão de ordenação"
-            value={sortValue}
-            options={filters}
-            optionLabel="label"
-            showClear
-            placeholder="Ordenar Por"
-            onChange={handleChangeSort}
-            className="w-full md:w-14rem"
-          />
-        </DivSelect>
-        <ButtonsDiv>
-          <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
-          <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
-        </ButtonsDiv>
-      </ContainerFilter>
+        <ContainerFilter>
+          <DivSelect>
+            <Calendar
+              value={dates}
+              onChange={(e) => setDates(e.value)}
+              selectionMode="range"
+              readOnlyInput
+              hideOnRangeSelection
+              placeholder="Determine uma data"
+              showButtonBar
+              dateFormat="dd/mm/yy"
+            />
+            <UniSelect
+              aria-label="Botão de ordenação"
+              value={sortValue}
+              options={filters}
+              optionLabel="label"
+              showClear
+              placeholder="Ordenar Por"
+              onChange={handleChangeSort}
+              className="w-full md:w-14rem"
+            />
+          </DivSelect>
+          <ButtonsDiv>
+            <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+            <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+          </ButtonsDiv>
+        </ContainerFilter>
+      </Filter>
       <DivLine>
         {memorialCards
           ?.filter((card) =>

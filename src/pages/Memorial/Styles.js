@@ -187,3 +187,9 @@ export const LoadingStyles = styled.div`
   margin: 20px auto;
 `;
 
+export const Filter = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+`;
