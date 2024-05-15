@@ -9,3 +9,4 @@ export { default as Memorial } from "./Memorial/Memorial";
 export { default as Story } from "./Story/Story";
 export { default as AboutUs } from "./AboutUs/AboutUs";
 export { default as Favorites } from "./Favorites/Favorites";
+export { default as SpecificEvent} from "./SpecificEvent/SpecificEvent"

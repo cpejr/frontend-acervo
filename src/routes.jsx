@@ -19,6 +19,7 @@ import {
   AboutUs,
   Memorial,
   Favorites,
+  SpecificEvent
 } from "./pages";
 import { AppLayout } from "./components";
 import useAuthStore from "./Stores/auth";
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
           <Route path="gerenciar-eventos" element={<ManageEvents />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
         </Route>
+        <Route path='/eventos/:name' element={<SpecificEvent />} />
       </Route>
       <Route path="suporte" element={<Support />} />
     </Route>

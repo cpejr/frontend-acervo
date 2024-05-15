@@ -6,6 +6,7 @@ import {
   getEventsByCategoryId,
   deleteEvents,
   updateEvents,
+  getReadByName
   getIsFavoritedEvent,
 } from "../../services/endpoints";
 
@@ -53,6 +54,18 @@ export function useGetEventsByCategoryId({
   return useQuery({
     queryKey: ["events", { id, name, type, dateRange }],
     queryFn: () => getEventsByCategoryId({ id, name, type, dateRange }),
+    onSuccess,
+    onError,
+  });
+}
+export function useGetReadByName({
+  name,
+  onSuccess = () => {},
+  onError = (err) => console.error(err),
+} = {}) {
+  return useQuery({
+    queryKey: ["events-by-name", { name }],
+    queryFn: () => getReadByName({ name }),
     onSuccess,
     onError,
   });
