@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { FaRegBookmark } from "react-icons/fa";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 
 export const StyledCard = styled(Card)`
   position: relative; /* Ensure positioning context for absolute positioning */
@@ -64,6 +64,12 @@ export const LongDescription = styled.div`
 `;
 
 export const FavoriteIcon = styled(FaRegBookmark)`
+  color: ${colors.font.secondary};
+  margin-left: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+`;
+export const FavoriteFilledIcon = styled(FaBookmark)`
   color: ${colors.font.secondary};
   margin-left: 5px;
   font-size: 2rem;
