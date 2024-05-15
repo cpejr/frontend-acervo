@@ -6,7 +6,7 @@ import {
   getEventsByCategoryId,
   deleteEvents,
   updateEvents,
-  getReadByName
+  getReadByName,
   getIsFavoritedEvent,
 } from "../../services/endpoints";
 

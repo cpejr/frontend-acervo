@@ -20,8 +20,9 @@ import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useGetIsFavoritedEvent } from "../../../hooks/querys/events";
+import { useNavigate } from "react-router-dom";
 export default function Card({ data }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
@@ -119,7 +120,7 @@ export default function Card({ data }) {
         <OrangeButton
           onClick={(event) => {
             event.stopPropagation();
-            navigate(`/eventos/${data?.name}`)
+            navigate(`/eventos/${data?.name}`);
           }}
         >
           Link
