@@ -21,6 +21,7 @@ import { useGetMemorialByDate } from "../../hooks/querys/memorial";
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
+import { useQueryClient } from "@tanstack/react-query";
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
     { label: "Característica 1", value: "c1", checked: false },
@@ -31,6 +32,14 @@ export default function Memorial() {
   const [searchValue, setSearchValue] = useState("");
   const [dates, setDates] = useState(null);
   const [dateRange, setDateRange] = useState();
+  const [sortValue, setSelectedSort] = useState("");
+  const filters = [
+    { label: "Favoritos", value: "title" },
+    { label: "Melhor avaliados", value: "date" },
+  ];
+  const queryClient = useQueryClient();
+  // BackEnd Calls
+
   const {
     data: memorial,
     isLoading,
@@ -43,14 +52,9 @@ export default function Memorial() {
     },
   });
 
-  const filters = [
-    { label: "Favoritos", value: "title" },
-    { label: "Melhor avaliados", value: "date" },
-  ];
+  // Functions
 
-  const [sortValue, setSelectedSort] = useState("");
-
-  const handleFilterChange = () => {
+  function handleFilterChange() {
     const [initialDate, finalDate] = dates;
     let formattedDateRange;
     if (finalDate === null) {
@@ -62,7 +66,7 @@ export default function Memorial() {
       };
     }
     setDateRange(formattedDateRange);
-  };
+  }
   const handleSearchChange = (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);
@@ -70,6 +74,12 @@ export default function Memorial() {
   const handleResetFilter = () => {
     setDates([]);
     setDateRange({});
+    queryClient.invalidateQueries({
+      queryKey: ["memorial"],
+    });
+    queryClient.invalidateQueries({
+      queryKey: ["favoritesMemorials"],
+    });
   };
 
   const handleChangeSort = (e) => {
