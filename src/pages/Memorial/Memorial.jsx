@@ -4,12 +4,12 @@ import {
   Title,
   Filter,
   Characteristics,
-  DivSelect,
   FilterTitle,
   UniSelect,
   VerticalLine,
   DivLine,
   Line,
+  BackgroundTitle,
 } from "../Memorial/Styles";
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
@@ -77,10 +77,12 @@ export default function Memorial() {
 
   return (
     <Container>
-      <Title>ACERVO</Title>
+      <BackgroundTitle>
+        <Title>ACERVO</Title>
+      </BackgroundTitle>
       <SearchBar
         aria-label="Barra de pesquisa"
-        placeholder="Pesquisar"
+        placeholder="Pesquisar Acervo"
         value={searchValue}
         search={handleSearchChange}
       />
@@ -100,18 +102,15 @@ export default function Memorial() {
           ))}
         </Characteristics>
         <VerticalLine />
-        <DivSelect>
-          <UniSelect
-            aria-label="Botão de ordenação"
-            value={sortValue}
-            options={filters}
-            optionLabel="label"
-            showClear
-            placeholder="Ordenar Por"
-            onChange={handleChangeSort}
-            className="w-full md:w-14rem"
-          />
-        </DivSelect>
+        <UniSelect
+          aria-label="Botão de ordenação"
+          value={sortValue}
+          options={filters}
+          optionLabel="label"
+          placeholder="Ordenar Por"
+          onChange={handleChangeSort}
+          className="w-full md:w-14rem"
+        />
       </Filter>
       <DivLine>
         {memorialCards

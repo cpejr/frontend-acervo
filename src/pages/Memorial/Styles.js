@@ -2,11 +2,17 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
+import { titleBackground } from "../../assets/index";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 3rem 0;
+`;
+
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 4rem;
 `;
 
 export const Title = styled.div`
@@ -55,9 +61,14 @@ export const Line = styled.div`
 
 export const Filter = styled.div`
   display: flex;
-  width: 100%;
   align-items: flex-start;
   justify-content: space-evenly;
+  margin-top:10px;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    flex-direction:column;
+    justify-content: center;
+    align-items:center
+  }
 `;
 
 export const Characteristics = styled.div`
@@ -69,18 +80,25 @@ export const Characteristics = styled.div`
     gap: 0.5rem;
     padding-top: 0.3rem;
     color: #eedac5;
+
   }
 `;
 
 export const VerticalLine = styled.div`
   border-left: 2px solid white;
   height: 10rem;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    display:none;
+  }
 `;
 
 export const FilterTitle = styled.div`
   display: flex;
   color: ${colors.accent};
   padding-bottom: 1rem;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    padding-bottom: 10px;
+  }
 `;
 
 export const StyledCheckbox = styled(Checkbox)`
@@ -91,24 +109,14 @@ export const StyledCheckbox = styled(Checkbox)`
   justify-content: center;
 `;
 
-export const DivSelect = styled.div`
+export const UniSelect = styled(Dropdown)`
+  gap: 1rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width: 10%;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 40%;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    flex-direction: column;
-    width: 20%;
-  }
-`;
-
-export const UniSelect = styled(Dropdown)`
-  gap: 1rem;
+  width:200px;
   .p-dropdown-label {
     color: ${colors.font.primary};
     width: 100%;
@@ -120,15 +128,8 @@ export const UniSelect = styled(Dropdown)`
     white-space: nowrap;
     overflow: hidden;
   }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    max-width: 100%;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 30%;
-  }
   @media (max-width: ${breakpoints.smallMobile}) {
-    width: 20%;
+    margin-top: 40px;
   }
 `;
 export const LoadingStyles = styled.div`
