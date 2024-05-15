@@ -7,11 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
-import FormInput from "../../../common/FormInput/FormInput";
+import FormSiriusInput from "../../../common/FormSiriusInput/FormSiriusInput";
 import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
+import UploadInput from "../../../common/UploadInput/UploadInput";
 
 export default function ModalEditEvent({
   event,
@@ -19,9 +20,11 @@ export default function ModalEditEvent({
   _id,
   modal,
   transformArrayItems,
+  updateEvent,
 }) {
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
+  const [archivesArray, setArchivesArray] = useState([]);
   const queryClient = useQueryClient();
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -33,16 +36,18 @@ export default function ModalEditEvent({
       toast.error(err);
     },
   });
-  const { mutate: updatEvent } = useUpdateEvents({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["events"],
-      });
-    },
-    onError: (err) => {
-      return err;
-    },
-  });
+  // const { mutate: updateEvent } = useUpdateEvents({
+  //   onSuccess: () => {
+  //     toast.success("Evento editado com sucesso");
+  //     queryClient.invalidateQueries({
+  //       queryKey: ["events"],
+  //     });
+  //   },
+  //   onError: (err) => {
+  //     return err;
+  //   },
+  // });
+
   const setCategories = () => {
     setIdsCategoryType(event?.id_categoryType?.map((ids) => ids._id) || []);
     setIdsCategoryPrice(event?.id_categoryPrice?.map((ids) => ids._id) || []);
@@ -51,20 +56,29 @@ export default function ModalEditEvent({
     if (modal) {
       setCategories();
     }
-  }, [modal]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modal]);
   // On Submit
+
   const onSubmit = (data) => {
+    let uploadEvent = {};
+    if (archivesArray[0]) {
+      uploadEvent = {
+        base64: archivesArray[0]?.base64,
+        name: archivesArray[0]?.name,
+      };
+    }
     const body = {
       ...data,
       id_categoryType: idsCategoryType,
       id_categoryPrice: idsCategoryPrice,
+      uploadEvent: uploadEvent,
     };
 
-    updatEvent({ _id: _id, body: body });
+    updateEvent({ _id: _id, body: body });
     close();
   };
-
   const {
     handleSubmit,
     register,
@@ -72,75 +86,80 @@ export default function ModalEditEvent({
   } = useForm({
     resolver: zodResolver(newEventValidationSchema),
   });
-
   return (
     <Container>
-      <ModalStyle
-        open={modal}
-        onCancel={close}
-        centered
-        destroyOnClose
-        footer={null}
-      >
+      <ModalStyle open={modal} onCancel={close} centered destroyOnClose footer={null}>
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
+          <FormSiriusInput
             name="name"
             label="Nome do evento:"
-            defaultValue={event.name}
+            defaultValue={event?.name}
             register={register}
             placeholder="Nome do evento:"
             errors={errors}
+            color="black"
           />
-          <FormInput
-            name="eventUpload"
-            label="Imagem do evento:"
-            defaultValue={event.eventUpload}
-            register={register}
-            placeholder="URL da imagem:"
-            errors={errors}
-          />
-          <FormInput
+          <FormSiriusInput
             name="shortDescription"
             label="Descrição curta:"
             defaultValue={event.shortDescription}
             register={register}
             placeholder="Descrição curta:"
             errors={errors}
+            color="black"
           />
-          <FormInput
+          <FormSiriusInput
             name="longDescription"
             label="Descrição longa:"
             defaultValue={event.longDescription}
             register={register}
             placeholder="Descrição longa:"
             errors={errors}
+            color="black"
           />
-          <FormInput
+          <FormSiriusInput
             name="link"
             label="Link:"
             defaultValue={event.link}
             register={register}
             placeholder="Link do evento:"
             errors={errors}
+            color="black"
+          />
+
+          <UploadInput
+            key={"images"}
+            inputKey={"archive0"}
+            error={false}
+            register={register}
+            setArchivesArray={setArchivesArray}
+            archivesArray={archivesArray}
+            values={[{ name: event?.eventUpload?.name, base64: undefined }]}
+            color={"black"}
+            hasButtons={false}
+            width="100%"
+            placeholder={event?.eventUpload?.name}
           />
           <MultipleSelect
             value={idsCategoryPrice}
-            name="id_categoryPrice"
+            onChange={(e) => setIdsCategoryPrice(e.value)}
             options={transformArrayItems(categoryPrice)}
             optionLabel="label"
             placeholder="Escolha as características"
             className="w-full md:w-20rem"
             filter
+            color="black"
           />
           <MultipleSelect
             value={idsCategoryType}
-            name="id_categoryType"
+            onChange={(e) => setIdsCategoryType(e.value)}
             options={transformArrayItems(categoryType)}
             optionLabel="label"
             placeholder="Escolha as características"
             className="w-full md:w-20rem"
             filter
+            color="black"
           />
           <Button
             type="submit"
@@ -170,4 +189,5 @@ ModalEditEvent.propTypes = {
   close: PropTypes.func.isRequired,
   modal: PropTypes.bool.isRequired,
   transformArrayItems: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
 };

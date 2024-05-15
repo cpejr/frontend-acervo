@@ -3,6 +3,7 @@ import { breakpoints, colors } from "../../../styles/stylesVariables";
 import { Button } from "antd";
 import { MultiSelect } from "primereact/multiselect";
 import { Dropdown } from "primereact/dropdown";
+import { Calendar as PrimeCalendar } from "primereact/calendar";
 
 export const ContainerFilter = styled.div`
   display: flex;
@@ -10,6 +11,7 @@ export const ContainerFilter = styled.div`
   align-items: center;
   width: 90%;
   flex-direction: column;
+  gap: 2rem;
   @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
     justify-content: center;
@@ -18,7 +20,10 @@ export const ContainerFilter = styled.div`
 `;
 
 export const MultipleSelect = styled(MultiSelect)`
-  z-index: 1;
+  background-color: ${colors.background.primary};
+  .p-placeholder {
+    color: ${colors.font.primary};
+  }
   .p-multiselect-label {
     width: 215px;
   }
@@ -41,6 +46,7 @@ export const ButtonsDiv = styled.div`
 export const DivSelect = styled.div`
   display: flex;
   justify-content: center;
+  color: #808080;
   flex-direction: row;
   align-items: center;
   gap: 1rem;
@@ -68,14 +74,15 @@ export const Buttons = styled(Button)`
 `;
 
 export const UniSelect = styled(Dropdown)`
-  background-color: ${colors.black};
-
+  .dropdown {
+    background-color: #fff;
+  }
   .p-dropdown-label {
-    color: ${colors.white};
+    color: ${colors.font.primary};
     width: 200px;
   }
   .p-inputtext {
-    color: ${colors.white};
+    color: ${colors.font.primary};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -83,5 +90,14 @@ export const UniSelect = styled(Dropdown)`
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 50%;
+  }
+`;
+export const Calendar = styled(PrimeCalendar)`
+  display: flex;
+  justify-content: center;
+  .p-inputtext {
+    background-color: ${colors.background.primary};
+    color: ${colors.font.primary};
+    border: solid 1px ${colors.font.primary};
   }
 `;

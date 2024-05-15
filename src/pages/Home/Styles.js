@@ -56,7 +56,7 @@ export const Button = styled.button`
   border-radius: 7px;
   background-color: #f19709;
   border: none;
-  color: white;
+  color: ${colors.font.primary};
   height: 2.5rem;
   font-size: 20px;
   cursor: pointer;
@@ -104,7 +104,7 @@ export const Sponsor = styled.img`
 `;
 
 export const StyledSponsors = styled.div`
-  background-color: white;
+  background-color: ${colors.background.white};
   display: flex;
   justify-content: space-evenly;
 

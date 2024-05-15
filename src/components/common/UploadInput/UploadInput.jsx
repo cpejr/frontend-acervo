@@ -13,25 +13,37 @@ export default function UploadInput({
   setArchivesArray,
   archivesArray,
   values,
+  hasButtons,
+
+  width,
 }) {
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
   };
-
   const handleChange = (info) => {
     const { originFileObj } = info?.fileList[0] || {};
     if (originFileObj) {
       getBase64(originFileObj, (url) => {
-        setArchivesArray((prev) => [
-          ...prev,
-          {
-            name: info?.fileList[0].name,
-            base64: url,
-            inputKey: info?.inputKey,
-          },
-        ]);
+        if (hasButtons === false) {
+          setArchivesArray([
+            {
+              name: info?.fileList[0].name,
+              base64: url,
+              inputKey: info?.inputKey,
+            },
+          ]);
+        } else {
+          setArchivesArray((prev) => [
+            ...prev,
+            {
+              name: info?.fileList[0].name,
+              base64: url,
+              inputKey: info?.inputKey,
+            },
+          ]);
+        }
       });
     }
   };
@@ -52,9 +64,7 @@ export default function UploadInput({
 
   const removeInput = (inputKey) => {
     setInputs(inputs.filter((input) => input.inputKey !== inputKey));
-    setArchivesArray(
-      archivesArray.filter((archive) => archive.inputKey !== inputKey)
-    );
+    setArchivesArray(archivesArray.filter((archive) => archive.inputKey !== inputKey));
   };
 
   const [archiveCount, setArchiveCount] = useState(values?.length ?? 1);
@@ -71,22 +81,32 @@ export default function UploadInput({
         error,
         index,
       }));
+
       setInputs(newInputs);
       setArchivesArray(
         (values ?? []).map((value, index) => ({
           inputKey: `archive${index}`,
-          name: value.name,
+          name: value?.name,
           base64: undefined,
         }))
       );
       setPageLoaded(true);
     } else if (archivesArray.length === 0) {
       setInputs([
-        { inputKey, placeholder, error, icon: Icon, color, index: 0 },
+        {
+          inputKey,
+          placeholder,
+          error,
+          icon: Icon,
+          color,
+          index: 0,
+        },
       ]);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, archivesArray, pageLoaded]);
+
   return (
     <>
       {inputs.map((props, index) => (
@@ -94,67 +114,65 @@ export default function UploadInput({
           <Upload
             key={props.inputKey}
             name={props.inputKey}
-            onChange={(values) =>
-              handleChange({ ...values, inputKey: props.inputKey })
-            }
+            onChange={(values) => handleChange({ ...values, inputKey: props.inputKey })}
             beforeUpload={() => false}
             maxCount={1}
-            disabled={archivesArray.some(
-              (archive) => archive.inputKey === props.inputKey
-            )}
+            disabled={
+              hasButtons && archivesArray.some((archive) => archive.inputKey === props.inputKey)
+            }
           >
             <FormInput
               {...props}
               value={
-                archivesArray.find(
-                  (archive) => archive.inputKey === props.inputKey
-                )?.name ?? props.placeholder
+                archivesArray.find((archive) => archive.inputKey === props.inputKey)?.name ??
+                props.placeholder
               }
               error={error}
               readOnly="readonly"
+              width={width}
               cursor={
-                archivesArray.some(
-                  (archive) => archive.inputKey === props.inputKey
-                )
+                hasButtons && archivesArray.some((archive) => archive.inputKey === props.inputKey)
                   ? "not-allowed"
                   : "pointer"
               }
             />
           </Upload>
-          <RemoveArchive
-            color={color}
-            onClick={() => removeInput(props.inputKey)}
-          >
-            <AiOutlineDelete
-              style={{
-                width: "2rem",
-                height: "3rem",
-                cursor: "pointer",
-              }}
-            />
-            Remover
-          </RemoveArchive>
+          {hasButtons && (
+            <RemoveArchive color={color} onClick={() => removeInput(props.inputKey)}>
+              <AiOutlineDelete
+                style={{
+                  width: "2rem",
+                  height: "3rem",
+                  cursor: "pointer",
+                }}
+              />
+              Remover
+            </RemoveArchive>
+          )}
           {error && (
-            <ErrorMessage color={color}>
-              Pelo menos um arquivo deve ser enviado
-            </ErrorMessage>
+            <ErrorMessage color={color}>Pelo menos um arquivo deve ser enviado</ErrorMessage>
           )}
         </div>
       ))}
-      <AddArchive color={color} onClick={addInput}>
-        <AiOutlinePlusCircle
-          style={{
-            width: "2rem",
-            height: "3rem",
-            cursor: "pointer",
-          }}
-        />
-        Adicionar arquivo
-      </AddArchive>
+      {hasButtons && (
+        <AddArchive color={color} onClick={addInput}>
+          <AiOutlinePlusCircle
+            style={{
+              width: "2rem",
+              height: "3rem",
+              cursor: "pointer",
+            }}
+          />
+          Adicionar arquivo
+        </AddArchive>
+      )}
     </>
   );
 }
 
+UploadInput.defaultProps = {
+  hasButtons: true,
+};
 UploadInput.propTypes = {
   inputKey: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -162,9 +180,12 @@ UploadInput.propTypes = {
   defaultValue: PropTypes.string,
   type: PropTypes.string,
   color: PropTypes.string,
+  width: PropTypes.string,
   icon: PropTypes.elementType,
   index: PropTypes.number,
   setArchivesArray: PropTypes.func,
   archivesArray: PropTypes.array,
   values: PropTypes.array,
+  hasButtons: PropTypes.bool,
+  placeholdercolor: PropTypes.string,
 };

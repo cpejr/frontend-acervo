@@ -2,9 +2,11 @@
 export { default as Button } from "./common/Button/Button.js";
 export { default as Link } from "./common/Link/Link.js";
 export { default as FormInput } from "./common/FormInput/FormInput.jsx";
+export { default as FormSiriusInput } from "./common/FormSiriusInput/FormSiriusInput.jsx";
 export { default as FormImageInput } from "./common/FormImageInput/FormImageInput.jsx";
 export { default as FormTextArea } from "./common/FormTextArea/FormTextArea.jsx";
 export { default as SubmitButton } from "./common/SubmitButton/SubmitButton.jsx";
+export { default as FormInputEvents } from "./common/FormInputEvents/FormInputEvents.jsx";
 
 //Features
 
@@ -22,7 +24,7 @@ export {default as Event} from "./features/Event/Event.jsx"
 
 // Modals
 
+export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
 export { default as ModalDeleteEvent } from "./features/modals/ModalDeleteEvent/ModalDeleteEvent.jsx";
 export { default as ModalEditEvent } from "./features/modals/ModalEditEvent/ModalEditEvent.jsx";
-export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
 export { default as ModalLogOff } from "./features/modals/ModalLogOff/ModalLogoff.jsx";
