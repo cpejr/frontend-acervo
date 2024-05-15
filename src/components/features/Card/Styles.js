@@ -214,8 +214,7 @@ export const Tag = styled.div`
     font-size: 12px;
   }
   &:hover {
-    border: 1px solid blue;
-    color: blue;
+    border: 1px solid #f19709;
   }
 `;
 export const LoadingStyles = styled.div`

@@ -93,6 +93,9 @@ export const MultipleSelect = styled(MultiSelect)`
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 50%;
   }
+  &:hover {
+    border-color: #f19709;
+  }
 `;
 export const Selects = styled.div`
   display: flex;

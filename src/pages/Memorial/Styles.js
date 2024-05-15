@@ -63,11 +63,11 @@ export const Filter = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
-  margin-top:10px;
+  margin-top: 10px;
   @media (max-width: ${breakpoints.smallMobile}) {
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
-    align-items:center
+    align-items: center;
   }
 `;
 
@@ -80,7 +80,6 @@ export const Characteristics = styled.div`
     gap: 0.5rem;
     padding-top: 0.3rem;
     color: #eedac5;
-
   }
 `;
 
@@ -88,7 +87,7 @@ export const VerticalLine = styled.div`
   border-left: 2px solid white;
   height: 10rem;
   @media (max-width: ${breakpoints.smallMobile}) {
-    display:none;
+    display: none;
   }
 `;
 
@@ -116,7 +115,8 @@ export const UniSelect = styled(Dropdown)`
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width:200px;
+  width: 200px;
+  box-shadow: none;
   .p-dropdown-label {
     color: ${colors.font.primary};
     width: 100%;
@@ -130,6 +130,10 @@ export const UniSelect = styled(Dropdown)`
   }
   @media (max-width: ${breakpoints.smallMobile}) {
     margin-top: 40px;
+  }
+
+  &:hover {
+    border-color: #f19709;
   }
 `;
 export const LoadingStyles = styled.div`

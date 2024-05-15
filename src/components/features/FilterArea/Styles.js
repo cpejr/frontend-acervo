@@ -5,7 +5,7 @@ import { MultiSelect } from "primereact/multiselect";
 import { Dropdown } from "primereact/dropdown";
 
 export const ContainerFilter = styled.div`
-  margin-left:5%;
+  margin-left: 5%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -20,12 +20,15 @@ export const ContainerFilter = styled.div`
 
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
-  width:200px;
+  width: 200px;
   .p-placeholder {
     color: ${colors.font.primary};
   }
   .p-multiselect-label {
     width: 215px;
+  }
+  &:hover {
+    border-color: #f19709;
   }
 `;
 
@@ -70,7 +73,7 @@ export const UniSelect = styled(Dropdown)`
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width:200px;
+  width: 200px;
   .p-dropdown-label {
     color: ${colors.font.primary};
   }
@@ -80,5 +83,8 @@ export const UniSelect = styled(Dropdown)`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+  &:hover {
+    border-color: #f19709;
   }
 `;
