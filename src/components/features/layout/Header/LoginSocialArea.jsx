@@ -17,22 +17,16 @@ import {
   ModalStyle,
   SocialMedias,
 } from "./Styles";
-import {
-  Login,
-  LogoCidade,
-  Whatsapp,
-  Facebook,
-  Instagram,
-} from "../../../../assets/index";
+import { Whatsapp, Facebook, Instagram } from "../../../../assets/index";
 
 export default function LoginSocialArea() {
   // Variables
 
   const { auth } = useAuthStore();
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const user = useAuthStore((state) => state.auth?.user);
+  const user = useAuthStore((state) => state?.auth?.user);
   const [loginLogoff, setLoginLogoff] = useState(
-    auth?.accessToken ? "Fazer Logoff" : "Fazer Login"
+    auth?.accessToken ? "Perfil" : "Fazer Login"
   );
   const isLogged = auth?.accessToken ? true : false;
   const [profilePicture, setProfilePicture] = useState(
@@ -45,7 +39,9 @@ export default function LoginSocialArea() {
   const [modalLogOff, setModalLogOff] = useState(false);
   const openModalLogOff = () => setModalLogOff(true);
   const closeModalLogOff = () => setModalLogOff(false);
-  const modalCloseButton = <CloseOutlined style={{ color: colors.white }} />;
+  const modalCloseButton = (
+    <CloseOutlined style={{ color: colors.font.primary }} />
+  );
 
   // BackEnd Calls
 
@@ -66,7 +62,7 @@ export default function LoginSocialArea() {
           email: googleResponse?.user?.email,
           imageURL: googleResponse?.user?.photoURL,
         });
-        setLoginLogoff("Fazer Logoff");
+        setLoginLogoff("Perfil");
       } else {
         clearAuth();
         toast.success("Usuario Deslogado com Sucesso!");

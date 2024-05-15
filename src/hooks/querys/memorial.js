@@ -4,6 +4,8 @@ import {
   deleteMemorial,
   updateMemorial,
   postMemorial,
+  getIsFavoritedMemorial,
+  getMemorialByDate,
 } from "../../services/endpoints";
 
 export function useGetMemorial({
@@ -46,6 +48,32 @@ export function usePostMemorial({
 } = {}) {
   return useMutation({
     mutationFn: postMemorial,
+    onSuccess,
+    onError,
+  });
+}
+
+export function useGetIsFavoritedMemorial({
+  onSuccess = () => {},
+  onError = (err) => console.error(err),
+  userId,
+  memorialId,
+} = {}) {
+  return useQuery({
+    queryKey: ["memorial", { userId, memorialId }],
+    queryFn: () => getIsFavoritedMemorial({ userId, memorialId }),
+    onSuccess,
+    onError,
+  });
+}
+export function useGetMemorialByDate({
+  dateRange,
+  onSuccess = () => {},
+  onError = (err) => console.error(err),
+} = {}) {
+  return useQuery({
+    queryKey: ["memorial", { dateRange }],
+    queryFn: () => getMemorialByDate({ dateRange }),
     onSuccess,
     onError,
   });
