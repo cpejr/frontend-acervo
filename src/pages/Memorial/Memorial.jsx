@@ -16,15 +16,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useGetMemorial } from "../../hooks/querys/memorial";
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
 import { toast } from "react-toastify";
-import useDebounce from "../../services/useDebouce";
+
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 export default function Memorial() {
   const [imagesLoading, setImagesLoading] = useState(true);
   const [types, setTypes] = useState([]);
-  const [names, setNames] = useState("");
-  const debouncedName = useDebounce(names);
-  const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
-  const [filter, setFilter] = useState([]);
+  const [options, setOptions] = useState([]);
+
+  const [filteredMemorial, setFilteredMemorial] = useState();
+
   const filters = [
     { label: "Favoritos", value: "title" },
     { label: "Melhor avaliados", value: "date" },
@@ -67,23 +67,39 @@ export default function Memorial() {
       setImagesLoading(false);
     }
   }, [isLoading, isError]);
-  const transformArrayItems = (OriginalArray) => {
-    const newArray = OriginalArray?.map((item) => ({
-      value: item?._id,
-      label: item?.name,
-    }));
-    return newArray;
-  };
-  const handleFilterChange = () => {
-    const newArray = [...types];
-    setCategoryIDsArrays(newArray);
-  };
+
+  useEffect(() => {
+    let types = categoryType?.map((category) => {
+      return category?.name;
+    });
+    if (categoryType) {
+      setOptions(types);
+    }
+    if (memorialCards) {
+      setFilteredMemorial(memorialCards);
+    }
+  }, [categoryType, memorialCards]);
+
   const handleResetFilter = () => {
     setTypes([]);
-    setFilter([]);
-    setCategoryIDsArrays([]);
-    setNames([]);
+    setFilteredMemorial(memorialCards);
   };
+
+  const categoryFilter = () => {
+    if (types.length === 0) {
+      // Se nenhuma categoria estiver selecionada, mostrar todos os memoriais
+      setFilteredMemorial(memorialCards);
+    } else {
+      // Filtrar os memoriais com base nas categorias selecionadas
+      const filtered = memorialCards.filter((memorial) =>
+        types.every((type) =>
+          memorial.id_categoryType.some((category) => category.name === type)
+        )
+      );
+      setFilteredMemorial(filtered);
+    }
+  };
+
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -96,13 +112,10 @@ export default function Memorial() {
       <Filter>
         <DivSelect>
           <MultipleSelect
-            value={types}
+            options={options}
+            placeholder="escolha a categoria"
+            value={types || ""}
             onChange={(e) => setTypes(e.value)}
-            options={transformArrayItems(categoryType)}
-            optionLabel="label"
-            placeholder="Escolha o tipo"
-            className="w-full md:w-20rem"
-            filter
           />
           <UniSelect
             aria-label="Botão de ordenação"
@@ -117,11 +130,11 @@ export default function Memorial() {
         </DivSelect>
       </Filter>
       <ButtonsDiv>
-        <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+        <Buttons onClick={categoryFilter}>Filtrar</Buttons>
         <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
       </ButtonsDiv>
       <DivLine>
-        {memorialCards
+        {filteredMemorial
           ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
           )

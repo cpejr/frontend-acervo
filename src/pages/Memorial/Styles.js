@@ -157,6 +157,7 @@ export const ButtonsDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-self: center;
   gap: 0.2rem;
   margin: 20px;
 `;
