@@ -96,11 +96,7 @@ export const LoginButton = styled.button`
     cursor: pointer;
   }
   @media (max-width: ${breakpoints.tablet}) {
-    width: 10rem;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 10rem;
-    height: 40px;
+    width: 12rem;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
     width: 7rem;

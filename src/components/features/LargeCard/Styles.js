@@ -8,13 +8,13 @@ export const StyledCard = styled(Card)`
   display: block;
   flex-direction: column;
   width: 50%;
-  margin-top: 3rem;
+  margin-top: 1rem;
   height: auto;
   align-items: center;
   border-radius: 24px;
   gap: 3.33rem;
   background-color: ${colors.background.white};
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
   min-height: 30rem;
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 80%;
@@ -27,8 +27,6 @@ export const StyledCard = styled(Card)`
   @media (max-width: ${breakpoints.mobile}) {
     width: 80%;
     max-width: 80%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
   }
 `;
 
@@ -102,7 +100,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 1rem 0;
   width: 90%;
   margin: 0 auto;
 `;

@@ -5,6 +5,7 @@ import { MultiSelect } from "primereact/multiselect";
 import { Dropdown } from "primereact/dropdown";
 
 export const ContainerFilter = styled.div`
+  margin-left:5%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -19,17 +20,12 @@ export const ContainerFilter = styled.div`
 
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
+  width:200px;
   .p-placeholder {
     color: ${colors.font.primary};
   }
   .p-multiselect-label {
     width: 215px;
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
   }
 `;
 
@@ -48,12 +44,8 @@ export const DivSelect = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 40%;
-  }
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
-    width: 80%;
   }
 `;
 
@@ -72,21 +64,21 @@ export const Buttons = styled(Button)`
 `;
 
 export const UniSelect = styled(Dropdown)`
-  .dropdown {
-    background-color: #fff;
-  }
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+  width:200px;
   .p-dropdown-label {
     color: ${colors.font.primary};
-    width: 200px;
   }
   .p-inputtext {
     color: ${colors.font.primary};
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 `;

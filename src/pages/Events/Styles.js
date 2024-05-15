@@ -5,13 +5,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-  height: auto;
-  gap: 3rem;
 
   @media (max-width: 700px) {
     height: auto;
-    padding-top: 3rem;
     padding-bottom: 3rem;
     margin-bottom: 3rem;
   }
@@ -72,12 +68,7 @@ export const Line = styled.div`
   gap: 2rem;
   flex-wrap: wrap;
 `;
-export const Filter = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-evenly;
-`;
+
 export const EventNotFound = styled.div`
   background-image: url(${imageEventNotFound});
   background-size: cover;

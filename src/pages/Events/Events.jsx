@@ -10,7 +10,6 @@ import {
   DivLine,
   Line,
   TrendingEvents,
-  Filter,
   EventNotFound,
   Title,
   BackgroundTitle,
@@ -43,9 +42,8 @@ export default function Events() {
       <SearchBar
         value={names}
         search={(e) => setNames(e.target.value)}
-        placeholder="Pesquisar Evento"
+        placeholder="Pesquisar Eventos"
       ></SearchBar>
-      <Filter>
         <FilterArea
           types={types}
           setArray={setCategoryIDsArrays}
@@ -56,7 +54,6 @@ export default function Events() {
           setFilter={setFilter}
           setNames={setNames}
         ></FilterArea>
-      </Filter>
       <TrendingEvents>
         <DivLine>
           {events?.length === 0 && (
