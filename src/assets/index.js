@@ -27,3 +27,7 @@ export { default as MatrizImage } from "./AboutUs/MatrizImage.png";
 export { default as VilaMilitarImage } from "./AboutUs/VilaMilitarImage.png";
 export { default as ColerfulAreaUp } from "./AboutUs/ColerfulAreaUp.png";
 export { default as ColerfulAreaDown } from "./AboutUs/ColerfulAreaDown.png";
+
+export { default as BomDespachoImageSupportPage } from "./Support/BomDespachoImageSupportPage.png";
+export { default as QRCodeImage } from "./Support/QRCodeImage.png";
+export { default as WhatsAppIcon } from "./Support/WhatsAppIcon.png";
