@@ -87,10 +87,8 @@ export default function Memorial() {
 
   const categoryFilter = () => {
     if (types.length === 0) {
-      // Se nenhuma categoria estiver selecionada, mostrar todos os memoriais
       setFilteredMemorial(memorialCards);
     } else {
-      // Filtrar os memoriais com base nas categorias selecionadas
       const filtered = memorialCards.filter((memorial) =>
         types.every((type) =>
           memorial.id_categoryType.some((category) => category.name === type)
