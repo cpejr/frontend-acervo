@@ -3,7 +3,6 @@ import {
   Container,
   Title,
   Filter,
-  ContainerFilter,
   DivSelect,
   UniSelect,
   DivLine,
@@ -12,10 +11,6 @@ import {
   ButtonsDiv,
   Line,
   MultipleSelect,
-  Buttons,
-  ButtonsDiv,
-  FilterTitle,
-  Filter,
 } from "./Styles";
 import { toast } from "react-toastify";
 import { useGetMemorialByDate } from "../../hooks/querys/memorial";
@@ -73,6 +68,8 @@ export default function Memorial() {
   const handleResetFilter = () => {
     setDates([]);
     setDateRange({});
+    setTypes([]);
+    setFilteredMemorial(memorial);
     queryClient.invalidateQueries({
       queryKey: ["memorial"],
     });
@@ -85,20 +82,6 @@ export default function Memorial() {
     setSelectedSort(e.value);
   };
 
-  const {
-    data: memorialCards,
-    isLoading,
-    isError,
-  } = useGetMemorial({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["memorialCards"],
-      });
-    },
-    onError: () => {
-      setImagesLoading(false);
-    },
-  });
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -117,21 +100,16 @@ export default function Memorial() {
     if (categoryType) {
       setOptions(types);
     }
-    if (memorialCards) {
-      setFilteredMemorial(memorialCards);
+    if (memorial) {
+      setFilteredMemorial(memorial);
     }
-  }, [categoryType, memorialCards]);
-
-  const handleResetFilter = () => {
-    setTypes([]);
-    setFilteredMemorial(memorialCards);
-  };
+  }, [categoryType, memorial]);
 
   const categoryFilter = () => {
     if (types.length === 0) {
-      setFilteredMemorial(memorialCards);
+      setFilteredMemorial(memorial);
     } else {
-      const filtered = memorialCards.filter((memorial) =>
+      const filtered = memorial.filter((memorial) =>
         types.every((type) =>
           memorial.id_categoryType.some((category) => category.name === type)
         )
@@ -150,34 +128,34 @@ export default function Memorial() {
         search={handleSearchChange}
       />
       <Filter>
-          <DivSelect>
-            <Calendar
-              value={dates}
-              onChange={(e) => setDates(e.value)}
-              selectionMode="range"
-              readOnlyInput
-              hideOnRangeSelection
-              placeholder="Determine uma data"
-              showButtonBar
-              dateFormat="dd/mm/yy"
-            />
-            <UniSelect
-              aria-label="Botão de ordenação"
-              value={sortValue}
-              options={filters}
-              optionLabel="label"
-              showClear
-              placeholder="Ordenar Por"
-              onChange={handleChangeSort}
-              className="w-full md:w-14rem"
-            />
+        <DivSelect>
+          <Calendar
+            value={dates}
+            onChange={(e) => setDates(e.value)}
+            selectionMode="range"
+            readOnlyInput
+            hideOnRangeSelection
+            placeholder="Determine uma data"
+            showButtonBar
+            dateFormat="dd/mm/yy"
+          />
+          <UniSelect
+            aria-label="Botão de ordenação"
+            value={sortValue}
+            options={filters}
+            optionLabel="label"
+            showClear
+            placeholder="Ordenar Por"
+            onChange={handleChangeSort}
+            className="w-full md:w-14rem"
+          />
           <MultipleSelect
             options={options}
             placeholder="escolha a categoria"
             value={types || ""}
             onChange={(e) => setTypes(e.value)}
           />
-          </DivSelect>
+        </DivSelect>
       </Filter>
       <ButtonsDiv>
         <Buttons onClick={categoryFilter}>Filtrar</Buttons>
