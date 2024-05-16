@@ -18,6 +18,7 @@ export const TableShape = styled(DataTable)`
   .p-paginator-bottom .p-paginator-last .p-paginator-icon {
     color: ${colors.font.primary};
   }
+  margin-bottom: 5rem;
 `;
 
 export const TableColumn = styled(Column)`
@@ -26,5 +27,4 @@ export const TableColumn = styled(Column)`
   background-color: ${colors.font.secondary};
   color: ${colors.font.secondary};
   min-width: 200px;
-
 `;
