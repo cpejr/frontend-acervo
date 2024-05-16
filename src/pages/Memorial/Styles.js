@@ -100,20 +100,41 @@ export const DivSelect = styled.div`
   border-radius: 5px;
   width: 15%;
   gap: 30px;
-  @media (max-width: ${breakpoints.miniTablet}) {
+  @media (max-width: ${breakpoints.tablet}) {
     width: 40%;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     flex-direction: column;
-    width: 20%;
+    width: 60%;
   }
 `;
 
 export const UniSelect = styled(Dropdown)`
   gap: 1rem;
+  &:hover {
+    border-color: ${colors.accent.hover};
+    .p-placeholder {
+      color: ${colors.accent.hover};
+    }
+  }
+
+  &:focus,
+  &:active,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:focus-within {
+    border-color: ${colors.accent.hover};
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+    .p-placeholder {
+      color: ${colors.accent.hover};
+    }
+  }
   .p-dropdown-label {
     color: ${colors.font.primary};
-    width: 100%;
+    width: 200px;
   }
   .p-inputtext {
     color: ${colors.font.primary};
@@ -124,13 +145,13 @@ export const UniSelect = styled(Dropdown)`
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    max-width: 100%;
+    width: 70%;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 30%;
-  }
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 20%;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    .p-inputtext {
+      font-size: 11px;
+    }
+    width: 90%;
   }
 `;
 export const LoadingStyles = styled.div`
@@ -140,6 +161,28 @@ export const LoadingStyles = styled.div`
 `;
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
+  &:hover {
+    border-color: ${colors.accent.hover};
+    .p-placeholder {
+      color: ${colors.accent.hover};
+    }
+  }
+
+  &:focus,
+  &:active,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:focus-within {
+    border-color: ${colors.accent.hover};
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+    .p-placeholder {
+      color: ${colors.accent.hover};
+    }
+  }
+
   .p-placeholder {
     color: ${colors.font.primary};
   }
@@ -147,10 +190,11 @@ export const MultipleSelect = styled(MultiSelect)`
     width: 215px;
   }
   @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
+    width: 70%;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
+    font-size: 12px;
+    width: 90%;
   }
 `;
 export const ButtonsDiv = styled.div`
@@ -159,7 +203,7 @@ export const ButtonsDiv = styled.div`
   align-items: center;
   align-self: center;
   gap: 0.2rem;
-  margin: 20px;
+  margin-top: 20px;
 `;
 export const Buttons = styled(Button)`
   border: 1px solid #d1d5db;
@@ -172,5 +216,6 @@ export const Buttons = styled(Button)`
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 90%;
+    width: 115px;
   }
 `;
