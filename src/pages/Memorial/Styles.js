@@ -3,6 +3,7 @@ import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "antd";
+import { titleBackground } from "../../assets";
 
 import { Calendar as PrimeCalendar } from "primereact/calendar";
 
