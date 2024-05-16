@@ -24,9 +24,9 @@ export default function LoginSocialArea() {
 
   const { auth } = useAuthStore();
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const user = useAuthStore((state) => state.auth?.user);
+  const user = useAuthStore((state) => state?.auth?.user);
   const [loginLogoff, setLoginLogoff] = useState(
-    auth?.accessToken ? "Fazer Logoff" : "Fazer Login"
+    auth?.accessToken ? "Perfil" : "Fazer Login"
   );
   const isLogged = auth?.accessToken ? true : false;
   const [profilePicture, setProfilePicture] = useState(
@@ -62,7 +62,7 @@ export default function LoginSocialArea() {
           email: googleResponse?.user?.email,
           imageURL: googleResponse?.user?.photoURL,
         });
-        setLoginLogoff("Fazer Logoff");
+        setLoginLogoff("Perfil");
       } else {
         clearAuth();
         toast.success("Usuario Deslogado com Sucesso!");

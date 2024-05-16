@@ -84,4 +84,47 @@ export const PrimereactStyles = createGlobalStyle`
     }
   }
 
+  .p-inputtext{
+    color: ${colors.font.primary};
+    
+  }
+  .p-inputtext::placeholder {
+    color: ${colors.font.primary};
+  }
+  .p-datepicker {
+    background-color: ${colors.background.primary};
+    color: white;
+    ::placeholder {
+    font-size: 1rem;
+    font-weight: 300;
+    color: ${colors.font.primary};
+  }
+  }
+  .p-calendar-w-btn	{
+    background-color: ${colors.background.primary};
+    color: white;
+  }
+  .p-datepicker-header{
+    background-color: ${colors.background.primary};
+    
+  }
+
+  .p-datepicker-year{
+    color: ${colors.font.primary};
+  } 
+  .p-datepicker-month{
+    color: ${colors.font.primary};
+  }
+  .p-button-secondary{
+    color: ${colors.font.primary};
+  }
+
+  .data-pc-section{
+    >span{
+      >td{
+        color: green;
+      }
+    }
+  }
+
 `;
