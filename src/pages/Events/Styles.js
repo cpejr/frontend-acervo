@@ -18,6 +18,7 @@ export const BackgroundTitle = styled.div`
   height: 150px;
   padding-top: 4rem;
 `;
+
 export const Title = styled.div`
   color: ${colors.font.title};
   font-size: 30px;
@@ -59,13 +60,14 @@ export const DivLine = styled.div`
   justify-content: center;
   gap: 2rem;
 `;
+
 export const Line = styled.div`
   display: flex;
   width: 90%;
   height: auto;
   flex-direction: row;
   justify-content: space-around;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
 `;
 

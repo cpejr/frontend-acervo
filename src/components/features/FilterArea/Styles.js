@@ -27,7 +27,7 @@ export const MultipleSelect = styled(MultiSelect)`
     color: ${colors.font.primary};
   }
   .p-multiselect-label {
-    width: 215px;
+    width: 200px;
   }
   &:hover {
     border-color: #f19709;
@@ -93,6 +93,7 @@ export const UniSelect = styled(Dropdown)`
 export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;
+  width:200px;
   .p-inputtext {
     background-color: ${colors.background.primary};
     color: ${colors.font.primary};

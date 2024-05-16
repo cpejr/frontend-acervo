@@ -9,9 +9,9 @@ export const StyledCard = styled(Card)`
   height: auto;
   align-items: center;
   border-radius: 24px;
-  gap: 3.33rem;
+  gap: 1rem;
   background-color: ${colors.background.white};
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   &:hover {
   }
   .ant-card-body {
@@ -19,15 +19,6 @@ export const StyledCard = styled(Card)`
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 24rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 25rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 26.66rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 22rem;
   }
   > div {
     display: flex;
