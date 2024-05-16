@@ -19,6 +19,8 @@ export { default as Table } from "./features/Table/Table.jsx";
 export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";
 export { default as FormSubmit } from "./features/FormSubmit/FormSubmit.jsx";
 export { default as ModalUpdateMemorial } from "./features/modals/ModalUpdateMemorial/ModalUpdateMemorial.jsx";
+export {default as Card } from "./features/Card/Card.jsx"
+export {default as Event} from "./features/Event/Event.jsx"
 
 // Modals
 

@@ -24,11 +24,12 @@ export default function Events() {
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
-
+  const [dateRange, setDateRange] = useState({});
   const { data: events } = useGetEventsByCategoryId({
     id: categoryIDsArrays,
     name: debouncedName,
     type: filter,
+    dateRange: dateRange,
     onError: (err) => {
       toast.error(err);
     },
@@ -53,6 +54,8 @@ export default function Events() {
           filter={filter}
           setFilter={setFilter}
           setNames={setNames}
+          isCalendarNeed={true}
+          setDateRange={setDateRange}
         ></FilterArea>
       <TrendingEvents>
         <DivLine>

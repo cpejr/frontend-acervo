@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
-import { titleBackground } from "../../assets/index";
+import { Button } from "antd";
+
+import { Calendar as PrimeCalendar } from "primereact/calendar";
 
 export const Container = styled.div`
   display: flex;
@@ -49,22 +51,14 @@ export const DivLine = styled.div`
   gap: 2rem;
 `;
 
-export const Line = styled.div`
+export const ContainerFilter = styled.div`
   display: flex;
-  width: 100%;
-  height: auto;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 2rem;
-  flex-wrap: wrap;
-`;
-
-export const Filter = styled.div`
-  display: flex;
-  align-items: flex-start;
   justify-content: space-evenly;
-  margin-top: 10px;
-  @media (max-width: ${breakpoints.smallMobile}) {
+  align-items: center;
+  width: 90%;
+  flex-direction: column;
+  gap: 2rem;
+  @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -107,16 +101,32 @@ export const StyledCheckbox = styled(Checkbox)`
   border-radius: 5px;
   justify-content: center;
 `;
-
-export const UniSelect = styled(Dropdown)`
-  gap: 1rem;
+export const Line = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+`;
+export const DivSelect = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width: 200px;
-  box-shadow: none;
+  width: 100%;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
+
+export const UniSelect = styled(Dropdown)`
+  gap: 1rem;
   .p-dropdown-label {
     color: ${colors.font.primary};
     width: 100%;
@@ -136,8 +146,58 @@ export const UniSelect = styled(Dropdown)`
     border-color: #f19709;
   }
 `;
+export const Calendar = styled(PrimeCalendar)`
+  display: flex;
+  justify-content: center;
+  .p-inputtext {
+    background-color: ${colors.background.primary};
+    color: ${colors.font.primary};
+    border: solid 1px ${colors.font.primary};
+  }
+
+  @media (min-width: ${breakpoints.miniTablet}) {
+    margin-right: 8rem;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 100%;
+  }
+  @media (max-width: ${breakpoints.miniTablet}) {
+    width: 30%;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: ${breakpoints.smallMobile}) {
+    width: 20%;
+  }
+`;
+export const Buttons = styled(Button)`
+  border: 1px solid #d1d5db;
+  width: 130px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: ${colors.black};
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 90%;
+  }
+`;
+export const ButtonsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 20px;
+`;
 export const LoadingStyles = styled.div`
   display: "block";
   font-size: 24px;
   margin: 20px auto;
+`;
+
+export const Filter = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-evenly;
 `;

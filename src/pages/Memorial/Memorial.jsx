@@ -2,20 +2,26 @@ import { useState, useEffect } from "react";
 import {
   Container,
   Title,
-  Filter,
-  Characteristics,
-  FilterTitle,
+  ContainerFilter,
+  DivSelect,
   UniSelect,
   VerticalLine,
   DivLine,
+  Calendar,
+  Buttons,
+  ButtonsDiv,
   Line,
-  BackgroundTitle,
-} from "../Memorial/Styles";
+  Characteristics,
+  FilterTitle,
+  Filter,
+} from "./Styles";
+import { toast } from "react-toastify";
+import { useGetMemorialByDate } from "../../hooks/querys/memorial";
+
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
-import { useQueryClient } from "@tanstack/react-query";
-import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
+import { useQueryClient } from "@tanstack/react-query";
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
     { label: "Característica 1", value: "c1", checked: false },
@@ -23,18 +29,57 @@ export default function Memorial() {
     { label: "Característica 3", value: "c3", checked: false },
   ]);
   const [imagesLoading, setImagesLoading] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+  const [dates, setDates] = useState(null);
+  const [dateRange, setDateRange] = useState();
+  const [sortValue, setSelectedSort] = useState("");
   const filters = [
     { label: "Favoritos", value: "title" },
     { label: "Melhor avaliados", value: "date" },
   ];
-
   const queryClient = useQueryClient();
-  const [searchValue, setSearchValue] = useState("");
-  const [sortValue, setSelectedSort] = useState("");
+  // BackEnd Calls
 
+  const {
+    data: memorial,
+    isLoading,
+    isError,
+  } = useGetMemorialByDate({
+    dateRange: dateRange,
+    onError: (err) => {
+      setImagesLoading(false);
+      toast.error(err);
+    },
+  });
+
+  // Functions
+
+  function handleFilterChange() {
+    const [initialDate, finalDate] = dates;
+    let formattedDateRange;
+    if (finalDate === null) {
+      formattedDateRange = { oneDate: initialDate.toISOString() };
+    } else {
+      formattedDateRange = {
+        initialDate: initialDate.toISOString(),
+        finalDate: finalDate.toISOString(),
+      };
+    }
+    setDateRange(formattedDateRange);
+  }
   const handleSearchChange = (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);
+  };
+  const handleResetFilter = () => {
+    setDates([]);
+    setDateRange({});
+    queryClient.invalidateQueries({
+      queryKey: ["memorial"],
+    });
+    queryClient.invalidateQueries({
+      queryKey: ["favoritesMemorials"],
+    });
   };
 
   const handleChangeSort = (e) => {
@@ -53,21 +98,6 @@ export default function Memorial() {
     newCheckedStates[index].checked = !newCheckedStates[index].checked;
     setCharacteristicCheckboxes(newCheckedStates);
   };
-
-  const {
-    data: memorialCards,
-    isLoading,
-    isError,
-  } = useGetMemorial({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["memorialCards"],
-      });
-    },
-    onError: () => {
-      setImagesLoading(false);
-    },
-  });
 
   useEffect(() => {
     if (!isLoading && !isError) {
@@ -102,18 +132,37 @@ export default function Memorial() {
           ))}
         </Characteristics>
         <VerticalLine />
-        <UniSelect
-          aria-label="Botão de ordenação"
-          value={sortValue}
-          options={filters}
-          optionLabel="label"
-          placeholder="Ordenar Por"
-          onChange={handleChangeSort}
-          className="w-full md:w-14rem"
-        />
+        <ContainerFilter>
+          <DivSelect>
+            <Calendar
+              value={dates}
+              onChange={(e) => setDates(e.value)}
+              selectionMode="range"
+              readOnlyInput
+              hideOnRangeSelection
+              placeholder="Determine uma data"
+              showButtonBar
+              dateFormat="dd/mm/yy"
+            />
+            <UniSelect
+              aria-label="Botão de ordenação"
+              value={sortValue}
+              options={filters}
+              optionLabel="label"
+              showClear
+              placeholder="Ordenar Por"
+              onChange={handleChangeSort}
+              className="w-full md:w-14rem"
+            />
+          </DivSelect>
+          <ButtonsDiv>
+            <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+            <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+          </ButtonsDiv>
+        </ContainerFilter>
       </Filter>
       <DivLine>
-        {memorialCards
+        {memorial
           ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
           )

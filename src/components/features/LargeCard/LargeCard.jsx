@@ -1,4 +1,10 @@
+import useAuthStore from "../../../Stores/auth";
+import { useQueryClient } from "@tanstack/react-query";
+import { useUpdateFavoritesMemorials } from "../../../hooks/querys/user";
+import { useGetIsFavoritedMemorial } from "../../../hooks/querys/memorial";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+
 import {
   StyledCard,
   ShortDescription,
@@ -9,6 +15,7 @@ import {
   LoadingContainer,
   TitleContainer,
   Content,
+  FavoriteFilledIcon,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -17,14 +24,66 @@ import { LoadingOutlined } from "@ant-design/icons";
 import Button from "../../common/Button/Button";
 
 export default function LargeCard({ data, imagesLoading }) {
+  // States and Variables
   const { title, shortDescription, longDescription, link, archive } = data;
   const archiveIDs = archive.map((file) => file._id);
   const formatedArchives = archiveIDs.join(", ");
-  const { data: archiveData, isLoading } = useGetArchives(formatedArchives, title, {
+  const queryClient = useQueryClient();
+  const userId = useAuthStore((state) => state?.auth?.user?._id);
+
+  // BackEnd Calls
+
+  const { data: archiveData, isLoading } = useGetArchives(
+    formatedArchives,
+    title,
+    {
+      onError: (err) => {
+        console.error("Erro ao pegar itens", err);
+      },
+    }
+  );
+
+  const { data: isFavorited } = useGetIsFavoritedMemorial({
+    userId: userId,
+    memorialId: data?._id,
+    enabled: !!userId,
     onError: (err) => {
-      console.error("Erro ao pegar itens", err);
+      console.error(err);
     },
   });
+
+  const { mutate: updateFavoriteMemorial } = useUpdateFavoritesMemorials({
+    userId: userId,
+    ids: [data?._id],
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["favoritesMemorials"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [title],
+      });
+
+      toast.success("Memorial Atualizado");
+    },
+    onError: (err) => {
+      toast.err(err);
+    },
+  });
+
+  const onSubmit = async (event) => {
+    event.stopPropagation();
+    if (userId) {
+      updateFavoriteMemorial({
+        userId: userId,
+        eventId: data?._id,
+      });
+    } else {
+      toast.error("Você precisa estar logado para favoritar um evento");
+    }
+  };
 
   return (
     <StyledCard>
@@ -36,10 +95,16 @@ export default function LargeCard({ data, imagesLoading }) {
         <>
           {archiveData && (
             <CarouselStyles>
-              <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
+              <Carousel
+                showStatus={false}
+                showIndicators={false}
+                showThumbs={false}
+              >
                 {archiveData.map((file, index) => (
                   <div key={index}>
-                    {file.startsWith("data:image") && <img src={file} alt={`Imagem ${index}`} />}
+                    {file.startsWith("data:image") && (
+                      <img src={file} alt={`Imagem ${index}`} />
+                    )}
                     {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
@@ -53,7 +118,12 @@ export default function LargeCard({ data, imagesLoading }) {
                       </audio>
                     )}
                     {file.startsWith("data:application/pdf") && (
-                      <object data={file} type="application/pdf" width="100%" height="400px">
+                      <object
+                        data={file}
+                        type="application/pdf"
+                        width="100%"
+                        height="400px"
+                      >
                         Seu navegador não suporta visualização de PDF. Você pode{" "}
                         <a href={file}>baixá-lo aqui</a>.
                       </object>
@@ -65,12 +135,21 @@ export default function LargeCard({ data, imagesLoading }) {
           )}
           <Content>
             <TitleContainer>
-              <Title>{title}</Title>
-              <FavoriteIcon />
+              <Title> {title} </Title>
+              {isFavorited ? (
+                <FavoriteFilledIcon onClick={onSubmit} />
+              ) : (
+                <FavoriteIcon onClick={onSubmit} />
+              )}
             </TitleContainer>
             <ShortDescription>{shortDescription}</ShortDescription>
             <LongDescription>{longDescription}</LongDescription>
-            <Button onClick={() => window.open(link, "_blank")} width="10rem" marginLeft="auto">
+
+            <Button
+              onClick={() => window.open(link, "_blank")}
+              width="10rem"
+              marginLeft="auto"
+            >
               Navegar
             </Button>
           </Content>

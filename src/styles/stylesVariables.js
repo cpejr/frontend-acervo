@@ -34,13 +34,16 @@ export const fonts = {
 };
 
 export const breakpoints = {
-  desktop: "1370px",
   biggerScreen: "1920px",
+  desktop: "1370px",
   tablet: "1024px",
+  mediumTablet: "850px",
   smallTablet: "800px",
-  miniTablet: "600px",
   mobile: "700px",
+  miniTablet: "600px",
   newsletter: "550px",
   smallMobile: "500px",
+  mediumMobile: "400px",
   smallDevice: "350px",
+  miniDevice: "300px",
 };

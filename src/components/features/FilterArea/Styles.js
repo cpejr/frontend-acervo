@@ -3,6 +3,7 @@ import { breakpoints, colors } from "../../../styles/stylesVariables";
 import { Button } from "antd";
 import { MultiSelect } from "primereact/multiselect";
 import { Dropdown } from "primereact/dropdown";
+import { Calendar as PrimeCalendar } from "primereact/calendar";
 
 export const ContainerFilter = styled.div`
   margin-left: 5%;
@@ -11,6 +12,7 @@ export const ContainerFilter = styled.div`
   align-items: center;
   width: 90%;
   flex-direction: column;
+  gap: 2rem;
   @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
     justify-content: center;
@@ -86,5 +88,14 @@ export const UniSelect = styled(Dropdown)`
   }
   &:hover {
     border-color: #f19709;
+  }
+`;
+export const Calendar = styled(PrimeCalendar)`
+  display: flex;
+  justify-content: center;
+  .p-inputtext {
+    background-color: ${colors.background.primary};
+    color: ${colors.font.primary};
+    border: solid 1px ${colors.font.primary};
   }
 `;

@@ -9,7 +9,9 @@ import {
   UniSelect,
   ButtonsDiv,
   Buttons,
+  Calendar,
 } from "./Styles";
+import { useState } from "react";
 
 export default function FilterArea({
   types,
@@ -20,8 +22,12 @@ export default function FilterArea({
   setFilter,
   setArray,
   setNames,
+  isCalendarNeed,
+  setDateRange,
 }) {
   // Set variables
+  const [dates, setDates] = useState(null);
+
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -44,15 +50,29 @@ export default function FilterArea({
     return newArray;
   };
   const handleFilterChange = () => {
+    const [initialDate, finalDate] = dates;
+    let formattedDateRange;
+    if (finalDate === null) {
+      formattedDateRange = { oneDate: initialDate.toISOString() };
+    } else {
+      formattedDateRange = {
+        initialDate: initialDate.toISOString(),
+        finalDate: finalDate.toISOString(),
+      };
+    }
     const newArray = [...prices, ...types];
     setArray(newArray);
+    setDateRange(formattedDateRange);
   };
+
   const handleResetFilter = () => {
     setTypes([]);
     setPrices([]);
     setFilter([]);
     setArray([]);
     setNames([]);
+    setDates([]);
+    setDateRange({});
   };
 
   return (
@@ -86,6 +106,19 @@ export default function FilterArea({
           className="w-full md:w-14rem"
         ></UniSelect>
       </DivSelect>
+      {isCalendarNeed ? (
+        <Calendar
+          value={dates}
+          onChange={(e) => setDates(e.value)}
+          selectionMode="range"
+          readOnlyInput
+          hideOnRangeSelection
+          placeholder="Determine uma data"
+          showButtonBar
+          dateFormat="dd/mm/yy"
+        />
+      ) : null}
+
       <ButtonsDiv>
         <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
         <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
@@ -105,4 +138,6 @@ FilterArea.propTypes = {
   filter: PropTypes.array.isRequired,
   setNames: PropTypes.func.isRequired,
   filterReset: PropTypes.func,
+  isCalendarNeed: PropTypes.bool,
+  setDateRange: PropTypes.func,
 };
