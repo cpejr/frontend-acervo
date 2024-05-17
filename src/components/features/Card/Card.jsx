@@ -87,7 +87,10 @@ export default function Card({ data }) {
 
   return (
     <StyledCard>
-      <Image>
+      <Image onClick={(event) => {
+            event.stopPropagation();
+            navigate(`/eventos/${data?.name}`);
+          }}>
         {isLoading ? (
           <LoadingStyles>
             <AiOutlineLoading3Quarters />
@@ -97,7 +100,10 @@ export default function Card({ data }) {
         )}
       </Image>
       <Group>
-        <Line>{data?.name}</Line>
+        <Line onClick={(event) => {
+            event.stopPropagation();
+            navigate(`/eventos/${data?.name}`);
+          }}>{data?.name}</Line>
         <LineSVG>
           {isFavorited ? (
             <FaBookmark onClick={onSubmit} />

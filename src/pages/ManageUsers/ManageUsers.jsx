@@ -77,7 +77,7 @@ export default function ManageUsers() {
     setUsers(formattedUsers);
   }
   function handleTypeChange(_id, data) {
-    const newUserData = { data };
+    const newUserData = { type:data };
     updateUser({ _id, newUserData });
   }
   function handleUserDelete(_id) {

@@ -1,4 +1,4 @@
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 

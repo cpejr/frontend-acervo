@@ -4,46 +4,47 @@ import { breakpoints, colors } from "../../../styles/stylesVariables";
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
-  height: auto;
+  width: 100%;
   align-items: center;
-  align-self: center;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-top: 1rem;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
   }
 `;
+
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+  color: ${colors.font.secondary};
+`;
+
 export const ImageCollumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: auto;
-  gap: 1rem;
-  flex: 1;
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 90%;
-  }
-`;
-export const Image = styled.div`
   justify-content: center;
-
+  align-self:center;
+  width: 50%;
+  max-width:60rem;
+  gap: 1rem;
   > img {
-    width: 80%;
     border-radius: 1rem;
-    max-width: 90%;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width:70%;
+  }
+  @media (max-width: ${breakpoints.smallMobile}) {
+    width:90%;
   }
 `;
+
 export const DataCollumn = styled.div`
   display: flex;
+  word-break:break-all;
   flex-direction: column;
   width: 40%;
-  height: 100%;
-  align-self: start;
   gap: 2.5rem;
-  @media (max-width: ${breakpoints.desktop}) {
-    gap: 2rem;
-  }
   @media (max-width: ${breakpoints.tablet}) {
     gap: 1rem;
   }
@@ -69,9 +70,6 @@ export const DataCollumn = styled.div`
     }
 
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 15px;
-    }
-    @media (max-width: ${breakpoints.smallDevice}) {
       font-size: 13px;
     }
   }
@@ -85,6 +83,7 @@ export const TagsLine = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  justify-content:center;
   height: auto;
   gap: 1rem;
   font-size: 55px;
@@ -95,10 +94,6 @@ export const TagsLine = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 30px;
   }
-
-  @media (max-width: ${breakpoints.smallTablet}) {
-    display: none;
-  }
 `;
 export const Line = styled.div`
   display: flex;
@@ -106,20 +101,10 @@ export const Line = styled.div`
   width: 100%;
   height: auto;
   gap: 1rem;
-  font-size: 55px;
+  font-size: 40px;
   justify-content: center;
-  @media (max-width: ${breakpoints.desktop}) {
-    font-size: 40px;
-  }
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 30px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 25px;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 20px;
+    font-size: 36px;
   }
 `;
 export const Tag = styled.div`
@@ -146,38 +131,32 @@ export const Tag = styled.div`
 `;
 export const KnowMore = styled.div`
   display: flex;
-  width: 95%;
+  word-break:break-all;
+  width: 100%;
   flex-direction: column;
-  gap: 2rem;
   align-items: center;
-  justify-content: center;
+  align-self: center;
   border: solid 2px ${colors.background.secondary};
   border-radius: 6px;
-  padding: 2rem;
+  padding: 1rem;
   margin-top: 2rem;
-  align-self: center;
-
-  @media (max-width: ${breakpoints.smallTablet}) {
-    border: none;
-  }
 
   > h1 {
-    font: 55px;
+    font-size: 32px;
+    font-weight:400;
+    margin:0;
     @media (max-width: ${breakpoints.smallTablet}) {
-      font-size: 40px;
-    }
-    @media (max-width: ${breakpoints.mobile}) {
-      font-size: 30px;
+      font-size: 26px;
     }
   }
   > p {
-    font-size: 25px;
+    font-size: 22px;
     text-align: justify;
-    @media (max-width: ${breakpoints.smallTablet}) {
-      font-size: 20px;
-    }
     @media (max-width: ${breakpoints.mobile}) {
       font-size: 17px;
     }
+  }
+  &:hover {
+    border-color: #f19709;
   }
 `;

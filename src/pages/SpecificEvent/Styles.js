@@ -10,7 +10,7 @@ export const Container = styled.div`
   margin-bottom: 4rem;
 `;
 export const EventCollumn = styled.div`
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
