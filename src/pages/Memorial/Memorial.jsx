@@ -150,6 +150,7 @@ export default function Memorial() {
               value={sortValue}
               options={filters}
               optionLabel="label"
+              showClear 
               placeholder="Ordenar Por"
               onChange={handleChangeSort}
               className="w-full md:w-14rem"

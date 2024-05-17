@@ -2,7 +2,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateFavoritesEvents } from "../../../hooks/querys/user";
 import {
   StyledCard,
-  OrangeButton,
   Line,
   Tags,
   Tag,
@@ -21,6 +20,7 @@ import useAuthStore from "../../../Stores/auth";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useGetIsFavoritedEvent } from "../../../hooks/querys/events";
 import { useNavigate } from "react-router-dom";
+import Button from "../../common/Button/Button";
 export default function Card({ data }) {
   const navigate = useNavigate();
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
@@ -117,14 +117,14 @@ export default function Card({ data }) {
       </Tags>
 
       <ButtonDiv>
-        <OrangeButton
+        <Button
           onClick={(event) => {
             event.stopPropagation();
             navigate(`/eventos/${data?.name}`);
           }}
         >
           Link
-        </OrangeButton>
+        </Button>
       </ButtonDiv>
     </StyledCard>
   );

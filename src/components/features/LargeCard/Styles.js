@@ -6,27 +6,17 @@ import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 export const StyledCard = styled(Card)`
   position: relative; /* Ensure positioning context for absolute positioning */
   display: block;
-  flex-direction: column;
   width: 50%;
   margin-top: 1rem;
-  height: auto;
-  align-items: center;
   border-radius: 24px;
-  gap: 3.33rem;
   background-color: ${colors.background.white};
   margin-bottom: 1rem;
   min-height: 30rem;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 80%;
-    max-width: 80%;
-  }
   @media (max-width: ${breakpoints.tablet}) {
     width: 70%;
-    max-width: 70%;
   }
-  @media (max-width: ${breakpoints.mobile}) {
+  @media (max-width: ${breakpoints.smallTablet}) {
     width: 80%;
-    max-width: 80%;
   }
 `;
 

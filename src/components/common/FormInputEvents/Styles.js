@@ -13,11 +13,11 @@ export const Container = styled.div`
 export const Label = styled.label`
   color: ${colors.background.primary};
 
-  @media (max-width: 700px) {
+  @media (max-width: ${breakpoints.tablet}) {
     font-size: 1.5rem;
   }
-  @media (max-width: 370px) {
-    font-size: 1.5rem;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem;
   }
 `;
 
@@ -34,15 +34,15 @@ export const StyledInput = styled.input`
   ::placeholder {
     font-weight: 400;
   }
+  &:hover {
+    border-color: #f19709;
+  }
 
   @media (max-width: ${breakpoints.mobile}) {
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 1rem;
     line-height: 2rem;
     height: 3rem;
-  }
-  @media (max-width: 370px) {
-    font-size: 1.2rem;
   }
 `;
 

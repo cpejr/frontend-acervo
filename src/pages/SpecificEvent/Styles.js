@@ -10,10 +10,8 @@ export const Container = styled.div`
   margin-bottom: 4rem;
 `;
 export const EventCollumn = styled.div`
+  width: 95%;
   display: flex;
   flex-direction: column;
-  width: 95%;
-  height: auto;
   justify-content: center;
-  margin-bottom: 2rem;
 `;

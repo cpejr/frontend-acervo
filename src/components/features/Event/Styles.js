@@ -26,9 +26,6 @@ export const ImageCollumn = styled.div`
   }
 `;
 export const Image = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 
   > img {
@@ -143,7 +140,7 @@ export const Tag = styled.div`
     padding: 5px 1rem;
   }
   &:hover {
-    border: 1px solid ${colors.background.menu};
+    border: 1px solid ${colors.accent.primary};
     color: ${colors.font.line};
   }
 `;

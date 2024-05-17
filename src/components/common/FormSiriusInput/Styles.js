@@ -44,6 +44,9 @@ export const StyledInput = styled.input`
     font-size: 1.2rem;
     outline: none !important;
   }
+  &:hover {
+    border-color: #f19709;
+  }
 `;
 
 export const ErrorMessage = styled.p`

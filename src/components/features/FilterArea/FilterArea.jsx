@@ -101,6 +101,7 @@ export default function FilterArea({
           value={filter}
           onChange={(e) => setFilter(e.value)}
           options={filters}
+          showClear 
           optionLabel="label"
           placeholder="Ordenar Por"
           className="w-full md:w-14rem"

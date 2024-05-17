@@ -40,6 +40,7 @@ export const ButtonsDiv = styled.div`
   align-items: center;
   gap: 0.2rem;
   margin: 20px;
+  padding-bottom:30px;
 `;
 
 export const DivSelect = styled.div`
@@ -50,6 +51,7 @@ export const DivSelect = styled.div`
   align-items: center;
   gap: 1rem;
   @media (max-width: ${breakpoints.smallTablet}) {
+    display:grid;
     flex-direction: column;
   }
 `;
@@ -61,7 +63,7 @@ export const Buttons = styled(Button)`
   margin-right: 10px;
   background-color: ${colors.black};
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
-    box-shadow 0.2s;
+  box-shadow 0.2s;
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 90%;
@@ -69,13 +71,12 @@ export const Buttons = styled(Button)`
 `;
 
 export const UniSelect = styled(Dropdown)`
-  gap: 1rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width: 200px;
+  min-width: 200px;
   .p-dropdown-label {
     color: ${colors.font.primary};
   }
@@ -90,6 +91,7 @@ export const UniSelect = styled(Dropdown)`
     border-color: #f19709;
   }
 `;
+
 export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;
@@ -98,5 +100,10 @@ export const Calendar = styled(PrimeCalendar)`
     background-color: ${colors.background.primary};
     color: ${colors.font.primary};
     border: solid 1px ${colors.font.primary};
+    
+    &:hover {
+      border: 1px solid ${colors.accent.primary};
+      color: ${colors.font.secondary};
+    } 
   }
 `;

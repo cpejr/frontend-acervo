@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { colors } from "../../../styles/stylesVariables";
+import { colors, breakpoints } from "../../../styles/stylesVariables";
 export const TableShape = styled(DataTable)`
   display: flex;
   flex-direction: column;
@@ -18,7 +18,10 @@ export const TableShape = styled(DataTable)`
   .p-paginator-bottom .p-paginator-last .p-paginator-icon {
     color: ${colors.font.primary};
   }
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 95%;
+  }
 `;
 
 export const TableColumn = styled(Column)`

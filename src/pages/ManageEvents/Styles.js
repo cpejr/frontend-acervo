@@ -21,21 +21,17 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   color: ${colors.font.title};
-  font-size: 30px;
-  margin-left: 5%;
-  width: fit-content;
-  border-bottom: 2px solid ${colors.font.title};
+  font-size: 36px;
+  margin-left: 3%;
+  text-decoration: underline ${colors.underline};
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 3px;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 27px;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 25px;
+    font-size: 34px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 22px;
+    font-size: 28px;
+    margin-left: 8%;
   }
 `;
 
@@ -65,6 +61,7 @@ export const Section = styled.section`
   width: 70%;
   height: 100%;
   gap: 2rem;
+  margin-bottom:30px;
   ::placeholder {
     color: ${colors.font.primary};
     font-weight: 400;
@@ -90,8 +87,8 @@ export const MultipleSelect = styled(MultiSelect)`
   @media (max-width: ${breakpoints.tablet}) {
     width: 50%;
   }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size:1rem;
   }
   &:hover {
     border-color: #f19709;

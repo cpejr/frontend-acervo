@@ -14,22 +14,22 @@ import {
   TextColumn,
   Banner,
   TextLine,
+  SubTitle,
   ImageLine,
   PintaColumn,
   TextPintaColumn,
+  BackgroundTitle,
 } from "./Styles";
 import { breakpoints } from "../../styles/stylesVariables";
 
 export default function AboutUs() {
-  const isMobileScreen = useMediaQuery({ maxWidth: breakpoints.smallTablet });
+  const isMobileScreen = useMediaQuery({ maxWidth: breakpoints.mobile });
 
   return (
     <Container>
-      {isMobileScreen ? (
-        <Title>APRESENTAÇÃO</Title>
-      ) : (
-        <Title> &ensp; &ensp; APRESENTAÇÃO</Title>
-      )}
+        <BackgroundTitle>
+          <Title>APRESENTAÇÃO</Title>
+        </BackgroundTitle>
       <Line>
         <TextColumn>
           <p>
@@ -63,19 +63,19 @@ export default function AboutUs() {
         </p>
       </Banner>
       {isMobileScreen ? (
-        <Title> QUEM SOMOS? </Title>
+        <SubTitle> QUEM SOMOS? </SubTitle>
       ) : (
-        <Title> &ensp; &ensp; QUEM SOMOS? </Title>
+        <SubTitle> &ensp; &ensp; QUEM SOMOS? </SubTitle>
       )}
       <TextLine>
-        <p>
+        <>
           O Site Nossa História – Escrita, Imagem e Som é a parte de uma rede de
           mídias criada e gerenciada pela CASA TUÉ-TIMBUÁ. A CASA TUÉ-TIMBUÁ é
           uma Organização Não Governamental (ONG), portanto sem fins lucrativos,
           criada para atuar na cidade de Bom Despacho no desenvolvimento de
           projetos nas áreas da educação, cultura, ensino e meio-ambiente, a
           qual tem como Coordenador Herberton Sabino – Pinta.
-        </p>
+        </>
       </TextLine>
       <Line>
         <PintaColumn>
@@ -95,20 +95,19 @@ export default function AboutUs() {
         </TextPintaColumn>
       </Line>
       <ImageLine style={{ marginBottom: "2rem", height: "40rem" }}>
-        <TextColumn>
+        <TextPintaColumn>
           <p>
             O site é parte de uma Rede, que inclui Whatsapp, Instagram e
             Facebook, criada para o compartilhamento da memória e história de
             Bom Despacho e para a divulgação dos eventos culturais de nossa
-            cidade. <br />
-            Porém, esse site só existe por ser concebido como uma plataforma
+            cidade. Porém, esse site só existe por ser concebido como uma plataforma
             interativa e colaborativa, somente existe a partir da contribuição
             da comunidade de Bom Despacho.
           </p>
-        </TextColumn>
+        </TextPintaColumn>
         <TextColumn>
           <img
-            style={{ border: "none", height: "30rem" }}
+            style={{ border: "none", maxWidth:"250px", alignSelf:"center" }}
             src={BomDespachoImage}
             alt="Bom Despacho Image"
           />
@@ -117,7 +116,6 @@ export default function AboutUs() {
       <Banner
         style={{
           backgroundImage: `url(${ColerfulAreaDown})`,
-          marginBottom: "2rem",
         }}
       >
         <p>

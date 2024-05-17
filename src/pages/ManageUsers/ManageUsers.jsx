@@ -131,7 +131,7 @@ export default function ManageUsers() {
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
       <SearchBar
-        placeholder={"Pesquisar usuario"}
+        placeholder={"Pesquisar usuário"}
         value={searchQuery}
         search={handleSearchChange}
         width="90%"
