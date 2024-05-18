@@ -33,6 +33,18 @@ export default function ModalUpdateMemorial({
       icon: FaLink,
     },
     {
+      type: "input",
+      key: "shortDescription",
+      placeholder: "Mudar Descrição curta",
+      value: values.shortDescription,
+    },
+    {
+      type: "input",
+      key: "longDescription",
+      placeholder: "Mudar Descrição longa",
+      value: values.longDescription,
+    },
+    {
       type: "selects",
       key: "id_categoryType",
       placeholder: "Escolha a categoria",

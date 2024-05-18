@@ -9,5 +9,7 @@ export const updateCollectionValidationSchema = z
     link: z
       .string({ required_error: "o link" })
       .min(1, { message: "O URL deve ter pelo menos 1 caracter" }),
+    shortDescription: z.string({ required_error: "O título é obrigatório" }),
+    longDescription: z.string({ required_error: "O título é obrigatório" }),
   })
   .nonstrict();
