@@ -48,23 +48,11 @@ export default function Memorial() {
 
   // Functions
 
-  function handleFilterChange() {
-    const [initialDate, finalDate] = dates;
-    let formattedDateRange;
-    if (finalDate === null) {
-      formattedDateRange = { oneDate: initialDate.toISOString() };
-    } else {
-      formattedDateRange = {
-        initialDate: initialDate.toISOString(),
-        finalDate: finalDate.toISOString(),
-      };
-    }
-    setDateRange(formattedDateRange);
-  }
   const handleSearchChange = (e) => {
     e.preventDefault();
     setSearchValue(e.target.value);
   };
+
   const handleResetFilter = () => {
     setDates([]);
     setDateRange({});
@@ -106,6 +94,17 @@ export default function Memorial() {
   }, [categoryType, memorial]);
 
   const categoryFilter = () => {
+    const [initialDate, finalDate] = dates;
+    let formattedDateRange;
+    if (finalDate === null) {
+      formattedDateRange = { oneDate: initialDate.toISOString() };
+    } else {
+      formattedDateRange = {
+        initialDate: initialDate.toISOString(),
+        finalDate: finalDate.toISOString(),
+      };
+    }
+    setDateRange(formattedDateRange);
     if (types.length === 0) {
       setFilteredMemorial(memorial);
     } else {
@@ -114,6 +113,7 @@ export default function Memorial() {
           memorial.id_categoryType.some((category) => category.name === type)
         )
       );
+
       setFilteredMemorial(filtered);
     }
   };

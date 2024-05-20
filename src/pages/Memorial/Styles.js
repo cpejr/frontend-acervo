@@ -107,9 +107,6 @@ export const DivSelect = styled.div`
   width: 15%;
   gap: 30px;
   @media (max-width: ${breakpoints.tablet}) {
-    width: 40%;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
     flex-direction: column;
     width: 60%;
   }
@@ -123,14 +120,12 @@ export const UniSelect = styled(Dropdown)`
       color: ${colors.accent.hover};
     }
   }
-
   &:focus,
   &:active,
   &:focus-visible {
     outline: none;
     box-shadow: none;
   }
-
   &:focus-within {
     border-color: ${colors.accent.hover};
     box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
@@ -151,36 +146,29 @@ export const UniSelect = styled(Dropdown)`
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 70%;
+    width: 225px;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     .p-inputtext {
       font-size: 11px;
     }
-    width: 90%;
   }
 `;
 export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;
+
   .p-inputtext {
     background-color: ${colors.background.primary};
     color: ${colors.font.primary};
     border: solid 1px ${colors.font.primary};
-  }
-
-  @media (min-width: ${breakpoints.miniTablet}) {
-    margin-right: 8rem;
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    max-width: 100%;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 30%;
-    margin-bottom: 1rem;
-  }
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 20%;
+    width: 225px;
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+    }
+    @media (max-width: ${breakpoints.smallTablet}) {
+      width: 225px;
+    }
   }
 `;
 
@@ -220,11 +208,10 @@ export const MultipleSelect = styled(MultiSelect)`
     width: 215px;
   }
   @media (max-width: ${breakpoints.tablet}) {
-    width: 70%;
+    width: 225px;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 12px;
-    width: 90%;
   }
 `;
 export const ButtonsDiv = styled.div`
