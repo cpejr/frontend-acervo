@@ -76,7 +76,8 @@ export const DataCollumn = styled.div`
 `;
 export const Group = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap:1rem;
   width: 100%;
 `;
 export const TagsLine = styled.div`
@@ -103,8 +104,20 @@ export const Line = styled.div`
   gap: 1rem;
   font-size: 40px;
   justify-content: center;
+  > a {
+    font-size:20px;
+  }
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 36px;
+  }
+`;
+
+export const LinkLine = styled.div`
+  font-size:20px;
+  align-self:center; 
+  word-break:break-all;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 15px;
   }
 `;
 export const Tag = styled.div`

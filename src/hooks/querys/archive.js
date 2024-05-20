@@ -4,7 +4,7 @@ import { getArchives } from "../../services/endpoints";
 export function useGetArchives(
   archiveIDs,
   key, // Adicione os parâmetros aqui
-  { onSuccess = () => {}, onError = (err) => console.log(err) } = {}
+  { onSuccess = () => {}, onError = (err) => console.error(err) } = {}
 ) {
   return useQuery({
     queryKey: [key],

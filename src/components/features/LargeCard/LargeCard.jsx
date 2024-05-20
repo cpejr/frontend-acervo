@@ -146,7 +146,7 @@ export default function LargeCard({ data, imagesLoading }) {
             <LongDescription>{longDescription}</LongDescription>
 
             <Button
-              onClick={() => window.open(link, "_blank")}
+              onClick={() => window.open(link,"_blank")}
               width="10rem"
               marginLeft="auto"
             >

@@ -8,6 +8,7 @@ import {
   Row,
   Tag,
   TagsLine,
+  LinkLine,
 } from "./Styles";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
@@ -27,7 +28,6 @@ export default function Event({ data }) {
     }
   );
   useEffect(() => {
-    console.log(data[0])
     if (!isLoading) {
       setImage(archives);
     } else {
@@ -46,6 +46,7 @@ export default function Event({ data }) {
             <DataCollumn>
               <Group>
                 <Line>{eventData?.name}</Line>
+                <LinkLine><a href={eventData?.link}>{eventData?.link}</a></LinkLine>
               </Group>
               <TagsLine key={`line-${index}`}>
                 {categories?.map((category, index) => (

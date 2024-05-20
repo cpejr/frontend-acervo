@@ -141,7 +141,6 @@ export default function ManageCollection() {
   }
 
   function handleMemorialUpdate(id, data) {
-    console.log("✌️data --->", data);
     updateMemorial({ _id: id, newData: data });
     closeModalUpdate();
   }
