@@ -2,12 +2,7 @@ import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { Container, Title, LoadingStyles, SubTitle } from "./Styles";
-import {
-  Table,
-  ModalDeleteItem,
-  FormSubmit,
-  ModalUpdateMemorial,
-} from "../../components";
+import { Table, ModalDeleteItem, FormSubmit, ModalUpdateMemorial } from "../../components";
 
 import {
   useGetMemorial,
@@ -15,14 +10,10 @@ import {
   useDeleteMemorial,
   useUpdateMemorial,
 } from "../../hooks/querys/memorial";
+import { useGetCategoryType } from "../../hooks/querys/categoryType";
 import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import {
-  AiOutlineCloseCircle,
-  AiFillTool,
-  AiOutlineLink,
-  AiOutlineUpload,
-} from "react-icons/ai";
+import { AiOutlineCloseCircle, AiFillTool, AiOutlineLink, AiOutlineUpload } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
 
 export default function ManageCollection() {
@@ -38,6 +29,29 @@ export default function ManageCollection() {
 
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
+  const [selectOptions, setSelectOptions] = useState();
+  const { data: categoryType } = useGetCategoryType({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+
+  useEffect(() => {
+    let types = categoryType?.map((category) => {
+      return category?.name;
+    });
+
+    if (types) {
+      inputs[4] = {
+        type: "selects",
+        key: "id_categoryType",
+        placeholder: "Escolha a categoria",
+        options: types,
+      };
+    }
+    setSelectOptions(types);
+  }, [categoryType]);
+
   const [inputs] = useState([
     {
       type: "input",
@@ -60,6 +74,7 @@ export default function ManageCollection() {
       placeholder: "Link",
       icon: AiOutlineLink,
     },
+    {},
     {
       type: "archive",
       key: "archive",
@@ -90,6 +105,7 @@ export default function ManageCollection() {
                 title: collection.title,
                 archives: collection.archive,
                 link: collection.link,
+                id_categoryType: collection?.id_categoryType,
               });
             }}
           />
@@ -128,42 +144,39 @@ export default function ManageCollection() {
     },
   });
 
-  const { mutate: postMemorial, isPending: loadingPostMemorial } =
-    usePostMemorial({
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["memorial"],
-        });
-        toast.success("Post cadastrado!");
-      },
-      onError: (err) => {
-        toast.error("Erro ao cadastrar post.", err);
-      },
-    });
-  const { mutate: deleteMemorial, isPending: loadingDeleteMemorial } =
-    useDeleteMemorial({
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["memorial"],
-        });
-        toast.success("Post deletado com sucesso!");
-      },
-      onError: (err) => {
-        toast.error("Erro ao excluir post.", err);
-      },
-    });
-  const { mutate: updateMemorial, isPending: loadingEditMemorial } =
-    useUpdateMemorial({
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ["memorial"],
-        });
-        toast.success("post atualizado com sucesso!");
-      },
-      onError: (err) => {
-        toast.error("Erro ao atualizar o post.", err);
-      },
-    });
+  const { mutate: postMemorial, isPending: loadingPostMemorial } = usePostMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Post cadastrado!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao cadastrar post.", err);
+    },
+  });
+  const { mutate: deleteMemorial, isPending: loadingDeleteMemorial } = useDeleteMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("Post deletado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao excluir post.", err);
+    },
+  });
+  const { mutate: updateMemorial, isPending: loadingEditMemorial } = useUpdateMemorial({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      toast.success("post atualizado com sucesso!");
+    },
+    onError: (err) => {
+      toast.error("Erro ao atualizar o post.", err);
+    },
+  });
 
   useEffect(() => {
     if (!isLoading && collection) {
@@ -171,6 +184,7 @@ export default function ManageCollection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading]);
+
   return (
     <Container>
       <Title>ADICIONAR NOVO ARQUIVO </Title>
@@ -181,6 +195,7 @@ export default function ManageCollection() {
         schema={newCollectionValidationSchema}
         color={"white"}
         loading={loadingPostMemorial}
+        selectedOptionsInitial={{}}
       />
 
       <SubTitle>GERENCIAR ARQUIVOS </SubTitle>
@@ -209,6 +224,7 @@ export default function ManageCollection() {
         modal={modalUpdate}
         modalCloseIcon={modalCloseButton}
         closeModal={closeModalUpdate}
+        options={selectOptions}
       />
     </Container>
   );

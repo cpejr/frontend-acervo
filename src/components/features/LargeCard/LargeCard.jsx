@@ -1,45 +1,165 @@
-import { CiBookmark } from "react-icons/ci";
+import useAuthStore from "../../../Stores/auth";
+import { useQueryClient } from "@tanstack/react-query";
+import { useUpdateFavoritesMemorials } from "../../../hooks/querys/user";
+import { useGetIsFavoritedMemorial } from "../../../hooks/querys/memorial";
+import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+
 import {
   StyledCard,
-  Group,
-  LineSVG,
-  CardLine,
-  CardTitle,
+  ShortDescription,
+  LongDescription,
+  Title,
   FavoriteIcon,
+  CarouselStyles,
+  LoadingContainer,
+  TitleContainer,
+  Content,
+  FavoriteFilledIcon,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useGetArchives } from "../../../hooks/querys/archive";
+import { LoadingOutlined } from "@ant-design/icons";
+import Button from "../../common/Button/Button";
 
-const images = [
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
-  "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
-];
+export default function LargeCard({ data, imagesLoading }) {
+  // States and Variables
+  const { title, shortDescription, longDescription, link, archive } = data;
+  const archiveIDs = archive.map((file) => file._id);
+  const formatedArchives = archiveIDs.join(", ");
+  const queryClient = useQueryClient();
+  const userId = useAuthStore((state) => state?.auth?.user?._id);
 
-export default function LargeCard({ data }) {
-  const { title, description } = data;
+  // BackEnd Calls
+
+  const { data: archiveData, isLoading } = useGetArchives(
+    formatedArchives,
+    title,
+    {
+      onError: (err) => {
+        console.error("Erro ao pegar itens", err);
+      },
+    }
+  );
+
+  const { data: isFavorited } = useGetIsFavoritedMemorial({
+    userId: userId,
+    memorialId: data?._id,
+    enabled: !!userId,
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
+  const { mutate: updateFavoriteMemorial } = useUpdateFavoritesMemorials({
+    userId: userId,
+    ids: [data?._id],
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["favoritesMemorials"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["memorial"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [title],
+      });
+
+      toast.success("Memorial Atualizado");
+    },
+    onError: (err) => {
+      toast.err(err);
+    },
+  });
+
+  const onSubmit = async (event) => {
+    event.stopPropagation();
+    if (userId) {
+      updateFavoriteMemorial({
+        userId: userId,
+        eventId: data?._id,
+      });
+    } else {
+      toast.error("Você precisa estar logado para favoritar um evento");
+    }
+  };
 
   return (
     <StyledCard>
-      <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
-        {images.map((image, index) => (
-          <div key={index}>
-            <img alt={`carousel-img-${index}`} src={image} />
-          </div>
-        ))}
-      </Carousel>
-      <Group>
-        <LineSVG></LineSVG>
-        <CardTitle>
-          {title}
-          <FavoriteIcon>
-            <CiBookmark />
-          </FavoriteIcon>
-        </CardTitle>
-      </Group>
-      <CardLine>
-        <p>{description}</p>
-      </CardLine>
+      {isLoading || imagesLoading || !archiveData ? (
+        <LoadingContainer>
+          <LoadingOutlined style={{ fontSize: 30, color: "#000102" }} />
+        </LoadingContainer>
+      ) : (
+        <>
+          {archiveData && (
+            <CarouselStyles>
+              <Carousel
+                showStatus={false}
+                showIndicators={false}
+                showThumbs={false}
+              >
+                {archiveData.map((file, index) => (
+                  <div key={index}>
+                    {file.startsWith("data:image") && (
+                      <img src={file} alt={`Imagem ${index}`} />
+                    )}
+                    {file.startsWith("data:video") && (
+                      <video controls width="100%" height="auto">
+                        <source src={file} type="video/mp4" />
+                        Seu navegador não suporta o elemento de vídeo.
+                      </video>
+                    )}
+                    {file.startsWith("data:audio") && (
+                      <audio controls>
+                        <source src={file} type="audio/mpeg" />
+                        Seu navegador não suporta o elemento de áudio.
+                      </audio>
+                    )}
+                    {file.startsWith("data:application/pdf") && (
+                      <object
+                        data={file}
+                        type="application/pdf"
+                        width="100%"
+                        height="400px"
+                      >
+                        Seu navegador não suporta visualização de PDF. Você pode{" "}
+                        <a href={file}>baixá-lo aqui</a>.
+                      </object>
+                    )}
+                  </div>
+                ))}
+              </Carousel>
+            </CarouselStyles>
+          )}
+          <Content>
+            <TitleContainer>
+              <Title> {title} </Title>
+              {isFavorited ? (
+                <FavoriteFilledIcon onClick={onSubmit} />
+              ) : (
+                <FavoriteIcon onClick={onSubmit} />
+              )}
+            </TitleContainer>
+            <ShortDescription>{shortDescription}</ShortDescription>
+            <LongDescription>{longDescription}</LongDescription>
+
+            <Button
+              onClick={() => window.open(link, "_blank")}
+              width="10rem"
+              marginLeft="auto"
+            >
+              Navegar
+            </Button>
+          </Content>
+        </>
+      )}
     </StyledCard>
   );
 }
+
+LargeCard.propTypes = {
+  data: PropTypes.object,
+  imagesLoading: PropTypes.bool,
+};

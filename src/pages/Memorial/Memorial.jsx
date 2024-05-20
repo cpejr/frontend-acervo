@@ -1,48 +1,115 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Title,
-  Filter,
-  Characteristics,
+  ContainerFilter,
   DivSelect,
-  FilterTitle,
   UniSelect,
-  StyledCheckbox,
   VerticalLine,
   DivLine,
+  Calendar,
+  Buttons,
+  ButtonsDiv,
   Line,
-} from "../Memorial/Styles";
+  Characteristics,
+  FilterTitle,
+  Filter,
+} from "./Styles";
+import { toast } from "react-toastify";
+import { useGetMemorialByDate } from "../../hooks/querys/memorial";
+
 import { SearchBar } from "../../components";
-import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { Checkbox } from "primereact/checkbox";
-
-const cardData = [
-  { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-  { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-];
-
+import LargeCard from "../../components/features/LargeCard/LargeCard";
+import { useQueryClient } from "@tanstack/react-query";
 export default function Memorial() {
-  const filters = [
-    { label: "Melhor avaliados", value: "melhorAvaliados" },
-    { label: "Favoritos", value: "favoritos" },
-  ];
-
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-    { label: "Característica 3" },
-  ];
-
+  const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
+    { label: "Característica 1", value: "c1", checked: false },
+    { label: "Característica 2", value: "c2", checked: false },
+    { label: "Característica 3", value: "c3", checked: false },
+  ]);
+  const [imagesLoading, setImagesLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
+  const [dates, setDates] = useState(null);
+  const [dateRange, setDateRange] = useState();
+  const [sortValue, setSelectedSort] = useState("");
+  const filters = [
+    { label: "Favoritos", value: "title" },
+    { label: "Melhor avaliados", value: "date" },
+  ];
+  const queryClient = useQueryClient();
+  // BackEnd Calls
 
+  const {
+    data: memorial,
+    isLoading,
+    isError,
+  } = useGetMemorialByDate({
+    dateRange: dateRange,
+    onError: (err) => {
+      setImagesLoading(false);
+      toast.error(err);
+    },
+  });
+
+  // Functions
+
+  function handleFilterChange() {
+    const [initialDate, finalDate] = dates;
+    let formattedDateRange;
+    if (finalDate === null) {
+      formattedDateRange = { oneDate: initialDate.toISOString() };
+    } else {
+      formattedDateRange = {
+        initialDate: initialDate.toISOString(),
+        finalDate: finalDate.toISOString(),
+      };
+    }
+    setDateRange(formattedDateRange);
+  }
   const handleSearchChange = (e) => {
+    e.preventDefault();
     setSearchValue(e.target.value);
   };
+  const handleResetFilter = () => {
+    setDates([]);
+    setDateRange({});
+    queryClient.invalidateQueries({
+      queryKey: ["memorial"],
+    });
+    queryClient.invalidateQueries({
+      queryKey: ["favoritesMemorials"],
+    });
+  };
+
+  const handleChangeSort = (e) => {
+    setSelectedSort(e.value);
+  };
+
+  const handleChangeCheckbox = (e) => {
+    let index = 0;
+    for (; index < characteristicCheckboxes.length; index++) {
+      if (characteristicCheckboxes[index].value === e.target.name) {
+        break;
+      }
+    }
+
+    const newCheckedStates = [...characteristicCheckboxes];
+    newCheckedStates[index].checked = !newCheckedStates[index].checked;
+    setCharacteristicCheckboxes(newCheckedStates);
+  };
+
+  useEffect(() => {
+    if (!isLoading && !isError) {
+      setImagesLoading(false);
+    }
+  }, [isLoading, isError]);
 
   return (
     <Container>
       <Title>ACERVO</Title>
       <SearchBar
+        aria-label="Barra de pesquisa"
         placeholder="Pesquisar"
         value={searchValue}
         search={handleSearchChange}
@@ -50,30 +117,60 @@ export default function Memorial() {
       <Filter>
         <Characteristics>
           <FilterTitle>Características:</FilterTitle>
-          {characteristicCheckboxes.map((checkbox, index) => (
-            <label key={index}>
-              <Checkbox />
+          {characteristicCheckboxes.map((checkbox) => (
+            <label key={checkbox.value}>
+              <Checkbox
+                aria-label="Botão seletor de caracteristicas"
+                checked={checkbox.checked}
+                name={checkbox.value}
+                onChange={handleChangeCheckbox}
+              />
               {checkbox.label}
             </label>
           ))}
         </Characteristics>
         <VerticalLine />
-        <DivSelect>
-          <UniSelect
-            options={filters}
-            optionLabel="label"
-            placeholder="Ordenar Por"
-          />
-        </DivSelect>
+        <ContainerFilter>
+          <DivSelect>
+            <Calendar
+              value={dates}
+              onChange={(e) => setDates(e.value)}
+              selectionMode="range"
+              readOnlyInput
+              hideOnRangeSelection
+              placeholder="Determine uma data"
+              showButtonBar
+              dateFormat="dd/mm/yy"
+            />
+            <UniSelect
+              aria-label="Botão de ordenação"
+              value={sortValue}
+              options={filters}
+              optionLabel="label"
+              showClear
+              placeholder="Ordenar Por"
+              onChange={handleChangeSort}
+              className="w-full md:w-14rem"
+            />
+          </DivSelect>
+          <ButtonsDiv>
+            <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+            <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+          </ButtonsDiv>
+        </ContainerFilter>
       </Filter>
       <DivLine>
-        {cardData
-          .filter((card) =>
+        {memorial
+          ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
           )
-          .map((card, index) => (
-            <Line key={index}>
-              <LargeCard data={card} />
+          .map((card) => (
+            <Line key={card.title}>
+              <LargeCard
+                aria-label="Cartão de memorial"
+                data={card}
+                imagesLoading={imagesLoading}
+              />
             </Line>
           ))}
       </DivLine>

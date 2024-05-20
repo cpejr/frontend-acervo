@@ -32,10 +32,10 @@ export const Title = styled.h1`
 export const Line = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
-  flex-basis: 50%;
+  width: 70%;
   gap: 3rem;
   height: 10rem;
+  flex-basis: 10%;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
     align-items: center;
@@ -44,9 +44,10 @@ export const Line = styled.div`
 export const ImageLine = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 70%;
   flex-basis: 50%;
   gap: 3rem;
+  align-items: center;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column-reverse;
     align-items: center;
@@ -57,9 +58,10 @@ export const TextColumn = styled.div`
   flex-direction: column;
   width: 50%;
   height: 10%;
+
   > img {
     width: 100%;
-    height: 50%;
+    height: 20rem;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
@@ -69,6 +71,8 @@ export const TextColumn = styled.div`
   > p {
     color: ${colors.font.primary};
     text-align: justify;
+    align-self: center;
+    justify-self: center;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 100%;
@@ -102,6 +106,7 @@ export const TextPintaColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 70%;
+  justify-content: center;
   > img {
     width: 100%;
     height: 50%;
@@ -137,5 +142,5 @@ export const Banner = styled.div`
 export const TextLine = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 70%;
 `;

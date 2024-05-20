@@ -12,8 +12,12 @@ import {
   TrendingEvents,
   Filter,
   EventNotFound,
+  Title,
+  BackgroundTitle,
 } from "./Styles";
+
 import { SearchBar } from "../../components";
+
 export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
@@ -21,17 +25,22 @@ export default function Events() {
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
-
+  const [dateRange, setDateRange] = useState({});
   const { data: events } = useGetEventsByCategoryId({
     id: categoryIDsArrays,
     name: debouncedName,
     type: filter,
+    dateRange: dateRange,
     onError: (err) => {
       toast.error(err);
     },
   });
+
   return (
     <Container>
+      <BackgroundTitle>
+        <Title>EVENTOS</Title>
+      </BackgroundTitle>
       <SearchBar
         value={names}
         search={(e) => setNames(e.target.value)}
@@ -47,6 +56,8 @@ export default function Events() {
           filter={filter}
           setFilter={setFilter}
           setNames={setNames}
+          isCalendarNeed={true}
+          setDateRange={setDateRange}
         ></FilterArea>
       </Filter>
       <TrendingEvents>

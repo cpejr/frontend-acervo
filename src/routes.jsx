@@ -10,7 +10,6 @@ import {
 
 import {
   Home,
-  Collection,
   Support,
   Events,
   ManageCollection,
@@ -19,6 +18,8 @@ import {
   Story,
   AboutUs,
   Memorial,
+  Favorites,
+  SpecificEvent
 } from "./pages";
 import { AppLayout } from "./components";
 import useAuthStore from "./Stores/auth";
@@ -30,6 +31,13 @@ function PrivateAdminRoutes() {
   return !auth ? <Navigate to="/" state={{ from }} /> : <Outlet></Outlet>;
 }
 
+function PrivateLoggedRoutes() {
+  const isLogged = useAuthStore((state) => state?.auth?.user);
+  const { pathname: from } = useLocation();
+
+  return !isLogged ? <Navigate to="/" state={{ from }} /> : <Outlet />;
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -39,10 +47,15 @@ const router = createBrowserRouter(
         <Route path="sobre" element={<AboutUs />} />
         <Route path="memorial" element={<Memorial />} />
         <Route path="eventos" element={<Events />} />
-        <Route path="gerenciar-memorial" element={<ManageCollection />} />
-        <Route path="gerenciar-eventos" element={<ManageEvents />} />
-        <Route path="gerenciar-usuarios" element={<ManageUsers />} />
-        <Route element={<PrivateAdminRoutes />}></Route>
+        <Route element={<PrivateLoggedRoutes />}>
+          <Route path="favoritos" element={<Favorites />} />
+        </Route>
+        <Route element={<PrivateAdminRoutes />}>
+          <Route path="gerenciar-memorial" element={<ManageCollection />} />
+          <Route path="gerenciar-eventos" element={<ManageEvents />} />
+          <Route path="gerenciar-usuarios" element={<ManageUsers />} />
+        </Route>
+        <Route path='/eventos/:name' element={<SpecificEvent />} />
       </Route>
       <Route path="suporte" element={<Support />} />
     </Route>

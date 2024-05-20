@@ -25,6 +25,29 @@ export async function updateUser({ _id, newUserData }) {
 
   return data;
 }
+
+export async function updateFavoritesEvents({ userId, ids }) {
+  const { data } = await api.put(`/user/favoritesEvents/${userId}`, { ids });
+  return data;
+}
+
+export async function getFavoritesEvents({ userId }) {
+  const { data } = await api.get(`/user/favoritesEvents/${userId}`);
+  return data;
+}
+
+export async function getFavoritesMemorials({ userId }) {
+  const { data } = await api.get(`/user/favoritesMemorials/${userId}`);
+  return data;
+}
+
+export async function updateFavoritesMemorials({ userId, ids }) {
+  const { data } = await api.put(`/user/favoritesMemorials/${userId}`, { ids });
+  return data;
+}
+
+// Events
+
 export const getEvents = async (filters = {}) => {
   const { data } = await api.get(`/event`, { params: filters });
   return data;
@@ -45,23 +68,26 @@ export async function updateEvents({ _id, body }) {
   return data;
 }
 
-export const getEventsByCategoryId = async ({ id, name, type }) => {
+export const getEventsByCategoryId = async ({ id, name, type, dateRange }) => {
   const { data } = await api.get("/event/search-by-category", {
-    params: { id, name, type },
+    params: { id, name, type, dateRange },
   });
 
   return data;
 };
+
+export const getIsFavoritedEvent = async ({ userId, eventId, enabled }) => {
+  const { data } = await api.get("/event/favorite", {
+    params: { userId, eventId, enabled },
+  });
+
+  return data;
+};
+
 //CategoryType endpoints
+
 export const getCategoryType = async (filters = {}) => {
   const { data } = await api.get("/categoryType", { params: filters });
-  return data;
-};
-
-export const getCategoryTypeByName = async (name) => {
-  const { data } = await api.get("/categoryType/search-by-name", {
-    params: { name },
-  });
   return data;
 };
 
@@ -95,3 +121,31 @@ export async function postMemorial(newMemorial) {
 
   return data;
 }
+export async function getReadByName({ name }) {
+  const { data } = await api.get("/event/search-by-name", {
+    params: { name },
+  });
+  return data;
+}
+//Archives
+export async function getArchives(archives) {
+  const { data } = await api.get(`/archive/?archive=${archives}`);
+
+  return data;
+}
+
+export async function getIsFavoritedMemorial({ userId, memorialId }) {
+  const { data } = await api.get("/memorial/favorite", {
+    params: { userId, memorialId },
+  });
+
+  return data;
+}
+
+export const getMemorialByDate = async ({ dateRange }) => {
+  const { data } = await api.get("/memorial/search-by-date", {
+    params: { dateRange },
+  });
+
+  return data;
+};

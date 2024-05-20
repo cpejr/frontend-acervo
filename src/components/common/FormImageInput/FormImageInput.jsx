@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { FaUpload } from "react-icons/fa";
 import { Upload } from "./Styles";
-import { FormInput } from "../..";
+import { FormSiriusInput } from "../..";
 import { useEffect, useState } from "react";
 
 export default function FormImageInput({
@@ -42,7 +42,7 @@ export default function FormImageInput({
       beforeUpload={() => false}
       maxCount={1}
     >
-      <FormInput
+      <FormSiriusInput
         name={name}
         placeholder={placeholder}
         errors={errors}
@@ -62,4 +62,5 @@ FormImageInput.propTypes = {
   register: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
 };

@@ -8,8 +8,9 @@ export { default as cidade } from "./Home/Cidade.svg";
 export { default as prefeitura } from "./Home/Prefeitura.svg";
 export { default as background } from "./Home/background.png";
 export { default as apresentacao } from "./Home/Apresentacao.svg";
-export { default as Add } from "./Add.svg";
 export { default as imageEventNotFound } from "./Home/EventNotFound.png";
+export { default as titleBackground } from "./Home/titleBackground.png";
+export { default as Add } from "./Add.svg";
 
 export { default as Logo } from "./Footer/LogoBranca.svg";
 export { default as LogoCidade } from "./Header/CityLogo.svg";
@@ -26,3 +27,7 @@ export { default as MatrizImage } from "./AboutUs/MatrizImage.png";
 export { default as VilaMilitarImage } from "./AboutUs/VilaMilitarImage.png";
 export { default as ColerfulAreaUp } from "./AboutUs/ColerfulAreaUp.png";
 export { default as ColerfulAreaDown } from "./AboutUs/ColerfulAreaDown.png";
+
+export { default as BomDespachoImageSupportPage } from "./Support/BomDespachoImageSupportPage.png";
+export { default as QRCodeImage } from "./Support/QRCodeImage.png";
+export { default as WhatsAppIcon } from "./Support/WhatsAppIcon.png";
