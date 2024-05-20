@@ -38,7 +38,6 @@ export const breakpoints = {
   desktop: "1370px",
   tablet: "1024px",
   mediumTablet: "850px",
-  mediumTablet: "960px",
   smallTablet: "800px",
   mobile: "700px",
   miniTablet: "600px",
