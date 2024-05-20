@@ -1,31 +1,64 @@
-import { Container, City } from "./Styles";
+import { Container, City, Header } from "./Styles";
 import { LogoCidade } from "../../../../assets/index";
-import { HamburgerMenu } from "../../../index";
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Link, LoginSocialArea } from "../../../../components";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../../../../Stores/auth";
+import { LoginSocialArea } from "../../../../components";
+import { HamburgerMenu } from "../../../index";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Header() {
+export default function NavBar() {
   const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
   const navigate = useNavigate();
+
+  const items = [
+    {
+      label: "História",
+      url: "/historia",
+    },
+    {
+      label: "Memorial",
+      url: "/memorial",
+    },
+    {
+      label: "Sobre",
+      url: "/sobre",
+    },
+    {
+      label: "Eventos",
+      url: "/eventos",
+    },
+    {
+      label: "Apoiador",
+      url: "/suporte",
+    },
+    ...(isAdmin
+      ? [
+          {
+            label: "Administrador",
+            items: [
+              {
+                label: "Gerenciar usuários",
+                url: "/gerenciar-usuarios",
+              },
+              {
+                label: "Gerenciar arquivos",
+                url: "/gerenciar-memorial",
+              },
+              {
+                label: "Gerenciar eventos",
+                url: "/gerenciar-eventos",
+              },
+            ],
+          },
+        ]
+      : []),
+  ];
 
   return (
     <Container>
       <City src={LogoCidade} onClick={() => navigate("/")}></City>
-      <Link to="/historia">História</Link>
-      <Link to="/memorial">Memorial</Link>
-      <Link to="/sobre">Sobre</Link>
-      <Link to="/eventos">Eventos</Link>
-      <Link to="/suporte"> Apoiar</Link>
-      {isAdmin ? (
-        <React.Fragment>
-          <Link to={"/gerenciar-usuarios"}>Usuários</Link>
-          <Link to={"/gerenciar-memorial"}>Arquivos</Link>
-          <Link to={"/gerenciar-eventos"}>Eventos</Link>
-        </React.Fragment>
-      ) : null}
+      <Header model={items} />
       <HamburgerMenu />
       <LoginSocialArea />
     </Container>
