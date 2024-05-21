@@ -117,9 +117,6 @@ export const UniSelect = styled(Dropdown)`
   gap: 1rem;
   &:hover {
     border-color: ${colors.accent.hover};
-    .p-placeholder {
-      color: ${colors.accent.hover};
-    }
   }
   &:focus,
   &:active,
@@ -164,6 +161,9 @@ export const Calendar = styled(PrimeCalendar)`
     color: ${colors.font.primary};
     border: solid 1px ${colors.font.primary};
     width: 225px;
+    &:hover {
+      border-color: ${colors.accent.hover};
+    }
     @media (max-width: ${breakpoints.tablet}) {
       width: 100%;
     }
@@ -182,9 +182,6 @@ export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
   &:hover {
     border-color: ${colors.accent.hover};
-    .p-placeholder {
-      color: ${colors.accent.hover};
-    }
   }
 
   &:focus,
