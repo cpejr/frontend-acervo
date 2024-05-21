@@ -14,7 +14,7 @@ export const Label = styled.label`
   color: ${colors.background.primary};
 
   @media (max-width: 700px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   @media (max-width: 370px) {
     font-size: 1.5rem;
@@ -28,11 +28,11 @@ export const StyledInput = styled.input`
   color: ${(props) => props?.color};
   cursor: ${(props) => props?.cursor};
   font-size: 20px;
-  color: ${colors.font.primary};
+  color: ${colors.font.secondary};
   width: 100%;
-  background-color: ${colors.background.primary};
+  background-color: ${colors.modals.background};
   border: ${(props) =>
-    props?.error ? "0.1rem #ffd100 solid" : `0.1rem white solid`};
+    props?.error ? "0.1rem #ffd100 solid" : `0.1rem black solid`};
   outline: none;
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -43,6 +43,9 @@ export const StyledInput = styled.input`
   @media (max-width: 370px) {
     font-size: 1.2rem;
     outline: none !important;
+  }
+  &:hover {
+    border-color: #f19709;
   }
 `;
 

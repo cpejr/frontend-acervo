@@ -13,35 +13,36 @@ export const Container = styled.div`
 export const Label = styled.label`
   color: ${colors.background.primary};
 
-  @media (max-width: 700px) {
-    font-size: 2rem;
-  }
-  @media (max-width: 370px) {
+  @media (max-width: ${breakpoints.tablet}) {
     font-size: 1.5rem;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem;
   }
 `;
 
 export const StyledInput = styled.input`
-  height: 1rem;
-  padding: 1rem 2.2rem;
+  height: 3rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 0.4rem;
   color: ${(props) => props?.color};
   width: 100%;
+  font-size: 20px;
   background-color: inherit;
   border: ${(props) =>
     props?.error ? "0.1rem red solid" : `0.1rem ${props.color} solid`};
   ::placeholder {
     font-weight: 400;
   }
+  &:hover {
+    border-color: #f19709;
+  }
 
   @media (max-width: ${breakpoints.mobile}) {
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 1rem;
     line-height: 2rem;
     height: 3rem;
-  }
-  @media (max-width: 370px) {
-    font-size: 1.2rem;
   }
 `;
 

@@ -6,6 +6,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  &:hover {
+    border-color: #f19709;
+  }
 `;
 
 export const Upload = styled(AntdUpload)`
@@ -31,7 +34,8 @@ export const AddArchive = styled.div`
 
 export const RemoveArchive = styled.div`
   width: 70%;
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
+  justify-content:right;
   gap: 0.5rem;
   font-size: 0.8rem;
   display: ${(props) => props.hidden || "flex"};

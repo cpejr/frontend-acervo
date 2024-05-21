@@ -5,6 +5,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import Button from "../../components/common/Button/Button";
 import {
   useCreateEvents,
   useDeleteEvents,
@@ -15,9 +16,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { newEventValidationSchema } from "./utils";
 import {
-  FormSiriusInput,
-  FormTextArea,
-  SubmitButton,
+  FormInputEvents,
   ModalDeleteEvent,
   ModalEditEvent,
   Table,
@@ -71,17 +70,18 @@ export default function ManageEvents() {
     },
   });
 
-  const { mutate: createEvent, isPending: isCreateEventPending } = useCreateEvents({
-    onSuccess: () => {
-      toast.success("Evento criado com sucesso");
-      queryClient.invalidateQueries({
-        queryKey: ["events"],
-      });
-    },
-    onError: (err) => {
-      return err;
-    },
-  });
+  const { mutate: createEvent, isPending: isCreateEventPending } =
+    useCreateEvents({
+      onSuccess: () => {
+        toast.success("Evento criado com sucesso");
+        queryClient.invalidateQueries({
+          queryKey: ["events"],
+        });
+      },
+      onError: (err) => {
+        return err;
+      },
+    });
 
   const { mutate: deleteEvent, isPending: isPendingDelete } = useDeleteEvents({
     onSuccess: () => {
@@ -175,27 +175,27 @@ export default function ManageEvents() {
       <Title>SUBMETER NOVO EVENTO</Title>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Section>
-          <FormSiriusInput
+          <FormInputEvents
             name="name"
             placeholder="Nome do evento"
             errors={errors}
             register={register}
             inputKey="1"
           />
-          <FormSiriusInput
+          <FormInputEvents
             name="shortDescription"
             placeholder="Descrição curta"
             errors={errors}
             register={register}
             inputKey="3"
           />
-          <FormTextArea
+          <FormInputEvents
             name="longDescription"
             placeholder="Descrição longa"
             errors={errors}
             register={register}
           />
-          <FormSiriusInput
+          <FormInputEvents
             name="link"
             placeholder="Link do evento"
             errors={errors}
@@ -237,13 +237,15 @@ export default function ManageEvents() {
               }}
               options={transformArrayItems(categoryPrice)}
               optionLabel="label"
-              placeholder="Escolha as características"
+              placeholder="Escolha o preço"
               className="w-full md:w-20rem"
               filter
             />
           </Selects>
         </Section>
-        <SubmitButton>{isCreateEventPending ? <LoadingOutlined /> : "ENVIAR"}</SubmitButton>
+        <Button type="submit" width="150px" height="50px">
+          {isCreateEventPending ? <LoadingOutlined /> : "Enviar"}
+        </Button>
       </Form>
       <Title>GERENCIAR EVENTOS</Title>
       {isDeleteModalOpen && (

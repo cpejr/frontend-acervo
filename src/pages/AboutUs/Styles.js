@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/stylesVariables";
+import {  titleBackground } from "../../assets/index";
+import { breakpoints, colors, fonts } from "../../styles/stylesVariables";
+
 export const Container = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   gap: 2rem;
   overflow: hidden;
@@ -11,21 +11,28 @@ export const Container = styled.div`
   text-align: center;
 `;
 
-export const Title = styled.h1`
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 4rem;
+  width: 100%;
+`;
+
+export const Title = styled.div`
   color: ${colors.font.title};
+  font-size: 36px;
+  margin-left: 3%;
+  justify-self: left;
+  text-align: left;
   text-decoration: underline ${colors.underline};
-  text-decoration-skip-ink: auto;
-  text-underline-offset: 1.3rem;
+  text-underline-offset: 0.5rem;
   text-decoration-thickness: 3px;
-  align-self: flex-start;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 40px;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 34px;
     align-self: center;
   }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 30px;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 28px;
   }
 `;
 
@@ -33,26 +40,29 @@ export const Line = styled.div`
   display: flex;
   flex-direction: row;
   width: 70%;
-  gap: 3rem;
+  column-gap: 3rem;
   height: 10rem;
   flex-basis: 10%;
+  align-items: center;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column;
-    align-items: center;
+    width: 120%;
   }
 `;
+
 export const ImageLine = styled.div`
   display: flex;
   flex-direction: row;
   width: 70%;
-  flex-basis: 50%;
-  gap: 3rem;
+  flex-basis: 60%;
+  column-gap: 3rem;
   align-items: center;
   @media (max-width: ${breakpoints.smallTablet}) {
     flex-direction: column-reverse;
-    align-items: center;
+    width: 120%;
   }
 `;
+
 export const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,86 +71,106 @@ export const TextColumn = styled.div`
 
   > img {
     width: 100%;
-    height: 20rem;
+    height: auto;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
       border-color: ${colors.font.secondary};
+      width:80%;
+      align-self:center;
     }
   }
   > p {
     color: ${colors.font.primary};
     text-align: justify;
-    align-self: center;
     justify-self: center;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 100%;
-    flex-direction: row;
+    align-items: center;
+
+    @media (max-width: ${breakpoints.smallTablet}) {
+      width: 100%;
+      flex-direction: row;
+    }
   }
 `;
 export const PintaColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: 10%;
   > img {
-    width: 100%;
-    height: 50%;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
       border-color: ${colors.font.secondary};
+      max-width:300px;
+      height:30vh;
+      align-self:center;
     }
   }
-  > p {
-    color: ${colors.font.primary};
-    text-align: justify;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 100%;
-    flex-direction: row;
-  }
 `;
+
 export const TextPintaColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 80%;
   justify-content: center;
-  > img {
-    width: 100%;
-    height: 50%;
-    border: 6px solid ${colors.font.primary};
-    border-bottom-width: 12px;
-    @media (max-width: ${breakpoints.smallTablet}) {
-      border-color: ${colors.font.secondary};
-    }
-  }
-  > p {
-    color: ${colors.font.primary};
-    text-align: justify;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 100%;
+  color: ${colors.font.primary};
+  text-align: justify;
+  @media (max-width: ${breakpoints.tablet}) {
     flex-direction: row;
+    width:70%;
   }
 `;
+
 export const Banner = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
   > p {
-    font-size: 30px;
+    font-size: 28px;
     color: ${colors.font.primary};
-    width: 80%;
+    width: 85%;
     text-align: center;
-    @media (max-width: ${breakpoints.desktop}) {
-      font-size: 25px;
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: 22px;
+    }
+    @media (max-width: ${breakpoints.mobile}) {
+      font-size: 20px;
     }
   }
 `;
 export const TextLine = styled.div`
   display: flex;
   flex-direction: row;
+  text-align: justify;
   width: 70%;
+  @media (max-width: ${breakpoints.tablet}) {
+    width:80%;
+  }
+`;
+
+export const SubTitle = styled.h2`
+  width: 100%;
+  font-size: 36px;
+  color: ${colors.font.title};
+  font-family: ${fonts.Cabin};
+  text-decoration: underline ${colors.font.line};
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 3px;
+  text-align:left;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 32px;
+    text-underline-offset: 0.5rem;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 26px;
+    text-align: center;
+  }
+`;
+
+export const BomDespachoIMG = styled.div`
+display:flex;
+  height:100%;
+  width:100px;
 `;

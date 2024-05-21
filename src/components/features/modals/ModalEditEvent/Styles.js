@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MultiSelect } from "primereact/multiselect";
 import { breakpoints, colors } from "../../../../styles/stylesVariables";
-import { Modal } from "antd";
+import { Modal, Input } from "antd";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,12 +36,18 @@ export const MultipleSelect = styled(MultiSelect)`
     width: 50%;
   }
   @media (max-width: ${breakpoints.mobile}) {
+    display: flex;
+    flex-direction: row;
     width: 33%;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
     width: 50%;
   }
+  &:hover {
+    border-color: #f19709;
+  }
 `;
+
 export const ModalStyle = styled(Modal)`
   .ant-modal-content {
     background-color: ${colors.modals.background};

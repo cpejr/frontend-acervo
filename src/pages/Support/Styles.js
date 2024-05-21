@@ -15,7 +15,6 @@ export const HeaderArea = styled.div``;
 export const Image = styled.img`
   width: 100%;
   height: auto;
-
   @media (min-width: ${breakpoints.tablet}) {
     height: 33rem;
   }
@@ -26,96 +25,84 @@ export const Title = styled.h1`
   color: ${colors.font.title};
   width: 100%;
   text-align: center;
-  font-size: 50px;
+  font-size: 36px;
   text-decoration: underline ${colors.font.line};
   text-decoration-skip-ink: auto;
-  text-underline-offset: 1.3rem;
+  text-underline-offset: 0.8rem;
   text-decoration-thickness: 3px;
 
-  @media (max-width: ${breakpoints.mediumTablet}) {
-    font-size: 40px;
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-top: 50px;
+    font-size: 32px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 30px;
-    text-underline-offset: 0.5rem;
+    font-size: 26px;
     line-height: 55px;
-  }
-
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    font-size: 27px;
   }
 `;
 
 export const SubTitle = styled.h2`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  font-size: 36px;
   font-family: ${fonts.Cabin};
-  font-size: 35px;
   color: ${colors.font.title};
   text-align: center;
-  line-height: 100px;
   text-decoration: underline ${colors.font.line};
   text-decoration-skip-ink: auto;
-  text-underline-offset: 1.3rem;
+  text-underline-offset: 0.5rem;
   text-decoration-thickness: 3px;
 
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 30px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 32px;
   }
-
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 25px;
-    text-underline-offset: 0.7rem;
-    line-height: 55px;
+    font-size: 26px;
   }
 `;
 
 export const TextArea = styled.div`
-  padding: 80px 100px;
-
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    padding: 50px 70px;
+  align-self: center;
+  padding: 40px 0 40px 0;
+  margin-inline: 10%;
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 20px 0 20px 0;
+    margin-inline: 10%;
   }
-
-  @media (max-width: ${breakpoints.smallDevice}) {
-    padding: 30px;
-  }
-
-  @media (max-width: ${breakpoints.newsletter}) {
-    padding: 40px;
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 10px 0 10px 0;
+    margin-inline: 10%;
   }
 `;
 
 export const Text1 = styled.div`
   text-align: justify;
   font-family: ${fonts.Cabin};
-  font-size: 30px;
+  font-size: 22px;
   color: ${colors.font.primary};
   padding-bottom: 25px;
 
-  @media (max-width: ${breakpoints.mediumTablet}) {
-    font-size: 25px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 18px;
   }
 
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 23px;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 14px;
   }
 `;
 
 export const Text2 = styled.div`
   text-align: justify;
   font-family: ${fonts.Cabin};
-  font-size: 30px;
+  font-size: 22px;
   color: ${colors.font.primary};
 
-  @media (max-width: ${breakpoints.mediumTablet}) {
-    font-size: 25px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 18px;
   }
 
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 23px;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 14px;
   }
 `;
 
@@ -124,108 +111,78 @@ export const DonationArea = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0% 10%;
+  margin-inline:10%;
+  margin-bottom:40px;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding-bottom: 40px;
+    margin-inline:3%;
+    justify-content:space-evenly;
   }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     flex-direction: column;
   }
 `;
 
 export const QRCodeArea = styled.div`
-  width: 40%;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 100%;
-    //padding-left: 20px;
-  }
 `;
 
 export const QRCodeAndText = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
 
   @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column-reverse;
+    align-items:center;
+    gap:10px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
-  }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
-    flex-direction: row;
-  }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
-    justify-content: space-between;
-  }
-
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    flex-direction: column;
-    padding-right: 5%;
+    align-items:center;
+    gap:10px;
   }
 `;
 
 export const QRCode = styled.img`
-  width: 100%;
-  padding: 0% 10% 10% 0%;
+  padding-right:30px;
+  max-width:250px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
-  @media (max-width: ${breakpoints.desktop}) {
-    width: 200%;
-  }
-
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 0% 5% 5% 0%;
-    width: 70%;
-    height: 70%;
+    padding-right:0;
+    max-width:180px;
   }
-
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 0% 0% 5% 0%;
-    width: 70%;
-    height: 70%;
+    padding-right:0;
+    max-width:140px;
   }
-
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    padding: 0% 0% 5% 0%;
-  }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 50%;
-    height: 50%;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    padding-right:0;
+    max-width:100px;
   }
 `;
 
 export const QRCodeText = styled.div`
-  font-size: 30px;
+  font-size: 22px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 20px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 18px;
+    width:80%;
   }
 
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 100%;
-    padding-left: 10%;
-    text-align: start;
-  }
-
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    text-align: center;
-    padding: 5% 0%;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 16px;
   }
 `;
 
@@ -240,6 +197,7 @@ export const ButtonText = styled.div`
   color: ${colors.font.primary};
   padding-left: 5px;
   width: 300px;
+  text-align:left;
 
   @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 20px;
@@ -255,25 +213,20 @@ export const WhatsAppButtonArea = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: ${breakpoints.mediumTablet}) {
-    padding-left: 55px;
-  }
-
+  min-width:320px;
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 0% 0% 23% 0%;
+    min-width:250px;;
   }
 `;
 
 export const Redirecionar = styled.a`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-decoration: none;
-`;
-
-export const FooterArea = styled.div`
-  width: 100%;
-  height: auto;
+  max-width:320px;  
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 20px;
+    max-width:250px;
+  }
 `;
