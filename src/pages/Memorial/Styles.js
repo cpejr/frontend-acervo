@@ -89,7 +89,8 @@ export const DivSelect = styled.div`
   gap:1rem;
   @media (max-width: ${breakpoints.tablet}) {
     display:grid;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    justify-content:center;
   }
 `;
 export const UniSelect = styled(Dropdown)`
