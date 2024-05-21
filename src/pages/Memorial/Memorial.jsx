@@ -94,6 +94,8 @@ export default function Memorial() {
   }, [categoryType, memorial]);
 
   const categoryFilter = () => {
+    console.log(dates);
+    console.log(dateRange);
     const [initialDate, finalDate] = dates;
     let formattedDateRange;
     if (finalDate === null) {
@@ -105,6 +107,7 @@ export default function Memorial() {
       };
     }
     setDateRange(formattedDateRange);
+    console.log(memorial);
     if (types.length === 0) {
       setFilteredMemorial(memorial);
     } else {
@@ -116,6 +119,7 @@ export default function Memorial() {
 
       setFilteredMemorial(filtered);
     }
+    console.log(filteredMemorial);
   };
 
   return (
