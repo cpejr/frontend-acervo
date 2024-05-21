@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import {
   Container,
   Title,
-  ContainerFilter,
-  BackgroundTitle,
+  Filter,
   DivSelect,
   UniSelect,
   DivLine,
@@ -20,11 +19,6 @@ import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
 export default function Memorial() {
-  const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
-    { label: "Característica grande", value: "grande", checked: false },
-    { label: "Característica teste1", value: "teste1", checked: false },
-    { label: "Característica teste2", value: "teste2", checked: false },
-  ]);
   const [imagesLoading, setImagesLoading] = useState(true);
   const [types, setTypes] = useState([]);
   const [filteredMemorial, setFilteredMemorial] = useState();
@@ -130,59 +124,42 @@ export default function Memorial() {
 
   return (
     <Container>
-      <BackgroundTitle>
-        <Title>ACERVO</Title>
-      </BackgroundTitle>
+      <Title>ACERVO</Title>
       <SearchBar
         aria-label="Barra de pesquisa"
-        placeholder="Pesquisar Acervo"
+        placeholder="Pesquisar"
         value={searchValue}
         search={handleSearchChange}
       />
       <Filter>
-        <Characteristics>
-          <FilterTitle>Características:</FilterTitle>
-          {characteristicCheckboxes.map((checkbox) => (
-            <label key={checkbox.value}>
-              <Checkbox
-                aria-label="Botão seletor de caracteristicas"
-                checked={checkbox.checked}
-                name={checkbox.value}
-                onChange={handleChangeCheckbox}
-              />
-              {checkbox.label}
-            </label>
-          ))}
-        </Characteristics>
-        <VerticalLine />
-        <ContainerFilter>
-          <DivSelect>
-            <Calendar
-              value={dates}
-              onChange={(e) => setDates(e.value)}
-              selectionMode="range"
-              readOnlyInput
-              hideOnRangeSelection
-              placeholder="Determine uma data"
-              showButtonBar
-              dateFormat="dd/mm/yy"
-            />
-            <UniSelect
-              aria-label="Botão de ordenação"
-              value={sortValue}
-              options={filters}
-              optionLabel="label"
-              showClear 
-              placeholder="Ordenar Por"
-              onChange={handleChangeSort}
-              className="w-full md:w-14rem"
-            />
-          </DivSelect>
-          <ButtonsDiv>
-            <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
-            <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
-          </ButtonsDiv>
-        </ContainerFilter>
+        <DivSelect>
+          <Calendar
+            value={dates}
+            onChange={(e) => setDates(e.value)}
+            selectionMode="range"
+            readOnlyInput
+            hideOnRangeSelection
+            placeholder="Determine uma data"
+            showButtonBar
+            dateFormat="dd/mm/yy"
+          />
+          <UniSelect
+            aria-label="Botão de ordenação"
+            value={sortValue}
+            options={filters}
+            optionLabel="label"
+            showClear
+            placeholder="Ordenar Por"
+            onChange={handleChangeSort}
+            className="w-full md:w-14rem"
+          />
+          <MultipleSelect
+            options={options}
+            placeholder="escolha a categoria"
+            value={types || ""}
+            onChange={(e) => setTypes(e.value)}
+          />
+        </DivSelect>
       </Filter>
       <ButtonsDiv>
         <Buttons onClick={categoryFilter}>Filtrar</Buttons>
@@ -192,23 +169,6 @@ export default function Memorial() {
         {filteredMemorial
           ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
-          ).filter((card) => {
-            const ids = card.id_categoryType
-          
-            for (let i = 0; i < ids.length; i++) {
-              for (let u = 0; u < characteristicCheckboxes.length; u++) {
-                if(characteristicCheckboxes[u].value == (ids[i].name) && characteristicCheckboxes[u].checked == true)
-                  return true;              
-              }           
-            }
-          
-            for (let index = 0; index < characteristicCheckboxes.length; index++) {
-              if (characteristicCheckboxes[index].checked == true) {
-                return false;
-              }
-            }
-            return true;
-          } 
           )
           .map((card) => (
             <Line key={card.title}>
