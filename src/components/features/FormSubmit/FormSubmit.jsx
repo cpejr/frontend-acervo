@@ -126,7 +126,7 @@ export default function FormSubmit({
         }
         return null;
       })}
-      <Button type="submit" width="200px" height="50px">
+      <Button type="submit" width="150px" height="50px">
         {loading ? <LoadingOutlined /> : "Enviar"}
       </Button>
     </Form>

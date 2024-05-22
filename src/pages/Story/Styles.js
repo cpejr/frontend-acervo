@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { colors } from "../../styles/stylesVariables";
+import { breakpoints, colors } from "../../styles/stylesVariables";
+import { titleBackground } from "../../assets/index";
 
 export const Container = styled.div`
   padding: 3rem 0;
@@ -23,6 +24,22 @@ export const Paragraph = styled.p`
 
 export const Title = styled.h1`
   color: ${colors.font.title};
-  margin: 0;
-  border-bottom: 2px solid ${colors.font.primary};
+  font-size: 36px;
+  margin-left: 3%;
+  text-decoration: underline ${colors.underline};
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 3px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 34px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 28px;
+    margin-left: 8%;
+  }
+`;
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  display: flex;
+  align-items: center;
 `;

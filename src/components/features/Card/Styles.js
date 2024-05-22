@@ -1,4 +1,4 @@
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 
@@ -9,25 +9,16 @@ export const StyledCard = styled(Card)`
   height: auto;
   align-items: center;
   border-radius: 24px;
-  gap: 3.33rem;
+  gap: 1rem;
   background-color: ${colors.background.white};
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   &:hover {
   }
   .ant-card-body {
     width: 100%;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
-    width: 24rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 25rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 26.66rem;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 22rem;
+    width: 80%;
   }
   > div {
     display: flex;
@@ -157,22 +148,7 @@ export const ButtonDiv = styled.div`
   width: 100%;
   align-content: center;
 `;
-export const OrangeButton = styled(Button)`
-  width: 7.5rem;
-  height: 2.5rem;
-  background-color: ${colors.accent};
-  border: none;
-  margin-top: 1rem;
-  border-radius: 10px;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 12rem;
-    height: 2.25rem;
-  }
 
-  &:hover {
-    background-color: blue;
-  }
-`;
 export const Tags = styled.div`
   display: flex;
   flex-direction: row;
@@ -198,25 +174,9 @@ export const Tag = styled.div`
     height: 32px;
     font-size: 14px;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    height: 24px;
-    font-size: 12px;
-  }
-
-  @media (max-width: ${breakpoints.miniTablet}) {
-    height: 21.6px;
-    font-size: 14px;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    height: 32px;
-    font-size: 14px;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 12px;
-  }
   &:hover {
-    border: 1px solid blue;
-    color: blue;
+    border: 1px solid ${colors.accent.primary};
+    color: ${colors.font.secondary};
   }
 `;
 export const LoadingStyles = styled.div`

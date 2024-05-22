@@ -1,5 +1,4 @@
 import { Container, EventCollumn } from "./Styles";
-
 import { Event } from "../../components";
 import { useParams } from "react-router-dom";
 import { useGetReadByName } from "../../hooks/querys/events";

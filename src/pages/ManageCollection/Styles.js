@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/stylesVariables";
+import { breakpoints, colors,fonts } from "../../styles/stylesVariables";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,41 +8,36 @@ export const Container = styled.div`
 `;
 export const Title = styled.div`
   color: ${colors.font.title};
-  font-size: 30px;
-  margin-left: 5%;
-  width: fit-content;
-
-  border-bottom: 2px solid ${colors.font.title};
+  font-size: 36px;
+  margin-left: 3%;
+  text-decoration: underline ${colors.underline};
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 3px;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 27px;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 25px;
+    font-size: 34px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 22px;
+    font-size: 28px;
+    margin-left: 8%;
   }
 `;
-export const SubTitle = styled.div`
+export const SubTitle = styled.h2`
+  width: 100%;
+  font-size: 36px;
+  font-family: ${fonts.Cabin};
   color: ${colors.font.title};
-  font-size: 30px;
-  margin-left: 5%;
-  width: fit-content;
-  border-bottom: 2px solid ${colors.font.title};
+  margin-left:5%;
+  text-decoration: underline ${colors.font.line};
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 3px;
+
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 27px;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    font-size: 25px;
+    font-size: 32px;
+    text-underline-offset: 0.5rem;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    font-size: 22px;
+    font-size: 26px;
   }
 `;
 export const LoadingStyles = styled.div`

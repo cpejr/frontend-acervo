@@ -77,7 +77,7 @@ export default function ManageUsers() {
     setUsers(formattedUsers);
   }
   function handleTypeChange(_id, data) {
-    const newUserData = { data };
+    const newUserData = { type:data };
     updateUser({ _id, newUserData });
   }
   function handleUserDelete(_id) {
@@ -131,7 +131,7 @@ export default function ManageUsers() {
     <Container>
       <Title>GERENCIAR USUÁRIOS</Title>
       <SearchBar
-        placeholder={"Pesquisar usuario"}
+        placeholder={"Pesquisar usuário"}
         value={searchQuery}
         search={handleSearchChange}
         width="90%"

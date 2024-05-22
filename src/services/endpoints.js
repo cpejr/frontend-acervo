@@ -9,7 +9,6 @@ export async function getUsers() {
 
 export async function deleteUser(_id) {
   const { data } = await api.delete(`/user/${_id}`);
-
   return data;
 }
 export const login = async (credentials) => {
