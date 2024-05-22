@@ -174,7 +174,6 @@ export default function ManageCollection() {
         queryClient.invalidateQueries({
           queryKey: ["memorial"],
         });
-        co;
         toast.success("Post deletado com sucesso!");
       },
       onError: (err) => {

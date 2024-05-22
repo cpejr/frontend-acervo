@@ -38,7 +38,7 @@ export default function Support() {
         alt="SupportPageBomDespachoImage"
       />
 
-      <Title>APOIE O PROJETO NOSSA HISTÓRIA</Title>
+      <Title>APOIE O PROJETO</Title>
       <TextArea>
         <Text1>
           A principal forma de nos apoiar é participando do projeto, ajudando na
@@ -52,7 +52,7 @@ export default function Support() {
       </TextArea>
       <DonationArea>
         <QRCodeArea>
-          <SubTitle>PARA DOAR:</SubTitle>
+          <SubTitle>PARA DOAR</SubTitle>
           <QRCodeAndText>
             <QRCode src={QRCodeImage} alt="Qr Code" />
             <QRCodeText>
@@ -61,7 +61,7 @@ export default function Support() {
           </QRCodeAndText>
         </QRCodeArea>
         <WhatsAppButtonArea>
-          <SubTitle>PARA CONTRIBUIR:</SubTitle>
+          <SubTitle>PARA CONTRIBUIR</SubTitle>
           <Redirecionar href="https://wa.me/+5531975293805">
             <Button
               width="70%"
@@ -75,7 +75,7 @@ export default function Support() {
           </Redirecionar>
         </WhatsAppButtonArea>
       </DonationArea>
-        <Footer />
+      <Footer />
     </Container>
   );
 }
