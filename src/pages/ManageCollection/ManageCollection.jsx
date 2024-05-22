@@ -60,6 +60,7 @@ export default function ManageCollection() {
       };
     }
     setSelectOptions(types);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryType]);
 
   const [inputs] = useState([

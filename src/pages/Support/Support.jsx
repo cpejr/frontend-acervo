@@ -1,4 +1,3 @@
-import Footer from "../../components/features/layout/Footer/Footer";
 import { Button } from "../../components";
 import {
   BomDespachoImageSupportPage,
@@ -69,7 +68,6 @@ export default function Support() {
           </Redirecionar>
         </WhatsAppButtonArea>
       </DonationArea>
-      <Footer />
     </Container>
   );
 }
