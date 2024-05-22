@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Title, LoadingStyles, SubTitle } from "./Styles";
+import {
+  Container,
+  Title,
+  LoadingStyles,
+  SubTitle,
+  BackgroundTitle,
+} from "./Styles";
 import {
   Table,
   ModalDeleteItem,
@@ -202,7 +208,9 @@ export default function ManageCollection() {
 
   return (
     <Container>
-      <Title>ADICIONAR NOVO ARQUIVO </Title>
+      <BackgroundTitle>
+        <Title>ADICIONAR NOVO ARQUIVO </Title>
+      </BackgroundTitle>
       <FormSubmit
         inputs={inputs}
         onSubmit={handlesubmit}

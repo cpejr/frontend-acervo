@@ -30,6 +30,7 @@ import {
   MultipleSelect,
   EventButtons,
   LoadingStyles,
+  BackgroundTitle,
 } from "./Styles";
 import UploadInput from "../../components/common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -172,7 +173,9 @@ export default function ManageEvents() {
 
   return (
     <Container>
-      <Title>SUBMETER NOVO EVENTO</Title>
+      <BackgroundTitle>
+        <Title>SUBMETER NOVO EVENTO</Title>
+      </BackgroundTitle>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Section>
           <FormInputEvents

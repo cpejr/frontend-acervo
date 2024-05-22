@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Select } from "antd";
+import { titleBackground } from "../../assets/index";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 3rem 0;
 `;
 
 export const Title = styled.div`
@@ -62,4 +62,9 @@ export const LoadingStyles = styled.div`
   display: "block";
   font-size: 24px;
   margin: 20px auto;
+`;
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 4rem;
 `;

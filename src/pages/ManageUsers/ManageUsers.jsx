@@ -7,6 +7,7 @@ import {
   ProfilePic,
   Title,
   LoadingStyles,
+  BackgroundTitle,
 } from "./Styles";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -77,7 +78,7 @@ export default function ManageUsers() {
     setUsers(formattedUsers);
   }
   function handleTypeChange(_id, data) {
-    const newUserData = { type:data };
+    const newUserData = { type: data };
     updateUser({ _id, newUserData });
   }
   function handleUserDelete(_id) {
@@ -129,7 +130,9 @@ export default function ManageUsers() {
 
   return (
     <Container>
-      <Title>GERENCIAR USUÁRIOS</Title>
+      <BackgroundTitle>
+        <Title>GERENCIAR USUÁRIOS</Title>
+      </BackgroundTitle>
       <SearchBar
         placeholder={"Pesquisar usuário"}
         value={searchQuery}

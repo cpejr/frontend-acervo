@@ -24,6 +24,7 @@ import {
   WhatsAppImage,
   ButtonText,
   Redirecionar,
+  BackgroundTitle,
 } from "./Styles";
 
 export default function Support() {
@@ -33,12 +34,9 @@ export default function Support() {
         <Header />
       </HeaderArea>
 
-      <Image
-        src={BomDespachoImageSupportPage}
-        alt="SupportPageBomDespachoImage"
-      />
-
-      <Title>APOIE O PROJETO</Title>
+      <BackgroundTitle>
+        <Title>APOIE O PROJETO</Title>
+      </BackgroundTitle>
       <TextArea>
         <Text1>
           A principal forma de nos apoiar é participando do projeto, ajudando na
