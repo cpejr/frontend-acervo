@@ -1,4 +1,3 @@
-import Header from "../../components/features/layout/Header/Header";
 import Footer from "../../components/features/layout/Footer/Footer";
 import { Button } from "../../components";
 import {
@@ -8,7 +7,6 @@ import {
 } from "../../assets";
 import {
   Container,
-  HeaderArea,
   Image,
   Title,
   SubTitle,
@@ -29,10 +27,6 @@ import {
 export default function Support() {
   return (
     <Container>
-      <HeaderArea>
-        <Header />
-      </HeaderArea>
-
       <Image
         src={BomDespachoImageSupportPage}
         alt="SupportPageBomDespachoImage"
