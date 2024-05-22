@@ -31,7 +31,7 @@ export const ProfilePic = styled.img`
 `;
 
 export const TypeSelect = styled(Select)`
-
+  width: 114px;
   .ant-select-selector {
     background-color: ${colors.font.primary};
     color: ${colors.font.primary} !important;

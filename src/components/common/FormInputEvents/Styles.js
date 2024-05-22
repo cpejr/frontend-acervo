@@ -60,6 +60,6 @@ export const IconContainer = styled.div`
 
 export const ErrorMessage = styled.p`
   font-size: 1.3rem;
-  color: ${colors.error};
+  color: ${colors.error.primary};
   font-weight: 400;
 `;
