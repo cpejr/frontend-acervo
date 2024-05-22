@@ -16,7 +16,7 @@ import { useGetArchives } from "../../../hooks/querys/archive";
 //   import DOMPurify from "dompurify";
 export default function Event({ data }) {
   let categories = [...data[0].id_categoryPrice, ...data[0].id_categoryType];
-  
+
   const [image, setImage] = useState(null);
   const { data: archives, isLoading } = useGetArchives(
     data[0].eventUpload,
@@ -34,19 +34,33 @@ export default function Event({ data }) {
       setImage(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data,archives]);
+  }, [data, archives]);
   return (
     <>
       {data?.map((eventData, index) => (
         <>
           <Row key={index}>
             <ImageCollumn>
-                <img src={image} alt={`EventImage ${index}`} />
+              <img src={image} alt={`EventImage ${index}`} />
             </ImageCollumn>
             <DataCollumn>
               <Group>
                 <Line>{eventData?.name}</Line>
-                <LinkLine><a href={eventData?.link}>{eventData?.link}</a></LinkLine>
+                <LinkLine
+                  onClick={() => {
+                    const url = eventData?.link;
+                    if (url) {
+                      const isAbsolute =
+                        url.startsWith("https://") ||
+                        url.startsWith("https://");
+                      window.location.replace(
+                        isAbsolute ? url : `https://${url}`
+                      );
+                    }
+                  }}
+                >
+                  {eventData?.link}
+                </LinkLine>
               </Group>
               <TagsLine key={`line-${index}`}>
                 {categories?.map((category, index) => (

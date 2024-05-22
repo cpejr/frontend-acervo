@@ -1,5 +1,3 @@
-import Header from "../../components/features/layout/Header/Header";
-import Footer from "../../components/features/layout/Footer/Footer";
 import { Button } from "../../components";
 import {
   BomDespachoImageSupportPage,
@@ -8,7 +6,6 @@ import {
 } from "../../assets";
 import {
   Container,
-  HeaderArea,
   Image,
   Title,
   SubTitle,
@@ -30,13 +27,12 @@ import {
 export default function Support() {
   return (
     <Container>
-      <HeaderArea>
-        <Header />
-      </HeaderArea>
+      <Image
+        src={BomDespachoImageSupportPage}
+        alt="SupportPageBomDespachoImage"
+      />
 
-      <BackgroundTitle>
-        <Title>APOIE O PROJETO</Title>
-      </BackgroundTitle>
+      <Title>APOIE O PROJETO</Title>
       <TextArea>
         <Text1>
           A principal forma de nos apoiar é participando do projeto, ajudando na
@@ -73,7 +69,6 @@ export default function Support() {
           </Redirecionar>
         </WhatsAppButtonArea>
       </DonationArea>
-      <Footer />
     </Container>
   );
 }

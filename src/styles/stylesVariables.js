@@ -24,6 +24,7 @@ export const colors = {
     primary: "pink",
     secondary: "#9E0000",
   },
+  blue: "#AEC6CF",
   warning: "#F19709",
   placeholder: "#DFDFDF",
   underline: "#FFD599",
