@@ -87,13 +87,16 @@ export default function LoginSocialArea() {
         </LoginButton>
       )}
       <SocialMedias>
-        <a href="https://www.instagram.com/prefeiturabd/">
+        <a href="https://www.instagram.com/prefeiturabd/" target="_blank">
           <img src={Instagram} alt="Logo Instagram" width="75%"></img>
         </a>
-        <a href="https://www.facebook.com/prefeiturabd/?locale=pt_BR">
+        <a
+          href="https://www.facebook.com/prefeiturabd/?locale=pt_BR"
+          target="_blank"
+        >
           <img src={Facebook} alt="Logo Facebook" width="75%"></img>
         </a>{" "}
-        <a href="http://wa.me/+31992740294">
+        <a href="http://wa.me/+31992740294" target="_blank">
           <img src={Whatsapp} alt="Logo Whatsapp" width="75%"></img>
         </a>
       </SocialMedias>

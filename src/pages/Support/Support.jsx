@@ -24,7 +24,6 @@ import {
   WhatsAppImage,
   ButtonText,
   Redirecionar,
-  FooterArea,
 } from "./Styles";
 
 export default function Support() {
@@ -70,15 +69,13 @@ export default function Support() {
               paddingLeft="0.7rem"
               paddingRight="0.7rem"
             >
+              <ButtonText>Entrar em contato</ButtonText>
               <WhatsAppImage src={WhatsAppIcon} alt="WhatsAppIcon" />
-              <ButtonText>Entre em contato pelo WhatsApp</ButtonText>
             </Button>
           </Redirecionar>
         </WhatsAppButtonArea>
       </DonationArea>
-      <FooterArea>
         <Footer />
-      </FooterArea>
     </Container>
   );
 }

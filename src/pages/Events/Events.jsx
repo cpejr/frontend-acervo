@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useGetEventsByCategoryId } from "../../hooks/querys/events";
 import useDebounce from "../../services/useDebouce";
+import { useGetCategoryType } from "../../hooks/querys/categoryType";
+import { useGetCategoryPrice } from "../../hooks/querys/categoryPrice";
 import Card from "../../components/features/Card/Card";
-import FilterArea from "../../components/features/FilterArea/FilterArea";
 import { toast } from "react-toastify";
 
 import {
@@ -10,10 +11,16 @@ import {
   DivLine,
   Line,
   TrendingEvents,
-  Filter,
   EventNotFound,
   Title,
   BackgroundTitle,
+  ContainerFilter,
+  MultipleSelect,
+  DivSelect,
+  UniSelect,
+  ButtonsDiv,
+  Calendar,
+  Buttons,
 } from "./Styles";
 
 import { SearchBar } from "../../components";
@@ -22,6 +29,7 @@ export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
   const [filter, setFilter] = useState([]);
+  const [dates, setDates] = useState(null);
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
@@ -36,6 +44,67 @@ export default function Events() {
     },
   });
 
+  const { data: categoryType } = useGetCategoryType({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+  const { data: categoryPrice } = useGetCategoryPrice({
+    onError: (err) => {
+      toast.error(err);
+    },
+  });
+
+  const filters = [
+    { label: "Data", value: "date" },
+    { label: "Nome", value: "name" },
+  ];
+
+  const transformArrayItems = (OriginalArray) => {
+    const newArray = OriginalArray?.map((item) => ({
+      value: item?._id,
+      label: item?.name,
+    }));
+    return newArray;
+  };
+  
+  function handleFilterChange() {
+
+    if (dates) {
+      let formattedDateRange;
+      const [initialDate, finalDate] = dates;
+      if (finalDate === null) {
+        formattedDateRange = { oneDate: initialDate.toISOString() };
+      } else {
+        formattedDateRange = {
+          initialDate: initialDate.toISOString(),
+          finalDate: finalDate.toISOString(),
+        };
+      }
+      setDateRange(formattedDateRange);
+    }
+
+    let ids = [];
+
+    for (let i = 0; i < prices.length; i++) {
+      ids.push(prices[i]);
+    }
+
+    for (let i = 0; i < types.length; i++) {
+      ids.push(types[i]);
+    }
+
+    setCategoryIDsArrays(ids);
+  }
+
+  const handleResetFilter = () => {
+    setTypes([]);
+    setPrices([]);
+    setFilter([]);
+    setDateRange([]); 
+    setCategoryIDsArrays([]);
+  };
+
   return (
     <Container>
       <BackgroundTitle>
@@ -44,22 +113,56 @@ export default function Events() {
       <SearchBar
         value={names}
         search={(e) => setNames(e.target.value)}
-        placeholder="Pesquisar Evento"
+        placeholder="Pesquisar Eventos"
       ></SearchBar>
-      <Filter>
-        <FilterArea
-          types={types}
-          setArray={setCategoryIDsArrays}
-          setTypes={setTypes}
-          prices={prices}
-          setPrices={setPrices}
-          filter={filter}
-          setFilter={setFilter}
-          setNames={setNames}
-          isCalendarNeed={true}
-          setDateRange={setDateRange}
-        ></FilterArea>
-      </Filter>
+      <ContainerFilter>
+        <DivSelect>
+          <MultipleSelect
+            value={types}
+            onChange={(e) => setTypes(e.value)}
+            options={transformArrayItems(categoryType)}
+            optionLabel="label"
+            placeholder="Escolha o tipo"
+            className="w-full md:w-20rem"
+            filter
+          />
+          <MultipleSelect
+            value={prices}
+            onChange={(e) => setPrices(e.value)}
+            options={transformArrayItems(categoryPrice)}
+            optionLabel="label"
+            placeholder="Escolha o preço"
+            className="w-full md:w-20rem"
+            filter
+          />
+
+          <Calendar
+            value={dates}
+            onChange={(e) => setDates(e.value)}
+            selectionMode="range"
+            readOnlyInput
+            hideOnRangeSelection
+            placeholder="Determine uma data"
+            showButtonBar
+            dateFormat="dd/mm/yy"
+          />
+
+          <UniSelect
+            value={filter}
+            onChange={(e) => setFilter(e.value)}
+            options={filters}
+            showClear
+            optionLabel="label"
+            placeholder="Ordenar Por"
+            className="w-full md:w-14rem"
+          ></UniSelect>
+        </DivSelect>
+
+        <ButtonsDiv>
+          <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
+          <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+        </ButtonsDiv>
+      </ContainerFilter>
       <TrendingEvents>
         <DivLine>
           {events?.length === 0 && (

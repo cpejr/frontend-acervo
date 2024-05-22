@@ -9,7 +9,6 @@ export const Form = styled.form`
   flex-direction: column;
   width: 100%;
   gap: 2rem !important;
-  height: 100%;
   box-shadow: none;
   z-index: 0;
   @media (max-width: 700px) {
@@ -25,6 +24,7 @@ export const Form = styled.form`
 `;
 
 export const Select = styled(MultiSelect)`
+  font-size: 1.3rem;
   width: 70%;
   background-color: inherit;
   color: ${(props) => props?.selectColor};
@@ -40,17 +40,11 @@ export const Select = styled(MultiSelect)`
   .p-placeholder {
     color: ${(props) => props?.selectColor};
   }
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 25%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 25%;
-  }
   @media (max-width: ${breakpoints.mobile}) {
-    width: 45%;
+    font-size: 1rem;
   }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 60%;
+  &:hover {
+    border-color: #f19709;
   }
 `;
 export const ErrorMessage = styled.p`

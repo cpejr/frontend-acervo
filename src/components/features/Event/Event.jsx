@@ -2,38 +2,57 @@
 import {
   DataCollumn,
   Group,
-  Image,
   ImageCollumn,
   KnowMore,
   Line,
   Row,
   Tag,
   TagsLine,
+  LinkLine,
 } from "./Styles";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import { useGetArchives } from "../../../hooks/querys/archive";
 //   import DOMPurify from "dompurify";
 export default function Event({ data }) {
   let categories = [...data[0].id_categoryPrice, ...data[0].id_categoryType];
+  
+  const [image, setImage] = useState(null);
+  const { data: archives, isLoading } = useGetArchives(
+    data[0].eventUpload,
+    data[0].name,
+    {
+      onError: (err) => {
+        console.error("Erro ao pegar itens", err);
+      },
+    }
+  );
+  useEffect(() => {
+    if (!isLoading) {
+      setImage(archives);
+    } else {
+      setImage(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data,archives]);
   return (
     <>
       {data?.map((eventData, index) => (
         <>
           <Row key={index}>
             <ImageCollumn>
-              <Image>
-                <img src={eventData?.eventUpload} alt={`EventImage ${index}`} />
-              </Image>
+                <img src={image} alt={`EventImage ${index}`} />
+            </ImageCollumn>
+            <DataCollumn>
+              <Group>
+                <Line>{eventData?.name}</Line>
+                <LinkLine><a href={eventData?.link}>{eventData?.link}</a></LinkLine>
+              </Group>
               <TagsLine key={`line-${index}`}>
                 {categories?.map((category, index) => (
                   <Tag key={index}>{category?.name}</Tag>
                 ))}
               </TagsLine>
-            </ImageCollumn>
-            <DataCollumn>
-              <Group>
-                <Line>{eventData?.name}</Line>
-              </Group>
-              <Line></Line>
               <p>{eventData?.shortDescription}</p>
             </DataCollumn>
           </Row>

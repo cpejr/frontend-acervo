@@ -27,5 +27,8 @@ export const Input = styled(AutoComplete)`
     &::placeholder {
       color: ${colors.font.primary};
     }
+  &:hover {
+    border-color: #f19709;
+  }
   }
 `;

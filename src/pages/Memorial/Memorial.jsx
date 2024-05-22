@@ -3,6 +3,7 @@ import {
   Container,
   Title,
   ContainerFilter,
+  BackgroundTitle,
   DivSelect,
   UniSelect,
   VerticalLine,
@@ -24,9 +25,9 @@ import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { useQueryClient } from "@tanstack/react-query";
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
-    { label: "Característica 1", value: "c1", checked: false },
-    { label: "Característica 2", value: "c2", checked: false },
-    { label: "Característica 3", value: "c3", checked: false },
+    { label: "Característica grande", value: "grande", checked: false },
+    { label: "Característica teste1", value: "teste1", checked: false },
+    { label: "Característica teste2", value: "teste2", checked: false },
   ]);
   const [imagesLoading, setImagesLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
@@ -107,10 +108,12 @@ export default function Memorial() {
 
   return (
     <Container>
-      <Title>ACERVO</Title>
+      <BackgroundTitle>
+        <Title>ACERVO</Title>
+      </BackgroundTitle>
       <SearchBar
         aria-label="Barra de pesquisa"
-        placeholder="Pesquisar"
+        placeholder="Pesquisar Acervo"
         value={searchValue}
         search={handleSearchChange}
       />
@@ -147,7 +150,7 @@ export default function Memorial() {
               value={sortValue}
               options={filters}
               optionLabel="label"
-              showClear
+              showClear 
               placeholder="Ordenar Por"
               onChange={handleChangeSort}
               className="w-full md:w-14rem"
@@ -163,6 +166,23 @@ export default function Memorial() {
         {memorial
           ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
+          ).filter((card) => {
+            const ids = card.id_categoryType
+          
+            for (let i = 0; i < ids.length; i++) {
+              for (let u = 0; u < characteristicCheckboxes.length; u++) {
+                if(characteristicCheckboxes[u].value == (ids[i].name) && characteristicCheckboxes[u].checked == true)
+                  return true;              
+              }           
+            }
+          
+            for (let index = 0; index < characteristicCheckboxes.length; index++) {
+              if (characteristicCheckboxes[index].checked == true) {
+                return false;
+              }
+            }
+            return true;
+          } 
           )
           .map((card) => (
             <Line key={card.title}>
