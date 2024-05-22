@@ -27,9 +27,9 @@ export default function AboutUs() {
 
   return (
     <Container>
-        <BackgroundTitle>
-          <Title>APRESENTAÇÃO</Title>
-        </BackgroundTitle>
+      <BackgroundTitle>
+        <Title>APRESENTAÇÃO</Title>
+      </BackgroundTitle>
       <Line>
         <TextColumn>
           <p>
@@ -100,14 +100,14 @@ export default function AboutUs() {
             O site é parte de uma Rede, que inclui Whatsapp, Instagram e
             Facebook, criada para o compartilhamento da memória e história de
             Bom Despacho e para a divulgação dos eventos culturais de nossa
-            cidade. Porém, esse site só existe por ser concebido como uma plataforma
-            interativa e colaborativa, somente existe a partir da contribuição
-            da comunidade de Bom Despacho.
+            cidade. Porém, esse site só existe por ser concebido como uma
+            plataforma interativa e colaborativa, somente existe a partir da
+            contribuição da comunidade de Bom Despacho.
           </p>
         </TextPintaColumn>
         <TextColumn>
           <img
-            style={{ border: "none", maxWidth:"250px", alignSelf:"center" }}
+            style={{ border: "none", maxWidth: "250px", alignSelf: "center" }}
             src={BomDespachoImage}
             alt="Bom Despacho Image"
           />

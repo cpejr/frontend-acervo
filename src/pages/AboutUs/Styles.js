@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {  titleBackground } from "../../assets/index";
+import { titleBackground } from "../../assets/index";
 import { breakpoints, colors, fonts } from "../../styles/stylesVariables";
 
 export const Container = styled.div`
@@ -70,14 +70,14 @@ export const TextColumn = styled.div`
   height: 10%;
 
   > img {
-    width: 100%;
+    width: 80%;
     height: auto;
     border: 6px solid ${colors.font.primary};
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
       border-color: ${colors.font.secondary};
-      width:80%;
-      align-self:center;
+      width: 60%;
+      align-self: center;
     }
   }
   > p {
@@ -85,9 +85,10 @@ export const TextColumn = styled.div`
     text-align: justify;
     justify-self: center;
     align-items: center;
+    width: 80%;
+    margin: 0 auto;
 
     @media (max-width: ${breakpoints.smallTablet}) {
-      width: 100%;
       flex-direction: row;
     }
   }
@@ -101,9 +102,9 @@ export const PintaColumn = styled.div`
     border-bottom-width: 12px;
     @media (max-width: ${breakpoints.smallTablet}) {
       border-color: ${colors.font.secondary};
-      max-width:300px;
-      height:30vh;
-      align-self:center;
+      max-width: 300px;
+      height: 30vh;
+      align-self: center;
     }
   }
 `;
@@ -117,7 +118,7 @@ export const TextPintaColumn = styled.div`
   text-align: justify;
   @media (max-width: ${breakpoints.tablet}) {
     flex-direction: row;
-    width:70%;
+    width: 70%;
   }
 `;
 
@@ -144,7 +145,7 @@ export const TextLine = styled.div`
   text-align: justify;
   width: 70%;
   @media (max-width: ${breakpoints.tablet}) {
-    width:80%;
+    width: 80%;
   }
 `;
 
@@ -157,7 +158,7 @@ export const SubTitle = styled.h2`
   text-decoration-skip-ink: auto;
   text-underline-offset: 0.5rem;
   text-decoration-thickness: 3px;
-  text-align:left;
+  text-align: left;
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 32px;
@@ -170,7 +171,7 @@ export const SubTitle = styled.h2`
 `;
 
 export const BomDespachoIMG = styled.div`
-display:flex;
-  height:100%;
-  width:100px;
+  display: flex;
+  height: 100%;
+  width: 100px;
 `;
