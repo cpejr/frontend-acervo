@@ -75,11 +75,13 @@ export default function LargeCard({ data, imagesLoading }) {
 
   const onSubmit = async (event) => {
     event.stopPropagation();
+    console.log("favoritou");
     if (userId) {
       updateFavoriteMemorial({
         userId: userId,
         eventId: data?._id,
       });
+      console.log("favoritou");
     } else {
       toast.error("Você precisa estar logado para favoritar um evento");
     }
