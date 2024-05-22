@@ -128,7 +128,7 @@ export const Tag = styled.div`
   width: auto;
   padding: 5px 1.5rem;
   height: 2rempx;
-  border: 1px solid ${colors.background.secondary};
+  border: 1px solid ${colors.font.primary};
   color: ${colors.font.primary};
   font-size: 15px;
   border-radius: 20px;
@@ -152,7 +152,7 @@ export const KnowMore = styled.div`
   flex-direction: column;
   align-items: center;
   align-self: center;
-  border: solid 2px ${colors.background.secondary};
+  border: solid 2px ${colors.font.primary};
   border-radius: 6px;
   padding: 1rem;
   margin-top: 2rem;
