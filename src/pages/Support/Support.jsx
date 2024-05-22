@@ -1,12 +1,7 @@
 import { Button } from "../../components";
-import {
-  BomDespachoImageSupportPage,
-  QRCodeImage,
-  WhatsAppIcon,
-} from "../../assets";
+import { QRCodeImage, WhatsAppIcon } from "../../assets";
 import {
   Container,
-  Image,
   Title,
   SubTitle,
   TextArea,
@@ -27,12 +22,9 @@ import {
 export default function Support() {
   return (
     <Container>
-      <Image
-        src={BomDespachoImageSupportPage}
-        alt="SupportPageBomDespachoImage"
-      />
-
-      <Title>APOIE O PROJETO</Title>
+      <BackgroundTitle>
+        <Title>APOIE O PROJETO</Title>
+      </BackgroundTitle>
       <TextArea>
         <Text1>
           A principal forma de nos apoiar é participando do projeto, ajudando na

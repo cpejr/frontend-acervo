@@ -25,7 +25,7 @@ export const Title = styled.h1`
   font-family: ${fonts.Cabin};
   color: ${colors.font.title};
   width: 100%;
-  text-align: center;
+  margin-left: 3%;
   font-size: 36px;
 
   text-decoration: underline ${colors.font.line};
