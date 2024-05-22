@@ -146,7 +146,16 @@ export default function LargeCard({ data, imagesLoading }) {
             <LongDescription>{longDescription}</LongDescription>
             {link && (
               <Button
-                onClick={() => window.open(link, "_blank")}
+                onClick={() => {
+                  const url = link;
+                  if (url) {
+                    const isAbsolute =
+                      url.startsWith("https://") || url.startsWith("https://");
+                    window.location.replace(
+                      isAbsolute ? url : `https://${url}`
+                    );
+                  }
+                }}
                 width="10rem"
                 marginLeft="auto"
               >

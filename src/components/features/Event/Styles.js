@@ -24,24 +24,24 @@ export const ImageCollumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self:center;
+  align-self: center;
   width: 50%;
-  max-width:60rem;
+  max-width: 60rem;
   gap: 1rem;
   > img {
     border-radius: 1rem;
   }
   @media (max-width: ${breakpoints.smallTablet}) {
-    width:70%;
+    width: 70%;
   }
   @media (max-width: ${breakpoints.smallMobile}) {
-    width:90%;
+    width: 90%;
   }
 `;
 
 export const DataCollumn = styled.div`
   display: flex;
-  word-break:break-all;
+  word-break: break-all;
   flex-direction: column;
   width: 40%;
   gap: 2.5rem;
@@ -77,14 +77,14 @@ export const DataCollumn = styled.div`
 export const Group = styled.div`
   display: flex;
   flex-direction: column;
-  gap:1rem;
+  gap: 1rem;
   width: 100%;
 `;
 export const TagsLine = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content:center;
+  justify-content: center;
   height: auto;
   gap: 1rem;
   font-size: 55px;
@@ -105,7 +105,7 @@ export const Line = styled.div`
   font-size: 40px;
   justify-content: center;
   > a {
-    font-size:20px;
+    font-size: 20px;
   }
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 36px;
@@ -113,9 +113,12 @@ export const Line = styled.div`
 `;
 
 export const LinkLine = styled.div`
-  font-size:20px;
-  align-self:center; 
-  word-break:break-all;
+  font-size: 20px;
+  align-self: center;
+  word-break: break-all;
+  color: ${colors.blue};
+  text-decoration: underline;
+  cursor: pointer;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 15px;
   }
@@ -144,7 +147,7 @@ export const Tag = styled.div`
 `;
 export const KnowMore = styled.div`
   display: flex;
-  word-break:break-all;
+  word-break: break-all;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -156,8 +159,8 @@ export const KnowMore = styled.div`
 
   > h1 {
     font-size: 32px;
-    font-weight:400;
-    margin:0;
+    font-weight: 400;
+    margin: 0;
     @media (max-width: ${breakpoints.smallTablet}) {
       font-size: 26px;
     }
