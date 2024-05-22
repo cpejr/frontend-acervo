@@ -9,6 +9,11 @@ import { PrimeReactProvider } from "primereact/api";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "react-toastify/dist/ReactToastify.css";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
+if (import.meta.env.VITE_NODE_ENV === "production") {
+  disableReactDevTools();
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +23,7 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
