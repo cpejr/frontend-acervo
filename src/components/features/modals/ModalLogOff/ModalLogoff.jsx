@@ -13,7 +13,6 @@ export default function ModalLogoff({ close, handleLogOff }) {
           handleLogOff();
           close();
         }}
-        type="button"
       >
         Sair
       </DeleteButton>

@@ -67,9 +67,8 @@ export default function Events() {
     }));
     return newArray;
   };
-  
-  function handleFilterChange() {
 
+  function handleFilterChange() {
     if (dates) {
       let formattedDateRange;
       const [initialDate, finalDate] = dates;
@@ -101,7 +100,7 @@ export default function Events() {
     setTypes([]);
     setPrices([]);
     setFilter([]);
-    setDateRange([]); 
+    setDateRange([]);
     setCategoryIDsArrays([]);
   };
 
@@ -165,9 +164,7 @@ export default function Events() {
       </ContainerFilter>
       <TrendingEvents>
         <DivLine>
-          {events?.length === 0 && (
-            <EventNotFound>Nenhum evento encontrado</EventNotFound>
-          )}
+          {events?.length === 0 && <EventNotFound>Nenhum evento encontrado</EventNotFound>}
           <Line>
             {events?.map((card, index) => (
               <Card key={index} data={card} />

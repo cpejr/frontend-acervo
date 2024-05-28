@@ -20,6 +20,9 @@ export const StyledCard = styled(Card)`
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 80%;
   }
+  @media (max-width: ${breakpoints.smallMobile}) {
+    width: 95%;
+  }
   > div {
     display: flex;
     flex-direction: column;

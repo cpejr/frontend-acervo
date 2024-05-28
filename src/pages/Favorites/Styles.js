@@ -14,7 +14,6 @@ export const Spinner = styled(ProgressSpinner)``;
 
 export const TrendingEvents = styled.div`
   display: flex;
-  width: 95%;
   flex-direction: column;
   align-self: center;
   justify-content: center;
@@ -43,6 +42,9 @@ export const Line = styled.div`
   justify-content: space-around;
   gap: 2rem;
   flex-wrap: wrap;
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 100%;
+  }
 `;
 
 export const NotFound = styled.div`

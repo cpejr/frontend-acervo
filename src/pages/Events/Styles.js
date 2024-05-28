@@ -6,7 +6,6 @@ import { Dropdown } from "primereact/dropdown";
 import { Button } from "antd";
 import { Calendar as PrimeCalendar } from "primereact/calendar";
 
-
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -40,7 +39,7 @@ export const Title = styled.div`
     margin-left: 8%;
   }
 `;
- 
+
 export const TrendingEvents = styled.div`
   display: flex;
   width: 95%;
@@ -72,6 +71,9 @@ export const Line = styled.div`
   justify-content: space-around;
   gap: 1.5rem;
   flex-wrap: wrap;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
 `;
 
 export const EventNotFound = styled.div`
@@ -111,6 +113,8 @@ export const ContainerFilter = styled.div`
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
   width: 200px;
+  color: ${colors.font.primary};
+
   .p-placeholder {
     color: ${colors.font.primary};
   }
@@ -128,7 +132,11 @@ export const ButtonsDiv = styled.div`
   align-items: center;
   gap: 0.2rem;
   margin: 20px;
-  padding-bottom:30px;
+  padding-bottom: 30px;
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
 `;
 
 export const DivSelect = styled.div`
@@ -139,7 +147,7 @@ export const DivSelect = styled.div`
   align-items: center;
   gap: 1rem;
   @media (max-width: ${breakpoints.smallTablet}) {
-    display:grid;
+    display: grid;
     flex-direction: column;
   }
 `;
@@ -150,8 +158,7 @@ export const Buttons = styled(Button)`
   margin-left: 10px;
   margin-right: 10px;
   background-color: ${colors.black};
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
-  box-shadow 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 90%;
@@ -183,15 +190,16 @@ export const UniSelect = styled(Dropdown)`
 export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;
-  width:200px;
+  width: 200px;
+
   .p-inputtext {
     background-color: ${colors.background.primary};
-    color: ${colors.font.primary};
     border: solid 1px ${colors.font.primary};
-    
+    cursor: pointer;
+    color: ${colors.font.primary} !important;
     &:hover {
       border: 1px solid ${colors.accent.primary};
       color: ${colors.font.secondary};
-    } 
+    }
   }
 `;

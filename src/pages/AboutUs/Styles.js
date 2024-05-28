@@ -9,6 +9,13 @@ export const Container = styled.div`
   overflow: hidden;
   align-items: center;
   text-align: center;
+
+  p {
+    font-size: 1.5rem !important;
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: 1rem !important;
+    }
+  }
 `;
 
 export const BackgroundTitle = styled.div`
@@ -87,10 +94,13 @@ export const TextColumn = styled.div`
     align-items: center;
     width: 80%;
     margin: 0 auto;
-
+    font-size: 1.5rem;
     @media (max-width: ${breakpoints.smallTablet}) {
       flex-direction: row;
     }
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 85%;
   }
 `;
 export const PintaColumn = styled.div`
@@ -113,6 +123,7 @@ export const TextPintaColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+  font-size: 1.5rem;
   justify-content: center;
   color: ${colors.font.primary};
   text-align: justify;
@@ -129,6 +140,7 @@ export const Banner = styled.div`
   > p {
     font-size: 28px;
     color: ${colors.font.primary};
+    text-shadow: 1px 1px 1px black;
     width: 85%;
     text-align: center;
     @media (max-width: ${breakpoints.tablet}) {
@@ -144,6 +156,7 @@ export const TextLine = styled.div`
   flex-direction: row;
   text-align: justify;
   width: 70%;
+  font-size: 1.5rem;
   @media (max-width: ${breakpoints.tablet}) {
     width: 80%;
   }

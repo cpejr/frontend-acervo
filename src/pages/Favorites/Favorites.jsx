@@ -1,5 +1,6 @@
 import useAuthStore from "../../Stores/auth";
 import Card from "../../components/features/Card/Card";
+import LargeCard from "../../components/features/LargeCard/LargeCard";
 import {
   useGetFavoritesEvents,
   useGetFavoritesMemorials,
@@ -62,7 +63,15 @@ export default function Favorites() {
             {favoritesMemorials?.length === 0 && (
               <NotFound>Nenhum Memorial Encontrado</NotFound>
             )}
-            <Line></Line>
+            {favoritesMemorials.map((card) => (
+              <Line key={card.title}>
+                <LargeCard
+                  aria-label="Cartão de memorial"
+                  data={card}
+                  imagesLoading={isLoadingMemorial}
+                />
+              </Line>
+            ))}
           </DivLine>
         )}
       </TrendingEvents>
