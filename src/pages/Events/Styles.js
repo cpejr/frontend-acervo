@@ -133,6 +133,10 @@ export const ButtonsDiv = styled.div`
   gap: 0.2rem;
   margin: 20px;
   padding-bottom: 30px;
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
 `;
 
 export const DivSelect = styled.div`
