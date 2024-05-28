@@ -79,6 +79,8 @@ export const EventButtons = styled.div`
 `;
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
+  color: ${colors.font.primary};
+
   .p-placeholder {
     color: ${colors.font.primary};
   }
