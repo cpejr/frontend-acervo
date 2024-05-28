@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
 import { Checkbox } from "primereact/checkbox";
 import { MultiSelect } from "primereact/multiselect";
 import { Button } from "antd";
@@ -113,45 +112,6 @@ export const DivSelect = styled.div`
   }
 `;
 
-export const UniSelect = styled(Dropdown)`
-  gap: 1rem;
-  &:hover {
-    border-color: ${colors.accent.hover};
-  }
-  &:focus,
-  &:active,
-  &:focus-visible {
-    outline: none;
-    box-shadow: none;
-  }
-  &:focus-within {
-    border-color: ${colors.accent.hover};
-    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
-    .p-placeholder {
-      color: ${colors.accent.hover};
-    }
-  }
-  .p-dropdown-label {
-    color: ${colors.font.primary};
-    width: 200px;
-  }
-  .p-inputtext {
-    color: ${colors.font.primary};
-    font-size: 14px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 225px;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    .p-inputtext {
-      font-size: 11px;
-    }
-  }
-`;
 export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;

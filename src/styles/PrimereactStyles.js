@@ -132,7 +132,7 @@ export const PrimereactStyles = createGlobalStyle`
     justify-content: space-around;
     background-color: ${colors.background.secondary};
     border: none;
-    @media (max-width: ${breakpoints.mediumTablet}) {
+    @media (max-width: ${breakpoints.tablet}) {
     display: none;
   }
   @media (max-width: ${breakpoints.tablet}) {

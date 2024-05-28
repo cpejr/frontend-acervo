@@ -4,7 +4,6 @@ import {
   Title,
   Filter,
   DivSelect,
-  UniSelect,
   DivLine,
   Calendar,
   Buttons,
@@ -23,14 +22,10 @@ export default function Memorial() {
   const [types, setTypes] = useState([]);
   const [filteredMemorial, setFilteredMemorial] = useState();
   const [searchValue, setSearchValue] = useState("");
-  const [dates, setDates] = useState(null);
+  const [dates, setDates] = useState([]);
   const [dateRange, setDateRange] = useState();
-  const [sortValue, setSelectedSort] = useState("");
   const [options, setOptions] = useState([]);
-  const filters = [
-    { label: "Favoritos", value: "title" },
-    { label: "Melhor avaliados", value: "date" },
-  ];
+
   const queryClient = useQueryClient();
   // BackEnd Calls
 
@@ -66,10 +61,6 @@ export default function Memorial() {
     });
   };
 
-  const handleChangeSort = (e) => {
-    setSelectedSort(e.value);
-  };
-
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -94,20 +85,20 @@ export default function Memorial() {
   }, [categoryType, memorial]);
 
   const categoryFilter = () => {
-    console.log(dates);
-    console.log(dateRange);
-    const [initialDate, finalDate] = dates;
-    let formattedDateRange;
-    if (finalDate === null) {
-      formattedDateRange = { oneDate: initialDate.toISOString() };
-    } else {
-      formattedDateRange = {
-        initialDate: initialDate.toISOString(),
-        finalDate: finalDate.toISOString(),
-      };
+    if (dates.length != 0) {
+      const [initialDate, finalDate] = dates;
+      let formattedDateRange;
+      if (finalDate === null) {
+        formattedDateRange = { oneDate: initialDate.toISOString() };
+      } else {
+        formattedDateRange = {
+          initialDate: initialDate.toISOString(),
+          finalDate: finalDate.toISOString(),
+        };
+      }
+      setDateRange(formattedDateRange);
     }
-    setDateRange(formattedDateRange);
-    console.log(memorial);
+
     if (types.length === 0) {
       setFilteredMemorial(memorial);
     } else {
@@ -119,7 +110,6 @@ export default function Memorial() {
 
       setFilteredMemorial(filtered);
     }
-    console.log(filteredMemorial);
   };
 
   return (
@@ -143,16 +133,7 @@ export default function Memorial() {
             showButtonBar
             dateFormat="dd/mm/yy"
           />
-          <UniSelect
-            aria-label="Botão de ordenação"
-            value={sortValue}
-            options={filters}
-            optionLabel="label"
-            showClear
-            placeholder="Ordenar Por"
-            onChange={handleChangeSort}
-            className="w-full md:w-14rem"
-          />
+
           <MultipleSelect
             options={options}
             placeholder="escolha a categoria"
