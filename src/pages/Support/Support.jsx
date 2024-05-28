@@ -1,15 +1,7 @@
-import Header from "../../components/features/layout/Header/Header";
-import Footer from "../../components/features/layout/Footer/Footer";
 import { Button } from "../../components";
-import {
-  BomDespachoImageSupportPage,
-  QRCodeImage,
-  WhatsAppIcon,
-} from "../../assets";
+import { QRCodeImage, WhatsAppIcon } from "../../assets";
 import {
   Container,
-  HeaderArea,
-  Image,
   Title,
   SubTitle,
   TextArea,
@@ -24,21 +16,15 @@ import {
   WhatsAppImage,
   ButtonText,
   Redirecionar,
+  BackgroundTitle,
 } from "./Styles";
 
 export default function Support() {
   return (
     <Container>
-      <HeaderArea>
-        <Header />
-      </HeaderArea>
-
-      <Image
-        src={BomDespachoImageSupportPage}
-        alt="SupportPageBomDespachoImage"
-      />
-
-      <Title>APOIE O PROJETO NOSSA HISTÓRIA</Title>
+      <BackgroundTitle>
+        <Title>APOIE O PROJETO</Title>
+      </BackgroundTitle>
       <TextArea>
         <Text1>
           A principal forma de nos apoiar é participando do projeto, ajudando na
@@ -52,7 +38,7 @@ export default function Support() {
       </TextArea>
       <DonationArea>
         <QRCodeArea>
-          <SubTitle>PARA DOAR:</SubTitle>
+          <SubTitle>PARA DOAR</SubTitle>
           <QRCodeAndText>
             <QRCode src={QRCodeImage} alt="Qr Code" />
             <QRCodeText>
@@ -61,7 +47,7 @@ export default function Support() {
           </QRCodeAndText>
         </QRCodeArea>
         <WhatsAppButtonArea>
-          <SubTitle>PARA CONTRIBUIR:</SubTitle>
+          <SubTitle>PARA CONTRIBUIR</SubTitle>
           <Redirecionar href="https://wa.me/+5531975293805">
             <Button
               width="70%"
@@ -75,7 +61,6 @@ export default function Support() {
           </Redirecionar>
         </WhatsAppButtonArea>
       </DonationArea>
-        <Footer />
     </Container>
   );
 }

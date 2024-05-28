@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { Container, Title, LoadingStyles, SubTitle } from "./Styles";
+import {
+  Container,
+  Title,
+  LoadingStyles,
+  SubTitle,
+  BackgroundTitle,
+} from "./Styles";
 import {
   Table,
   ModalDeleteItem,
@@ -60,6 +66,7 @@ export default function ManageCollection() {
       };
     }
     setSelectOptions(types);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryType]);
 
   const [inputs] = useState([
@@ -174,7 +181,6 @@ export default function ManageCollection() {
         queryClient.invalidateQueries({
           queryKey: ["memorial"],
         });
-        co;
         toast.success("Post deletado com sucesso!");
       },
       onError: (err) => {
@@ -203,7 +209,9 @@ export default function ManageCollection() {
 
   return (
     <Container>
-      <Title>ADICIONAR NOVO ARQUIVO </Title>
+      <BackgroundTitle>
+        <Title>ADICIONAR NOVO ARQUIVO </Title>
+      </BackgroundTitle>
       <FormSubmit
         inputs={inputs}
         onSubmit={handlesubmit}

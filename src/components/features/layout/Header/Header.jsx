@@ -29,7 +29,7 @@ export default function NavBar() {
       url: "/eventos",
     },
     {
-      label: "Apoiador",
+      label: "Apoiar",
       url: "/suporte",
     },
     ...(isAdmin

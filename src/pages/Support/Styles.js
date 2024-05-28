@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors, fonts } from "../../styles/stylesVariables";
+import { titleBackground } from "../../assets/index";
 
 export const Container = styled.div`
   width: 100%;
@@ -24,13 +25,13 @@ export const Title = styled.h1`
   font-family: ${fonts.Cabin};
   color: ${colors.font.title};
   width: 100%;
-  text-align: center;
+  margin-left: 3%;
   font-size: 36px;
+
   text-decoration: underline ${colors.font.line};
   text-decoration-skip-ink: auto;
   text-underline-offset: 0.8rem;
   text-decoration-thickness: 3px;
-
   @media (max-width: ${breakpoints.tablet}) {
     margin-top: 50px;
     font-size: 32px;
@@ -111,13 +112,13 @@ export const DonationArea = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-inline:10%;
-  margin-bottom:40px;
+  margin-inline: 10%;
+  margin-bottom: 40px;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding-bottom: 40px;
-    margin-inline:3%;
-    justify-content:space-evenly;
+    margin-inline: 3%;
+    justify-content: space-evenly;
   }
   @media (max-width: ${breakpoints.smallMobile}) {
     flex-direction: column;
@@ -138,34 +139,34 @@ export const QRCodeAndText = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column-reverse;
-    align-items:center;
-    gap:10px;
+    align-items: center;
+    gap: 10px;
   }
   @media (max-width: ${breakpoints.mobile}) {
     flex-direction: column;
-    align-items:center;
-    gap:10px;
+    align-items: center;
+    gap: 10px;
   }
 `;
 
 export const QRCode = styled.img`
-  padding-right:30px;
-  max-width:250px;
+  padding-right: 30px;
+  max-width: 250px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   @media (max-width: ${breakpoints.tablet}) {
-    padding-right:0;
-    max-width:180px;
+    padding-right: 0;
+    max-width: 180px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    padding-right:0;
-    max-width:140px;
+    padding-right: 0;
+    max-width: 140px;
   }
   @media (max-width: ${breakpoints.smallMobile}) {
-    padding-right:0;
-    max-width:100px;
+    padding-right: 0;
+    max-width: 100px;
   }
 `;
 
@@ -178,7 +179,7 @@ export const QRCodeText = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 18px;
-    width:80%;
+    width: 80%;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -197,7 +198,7 @@ export const ButtonText = styled.div`
   color: ${colors.font.primary};
   padding-left: 5px;
   width: 300px;
-  text-align:left;
+  text-align: left;
 
   @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 20px;
@@ -213,9 +214,9 @@ export const WhatsAppButtonArea = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width:320px;
+  min-width: 320px;
   @media (max-width: ${breakpoints.mobile}) {
-    min-width:250px;;
+    min-width: 250px;
   }
 `;
 
@@ -224,9 +225,14 @@ export const Redirecionar = styled.a`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  max-width:320px;  
+  max-width: 320px;
   @media (max-width: ${breakpoints.smallTablet}) {
     font-size: 20px;
-    max-width:250px;
+    max-width: 250px;
   }
+`;
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 1.5rem;
 `;

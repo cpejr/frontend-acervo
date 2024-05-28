@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { breakpoints, colors,fonts } from "../../styles/stylesVariables";
+import { breakpoints, colors, fonts } from "../../styles/stylesVariables";
+import { titleBackground } from "../../assets/index";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 3rem 0;
+
   z-index: 0;
 `;
 export const Title = styled.div`
@@ -26,7 +27,7 @@ export const SubTitle = styled.h2`
   font-size: 36px;
   font-family: ${fonts.Cabin};
   color: ${colors.font.title};
-  margin-left:5%;
+  margin-left: 5%;
   text-decoration: underline ${colors.font.line};
   text-decoration-skip-ink: auto;
   text-underline-offset: 0.5rem;
@@ -53,4 +54,9 @@ export const AddArchive = styled.div`
   margin-left: 14.7%;
   z-index: 1;
   margin-top: -110px;
+`;
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 4rem;
 `;

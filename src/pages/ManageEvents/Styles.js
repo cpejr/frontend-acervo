@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
+import { titleBackground } from "../../assets/index";
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding-top: 3rem;
+
   gap: 3rem;
 
   @media (max-width: 700px) {
@@ -61,7 +62,7 @@ export const Section = styled.section`
   width: 70%;
   height: 100%;
   gap: 2rem;
-  margin-bottom:30px;
+  margin-bottom: 30px;
   ::placeholder {
     color: ${colors.font.primary};
     font-weight: 400;
@@ -88,7 +89,7 @@ export const MultipleSelect = styled(MultiSelect)`
     width: 50%;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size:1rem;
+    font-size: 1rem;
   }
   &:hover {
     border-color: #f19709;
@@ -113,4 +114,9 @@ export const LoadingStyles = styled.div`
   display: "block";
   font-size: 24px;
   margin: 20px auto;
+`;
+export const BackgroundTitle = styled.div`
+  background-image: url(${titleBackground});
+  height: 150px;
+  padding-top: 4rem;
 `;
