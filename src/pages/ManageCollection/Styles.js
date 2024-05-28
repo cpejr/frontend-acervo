@@ -4,8 +4,7 @@ import { titleBackground } from "../../assets/index";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-
-  z-index: 0;
+  overflow-x: hidden;
 `;
 export const Title = styled.div`
   color: ${colors.font.title};
