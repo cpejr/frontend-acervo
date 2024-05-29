@@ -17,7 +17,7 @@ export default function NavBar() {
       url: "/historia",
     },
     {
-      label: "Memorial",
+      label: "Acervo",
       url: "/memorial",
     },
     {
@@ -42,7 +42,7 @@ export default function NavBar() {
                 url: "/gerenciar-usuarios",
               },
               {
-                label: "Gerenciar arquivos",
+                label: "Gerenciar acervo",
                 url: "/gerenciar-memorial",
               },
               {
