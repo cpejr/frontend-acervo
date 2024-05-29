@@ -45,10 +45,9 @@ export default function Home() {
         <Column>
           <Title>O que é o acervo?</Title>
           <p>
-            O Site Nossa História – Escrita, Imagem e Som é a parte de uma rede
-            de mídias criada e gerenciada pela CASA TUÉ-TIMBUÁ, uma Organização
-            Não Governamental criada para atuar na cidade de Bom Despacho no
-            desenvolvimento de projetos em diversas áreas.
+            O acervo é um depositário do acervo de vídeos, fotografias, áudios e
+            escritos que compõem a memória do povo de Bom Despacho, composto por
+            documentos públicos e por contribuições de particulares.
           </p>
           <LargerImg
             src={cidade}

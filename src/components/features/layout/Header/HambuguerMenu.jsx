@@ -31,7 +31,7 @@ export default function HamburguerMenu() {
         ...(isAdmin
           ? [
               getItem("Gerenciar Usuários", "/gerenciar-usuarios"),
-              getItem("Gerenciar Arquivos", "/gerenciar-memorial"),
+              getItem("Gerenciar Acervo", "/gerenciar-memorial"),
               getItem("Gerenciar Eventos", "/gerenciar-eventos"),
             ]
           : []),
