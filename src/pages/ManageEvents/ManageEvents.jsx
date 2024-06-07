@@ -28,6 +28,7 @@ import {
   Section,
   Selects,
   MultipleSelect,
+  Calendar,
   EventButtons,
   LoadingStyles,
   BackgroundTitle,
@@ -36,6 +37,7 @@ import UploadInput from "../../components/common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
 export default function ManageEvents() {
   const queryClient = useQueryClient();
+  const [date, setDate] = useState(null);
   const [idCategoriesTypes, setIdCategoriesTypes] = useState([]);
   const [idCategoriesPrices, setIdCategoriesPrices] = useState([]);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -80,6 +82,7 @@ export default function ManageEvents() {
         });
       },
       onError: (err) => {
+        console.log(err);
         return err;
       },
     });
@@ -140,10 +143,12 @@ export default function ManageEvents() {
       };
       const combinedData = {
         ...data,
+        date: date,
         id_categoryPrice: idCategoriesPrices,
         id_categoryType: idCategoriesTypes,
         uploadEvent,
       };
+
       createEvent(combinedData);
       e.target.reset();
       setArchivesArray([]);
@@ -243,6 +248,15 @@ export default function ManageEvents() {
               placeholder="Escolha o preço"
               className="w-full md:w-20rem"
               filter
+            />
+            <Calendar
+              value={date}
+              onChange={(e) => setDate(e.value)}
+              readOnlyInput
+              name="data"
+              placeholder="Determine uma data"
+              showButtonBar
+              dateFormat="dd/mm/yy"
             />
           </Selects>
         </Section>

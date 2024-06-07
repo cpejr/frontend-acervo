@@ -24,7 +24,9 @@ export function useGetEvents({
 }
 
 export function useCreateEvents({
-  onSuccess = () => {},
+  onSuccess = () => {
+    console.log("aa");
+  },
   onError = (err) => console.error(err),
 } = {}) {
   return useMutation({ mutationFn: createEvents, onSuccess, onError });

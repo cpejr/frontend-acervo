@@ -21,11 +21,14 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useGetIsFavoritedEvent } from "../../../hooks/querys/events";
 import { useNavigate } from "react-router-dom";
 import Button from "../../common/Button/Button";
+import { format } from "date-fns";
+
 export default function Card({ data }) {
   const navigate = useNavigate();
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
+  const formattedDate = format(new Date(data.date), "dd/MM/yyyy");
   // BackEnd Calls
 
   const { data: isFavorited } = useGetIsFavoritedEvent({
@@ -87,10 +90,12 @@ export default function Card({ data }) {
 
   return (
     <StyledCard>
-      <Image onClick={(event) => {
-            event.stopPropagation();
-            navigate(`/eventos/${data?.name}`);
-          }}>
+      <Image
+        onClick={(event) => {
+          event.stopPropagation();
+          navigate(`/eventos/${data?.name}`);
+        }}
+      >
         {isLoading ? (
           <LoadingStyles>
             <AiOutlineLoading3Quarters />
@@ -100,10 +105,14 @@ export default function Card({ data }) {
         )}
       </Image>
       <Group>
-        <Line onClick={(event) => {
+        <Line
+          onClick={(event) => {
             event.stopPropagation();
             navigate(`/eventos/${data?.name}`);
-          }}>{data?.name}</Line>
+          }}
+        >
+          {data?.name}
+        </Line>
         <LineSVG>
           {isFavorited ? (
             <FaBookmark onClick={onSubmit} />
@@ -114,6 +123,7 @@ export default function Card({ data }) {
       </Group>
       <Line>
         <p>{data.shortDescription}</p>
+        <p>{formattedDate}</p>
       </Line>
 
       <Tags>

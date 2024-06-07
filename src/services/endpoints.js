@@ -57,6 +57,7 @@ export const deleteEvents = async (_id) => {
 };
 
 export const createEvents = async (newEvent) => {
+  console.log("✌️data --->", newEvent);
   const { data } = await api.post(`/event`, newEvent);
   return data;
 };
