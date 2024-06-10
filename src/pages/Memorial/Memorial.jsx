@@ -52,7 +52,7 @@ export default function Memorial() {
   };
 
   const handleResetFilter = () => {
-    setDates([]);
+    setDates(null);
     setDateRange({});
     setTypes([]);
     setFilteredMemorial(memorial);
