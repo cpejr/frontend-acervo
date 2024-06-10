@@ -57,7 +57,6 @@ export const deleteEvents = async (_id) => {
 };
 
 export const createEvents = async (newEvent) => {
-  console.log("✌️data --->", newEvent);
   const { data } = await api.post(`/event`, newEvent);
   return data;
 };
@@ -142,9 +141,9 @@ export async function getIsFavoritedMemorial({ userId, memorialId }) {
   return data;
 }
 
-export const getMemorialByDate = async ({ dateRange }) => {
+export const getMemorialByDate = async ({ dateRange, name }) => {
   const { data } = await api.get("/memorial/search-by-date", {
-    params: { dateRange },
+    params: { dateRange, name },
   });
 
   return data;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../../styles/stylesVariables";
+import { breakpoints } from "../../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
 import { Calendar as PrimeCalendar } from "primereact/calendar";
 
@@ -77,19 +77,19 @@ export const Calendar = styled(PrimeCalendar)`
   display: flex;
   justify-content: center;
   width: 260px;
-  color: #000;
   .p-inputtext {
-    border: solid 1px ${colors.font.secondary};
+    color: ${(props) => props?.selectColor};
+
+    border: solid 1px ${(props) => props?.selectColor};
+    background-color: inherit;
     cursor: pointer;
-    color: ${colors.font.secondary};
     align-items: center;
     &:hover {
       border-color: #f19709;
-      color: ${colors.font.secondary};
     }
-  }
-  ::placeholder {
-    color: ${colors.font.secondary};
+    &::placeholder {
+      color: ${(props) => props?.selectColor};
+    }
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 50%;

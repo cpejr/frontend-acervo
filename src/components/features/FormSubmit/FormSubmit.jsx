@@ -131,12 +131,14 @@ export default function FormSubmit({
         }
         return null;
       })}
+
       <Calendar
         value={date}
         onChange={(e) => setDate(e.value)}
         readOnlyInput
         view="year"
         name="data"
+        selectColor={color}
         placeholder="Determine uma data"
         showButtonBar
         dateFormat="yy"

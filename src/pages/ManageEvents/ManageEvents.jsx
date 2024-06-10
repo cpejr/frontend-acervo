@@ -82,7 +82,6 @@ export default function ManageEvents() {
         });
       },
       onError: (err) => {
-        console.log(err);
         return err;
       },
     });

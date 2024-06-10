@@ -14,6 +14,7 @@ import {
 import { toast } from "react-toastify";
 import { useGetMemorialByDate } from "../../hooks/querys/memorial";
 import { SearchBar } from "../../components";
+import useDebounce from "../../services/useDebouce";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetCategoryType } from "../../hooks/querys/categoryType";
@@ -22,7 +23,8 @@ export default function Memorial() {
   const [types, setTypes] = useState([]);
   const [filteredMemorial, setFilteredMemorial] = useState();
   const [searchValue, setSearchValue] = useState("");
-  const [dates, setDates] = useState([]);
+  const debouncedName = useDebounce(searchValue);
+  const [dates, setDates] = useState(null);
   const [dateRange, setDateRange] = useState();
   const [options, setOptions] = useState([]);
 
@@ -35,6 +37,7 @@ export default function Memorial() {
     isError,
   } = useGetMemorialByDate({
     dateRange: dateRange,
+    name: debouncedName,
     onError: (err) => {
       setImagesLoading(false);
       toast.error(err);
@@ -131,7 +134,8 @@ export default function Memorial() {
             hideOnRangeSelection
             placeholder="Determine uma data"
             showButtonBar
-            dateFormat="dd/mm/yy"
+            dateFormat="yy"
+            view="year"
           />
 
           <MultipleSelect
@@ -147,19 +151,15 @@ export default function Memorial() {
         <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
       </ButtonsDiv>
       <DivLine>
-        {filteredMemorial
-          ?.filter((card) =>
-            card.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((card) => (
-            <Line key={card.title}>
-              <LargeCard
-                aria-label="Cartão de memorial"
-                data={card}
-                imagesLoading={imagesLoading}
-              />
-            </Line>
-          ))}
+        {filteredMemorial?.map((card) => (
+          <Line key={card.title}>
+            <LargeCard
+              aria-label="Cartão de memorial"
+              data={card}
+              imagesLoading={imagesLoading}
+            />
+          </Line>
+        ))}
       </DivLine>
     </Container>
   );
