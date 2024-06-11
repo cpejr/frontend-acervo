@@ -33,7 +33,7 @@ export default function LargeCard({ data, imagesLoading }) {
   const formatedArchives = archiveIDs.join(", ");
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
-  const formattedDate = format(new Date(date), "yyyy");
+  // const formattedDate = format(new Date(date), "yyyy");
 
   // BackEnd Calls
 
@@ -148,7 +148,7 @@ export default function LargeCard({ data, imagesLoading }) {
             </TitleContainer>
             <ShortDescription>{shortDescription}</ShortDescription>
             <LongDescription>{longDescription}</LongDescription>
-            <Data>{formattedDate}</Data>
+            {/* <Data>{formattedDate}</Data> */}
             {link && (
               <Button
                 onClick={() => {
