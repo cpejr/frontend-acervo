@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
 import { titleBackground } from "../../assets/index";
+import { Calendar as PrimeCalendar } from "primereact/calendar";
 
 export const Container = styled.div`
   display: flex;
@@ -77,19 +78,36 @@ export const EventButtons = styled.div`
   display: flex;
   gap: 8px;
 `;
+export const Calendar = styled(PrimeCalendar)`
+  display: flex;
+  width: 215px;
+  justify-content: center;
+  .p-inputtext {
+    background-color: ${colors.background.primary};
+    border: solid 1px ${colors.font.primary};
+    cursor: pointer;
+    color: ${colors.font.primary} !important;
+    &:hover {
+      border: 1px solid ${colors.accent.primary};
+      color: ${colors.font.secondary};
+    }
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem;
+  }
+`;
 export const MultipleSelect = styled(MultiSelect)`
   background-color: ${colors.background.primary};
   color: ${colors.font.primary};
+  width: 215px;
 
   .p-placeholder {
     color: ${colors.font.primary};
   }
   .p-multiselect-label {
-    width: 215px;
   }
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
-  }
+
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1rem;
   }
