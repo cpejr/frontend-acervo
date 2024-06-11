@@ -95,7 +95,11 @@ export const getCategoryPrice = async (filters = {}) => {
   const { data } = await api.get("/categoryPrice", { params: filters });
   return data;
 };
-
+//CategoryMemorial endpoints
+export const getCategoryMemorial = async (filters = {}) => {
+  const { data } = await api.get("/categoryMemorial", { params: filters });
+  return data;
+};
 //memorial
 
 export async function getMemorial() {

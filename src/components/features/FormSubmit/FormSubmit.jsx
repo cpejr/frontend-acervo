@@ -44,7 +44,7 @@ export default function FormSubmit({
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
     if (
       Object.keys(selectedOptions).length === 0 ||
-      selectedOptions.id_categoryType.length === 0
+      selectedOptions.id_categoryMemorial.length === 0
     ) {
       setSelectError(true);
       return;

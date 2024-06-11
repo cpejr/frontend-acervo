@@ -1,7 +1,6 @@
 import { BackgroundTitle, Container, Image, Paragraph, Title } from "./Styles";
 
 import FirstStoryImage from "../../assets/FirstStoryImage.svg";
-import SecondStoryImage from "../../assets/SecondStoryImage.svg";
 import ThirdStoryImage from "../../assets/ThirdStoryImage.svg";
 
 export default function Story() {
@@ -39,7 +38,6 @@ export default function Story() {
           cavalos. Desenvolveram simultaneamente pequenas lavouras para a
           subsistência.
         </Paragraph>
-        <Image src={SecondStoryImage} alt="Imagem de bom despacho" />
         <Paragraph>
           Na região, também deu-se a formação de abrigos de escravos fugidos, os
           quilombos. Na medida em que negros eram liquidados, as áreas

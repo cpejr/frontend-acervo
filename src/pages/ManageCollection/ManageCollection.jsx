@@ -21,7 +21,7 @@ import {
   useDeleteMemorial,
   useUpdateMemorial,
 } from "../../hooks/querys/memorial";
-import { useGetCategoryType } from "../../hooks/querys/categoryType";
+import { useGetCategoryMemorial } from "../../hooks/querys/categoryMemorial";
 import { newCollectionValidationSchema } from "./utils";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import {
@@ -46,28 +46,28 @@ export default function ManageCollection() {
   const [MemorialID, setMemorialID] = useState("");
   const [memorialValue, setMemorialValue] = useState({});
   const [selectOptions, setSelectOptions] = useState();
-  const { data: categoryType } = useGetCategoryType({
+  const { data: categoryMemorial } = useGetCategoryMemorial({
     onError: (err) => {
       toast.error(err);
     },
   });
 
   useEffect(() => {
-    let types = categoryType?.map((category) => {
+    let memorials = categoryMemorial?.map((category) => {
       return category?.name;
     });
 
-    if (types) {
+    if (memorials) {
       inputs[4] = {
         type: "selects",
-        key: "id_categoryType",
+        key: "id_categoryMemorial",
         placeholder: "Escolha a categoria",
-        options: types,
+        options: memorials,
       };
     }
-    setSelectOptions(types);
+    setSelectOptions(memorials);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryType]);
+  }, [categoryMemorial]);
 
   const [inputs] = useState([
     {
@@ -124,7 +124,7 @@ export default function ManageCollection() {
                 longDescription: collection.longDescription,
                 archives: collection.archive,
                 link: collection.link,
-                id_categoryType: collection?.id_categoryType,
+                id_categoryMemorial: collection?.id_categoryMemorial,
               });
             }}
           />

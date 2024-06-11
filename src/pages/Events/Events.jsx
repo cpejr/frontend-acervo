@@ -56,7 +56,8 @@ export default function Events() {
   });
 
   const filters = [
-    { label: "Data", value: "date" },
+    { label: "Mais antigo", value: "old" },
+    { label: "Mais recente", value: "new" },
     { label: "Nome", value: "name" },
   ];
 
@@ -164,7 +165,9 @@ export default function Events() {
       </ContainerFilter>
       <TrendingEvents>
         <DivLine>
-          {events?.length === 0 && <EventNotFound>Nenhum evento encontrado</EventNotFound>}
+          {events?.length === 0 && (
+            <EventNotFound>Nenhum evento encontrado</EventNotFound>
+          )}
           <Line>
             {events?.map((card, index) => (
               <Card key={index} data={card} />

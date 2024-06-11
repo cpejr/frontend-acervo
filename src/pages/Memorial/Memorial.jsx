@@ -16,10 +16,10 @@ import { useGetMemorialByDate } from "../../hooks/querys/memorial";
 import { SearchBar } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGetCategoryType } from "../../hooks/querys/categoryType";
+import { useGetCategoryMemorial } from "../../hooks/querys/categoryMemorial";
 export default function Memorial() {
   const [imagesLoading, setImagesLoading] = useState(true);
-  const [types, setTypes] = useState([]);
+  const [category, setCategory] = useState([]);
   const [filteredMemorial, setFilteredMemorial] = useState();
   const [searchValue, setSearchValue] = useState("");
   const [dates, setDates] = useState([]);
@@ -51,7 +51,7 @@ export default function Memorial() {
   const handleResetFilter = () => {
     setDates([]);
     setDateRange({});
-    setTypes([]);
+    setCategory([]);
     setFilteredMemorial(memorial);
     queryClient.invalidateQueries({
       queryKey: ["memorial"],
@@ -61,7 +61,7 @@ export default function Memorial() {
     });
   };
 
-  const { data: categoryType } = useGetCategoryType({
+  const { data: categoryMemorial } = useGetCategoryMemorial({
     onError: (err) => {
       toast.error(err);
     },
@@ -73,16 +73,16 @@ export default function Memorial() {
   }, [isLoading, isError]);
 
   useEffect(() => {
-    let types = categoryType?.map((category) => {
+    let memorials = categoryMemorial?.map((category) => {
       return category?.name;
     });
-    if (categoryType) {
-      setOptions(types);
+    if (categoryMemorial) {
+      setOptions(memorials);
     }
     if (memorial) {
       setFilteredMemorial(memorial);
     }
-  }, [categoryType, memorial]);
+  }, [categoryMemorial, memorial]);
 
   const categoryFilter = () => {
     if (dates.length != 0) {
@@ -99,12 +99,14 @@ export default function Memorial() {
       setDateRange(formattedDateRange);
     }
 
-    if (types.length === 0) {
+    if (category.length === 0) {
       setFilteredMemorial(memorial);
     } else {
       const filtered = memorial.filter((memorial) =>
-        types.every((type) =>
-          memorial.id_categoryType.some((category) => category.name === type)
+        category.every((type) =>
+          memorial.id_categoryMemorial.some(
+            (category) => category.name === type
+          )
         )
       );
 
@@ -136,9 +138,9 @@ export default function Memorial() {
 
           <MultipleSelect
             options={options}
-            placeholder="escolha a categoria"
-            value={types || ""}
-            onChange={(e) => setTypes(e.value)}
+            placeholder="Escolha a categoria"
+            value={category || ""}
+            onChange={(e) => setCategory(e.value)}
           />
         </DivSelect>
       </Filter>

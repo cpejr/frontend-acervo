@@ -12,7 +12,7 @@ import { Button } from "../../components";
 
 import { mapa, cidade, festa, apresentacao } from "../../assets/index";
 import Sponsors from "./Sponsors";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export default function Home() {
         <Column>
           <Title>O que é o acervo?</Title>
           <p>
-            O acervo é um depositário do acervo de vídeos, fotografias, áudios e
+            É um repositório digital de vídeos, áudios, fotografias e documentos
             escritos que compõem a memória do povo de Bom Despacho, composto por
             documentos públicos e por contribuições de particulares.
           </p>
