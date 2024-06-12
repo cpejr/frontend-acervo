@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { breakpoints } from "../../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
+import { Calendar as PrimeCalendar } from "primereact/calendar";
 
 export const Form = styled.form`
   margin: 30px 0;
@@ -31,7 +32,8 @@ export const Select = styled(MultiSelect)`
   border-radius: 4px;
   height: 6.5vh;
   text-align: left;
-  border: ${(props) => (props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`)};
+  border: ${(props) =>
+    props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`};
 
   .p-multiselect-label {
     width: 215px;
@@ -69,5 +71,38 @@ export const Selects = styled.div`
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+  }
+`;
+export const Calendar = styled(PrimeCalendar)`
+  display: flex;
+  justify-content: center;
+  width: 260px;
+  .p-inputtext {
+    color: ${(props) => props?.selectColor};
+
+    border: solid 1px ${(props) => props?.selectColor};
+    background-color: inherit;
+    cursor: pointer;
+    align-items: center;
+    &:hover {
+      border-color: #f19709;
+    }
+    &::placeholder {
+      color: ${(props) => props?.selectColor};
+    }
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    display: flex;
+    flex-direction: row;
+    width: 33%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 50%;
   }
 `;

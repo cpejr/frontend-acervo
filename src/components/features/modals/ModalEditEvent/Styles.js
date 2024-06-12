@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { MultiSelect } from "primereact/multiselect";
 import { breakpoints, colors } from "../../../../styles/stylesVariables";
-import { Modal, Input } from "antd";
+import { Modal } from "antd";
+import { Calendar as PrimeCalendar } from "primereact/calendar";
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,31 +22,6 @@ export const Message = styled.h1`
   @media (max-width: 375px) {
     font-size: 1.5rem;
     margin: 1rem;
-  }
-`;
-export const MultipleSelect = styled(MultiSelect)`
-  background-color: "white";
-  border: 0.1rem black solid;
-  color: ${(props) => props?.color};
-  .p-multiselect-label {
-    width: 215px;
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    display: flex;
-    flex-direction: row;
-    width: 33%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 50%;
-  }
-  &:hover {
-    border-color: #f19709;
   }
 `;
 
@@ -78,5 +55,65 @@ export const Form = styled.form`
 
   @media (min-width: 1440px) {
     max-width: 144rem;
+  }
+`;
+export const Calendar = styled(PrimeCalendar)`
+  display: flex;
+  justify-content: center;
+  width: 260px;
+  color: #000;
+  background-color: "white";
+  .p-inputtext {
+    border: solid 1px ${colors.font.secondary};
+    cursor: pointer;
+    color: ${colors.font.secondary};
+
+    &:hover {
+      border-color: #f19709;
+      color: ${colors.font.secondary};
+    }
+  }
+  ::placeholder {
+    color: ${colors.font.secondary};
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    display: flex;
+    flex-direction: row;
+    width: 33%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 50%;
+  }
+`;
+
+export const MultipleSelect = styled(MultiSelect)`
+  background-color: "white";
+  border: 0.1rem black solid;
+  color: ${(props) => props?.color};
+  .p-multiselect-label {
+    width: 215px;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    display: flex;
+    flex-direction: row;
+    width: 33%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 50%;
+  }
+  &:hover {
+    border-color: #f19709;
   }
 `;

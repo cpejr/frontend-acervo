@@ -86,6 +86,7 @@ export const PrimereactStyles = createGlobalStyle`
 
   .p-inputtext{
     color: ${colors.font.primary};
+
     
   }
   .p-inputtext::placeholder {

@@ -16,20 +16,24 @@ import {
   TitleContainer,
   Content,
   FavoriteFilledIcon,
+  Data,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useGetArchives } from "../../../hooks/querys/archive";
 import { LoadingOutlined } from "@ant-design/icons";
 import Button from "../../common/Button/Button";
+import { format } from "date-fns";
 
 export default function LargeCard({ data, imagesLoading }) {
   // States and Variables
-  const { title, shortDescription, longDescription, link, archive } = data;
+  const { title, shortDescription, longDescription, link, archive, date } =
+    data;
   const archiveIDs = archive.map((file) => file._id);
   const formatedArchives = archiveIDs.join(", ");
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
+  const formattedDate = format(new Date(date), "yyyy");
 
   // BackEnd Calls
 
@@ -144,6 +148,7 @@ export default function LargeCard({ data, imagesLoading }) {
             </TitleContainer>
             <ShortDescription>{shortDescription}</ShortDescription>
             <LongDescription>{longDescription}</LongDescription>
+            <Data>{formattedDate}</Data>
             {link && (
               <Button
                 onClick={() => {

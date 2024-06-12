@@ -50,6 +50,14 @@ export const LongDescription = styled.div`
     font-size: 15px;
   }
 `;
+export const Data = styled.div`
+  font-size: 17px;
+  color: ${colors.font.secondary};
+  word-break: break-word;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 15px;
+  }
+`;
 
 export const FavoriteIcon = styled(FaRegBookmark)`
   color: ${colors.font.secondary};
