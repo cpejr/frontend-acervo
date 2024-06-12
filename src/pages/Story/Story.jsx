@@ -10,92 +10,54 @@ export default function Story() {
         <Title>HISTÓRIA</Title>
       </BackgroundTitle>
       <Container>
+        <Paragraph>
+          A história de Bom Despacho remota aos tempos do Brasil colonial, onde
+          a vasta região da capitania de Minas Gerais era, em grande parte,
+          coberta por densas florestas. Local de desbravamento pelos
+          bandeirantes, o território, de acordo com indícios arqueológicos, foi
+          habitado originalmente por índios cataguás.
+        </Paragraph>
+        <Paragraph>
+          A região foi ocupada por portugueses e luso-brasileiros nos fins do
+          século XVI. Entre os primitivos exploradores, podem ser citados:
+          Sebastião Marinho (1592); o capitão-mor João Pereira de Souza Botafogo
+          (1596); Afonso Sardinha e João de Prado (1594 a 1599); e Félix Jaques
+          (1616). Nos tempos das bandeiras, Minas foi explorada através de
+          várias incursões, motivadas pelo aprisionamento de indígenas, pela
+          necessidade de mapeamento ou pela busca de ouro, metais e pedras
+          preciosas.
+        </Paragraph>
+        <Paragraph>
+          Todavia, nenhuma dessas incursões resultaram no povoamento do
+          território, que só deu indícios no século XVII, quando bandeirantes
+          paulistas descobriram minas de ouro no Vale do Tripuí e a região
+          recebeu grande quantidade de pessoas. Neste período, a extração
+          aurífera oferecia rápida possibilidade de enriquecimento. Assim, o
+          forte contingente populacional que afluiu para a região contribuiu
+          para a formação de vários centros urbanos, entre eles, Ouro Preto,
+          Sabará, Diamantina e Pitangui, vila próxima a região onde hoje
+          situa-se Bom Despacho.
+        </Paragraph>
+        <Paragraph>
+          Os primeiros achados de ouro em Pitangui compreendem os anos 1694 a
+          1702, quando milhares de pessoas se dirigiram para a localidade. Em
+          poucos anos, Pitangui tornaria-se Vila de Nossa Senhora da Piedade de
+          Pitangui, centro difusor das incursões e povoamentos do Alto São
+          Francisco.
+        </Paragraph>
+        <Paragraph>
+          Uma comitiva liderada por Antônio Rodrigues Velho – conhecido como
+          Velho da Taipa, um dos fundadores de Pitangui, José de Campos Bicudo e
+          Gervásio de Campos Bicudo, resultou na exploração de grande parte das
+          terras onde hoje se localiza Bom Despacho. Ao que tudo indica, através
+          de uma carta de sesmaria, datada de 1715, Gervásio, minerador e
+          sertanista, foi o primeiro a possuir o título destas terras. No
+          entanto, embora não tendo encontrado documentos que indiquem a
+          história dessa sesmaria, sabe-se que Gervásio retornou à São Paulo,
+          sua cidade, por volta de 1725 e as terras tornaram-se devolutas.
+        </Paragraph>
         <Image src={FirstStoryImage} alt="Imagem de bom despacho" />
-        <Paragraph>
-          Antes do auge do ciclo do ouro, ocorrido na região de Pitangui, várias
-          bandeiras se adentraram pelo território do Alto São Francisco. Devido
-          à ocorrência de motins em Pitangui, a bandeira de Domingos Rodrigues
-          do Prado viu-se obrigada a abandonar o território e montar acampamento
-          numa região a oeste, que seria o berço da cidade de Bom Despacho.
-        </Paragraph>
-        <Paragraph>
-          Em incursões realizadas nesse mesmo território, Antônio Rodrigues
-          Velho, conhecido como Velho da Taipa, abriu picadas e tomou posse de
-          vários campos e matas. Companheiro do Velho da Taipa no desbravamento
-          dos sertões além do Rio Lambari, foi seu cunhado Manoel Picão Camacho,
-          que em 1730, tornou-se o primeiro morador da paragem que lhe deve o
-          nome – Rio Picão. Ali nascia Bom Despacho.
-        </Paragraph>
-        <Paragraph>
-          A picada Pitangui-Pirapora-Paracatu, passando por Paragem de
-          Piraquara, junto ao Rio São Francisco, foi de grande importância para
-          o povoamento da região. Além disso, no início da segunda metade do
-          século XVIII, cessada a febre do ouro, e com as minas quase sem
-          exploração, Pitangui e toda a Capitania entram em processo de
-          estagnação e declínio. Então, entre 1755 e 1800, inúmeras famílias,
-          procedentes da Vila de Pitangui, buscaram a região entre os Rios
-          Lambari e São Francisco, para dedicarem-se à criação de porcos, bois e
-          cavalos. Desenvolveram simultaneamente pequenas lavouras para a
-          subsistência.
-        </Paragraph>
-        <Paragraph>
-          Na região, também deu-se a formação de abrigos de escravos fugidos, os
-          quilombos. Na medida em que negros eram liquidados, as áreas
-          conquistadas foram sendo distribuídas em sesmarias, resultando na
-          formação das primeiras fazendas de criação de gado, favorecida pelas
-          vastas pastagens naturais.
-        </Paragraph>
-        <Paragraph>
-          A partir de 1770, o Capitão Francisco de Araújo e Sá é mencionado como
-          primeiro criador de gado, na condição de proprietário da fazenda do
-          Picão, que se situava às margens do rio de mesmo nome. Aproximadamente
-          nesta data foi erguida uma capela, que se tornou um centro
-          polarizador, aglutinando pessoas que percorriam léguas de distância
-          para participar das celebrações.
-        </Paragraph>
         <Image src={ThirdStoryImage} alt="Imagem de bom despacho" />
-        <Paragraph>
-          Assim, a capela de capim, antes a única construção existente, viu-se,
-          no decorrer dos anos, rodeada de outras construções, como casas,
-          ranchos e vendas, favorecendo a formação do Arraial de Nossa Senhora
-          do Bom Despacho.
-        </Paragraph>
-        <Paragraph>
-          Em uma sociedade fortemente religiosa, as irmandades gozavam de
-          relevância e prestígio, em que algumas exerciam intensa influência
-          sobre a comunidade, trabalhando as questões sociais e tentando
-          suprimir o preconceito racial, criando condições para a participação
-          dos negros em sua congregação.
-        </Paragraph>
-        <Paragraph>
-          Mas foi em 1801 e 1831, que o arraial começou a desenvolver seu
-          potencial. A principal atividade econômica era criação de gado,
-          secundada pela produção de rapadura e aguardente, bem como as culturas
-          de arroz, milho, mandioca e algodão. Em 1812, através da carta régia,
-          o arraial atingiu a condição de instituição civil. Com a aquisição de
-          contornos urbanos, resultante do desenvolvimento do comércio e do
-          setor produtivo local, a comunidade requereu inutilmente, durante
-          anos, a elevação do arraial à categoria de Vila.
-        </Paragraph>
-        <Paragraph>
-          O Município só foi criado em 1911, em 30 de agosto, com o
-          desmembramento de Santo Antônio do Monte. A Vila foi efetivamente
-          instalada em 1º de junho de 1912, contando com dois distritos: Bom
-          Despacho e Engenho do Ribeiro.
-        </Paragraph>
-        <Paragraph>
-          Origem do nome da cidade foi em razão da capela, mas existem
-          controvérsias a respeito da origem desse nome. Uma vertente o atribui
-          à devoção do seu fundador, Luiz Ribeiro da Silva, que como outros
-          portugueses povoadores do oeste mineiro, era procedente da Província
-          do Minho, norte de Portugal, onde era fervoroso o culto a Nossa
-          Senhora do Bom Despacho. Outra corrente afirma que a denominação
-          surgiu na ocasião de uma seca prolongada, ocorrida entre 1767 e 1770,
-          penalizando pessoas, animais e lavouras. Então os devotos de Nossa
-          Senhora do Bom Despacho fizeram súplicas e orações pedindo chuva.
-          Certos de que suas preces foram ouvidas, pois a chuva não demorou
-          chegar, ergueram a capela em honra à Santa.
-        </Paragraph>
       </Container>
     </>
   );

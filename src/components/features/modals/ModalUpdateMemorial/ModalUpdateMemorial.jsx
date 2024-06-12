@@ -46,7 +46,7 @@ export default function ModalUpdateMemorial({
     },
     {
       type: "selects",
-      key: "id_categoryType",
+      key: "id_categoryMemorial",
       placeholder: "Escolha a categoria",
       options: options,
     },

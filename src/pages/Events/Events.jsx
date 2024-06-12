@@ -56,8 +56,8 @@ export default function Events() {
   });
 
   const filters = [
-    { label: "Mais antigo", value: "old" },
-    { label: "Mais recente", value: "new" },
+    { label: "Eventos futuros", value: "old" },
+    { label: "Próximos eventos", value: "new" },
     { label: "Nome", value: "name" },
   ];
 
