@@ -9,6 +9,7 @@ import {
   Buttons,
   ButtonsDiv,
   Line,
+  MemorialNotFound,
   MultipleSelect,
 } from "./Styles";
 import { toast } from "react-toastify";
@@ -88,7 +89,7 @@ export default function Memorial() {
   }, [categoryMemorial, memorial]);
 
   const categoryFilter = () => {
-    if (dates.length != 0) {
+    if (dates && dates.length != 0) {
       const [initialDate, finalDate] = dates;
       let formattedDateRange;
       if (finalDate === null) {
@@ -102,13 +103,13 @@ export default function Memorial() {
       setDateRange(formattedDateRange);
     }
 
-    if (category.length === 0) {
+    if (!category || category.length === 0) {
       setFilteredMemorial(memorial);
     } else {
-      const filtered = memorial.filter((memorial) =>
-        category.every((type) =>
-          memorial.id_categoryMemorial.some(
-            (category) => category.name === type
+      const filtered = memorial.filter((memorialItem) =>
+        category.every((selectedCategory) =>
+          memorialItem.id_categoryMemorial.some(
+            (categoryItem) => categoryItem.name === selectedCategory
           )
         )
       );
@@ -116,7 +117,6 @@ export default function Memorial() {
       setFilteredMemorial(filtered);
     }
   };
-
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -153,6 +153,9 @@ export default function Memorial() {
         <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
       </ButtonsDiv>
       <DivLine>
+        {filteredMemorial?.length === 0 && (
+          <MemorialNotFound>Nenhum arquivo encontrado</MemorialNotFound>
+        )}
         {filteredMemorial?.map((card) => (
           <Line key={card.title}>
             <LargeCard

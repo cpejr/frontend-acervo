@@ -21,6 +21,10 @@ export const Image = styled.img`
 export const Paragraph = styled.p`
   margin: 0;
 `;
+export const Legend = styled.p`
+  margin: 0;
+  font-size: 13px;
+`;
 
 export const Title = styled.h1`
   color: ${colors.font.title};

@@ -63,11 +63,11 @@ export default function ModalUpdateMemorial({
   ];
 
   useEffect(() => {
-    if (values?.id_categoryType) {
-      const categoryNames = values.id_categoryType.map((cat) => cat.name);
-      setInitialValues({ id_categoryType: categoryNames });
+    if (values?.id_categoryMemorial) {
+      const categoryNames = values.id_categoryMemorial.map((cat) => cat.name);
+      setInitialValues({ id_categoryMemorial: categoryNames });
     }
-  }, [values.id_categoryType]);
+  }, [values.id_categoryMemorial]);
   function handleSubmit(data) {
     handleMemorialUpdate(id, data);
     close();

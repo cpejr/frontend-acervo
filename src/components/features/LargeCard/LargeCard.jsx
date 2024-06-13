@@ -17,6 +17,8 @@ import {
   Content,
   FavoriteFilledIcon,
   Data,
+  Tags,
+  Tag,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -34,6 +36,7 @@ export default function LargeCard({ data, imagesLoading }) {
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
   const formattedDate = format(new Date(date), "yyyy");
+  let categories = [...data.id_categoryMemorial];
 
   // BackEnd Calls
 
@@ -149,6 +152,11 @@ export default function LargeCard({ data, imagesLoading }) {
             <ShortDescription>{shortDescription}</ShortDescription>
             <LongDescription>{longDescription}</LongDescription>
             <Data>{formattedDate}</Data>
+            <Tags>
+              {categories?.map((category, index) => (
+                <Tag key={index}>{category?.name}</Tag>
+              ))}
+            </Tags>
             {link && (
               <Button
                 onClick={() => {

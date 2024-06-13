@@ -3,6 +3,7 @@ import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Checkbox } from "primereact/checkbox";
 import { MultiSelect } from "primereact/multiselect";
 import { Button } from "antd";
+import { imageEventNotFound } from "../../assets/index";
 
 import { Calendar as PrimeCalendar } from "primereact/calendar";
 export const Container = styled.div`
@@ -200,4 +201,23 @@ export const Filter = styled.div`
   width: 100%;
   align-items: flex-start;
   justify-content: space-evenly;
+`;
+export const MemorialNotFound = styled.div`
+  background-image: url(${imageEventNotFound});
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 35px;
+  @media (max-width: ${breakpoints.smallMobile}) {
+    width: 60%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 70%;
+  }
+  @media (max-width: 520px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
