@@ -158,7 +158,8 @@ export const Buttons = styled(Button)`
   margin-left: 10px;
   margin-right: 10px;
   background-color: ${colors.black};
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
 
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 90%;
@@ -201,5 +202,8 @@ export const Calendar = styled(PrimeCalendar)`
       border: 1px solid ${colors.accent.primary};
       color: ${colors.font.secondary};
     }
+  }
+  ::placeholder {
+    color: ${colors.font.primary};
   }
 `;

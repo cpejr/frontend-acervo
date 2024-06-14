@@ -31,6 +31,7 @@ import {
   AiOutlineUpload,
 } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
+import { format } from "date-fns";
 
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
@@ -106,7 +107,6 @@ export default function ManageCollection() {
     { field: "Description", header: "Description" },
     { field: "Manage", header: "Manage" },
   ];
-
   async function formatAllCollection() {
     const formattedCollection = await collection.map((collection) => ({
       Title: collection?.title,
@@ -124,6 +124,7 @@ export default function ManageCollection() {
                 longDescription: collection.longDescription,
                 archives: collection.archive,
                 link: collection.link,
+                date: format(new Date(collection.date), "yyyy"),
                 id_categoryMemorial: collection?.id_categoryMemorial,
               });
             }}
@@ -215,6 +216,7 @@ export default function ManageCollection() {
       <FormSubmit
         inputs={inputs}
         onSubmit={handlesubmit}
+        memorialDate="Determine uma data"
         schema={newCollectionValidationSchema}
         color={"white"}
         loading={loadingPostMemorial}

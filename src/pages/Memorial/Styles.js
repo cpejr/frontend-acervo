@@ -132,6 +132,9 @@ export const Calendar = styled(PrimeCalendar)`
       width: 225px;
     }
   }
+  ::placeholder {
+    color: ${colors.font.primary};
+  }
 `;
 
 export const LoadingStyles = styled.div`

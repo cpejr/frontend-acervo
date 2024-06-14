@@ -61,7 +61,6 @@ export default function ModalUpdateMemorial({
       icon: AiOutlineUpload,
     },
   ];
-
   useEffect(() => {
     if (values?.id_categoryMemorial) {
       const categoryNames = values.id_categoryMemorial.map((cat) => cat.name);
@@ -87,6 +86,7 @@ export default function ModalUpdateMemorial({
     >
       <FormSubmit
         inputs={inputs}
+        memorialDate={values.date}
         onSubmit={handleSubmit}
         schema={updateCollectionValidationSchema}
         color={"black"}

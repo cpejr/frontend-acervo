@@ -12,6 +12,7 @@ export default function FormSubmit({
   inputs,
   onSubmit,
   schema,
+  memorialDate,
   color,
   loading,
   selectedOptionsInitial,
@@ -139,7 +140,7 @@ export default function FormSubmit({
         view="year"
         name="data"
         selectColor={color}
-        placeholder="Determine uma data"
+        placeholder={memorialDate}
         showButtonBar
         dateFormat="yy"
       />
@@ -154,6 +155,7 @@ FormSubmit.propTypes = {
   inputs: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
+  memorialDate: PropTypes.string,
   color: PropTypes.string,
   loading: PropTypes.bool,
   selectedOptionsInitial: PropTypes.object,

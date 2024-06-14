@@ -18,6 +18,7 @@ import { useState, useEffect } from "react";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
 import UploadInput from "../../../common/UploadInput/UploadInput";
+import { format } from "date-fns";
 
 export default function ModalEditEvent({
   event,
@@ -31,6 +32,8 @@ export default function ModalEditEvent({
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
   const [date, setDate] = useState();
+  const formattedDate = format(new Date(event.date), "dd/MM/yyyy");
+
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -54,7 +57,6 @@ export default function ModalEditEvent({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal]);
   // On Submit
-
   const onSubmit = (data) => {
     let uploadEvent = {};
     if (archivesArray[0]) {
@@ -167,7 +169,7 @@ export default function ModalEditEvent({
             onChange={(e) => setDate(e.value)}
             readOnlyInput
             name="data"
-            placeholder="Determine uma data"
+            placeholder={formattedDate}
             showButtonBar
             dateFormat="dd/mm/yy"
           />
