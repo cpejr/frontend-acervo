@@ -8,7 +8,7 @@ import {
 } from "./Styles";
 
 import FirstStoryImage from "../../assets/FirstStoryImage.svg";
-import SecondStoryImage from "../../assets/SecondStoryImage.svg";
+import { SecondStoryImage } from "../../assets/index";
 import ThirdStoryImage from "../../assets/ThirdStoryImage.svg";
 
 export default function Story() {

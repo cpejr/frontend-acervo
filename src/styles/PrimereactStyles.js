@@ -108,6 +108,10 @@ export const PrimereactStyles = createGlobalStyle`
     background-color: ${colors.background.primary};
     
   }
+  .p-datepicker-title	{
+    color: ${colors.font.primary};
+
+  }
 
   .p-datepicker-year{
     color: ${colors.font.primary};
