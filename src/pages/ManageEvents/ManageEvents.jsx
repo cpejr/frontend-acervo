@@ -147,7 +147,6 @@ export default function ManageEvents() {
         id_categoryType: idCategoriesTypes,
         uploadEvent,
       };
-
       createEvent(combinedData);
       e.target.reset();
       setArchivesArray([]);
