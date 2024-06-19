@@ -70,7 +70,7 @@ export default function Event({ data }) {
                 ))}
               </TagsLine>
               <p>{eventData?.shortDescription}</p>
-              <p>{format(new Date(eventData.date), "dd/MM/yyyy")}</p>
+              <p>{format(new Date(eventData?.date), "dd/MM/yyyy")}</p>
             </DataCollumn>
           </Row>
 
