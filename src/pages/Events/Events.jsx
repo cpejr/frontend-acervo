@@ -102,6 +102,7 @@ export default function Events() {
     setPrices([]);
     setFilter([]);
     setDateRange([]);
+    setDates();
     setCategoryIDsArrays([]);
   };
 
