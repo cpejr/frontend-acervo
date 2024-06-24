@@ -24,11 +24,15 @@ import Button from "../../common/Button/Button";
 import { format } from "date-fns";
 
 export default function Card({ data }) {
+  // States and Variables
+
   const navigate = useNavigate();
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
-  const formattedDate = format(new Date(data.date), "dd/MM/yyyy");
+  const formattedDate = format(new Date(data?.date), "dd/MM/yyyy");
+  const [image, setImage] = useState(null);
+
   // BackEnd Calls
 
   const { data: isFavorited } = useGetIsFavoritedEvent({
@@ -69,7 +73,6 @@ export default function Card({ data }) {
     }
   };
 
-  const [image, setImage] = useState(null);
   const { data: archives, isLoading } = useGetArchives(
     data?.eventUpload?._id,
     data.name,

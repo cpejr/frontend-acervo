@@ -104,5 +104,5 @@ ModalUpdateMemorial.propTypes = {
   closeModal: PropTypes.func.isRequired,
   modalCloseIcon: PropTypes.object.isRequired,
   values: PropTypes.object.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
 };

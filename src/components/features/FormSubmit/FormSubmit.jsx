@@ -91,7 +91,7 @@ export default function FormSubmit({
 
               {selectError && (
                 <ErrorMessage>
-                  pelo menos uma categoria é necessaria
+                  Pelo menos uma categoria é necessaria
                 </ErrorMessage>
               )}
             </>
