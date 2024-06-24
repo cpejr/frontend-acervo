@@ -113,7 +113,6 @@ export default function Memorial() {
           )
         )
       );
-      console.log("✌️filtered --->", filtered);
 
       setFilteredMemorial(filtered);
     }
