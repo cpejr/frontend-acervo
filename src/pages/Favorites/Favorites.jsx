@@ -63,7 +63,7 @@ export default function Favorites() {
             {favoritesMemorials?.length === 0 && (
               <NotFound>Nenhum Memorial Encontrado</NotFound>
             )}
-            {favoritesMemorials.map((card) => (
+            {favoritesMemorials?.map((card) => (
               <Line key={card.title}>
                 <LargeCard
                   aria-label="Cartão de memorial"
