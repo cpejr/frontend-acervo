@@ -88,7 +88,7 @@ export default function LoginSocialArea() {
       )}
       <SocialMedias>
         <a
-          href="https://www.instagram.com/prefeiturabd/"
+          href="https://www.instagram.com/nossahistoriabd/"
           target="_blank"
           rel="noreferrer"
         >
@@ -101,7 +101,7 @@ export default function LoginSocialArea() {
         >
           <img src={Facebook} alt="Logo Facebook" width="75%"></img>
         </a>{" "}
-        <a href="http://wa.me/+31992740294" target="_blank" rel="noreferrer">
+        <a href="http://wa.me/+31983384137" target="_blank" rel="noreferrer">
           <img src={Whatsapp} alt="Logo Whatsapp" width="75%"></img>
         </a>
       </SocialMedias>

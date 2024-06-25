@@ -9,20 +9,23 @@ import {
   Buttons,
   ButtonsDiv,
   Line,
+  MemorialNotFound,
   MultipleSelect,
 } from "./Styles";
 import { toast } from "react-toastify";
 import { useGetMemorialByDate } from "../../hooks/querys/memorial";
 import { SearchBar } from "../../components";
+import useDebounce from "../../services/useDebouce";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGetCategoryType } from "../../hooks/querys/categoryType";
+import { useGetCategoryMemorial } from "../../hooks/querys/categoryMemorial";
 export default function Memorial() {
   const [imagesLoading, setImagesLoading] = useState(true);
-  const [types, setTypes] = useState([]);
+  const [category, setCategory] = useState([]);
   const [filteredMemorial, setFilteredMemorial] = useState();
   const [searchValue, setSearchValue] = useState("");
-  const [dates, setDates] = useState([]);
+  const debouncedName = useDebounce(searchValue);
+  const [dates, setDates] = useState(null);
   const [dateRange, setDateRange] = useState();
   const [options, setOptions] = useState([]);
 
@@ -35,6 +38,7 @@ export default function Memorial() {
     isError,
   } = useGetMemorialByDate({
     dateRange: dateRange,
+    name: debouncedName,
     onError: (err) => {
       setImagesLoading(false);
       toast.error(err);
@@ -49,9 +53,9 @@ export default function Memorial() {
   };
 
   const handleResetFilter = () => {
-    setDates([]);
+    setDates(null);
     setDateRange({});
-    setTypes([]);
+    setCategory([]);
     setFilteredMemorial(memorial);
     queryClient.invalidateQueries({
       queryKey: ["memorial"],
@@ -61,7 +65,7 @@ export default function Memorial() {
     });
   };
 
-  const { data: categoryType } = useGetCategoryType({
+  const { data: categoryMemorial } = useGetCategoryMemorial({
     onError: (err) => {
       toast.error(err);
     },
@@ -73,19 +77,19 @@ export default function Memorial() {
   }, [isLoading, isError]);
 
   useEffect(() => {
-    let types = categoryType?.map((category) => {
+    let memorials = categoryMemorial?.map((category) => {
       return category?.name;
     });
-    if (categoryType) {
-      setOptions(types);
+    if (categoryMemorial) {
+      setOptions(memorials);
     }
     if (memorial) {
       setFilteredMemorial(memorial);
     }
-  }, [categoryType, memorial]);
+  }, [categoryMemorial, memorial]);
 
   const categoryFilter = () => {
-    if (dates.length != 0) {
+    if (dates && dates.length != 0) {
       const [initialDate, finalDate] = dates;
       let formattedDateRange;
       if (finalDate === null) {
@@ -99,19 +103,20 @@ export default function Memorial() {
       setDateRange(formattedDateRange);
     }
 
-    if (types.length === 0) {
+    if (!category || category.length === 0) {
       setFilteredMemorial(memorial);
     } else {
-      const filtered = memorial.filter((memorial) =>
-        types.every((type) =>
-          memorial.id_categoryType.some((category) => category.name === type)
+      const filtered = memorial.filter((memorialItem) =>
+        category.every((selectedCategory) =>
+          memorialItem.id_categoryMemorial.some(
+            (categoryItem) => categoryItem.name === selectedCategory
+          )
         )
       );
 
       setFilteredMemorial(filtered);
     }
   };
-
   return (
     <Container>
       <Title>ACERVO</Title>
@@ -131,14 +136,15 @@ export default function Memorial() {
             hideOnRangeSelection
             placeholder="Determine uma data"
             showButtonBar
-            dateFormat="dd/mm/yy"
+            dateFormat="yy"
+            view="year"
           />
 
           <MultipleSelect
             options={options}
-            placeholder="escolha a categoria"
-            value={types || ""}
-            onChange={(e) => setTypes(e.value)}
+            placeholder="Escolha a categoria"
+            value={category || ""}
+            onChange={(e) => setCategory(e.value)}
           />
         </DivSelect>
       </Filter>
@@ -147,19 +153,18 @@ export default function Memorial() {
         <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
       </ButtonsDiv>
       <DivLine>
-        {filteredMemorial
-          ?.filter((card) =>
-            card.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((card) => (
-            <Line key={card.title}>
-              <LargeCard
-                aria-label="Cartão de memorial"
-                data={card}
-                imagesLoading={imagesLoading}
-              />
-            </Line>
-          ))}
+        {filteredMemorial?.length === 0 && (
+          <MemorialNotFound>Nenhum arquivo encontrado</MemorialNotFound>
+        )}
+        {filteredMemorial?.map((card) => (
+          <Line key={card.title}>
+            <LargeCard
+              aria-label="Cartão de memorial"
+              data={card}
+              imagesLoading={imagesLoading}
+            />
+          </Line>
+        ))}
       </DivLine>
     </Container>
   );

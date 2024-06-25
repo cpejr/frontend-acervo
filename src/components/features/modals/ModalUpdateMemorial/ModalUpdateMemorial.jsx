@@ -46,7 +46,7 @@ export default function ModalUpdateMemorial({
     },
     {
       type: "selects",
-      key: "id_categoryType",
+      key: "id_categoryMemorial",
       placeholder: "Escolha a categoria",
       options: options,
     },
@@ -61,13 +61,12 @@ export default function ModalUpdateMemorial({
       icon: AiOutlineUpload,
     },
   ];
-
   useEffect(() => {
-    if (values?.id_categoryType) {
-      const categoryNames = values.id_categoryType.map((cat) => cat.name);
-      setInitialValues({ id_categoryType: categoryNames });
+    if (values?.id_categoryMemorial) {
+      const categoryNames = values.id_categoryMemorial.map((cat) => cat.name);
+      setInitialValues({ id_categoryMemorial: categoryNames });
     }
-  }, [values.id_categoryType]);
+  }, [values.id_categoryMemorial]);
   function handleSubmit(data) {
     handleMemorialUpdate(id, data);
     close();
@@ -87,6 +86,7 @@ export default function ModalUpdateMemorial({
     >
       <FormSubmit
         inputs={inputs}
+        memorialDate={values.date}
         onSubmit={handleSubmit}
         schema={updateCollectionValidationSchema}
         color={"black"}
@@ -104,5 +104,5 @@ ModalUpdateMemorial.propTypes = {
   closeModal: PropTypes.func.isRequired,
   modalCloseIcon: PropTypes.object.isRequired,
   values: PropTypes.object.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
 };

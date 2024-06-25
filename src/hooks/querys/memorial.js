@@ -68,12 +68,13 @@ export function useGetIsFavoritedMemorial({
 }
 export function useGetMemorialByDate({
   dateRange,
+  name,
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["memorial", { dateRange }],
-    queryFn: () => getMemorialByDate({ dateRange }),
+    queryKey: ["memorial", { dateRange, name }],
+    queryFn: () => getMemorialByDate({ dateRange, name }),
     onSuccess,
     onError,
   });

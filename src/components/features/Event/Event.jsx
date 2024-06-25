@@ -13,10 +13,11 @@ import {
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useGetArchives } from "../../../hooks/querys/archive";
+import { format } from "date-fns";
+
 //   import DOMPurify from "dompurify";
 export default function Event({ data }) {
   let categories = [...data[0].id_categoryPrice, ...data[0].id_categoryType];
-
   const [image, setImage] = useState(null);
   const { data: archives, isLoading } = useGetArchives(
     data[0].eventUpload,
@@ -35,6 +36,7 @@ export default function Event({ data }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, archives]);
+
   return (
     <>
       {data?.map((eventData, index) => (
@@ -68,6 +70,7 @@ export default function Event({ data }) {
                 ))}
               </TagsLine>
               <p>{eventData?.shortDescription}</p>
+              <p>{format(new Date(eventData?.date), "dd/MM/yyyy")}</p>
             </DataCollumn>
           </Row>
 

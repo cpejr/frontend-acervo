@@ -50,6 +50,14 @@ export const LongDescription = styled.div`
     font-size: 15px;
   }
 `;
+export const Data = styled.div`
+  font-size: 17px;
+  color: ${colors.font.secondary};
+  word-break: break-word;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 15px;
+  }
+`;
 
 export const FavoriteIcon = styled(FaRegBookmark)`
   color: ${colors.font.secondary};
@@ -99,4 +107,33 @@ export const Content = styled.div`
   padding: 1rem 0;
   width: 90%;
   margin: 0 auto;
+`;
+export const Tags = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: first baseline;
+  height: auto;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+export const Tag = styled.div`
+  display: flex;
+  padding: 5px 0.8rem;
+  height: 1.5rem;
+  border: 1px solid black;
+  color: black;
+  font-size: 14px;
+  border-radius: 20px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  @media (max-width: ${breakpoints.miniTablet}) {
+    height: 32px;
+    font-size: 14px;
+  }
+  &:hover {
+    border: 1px solid ${colors.accent.primary};
+    color: ${colors.font.secondary};
+  }
 `;

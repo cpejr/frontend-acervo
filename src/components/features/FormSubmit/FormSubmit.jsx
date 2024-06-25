@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
+import { Form, Select, ErrorMessage, InputKeep, Calendar } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -12,6 +12,7 @@ export default function FormSubmit({
   inputs,
   onSubmit,
   schema,
+  memorialDate,
   color,
   loading,
   selectedOptionsInitial,
@@ -24,7 +25,7 @@ export default function FormSubmit({
   } = useForm({
     resolver: zodResolver(schema),
   });
-
+  const [date, setDate] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState(
     selectedOptionsInitial
   );
@@ -44,7 +45,7 @@ export default function FormSubmit({
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
     if (
       Object.keys(selectedOptions).length === 0 ||
-      selectedOptions.id_categoryType.length === 0
+      selectedOptions.id_categoryMemorial?.length === 0
     ) {
       setSelectError(true);
       return;
@@ -53,13 +54,18 @@ export default function FormSubmit({
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
-      onSubmit({ ...data, archives: archivesArray, selectedOptions });
-      setArchivesArray([]);
-      setSelectedOptions({});
-      setSelectError(false);
-      setArchiveError(false);
+      onSubmit({
+        ...data,
+        date: date,
+        archives: archivesArray,
+        selectedOptions,
+      });
+      // setArchivesArray([]);
+      // setSelectedOptions({});
+      // setSelectError(false);
+      // setArchiveError(false);
     } else {
-      onSubmit(data, selectedOptions);
+      onSubmit({ ...data, date: date, selectedOptions });
       setSelectedOptions({});
     }
 
@@ -85,7 +91,7 @@ export default function FormSubmit({
 
               {selectError && (
                 <ErrorMessage>
-                  pelo menos uma categoria é necessaria
+                  Pelo menos uma categoria é necessaria
                 </ErrorMessage>
               )}
             </>
@@ -126,6 +132,18 @@ export default function FormSubmit({
         }
         return null;
       })}
+
+      <Calendar
+        value={date}
+        onChange={(e) => setDate(e.value)}
+        readOnlyInput
+        view="year"
+        name="data"
+        selectColor={color}
+        placeholder={memorialDate}
+        showButtonBar
+        dateFormat="yy"
+      />
       <Button type="submit" width="150px" height="50px">
         {loading ? <LoadingOutlined /> : "Enviar"}
       </Button>
@@ -137,6 +155,7 @@ FormSubmit.propTypes = {
   inputs: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
+  memorialDate: PropTypes.string,
   color: PropTypes.string,
   loading: PropTypes.bool,
   selectedOptionsInitial: PropTypes.object,

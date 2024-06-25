@@ -1,18 +1,24 @@
 import PropTypes from "prop-types";
 import Button from "../../../common/Button/Button";
 import { colors } from "../../../../styles/stylesVariables";
-import { Container, Message, ModalStyle, Form, MultipleSelect } from "./Styles";
+import {
+  Container,
+  Message,
+  ModalStyle,
+  Form,
+  MultipleSelect,
+  Calendar,
+} from "./Styles";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { newEventValidationSchema } from "../../../../pages/ManageEvents/utils";
 import FormSiriusInput from "../../../common/FormSiriusInput/FormSiriusInput";
 import { useState, useEffect } from "react";
-import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
 import UploadInput from "../../../common/UploadInput/UploadInput";
+import { format } from "date-fns";
 
 export default function ModalEditEvent({
   event,
@@ -25,7 +31,9 @@ export default function ModalEditEvent({
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
-  const queryClient = useQueryClient();
+  const [date, setDate] = useState();
+  const formattedDate = format(new Date(event.date), "dd/MM/yyyy");
+
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
       toast.error(err);
@@ -36,17 +44,6 @@ export default function ModalEditEvent({
       toast.error(err);
     },
   });
-  // const { mutate: updateEvent } = useUpdateEvents({
-  //   onSuccess: () => {
-  //     toast.success("Evento editado com sucesso");
-  //     queryClient.invalidateQueries({
-  //       queryKey: ["events"],
-  //     });
-  //   },
-  //   onError: (err) => {
-  //     return err;
-  //   },
-  // });
 
   const setCategories = () => {
     setIdsCategoryType(event?.id_categoryType?.map((ids) => ids._id) || []);
@@ -60,7 +57,6 @@ export default function ModalEditEvent({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal]);
   // On Submit
-
   const onSubmit = (data) => {
     let uploadEvent = {};
     if (archivesArray[0]) {
@@ -71,6 +67,7 @@ export default function ModalEditEvent({
     }
     const body = {
       ...data,
+      date: date,
       id_categoryType: idsCategoryType,
       id_categoryPrice: idsCategoryPrice,
       uploadEvent: uploadEvent,
@@ -88,7 +85,13 @@ export default function ModalEditEvent({
   });
   return (
     <Container>
-      <ModalStyle open={modal} onCancel={close} centered destroyOnClose footer={null}>
+      <ModalStyle
+        open={modal}
+        onCancel={close}
+        centered
+        destroyOnClose
+        footer={null}
+      >
         <Message>Editar Informações</Message>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FormSiriusInput
@@ -160,6 +163,15 @@ export default function ModalEditEvent({
             className="w-full md:w-20rem"
             filter
             color="black"
+          />
+          <Calendar
+            value={date}
+            onChange={(e) => setDate(e.value)}
+            readOnlyInput
+            name="data"
+            placeholder={formattedDate}
+            showButtonBar
+            dateFormat="dd/mm/yy"
           />
           <Button
             type="submit"

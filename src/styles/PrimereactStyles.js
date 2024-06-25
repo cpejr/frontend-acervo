@@ -86,10 +86,10 @@ export const PrimereactStyles = createGlobalStyle`
 
   .p-inputtext{
     color: ${colors.font.primary};
+
     
   }
   .p-inputtext::placeholder {
-    color: ${colors.font.primary};
   }
   .p-datepicker {
     background-color: ${colors.background.primary};
@@ -97,7 +97,7 @@ export const PrimereactStyles = createGlobalStyle`
     ::placeholder {
     font-size: 1rem;
     font-weight: 300;
-    color: ${colors.font.primary};
+    color: ${colors.font.secondary};
   }
   }
   .p-calendar-w-btn	{
@@ -107,6 +107,10 @@ export const PrimereactStyles = createGlobalStyle`
   .p-datepicker-header{
     background-color: ${colors.background.primary};
     
+  }
+  .p-datepicker-title	{
+    color: ${colors.font.primary};
+
   }
 
   .p-datepicker-year{
