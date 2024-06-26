@@ -29,7 +29,8 @@ export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
   const [filter, setFilter] = useState([]);
-  const [dates, setDates] = useState(null);
+
+  const [dates, setDates] = useState();
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
