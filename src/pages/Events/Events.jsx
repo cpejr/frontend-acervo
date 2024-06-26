@@ -29,7 +29,7 @@ export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
   const [filter, setFilter] = useState([]);
-  const [dates, setDates] = useState(null);
+  const [dates, setDates] = useState();
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
@@ -85,11 +85,11 @@ export default function Events() {
 
     let ids = [];
 
-    for (let i = 0; i < prices.length; i++) {
+    for (let i = 0; i < prices?.length; i++) {
       ids.push(prices[i]);
     }
 
-    for (let i = 0; i < types.length; i++) {
+    for (let i = 0; i < types?.length; i++) {
       ids.push(types[i]);
     }
 
