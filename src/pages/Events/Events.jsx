@@ -69,31 +69,27 @@ export default function Events() {
   };
 
   function handleFilterChange() {
-    if (dates) {
-      let formattedDateRange;
-      const [initialDate, finalDate] = dates;
-      if (finalDate === null) {
-        formattedDateRange = { oneDate: initialDate?.toISOString() };
-      } else {
-        formattedDateRange = {
-          initialDate: initialDate?.toISOString(),
-          finalDate: finalDate?.toISOString(),
-        };
-      }
-      setDateRange(formattedDateRange);
-    }
-
-    let ids = [];
-
-    for (let i = 0; i < prices?.length; i++) {
-      ids.push(prices[i]);
-    }
-
-    for (let i = 0; i < types?.length; i++) {
-      ids.push(types[i]);
-    }
-
-    setCategoryIDsArrays(ids);
+    // if (dates) {
+    //   let formattedDateRange;
+    //   const [initialDate, finalDate] = dates;
+    //   if (finalDate === null) {
+    //     formattedDateRange = { oneDate: initialDate?.toISOString() };
+    //   } else {
+    //     formattedDateRange = {
+    //       initialDate: initialDate?.toISOString(),
+    //       finalDate: finalDate?.toISOString(),
+    //     };
+    //   }
+    //   setDateRange(formattedDateRange);
+    // }
+    // let ids = [];
+    // for (let i = 0; i < prices?.length; i++) {
+    //   ids.push(prices[i]);
+    // }
+    // for (let i = 0; i < types?.length; i++) {
+    //   ids.push(types[i]);
+    // }
+    // setCategoryIDsArrays(ids);
   }
 
   const handleResetFilter = () => {
