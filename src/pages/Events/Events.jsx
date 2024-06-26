@@ -29,8 +29,7 @@ export default function Events() {
   const [names, setNames] = useState("");
   const debouncedName = useDebounce(names);
   const [filter, setFilter] = useState([]);
-
-  const [dates, setDates] = useState();
+  const [dates, setDates] = useState(null);
   const [types, setTypes] = useState([]);
   const [prices, setPrices] = useState([]);
   const [categoryIDsArrays, setCategoryIDsArrays] = useState([]);
@@ -74,11 +73,11 @@ export default function Events() {
       let formattedDateRange;
       const [initialDate, finalDate] = dates;
       if (finalDate === null) {
-        formattedDateRange = { oneDate: initialDate.toISOString() };
+        formattedDateRange = { oneDate: initialDate?.toISOString() };
       } else {
         formattedDateRange = {
-          initialDate: initialDate.toISOString(),
-          finalDate: finalDate.toISOString(),
+          initialDate: initialDate?.toISOString(),
+          finalDate: finalDate?.toISOString(),
         };
       }
       setDateRange(formattedDateRange);
