@@ -107,7 +107,8 @@ export default function Events() {
 
   return (
     <Container>
-      <BackgroundTitle>
+      teste
+      {/* <BackgroundTitle>
         <Title>EVENTOS</Title>
       </BackgroundTitle>
       <SearchBar
@@ -136,7 +137,7 @@ export default function Events() {
             filter
           />
 
-          {/* <Calendar
+          <Calendar
             value={dates}
             onChange={(e) => setDates(e.value)}
             selectionMode="range"
@@ -145,7 +146,7 @@ export default function Events() {
             placeholder="Determine uma data"
             showButtonBar
             dateFormat="dd/mm/yy"
-          /> */}
+          />
 
           <UniSelect
             value={filter}
@@ -174,7 +175,7 @@ export default function Events() {
             ))}
           </Line>
         </DivLine>
-      </TrendingEvents>
+      </TrendingEvents> */}
     </Container>
   );
 }
