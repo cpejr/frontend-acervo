@@ -48,7 +48,7 @@ export default function Favorites() {
             )}
             <Line>
               {favoritesEvents?.map((event) => (
-                <Card key={event._id} data={event} />
+                <Card key={event?._id} data={event} />
               ))}
             </Line>
           </DivLine>
@@ -64,7 +64,7 @@ export default function Favorites() {
               <NotFound>Nenhum Memorial Encontrado</NotFound>
             )}
             {favoritesMemorials?.map((card) => (
-              <Line key={card.title}>
+              <Line key={card?.title}>
                 <LargeCard
                   aria-label="Cartão de memorial"
                   data={card}
