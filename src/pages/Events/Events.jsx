@@ -169,9 +169,9 @@ export default function Events() {
             <EventNotFound>Nenhum evento encontrado</EventNotFound>
           )}
           <Line>
-            {/* {events?.map((card, index) => (
+            {events?.map((card, index) => (
               <Card key={index} data={card} />
-            ))} */}
+            ))}
           </Line>
         </DivLine>
       </TrendingEvents>

@@ -125,7 +125,7 @@ export default function Card({ data }) {
       </Group>
       <Line>
         <p>{data?.shortDescription}</p>
-        <p>{formatDate({ value: data?.date })}</p>
+        {data?.date && <p>{formatDate({ value: data?.date })}</p>}
       </Line>
 
       <Tags>
