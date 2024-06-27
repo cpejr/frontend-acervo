@@ -136,7 +136,7 @@ export default function Events() {
             filter
           />
 
-          <Calendar
+          {/* <Calendar
             value={dates}
             onChange={(e) => setDates(e.value)}
             selectionMode="range"
@@ -145,7 +145,7 @@ export default function Events() {
             placeholder="Determine uma data"
             showButtonBar
             dateFormat="dd/mm/yy"
-          />
+          /> */}
 
           <UniSelect
             value={filter}
@@ -159,7 +159,7 @@ export default function Events() {
         </DivSelect>
 
         <ButtonsDiv>
-          {/* <Buttons onClick={handleFilterChange}>Filtrar</Buttons> */}
+          <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
           <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
         </ButtonsDiv>
       </ContainerFilter>
