@@ -31,7 +31,7 @@ import {
   AiOutlineUpload,
 } from "react-icons/ai";
 import { LoadingOutlined } from "@ant-design/icons";
-import { format } from "date-fns";
+import formatYear from "../../utils/formatYear";
 
 export default function ManageCollection() {
   const [modalDelete, setModalDelete] = useState(false);
@@ -124,7 +124,7 @@ export default function ManageCollection() {
                 longDescription: collection.longDescription,
                 archives: collection.archive,
                 link: collection.link,
-                date: format(new Date(collection.date), "yyyy"),
+                date: formatYear({ value: collection?.date }),
                 id_categoryMemorial: collection?.id_categoryMemorial,
               });
             }}

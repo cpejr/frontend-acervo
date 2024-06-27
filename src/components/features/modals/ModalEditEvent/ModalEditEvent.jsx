@@ -18,7 +18,7 @@ import { useState, useEffect } from "react";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
 import UploadInput from "../../../common/UploadInput/UploadInput";
-import { format } from "date-fns";
+import formatDate from "../../../../utils/formatDate";
 
 export default function ModalEditEvent({
   event,
@@ -32,7 +32,6 @@ export default function ModalEditEvent({
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const [archivesArray, setArchivesArray] = useState([]);
   const [date, setDate] = useState();
-  const formattedDate = format(new Date(event.date), "dd/MM/yyyy");
 
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -169,7 +168,7 @@ export default function ModalEditEvent({
             onChange={(e) => setDate(e.value)}
             readOnlyInput
             name="data"
-            placeholder={formattedDate}
+            placeholder={formatDate({ value: event?.date })}
             showButtonBar
             dateFormat="dd/mm/yy"
           />
