@@ -107,7 +107,6 @@ export default function Events() {
 
   return (
     <Container>
-      teste
       {/* <BackgroundTitle>
         <Title>EVENTOS</Title>
       </BackgroundTitle>
@@ -116,50 +115,50 @@ export default function Events() {
         search={(e) => setNames(e.target.value)}
         placeholder="Pesquisar Eventos"
       ></SearchBar>
-      <ContainerFilter>
-        <DivSelect>
-          <MultipleSelect
-            value={types}
-            onChange={(e) => setTypes(e.value)}
-            options={transformArrayItems(categoryType)}
-            optionLabel="label"
-            placeholder="Escolha o tipo"
-            className="w-full md:w-20rem"
-            filter
-          />
-          <MultipleSelect
-            value={prices}
-            onChange={(e) => setPrices(e.value)}
-            options={transformArrayItems(categoryPrice)}
-            optionLabel="label"
-            placeholder="Escolha o preço"
-            className="w-full md:w-20rem"
-            filter
-          />
+      <ContainerFilter> */}
+      <DivSelect>
+        <MultipleSelect
+          value={types}
+          onChange={(e) => setTypes(e.value)}
+          options={transformArrayItems(categoryType)}
+          optionLabel="label"
+          placeholder="Escolha o tipo"
+          className="w-full md:w-20rem"
+          filter
+        />
+        <MultipleSelect
+          value={prices}
+          onChange={(e) => setPrices(e.value)}
+          options={transformArrayItems(categoryPrice)}
+          optionLabel="label"
+          placeholder="Escolha o preço"
+          className="w-full md:w-20rem"
+          filter
+        />
 
-          <Calendar
-            value={dates}
-            onChange={(e) => setDates(e.value)}
-            selectionMode="range"
-            readOnlyInput
-            hideOnRangeSelection
-            placeholder="Determine uma data"
-            showButtonBar
-            dateFormat="dd/mm/yy"
-          />
+        <Calendar
+          value={dates}
+          onChange={(e) => setDates(e.value)}
+          selectionMode="range"
+          readOnlyInput
+          hideOnRangeSelection
+          placeholder="Determine uma data"
+          showButtonBar
+          dateFormat="dd/mm/yy"
+        />
 
-          <UniSelect
-            value={filter}
-            onChange={(e) => setFilter(e.value)}
-            options={filters}
-            showClear
-            optionLabel="label"
-            placeholder="Ordenar Por"
-            className="w-full md:w-14rem"
-          ></UniSelect>
-        </DivSelect>
+        <UniSelect
+          value={filter}
+          onChange={(e) => setFilter(e.value)}
+          options={filters}
+          showClear
+          optionLabel="label"
+          placeholder="Ordenar Por"
+          className="w-full md:w-14rem"
+        ></UniSelect>
+      </DivSelect>
 
-        <ButtonsDiv>
+      {/* <ButtonsDiv>
           <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
           <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
         </ButtonsDiv>
