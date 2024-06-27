@@ -163,7 +163,7 @@ export default function Events() {
           <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
         </ButtonsDiv>
       </ContainerFilter>
-      {/*   <TrendingEvents>
+      <TrendingEvents>
         <DivLine>
           {events?.length === 0 && (
             <EventNotFound>Nenhum evento encontrado</EventNotFound>
@@ -174,7 +174,7 @@ export default function Events() {
             ))}
           </Line>
         </DivLine>
-      </TrendingEvents> */}
+      </TrendingEvents>
     </Container>
   );
 }

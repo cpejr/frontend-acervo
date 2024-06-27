@@ -13,7 +13,7 @@ import {
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useGetArchives } from "../../../hooks/querys/archive";
-import { format } from "date-fns";
+import formatDate from "../../../utils/formatDate";
 
 //   import DOMPurify from "dompurify";
 export default function Event({ data }) {
@@ -70,7 +70,7 @@ export default function Event({ data }) {
                 ))}
               </TagsLine>
               <p>{eventData?.shortDescription}</p>
-              <p>{format(new Date(eventData?.date), "dd/MM/yyyy")}</p>
+              <p>{formatDate({ value: eventData?.date })}</p>
             </DataCollumn>
           </Row>
 

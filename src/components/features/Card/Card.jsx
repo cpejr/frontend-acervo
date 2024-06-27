@@ -21,7 +21,7 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useGetIsFavoritedEvent } from "../../../hooks/querys/events";
 import { useNavigate } from "react-router-dom";
 import Button from "../../common/Button/Button";
-import { format } from "date-fns";
+import formatDate from "../../../utils/formatDate";
 
 export default function Card({ data }) {
   // States and Variables
@@ -30,7 +30,6 @@ export default function Card({ data }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state?.auth?.user?._id);
-  const formattedDate = format(new Date(data?.date), "dd/MM/yyyy");
   const [image, setImage] = useState(null);
 
   // BackEnd Calls
@@ -126,7 +125,7 @@ export default function Card({ data }) {
       </Group>
       <Line>
         <p>{data.shortDescription}</p>
-        <p>{formattedDate}</p>
+        <p>{formatDate({ value: data?.date })}</p>
       </Line>
 
       <Tags>
