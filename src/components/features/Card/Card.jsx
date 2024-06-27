@@ -124,7 +124,7 @@ export default function Card({ data }) {
         </LineSVG>
       </Group>
       <Line>
-        <p>{data.shortDescription}</p>
+        <p>{data?.shortDescription}</p>
         <p>{formatDate({ value: data?.date })}</p>
       </Line>
 
