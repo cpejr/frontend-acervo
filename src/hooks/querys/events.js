@@ -52,7 +52,7 @@ export function useGetEventsByCategoryId({
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["events", { id, name, type, dateRange }],
+    queryKey: ["events", { id, name, type }],
     queryFn: () => getEventsByCategoryId({ id, name, type, dateRange }),
     onSuccess,
     onError,
