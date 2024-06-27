@@ -13,6 +13,9 @@ import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
 if (import.meta.env.VITE_NODE_ENV === "production") {
   disableReactDevTools();
+  console.error = () => {};
+  console.warn = () => {};
+  console.log = () => {};
 }
 
 const queryClient = new QueryClient({
