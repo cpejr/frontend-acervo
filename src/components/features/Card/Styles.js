@@ -163,8 +163,8 @@ export const Tags = styled.div`
 `;
 export const Tag = styled.div`
   display: flex;
-  width: 5.5rem;
-  padding: 3px 0.4rem;
+  width: 7rem;
+  padding: 5px 0.8rem;
   height: 1.5rem;
   border: 1px solid black;
   color: black;
