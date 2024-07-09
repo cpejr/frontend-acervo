@@ -163,12 +163,12 @@ export const Tags = styled.div`
 `;
 export const Tag = styled.div`
   display: flex;
-  width: 6.5rem;
+  width: 6.7rem;
   padding: 5px 0.8rem;
   height: 1.5rem;
   border: 1px solid black;
   color: black;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 20px;
   align-items: center;
   text-align: center;
