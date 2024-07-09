@@ -3,6 +3,8 @@ export const colors = {
     primary: "#7F260F",
     secondary: "#000000",
     hover: "#53190a",
+    menu: "#1C1C1C",
+    white: "#FFF",
   },
   font: {
     primary: "#FFF",
@@ -18,7 +20,10 @@ export const colors = {
     background: "#f5eff9",
     modalButton: "#f19709",
   },
-  error: "#9E0000",
+  error: {
+    primary: "pink",
+    secondary: "#9E0000",
+  },
   warning: "#F19709",
   placeholder: "#DFDFDF",
   underline: "#FFD599",

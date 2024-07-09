@@ -14,6 +14,13 @@ function App() {
           fontFamily: fonts.Cabin,
           fontSize: "15px",
         },
+        components: {
+          Select: {
+            colorBgElevated: colors.background.primary,
+            optionSelectedBg: colors.background.primary,
+            boxShadowSecondary: "rgba(0, 0, 0, 0.35) 0px 5px 15px;",
+          },
+        },
       }}
     >
       <GlobalStyles />

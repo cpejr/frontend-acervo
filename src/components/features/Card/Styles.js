@@ -10,9 +10,12 @@ export const StyledCard = styled(Card)`
   align-items: center;
   border-radius: 24px;
   gap: 3.33rem;
-  background-color: white;
+  background-color: ${colors.background.white};
   margin-bottom: 4rem;
   &:hover {
+  }
+  .ant-card-body {
+    width: 100%;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     width: 24rem;
@@ -59,12 +62,17 @@ export const Image = styled.div`
   }
 `;
 export const Line = styled.div`
-  display: flex;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   flex-direction: row;
   width: 100%;
   height: auto;
+  max-height: 120px;
   font-size: 30px;
+  overflow: hidden;
   color: ${colors.font.secondary};
+  word-wrap: break-word;
   cursor: pointer;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
@@ -102,6 +110,11 @@ export const LineSVG = styled.div`
   flex-direction: row;
   justify-content: end;
   align-items: center;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   > svg {
     cursor: pointer;
     font-size: 30px;
@@ -170,7 +183,7 @@ export const Tags = styled.div`
 `;
 export const Tag = styled.div`
   display: flex;
-  width: 3rem;
+  width: 4.3rem;
   padding: 5px 0.8rem;
   height: 1.5rem;
   border: 1px solid black;
@@ -182,26 +195,32 @@ export const Tag = styled.div`
   justify-content: center;
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 32px;
-    font-size: 12px;
+    font-size: 14px;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 24px;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 21.6px;
-    font-size: 12px;
+    font-size: 14px;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
     height: 32px;
-    font-size: 12px;
+    font-size: 14px;
   }
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 9px;
+    font-size: 12px;
   }
   &:hover {
     border: 1px solid blue;
     color: blue;
   }
+`;
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+  color: ${colors.font.secondary};
 `;

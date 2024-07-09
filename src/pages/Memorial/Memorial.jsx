@@ -11,28 +11,26 @@ import {
   DivLine,
   Line,
 } from "../Memorial/Styles";
-import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { Checkbox } from "primereact/checkbox";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGetCards } from "../../hooks/querys/memorial";
+import { useGetMemorial } from "../../hooks/querys/memorial";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
-
 export default function Memorial() {
   const [characteristicCheckboxes, setCharacteristicCheckboxes] = useState([
     { label: "Característica 1", value: "c1", checked: false },
     { label: "Característica 2", value: "c2", checked: false },
     { label: "Característica 3", value: "c3", checked: false },
   ]);
-
+  const [imagesLoading, setImagesLoading] = useState(true);
   const filters = [
-    { label: "Nome", value: "title" },
-    { label: "Data", value: "date" },
+    { label: "Favoritos", value: "title" },
+    { label: "Melhor avaliados", value: "date" },
   ];
 
   const queryClient = useQueryClient();
   const [searchValue, setSearchValue] = useState("");
-  const [sortValue, setSelectedSort] = useState("title");
+  const [sortValue, setSelectedSort] = useState("");
 
   const handleSearchChange = (e) => {
     e.preventDefault();
@@ -40,8 +38,7 @@ export default function Memorial() {
   };
 
   const handleChangeSort = (e) => {
-    setSelectedSort(e.target.value);
-    updateCards(e.target.value);
+    setSelectedSort(e.value);
   };
 
   const handleChangeCheckbox = (e) => {
@@ -55,44 +52,28 @@ export default function Memorial() {
     const newCheckedStates = [...characteristicCheckboxes];
     newCheckedStates[index].checked = !newCheckedStates[index].checked;
     setCharacteristicCheckboxes(newCheckedStates);
-    updateCards();
   };
 
-  function updateCards(sort) {
-    try {
-      let selectedFilters = [];
-      characteristicCheckboxes.forEach((val) => {
-        if (val.checked) selectedFilters.push(val.value);
-      });
-
-      if (!sort) {
-        sort = sortValue;
-      }
-
-      const selection = {
-        order: sort,
-        filters: selectedFilters,
-      };
-
-      getCards(selection);
-    } catch (e) {
-      toast.error("Erro ao carregar memorial");
-    }
-  }
-
-  const { mutate: getCards, data: memorialCards } = useGetCards({
+  const {
+    data: memorialCards,
+    isLoading,
+    isError,
+  } = useGetMemorial({
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["memorialCards"],
       });
     },
-    onError: () => {},
+    onError: () => {
+      setImagesLoading(false);
+    },
   });
 
   useEffect(() => {
-    updateCards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (!isLoading && !isError) {
+      setImagesLoading(false);
+    }
+  }, [isLoading, isError]);
 
   return (
     <Container>
@@ -122,21 +103,30 @@ export default function Memorial() {
         <DivSelect>
           <UniSelect
             aria-label="Botão de ordenação"
+            value={sortValue}
             options={filters}
             optionLabel="label"
+            showClear
             placeholder="Ordenar Por"
             onChange={handleChangeSort}
+            className="w-full md:w-14rem"
           />
         </DivSelect>
       </Filter>
       <DivLine>
-        {memorialCards?.filter((card) =>
+        {memorialCards
+          ?.filter((card) =>
             card.title.toLowerCase().includes(searchValue.toLowerCase())
-          ).map((card) => (
-          <Line key={card.title}>
-            <LargeCard aria-label="Cartão de memorial" data={card} />
-          </Line>
-        ))}
+          )
+          .map((card) => (
+            <Line key={card.title}>
+              <LargeCard
+                aria-label="Cartão de memorial"
+                data={card}
+                imagesLoading={imagesLoading}
+              />
+            </Line>
+          ))}
       </DivLine>
     </Container>
   );

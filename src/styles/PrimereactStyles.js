@@ -4,18 +4,29 @@ import { colors } from "../styles/stylesVariables";
 export const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
     background-color: ${colors.background.primary}; 
-    color: white;
+    color: ${colors.font.primary};
     border-bottom: 0.5px solid ${colors.font.title};
     padding: 1rem 0;
     font-size: 1rem;
   }  
+  .ant-menu-light.ant-menu-submenu-popup>.ant-menu{
+    background-color: ${colors.background.menu};
+  }
+  .ant-menu-light>.ant-menu .ant-menu-item-selected{
+    background-color: ${colors.background.menu};
+  }
+  .ant-menu-light>.ant-menu .ant-menu-item-selected{
+    color:${colors.font.primary};
+  }
 
   .p-dropdown-item {
-    background-color: ${colors.background.primary};
-    color:${colors.font.primary};
+    background-color: ${colors.background.white};
+    color:${colors.font.secondary};
     text-align: center;
     &:hover {
-      background-color: ${colors.background.hover};
+      background-color: ${colors.background.primary};
+      color:${colors.font.primary};
+
     }
   }
 
@@ -39,7 +50,7 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-dropdown-items-wrapper, .p-dropdown-panel {
-    background-color: ${colors.background.primary};
+    background-color: #fff;
     border-radius: 10px;
   }
 

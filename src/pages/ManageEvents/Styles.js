@@ -1,0 +1,116 @@
+import styled from "styled-components";
+import { breakpoints, colors } from "../../styles/stylesVariables";
+import { MultiSelect } from "primereact/multiselect";
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding-top: 3rem;
+  gap: 3rem;
+
+  @media (max-width: 700px) {
+    height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+  }
+`;
+
+export const Title = styled.div`
+  color: ${colors.font.title};
+  font-size: 30px;
+  margin-left: 5%;
+  width: fit-content;
+  border-bottom: 2px solid ${colors.font.title};
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 27px;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 25px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 22px;
+  }
+`;
+
+export const Form = styled.form`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+  height: 100%;
+
+  @media (max-width: 700px) {
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 0%;
+  }
+
+  @media (min-width: 1440px) {
+    max-width: 144rem;
+  }
+`;
+
+export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 100%;
+  gap: 2rem;
+  ::placeholder {
+    color: ${colors.font.primary};
+    font-weight: 400;
+  }
+
+  @media (max-width: 700px) {
+    width: 80%;
+  }
+`;
+
+export const EventButtons = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+export const MultipleSelect = styled(MultiSelect)`
+  background-color: ${colors.background.primary};
+  .p-placeholder {
+    color: ${colors.font.primary};
+  }
+  .p-multiselect-label {
+    width: 215px;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 50%;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 50%;
+  }
+`;
+export const Selects = styled.div`
+  display: flex;
+  color: #808080;
+  flex-direction: row;
+  width: 100%;
+  gap: 3rem;
+  justify-content: center;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+`;
+
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
+`;

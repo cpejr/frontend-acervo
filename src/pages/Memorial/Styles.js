@@ -110,11 +110,11 @@ export const DivSelect = styled.div`
 export const UniSelect = styled(Dropdown)`
   gap: 1rem;
   .p-dropdown-label {
-    color: white;
+    color: ${colors.font.primary};
     width: 100%;
   }
   .p-inputtext {
-    color: white;
+    color: ${colors.font.primary};
     font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -130,4 +130,9 @@ export const UniSelect = styled(Dropdown)`
   @media (max-width: ${breakpoints.smallMobile}) {
     width: 20%;
   }
+`;
+export const LoadingStyles = styled.div`
+  display: "block";
+  font-size: 24px;
+  margin: 20px auto;
 `;
