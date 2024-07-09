@@ -163,9 +163,9 @@ export const Tags = styled.div`
 `;
 export const Tag = styled.div`
   display: flex;
-  width: 7rem;
+  width: 7.1rem;
   padding: 5px 0.8rem;
-  height: 1.6rem;
+  height: 1.65rem;
   border: 1px solid black;
   color: black;
   font-size: 13px;
