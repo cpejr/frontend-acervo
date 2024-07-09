@@ -168,7 +168,7 @@ export const Tag = styled.div`
   height: 1.5rem;
   border: 1px solid black;
   color: black;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 20px;
   align-items: center;
   text-align: center;
