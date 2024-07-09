@@ -165,10 +165,10 @@ export const Tag = styled.div`
   display: flex;
   width: 5.5rem;
   padding: 5px 0.8rem;
-  height: 1.5rem;
+  height: 1.7rem;
   border: 1px solid black;
   color: black;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 20px;
   align-items: center;
   text-align: center;
