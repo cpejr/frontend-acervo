@@ -155,7 +155,7 @@ export const ButtonDiv = styled.div`
 export const Tags = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   justify-content: first baseline;
   height: auto;
   gap: 1rem;
@@ -163,7 +163,7 @@ export const Tags = styled.div`
 `;
 export const Tag = styled.div`
   display: flex;
-  width: 7rem;
+  width: 3rem;
   padding: 5px 0.8rem;
   height: 1.5rem;
   border: 1px solid black;
